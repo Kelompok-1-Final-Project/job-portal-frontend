@@ -1,0 +1,9 @@
+<p-menubar [model]="items">
+    <ng-template pTemplate="end">
+        <p-overlayPanel #op>
+            <p-menu [model]="profileMenu"> </p-menu>
+        </p-overlayPanel>
+        <p-avatar image="{{imgUrl | url}}" styleClass="mr-2"
+            size="large" shape="circle" (click)="op.toggle($event); getOP(op)"></p-avatar>
+    </ng-template>
+</p-menubar>
