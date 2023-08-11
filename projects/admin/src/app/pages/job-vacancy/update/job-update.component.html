@@ -8,21 +8,28 @@
           <h2 class="text-center">Vacancy Information</h2>
         </div>
         <div class="col-12 md:col-2">
-          <label for="companyName" class="form-label">Vacancy Title<span style="color: red;">*</span></label>
+          <label for="companyName" class="form-label">Vacancy Code</label>
+        </div>
+        <div class="col-12 md:col-4">
+          <input pInputText type="text" class="form-control col-12 p-disabled" value="JKASJD" id="companyName" aria-describedby="companyNameHelp"
+            required formControlName="companyName">
+        </div>
+        <div class="col-12 md:col-2">
+          <label for="companyName" class="form-label">Vacancy Title</label>
         </div>
         <div class="col-12 md:col-4">
           <input pInputText type="text" class="form-control col-12" id="companyName" aria-describedby="companyNameHelp"
             required formControlName="companyName">
         </div>
         <div class="col-12 md:col-2">
-          <label for="companyName" class="form-label">Position<span style="color: red;">*</span></label>
+          <label for="companyName" class="form-label">Position</label>
         </div>
         <div class="col-12 md:col-4">
           <p-autoComplete class="col-12" [dropdown]="true" [suggestions]="filteredCountries" field="name">
           </p-autoComplete>
         </div>
         <div class="col-6 md:col-2">
-          <label for="companyName" class="form-label">Salary<span style="color: red;">*</span></label>
+          <label for="companyName" class="form-label">Salary</label>
         </div>
         <div class="col-6 md:col-4">
           <input pInputText type="text" class="form-control col-5" id="companyName" aria-describedby="companyNameHelp"
@@ -32,13 +39,13 @@
             required formControlName="companyName">
         </div>
         <div class="col-12 md:col-2">
-          <label for="companyAddress" class="form-label">Published Time<span style="color: red;">*</span></label>
+          <label for="companyAddress" class="form-label">Published Time</label>
         </div>
         <div class="col-12 md:col-4">
           <p-calendar [showIcon]="true"></p-calendar>
         </div>
         <div class="col-12 md:col-2">
-          <label for="companyName" class="form-label">Company<span style="color: red;">*</span></label>
+          <label for="companyName" class="form-label">Company</label>
         </div>
         <div class="col-12 md:col-4">
           <p-dropdown optionLabel="name"></p-dropdown>
@@ -47,7 +54,7 @@
           <h2 class="text-center">Vacancy Status</h2>
         </div>
         <div class="col-12 md:col-2">
-          <label for="companyName" class="form-label">Status<span style="color: red;">*</span></label>
+          <label for="companyName" class="form-label">Status</label>
         </div>
         <div class="col-12 md:col-4">
           <p-autoComplete class="col-12" [dropdown]="true" [suggestions]="filteredCountries" field="name">
@@ -89,16 +96,6 @@
           <p-autoComplete class="col-10" [dropdown]="true" [suggestions]="filteredCountries" field="name">
           </p-autoComplete>
           <button class="col-2" type="button" pButton pRipple class="p-button-primary" icon="pi pi-plus"></button>
-        </div>
-        <div class="flex col-12">
-          <h2 class="text-center">Assesment</h2>
-        </div>
-        <div class="col-12 md:col-6">
-          <p-inputSwitch formControlName="checked"></p-inputSwitch>
-          <span class="p-fluid">
-            <p-autoComplete [(ngModel)]="selectedCountry" [suggestions]="filteredCountries" 
-                (completeMethod)="filterCountry($event)" field="name" [multiple]="true"></p-autoComplete>
-        </span>
         </div>
 
         <div class="flex flex-wrap justify-content-end mt-2 col-12">

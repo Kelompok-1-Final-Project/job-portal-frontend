@@ -33,6 +33,28 @@ const routes : Routes = [
         path : 'cities',
         loadChildren : () => import ('./pages/city/city.module')
         .then(c => c.CityModule)
+    },{
+        component : BaseComponent,
+        path : 'candidates',
+        loadChildren : () => import ('./pages/candidate/candidate.module')
+        .then(c => c.CandidateModule)
+    },{
+        component : BaseComponent,
+        path : 'benefits',
+        loadChildren : () => import ('./pages/benefit/benefit.module')
+        .then(c => c.BenefitModule)
+    },
+    {
+        component : BaseComponent,
+        path : 'industries',
+        loadChildren : () => import ('./pages/industry/industry.module')
+        .then(c => c.IndustryModule)
+    },
+    {
+        component : BaseComponent,
+        path : 'skills',
+        loadChildren : () => import ('./pages/skill/skill.module')
+        .then(c => c.SkillModule)
     },
     {
         component : BaseComponent,
