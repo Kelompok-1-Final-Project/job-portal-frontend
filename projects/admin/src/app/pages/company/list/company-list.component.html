@@ -1,0 +1,44 @@
+<div class="container grid justify-content-center p-3">
+  <div class=" grid justify-content-center col-12">
+    <h3 class="text-center">Table Company List</h3>
+  </div>
+  <div class="card col-9">
+    <div class="grid justify-content-end mb-3">
+      <button routerLink="new" pButton pRipple class="p-button-primary" label="Add Company"></button>
+    </div>
+    <p-table [value]="companies" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header">
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Company Code </th>
+          <th scope="col">Company Name</th>
+          <th scope="col">Company Industry</th>
+          <th scope="col">City</th>
+          <th scope="col">Description</th>
+          <th scope="col">Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-c let-i="rowIndex">
+        <tr>
+          <th scope="row">{{ i+1 }}</th>
+          <td>{{ c.companyCode}}</td>
+          <td>{{ c.companyName }}</td>
+          <td>{{ c.companyIndustry }}</td>
+          <td>{{ c.companyAddress }}</td>
+          <td>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum aspernatur provident fugiat omnis quasi
+            repellendus quas sapiente voluptate, aliquid iure, ipsum explicabo? Cumque, sit esse quae ipsam nulla modi
+            officiis cum commodi sint aut quidem, consequatur perferendis, est aliquid voluptate labore possimus
+            voluptates iure non.
+          </td>
+          <td>
+            <div class="p-buttonset">
+              <button routerLink="/companies/update/{{ c.id }}" pButton pRipple class="p-button-secondary"
+                label="Edit"></button>
+              <button routerLink="/users/profile" pButton pRipple class="p-button-danger" label="Delete"></button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>

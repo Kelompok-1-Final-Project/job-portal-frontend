@@ -2,31 +2,23 @@ import { NgModule } from "@angular/core";
 import { NavbarComponent } from "./navbar.component";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
-import { UrlPipe } from "@pipes/url.pipe";
 import { MenubarModule } from 'primeng/menubar';
-import { OverlayPanelModule } from 'primeng/overlaypanel';
-import { MenuModule } from 'primeng/menu';
-import { AvatarModule } from 'primeng/avatar';
-import { AvatarGroupModule } from 'primeng/avatargroup';
+import { UrlPipe } from "@pipes/url.pipe";
 
 @NgModule({
-    declarations: [
+    declarations : [
         NavbarComponent
-    ],
-    imports: [
+    ],imports :[
         RouterModule,
         CommonModule,
-        UrlPipe,
         MenubarModule,
-        OverlayPanelModule,
-        AvatarModule,
-        AvatarGroupModule,
-        MenuModule
-    ],
-    exports: [
+        UrlPipe
+    ], 
+    exports : [
         NavbarComponent
     ]
 })
-export class NavbarModule {
+
+export class NavbarModule{
 
 }
