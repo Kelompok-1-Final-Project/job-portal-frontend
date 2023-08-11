@@ -1,8 +1,5 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { ProductListComponent } from "./product-list/product-list.component";
-import { ProductInsertComponent } from "./product-insert/product-insert.component";
-import { ProductUpdateComponent } from "./product-update/product-update.component";
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { TableModule } from 'primeng/table';
@@ -10,26 +7,19 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { FileUploadModule } from 'primeng/fileupload';
+import { DialogModule } from 'primeng/dialog';
+import { IndustryListComponent } from "./list/industry-list.component";
 
 const routes : Routes = [
     {
         path : '',
-        component : ProductListComponent
-    }
-    ,{
-        path : 'new',
-        component : ProductInsertComponent
-    },{
-        path : 'update/:id',
-        component : ProductUpdateComponent
+        component : IndustryListComponent
     }
 ];
 
 @NgModule({
     declarations : [
-        ProductInsertComponent,
-        ProductListComponent,
-        ProductUpdateComponent
+        IndustryListComponent
     ],
     imports : [
         RouterModule.forChild(routes),
@@ -39,16 +29,14 @@ const routes : Routes = [
         ButtonModule,
         DropdownModule,
         InputTextModule,
+        DialogModule,
         FileUploadModule
     ],
     exports : [
-        ProductInsertComponent,
-        ProductListComponent,
-        ProductUpdateComponent,
         RouterModule
     ]
  } )
 
-export class ProductRouting {
+export class IndustryRouting {
 
 }

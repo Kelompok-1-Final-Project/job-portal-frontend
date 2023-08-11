@@ -5,31 +5,32 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { ButtonComponent } from "@component/button/button.component";
 import { SharedModuleComponent } from "@shared/shared.module";
 import { AutoCompleteModule } from 'primeng/autocomplete';
-import { JobInsertComponent } from "./insert/job-insert.component";
-import {EditorModule} from 'primeng/editor';
-import { JobListComponent } from "./list/job-list.component";
-import { JobUpdateComponent } from "./update/job-update.component";
+import { CandidateInsertComponent } from "./insert/candidate-insert.component";
+import { CandidateUpdateComponent } from "./update/candidate-update.component";
+import { PanelModule } from 'primeng/panel';
+import { TableModule } from 'primeng/table';
+import { CandidateListComponent } from "./list/candidate-list.component";
 
 const routes : Routes = [
     {
         path : '',
-        component : JobListComponent
+        component : CandidateListComponent
     },
     {
-        path : 'detail/:code',
-        component : JobUpdateComponent
+        path : 'detail/:id',
+        component : CandidateUpdateComponent
     },
     {
         path : 'create',
-        component : JobInsertComponent
+        component : CandidateInsertComponent
     }
 ]
 
 @NgModule({
     declarations : [
-        JobInsertComponent,
-        JobListComponent,
-        JobUpdateComponent
+        CandidateInsertComponent,
+        CandidateUpdateComponent,
+        CandidateListComponent
     ],
     imports :[
         RouterModule.forChild(routes),
@@ -37,14 +38,16 @@ const routes : Routes = [
         ReactiveFormsModule,
         ButtonComponent,
         AutoCompleteModule,
-        EditorModule,
+        PanelModule,
+        TableModule,
         SharedModuleComponent
 
     ],
     exports :[
+        CandidateInsertComponent,
         RouterModule
     ]
 })
-export class JobRouting{
+export class CandidateRouting{
 
 }

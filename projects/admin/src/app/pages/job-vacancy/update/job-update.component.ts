@@ -15,17 +15,12 @@ import { QuestionTypeService } from "@service/question-type.service";
 interface Country {
     name: string;
   }
-  interface AutoCompleteCompleteEvent {
-    originalEvent: Event;
-    query: string;
-}
 
 @Component({
-    selector: 'job-insert',
-    templateUrl: './job-insert.component.html'
+    selector: 'job-update',
+    templateUrl: './job-update.component.html'
 })
-export class JobInsertComponent implements AfterViewChecked {
-
+export class JobUpdateComponent implements AfterViewChecked {
     selectedCountry: Country | undefined;
     countries: Country[] = [
       { name: 'Indonesia' },
@@ -55,19 +50,4 @@ export class JobInsertComponent implements AfterViewChecked {
     ngAfterViewChecked(): void {
        
     }
-
-    filterCountry(event: AutoCompleteCompleteEvent) {
-      //in a real application, make a request to a remote url with the query and return filtered results, for demo we filter at client side
-      let filtered: any[] = [];
-      let query = event.query;
-
-      for (let i = 0; i < (this.countries as any[]).length; i++) {
-          let country = (this.countries as any[])[i];
-          if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-              filtered.push(country);
-          }
-      }
-
-      this.filteredCountries = filtered;
-  }
 }

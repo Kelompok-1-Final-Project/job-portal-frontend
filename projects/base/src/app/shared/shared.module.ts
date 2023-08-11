@@ -13,6 +13,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { CalendarModule } from 'primeng/calendar';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { PanelModule } from 'primeng/panel';
 
 
 
@@ -31,6 +32,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
         RadioButtonModule,
         CalendarModule,
         CheckboxModule,
+        PanelModule,
         InputNumberModule
     ],
     exports: [
@@ -47,6 +49,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
         RadioButtonModule,
         CalendarModule,
         CheckboxModule,
+        PanelModule,
         InputNumberModule
     ]
 })
