@@ -63,6 +63,48 @@ const routes : Routes = [
         .then(c => c.JobModule)
     },
     {
+        component : BaseComponent,
+        path : 'candidate-statuses',
+        loadChildren : () => import ('./pages/candidate-status/all-candidate/all-candidate.module')
+        .then(c => c.AllCandidateModule)
+    },
+    {
+        component : BaseComponent,
+        path : 'candidate-statuses/application',
+        loadChildren : () => import ('./pages/candidate-status/application/application.module')
+        .then(c => c.ApplicationModule)
+    },
+    {
+        component : BaseComponent,
+        path : 'candidate-statuses/assesment',
+        loadChildren : () => import ('./pages/candidate-status/assesment/assesment.module')
+        .then(c => c.AssesmentModule)
+    },
+    {
+        component : BaseComponent,
+        path : 'candidate-statuses/mcu',
+        loadChildren : () => import ('./pages/candidate-status/medical-checkup/mcu.module')
+        .then(c => c.McuModule)
+    },
+    {
+        component : BaseComponent,
+        path : 'candidate-statuses/interview',
+        loadChildren : () => import ('./pages/candidate-status/interview/interview.module')
+        .then(c => c.InterviewModule)
+    },
+    {
+        component : BaseComponent,
+        path : 'candidate-statuses/hired',
+        loadChildren : () => import ('./pages/candidate-status/hired/hired.module')
+        .then(c => c.HiredModule)
+    },
+    {
+        component : BaseComponent,
+        path : 'candidate-statuses/offering',
+        loadChildren : () => import ('./pages/candidate-status/offering/offering.module')
+        .then(c => c.OfferingModule)
+    },
+    {
         component : LoginComponent,
         path : 'login',
         // canMatch : [ authValidation ]
