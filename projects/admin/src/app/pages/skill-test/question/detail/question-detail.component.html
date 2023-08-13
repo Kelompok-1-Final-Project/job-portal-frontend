@@ -1,0 +1,29 @@
+<div class="container">
+  <h3>Edit Question</h3>
+
+  <form>
+    <label for="question">Question:</label>
+    
+    <textarea pInputText rows="4" cols="50" type="text" id="question" name="question" [value]="question"></textarea>
+    <button class="ml-3" (click)="editQuestion(3)" pButton icon="pi pi-pencil" label="Edit Question"></button>
+  </form>
+
+  <p-table [value]="options">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>No</th>
+        <th>Option</th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-option let-i="rowIndex">
+      <tr>
+        <td>{{ i+1 }}</td>
+        <td><input pInputText type="text" [value]="options[i]"></td>
+        <td>
+          <button (click)="editOption(i)" pButton icon="pi pi-pencil" label="Edit"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

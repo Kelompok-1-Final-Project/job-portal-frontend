@@ -105,6 +105,12 @@ const routes : Routes = [
         .then(c => c.OfferingModule)
     },
     {
+        component : BaseComponent,
+        path : 'questions',
+        loadChildren : () => import ('./pages/skill-test/question/question.module')
+        .then(c => c.QuestionModule)
+    },
+    {
         component : LoginComponent,
         path : 'login',
         // canMatch : [ authValidation ]
