@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { BenefitRouting} from "./benefit.routing";
+import { BenefitRouting} from "./test.routing";
 
 
 @NgModule({
