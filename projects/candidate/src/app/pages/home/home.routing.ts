@@ -12,17 +12,32 @@ import { HomeComponent } from "./index/index.component";
 import { CarouselModule } from 'primeng/carousel';
 import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
+import { VacancyComponent } from "./vacancy/vacancy.component";
+import { TreeModule } from 'primeng/tree';
+import { AccordionModule } from 'primeng/accordion';
+import { CheckboxModule } from 'primeng/checkbox';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { VacancyDetailComponent } from "./vacancy-detail/vacancy-detail.component";
+
 
 const routes : Routes = [
     {
         path : '',
         component : HomeComponent
+    },{
+        path : 'job',
+        component : VacancyComponent
+    },{
+        path : 'detail/:id',
+        component : VacancyDetailComponent
     }
 ];
 
 @NgModule({
     declarations : [
-        HomeComponent
+        HomeComponent,
+        VacancyComponent,
+        VacancyDetailComponent
     ],
     imports : [
         RouterModule.forChild(routes),
@@ -36,6 +51,10 @@ const routes : Routes = [
         CarouselModule,
         CardModule,
         ImageModule,
+        TreeModule,
+        AccordionModule,
+        CheckboxModule,
+        InputNumberModule,
         FileUploadModule
     ],
     exports : [

@@ -1,6 +1,6 @@
 <!-- home.component.html -->
 <div class="home-container">
-  <h1>Selamat Datang di InLook!</h1>
+  <h1>Welcome to InLook!</h1>
   <p>Info Loker</p>
 
   <!-- Carousel -->
@@ -15,7 +15,7 @@
   </p-carousel>
 
   <!-- Search Options -->
-  <div class="grid justify-content-center">
+  <!-- <div class="grid justify-content-center">
       <h4 class="text-dark col-12 -mb-3 ml-3">
         Search Vacancy
     </h4>
@@ -24,7 +24,24 @@
     <input pInputText type="text" placeholder="Search Job">
     <input pInputText type="text" placeholder="Location">
     <input pInputText type="text" placeholder="Job Type">
+  </div> -->
+  
+  <!-- Search Options -->
+  <div class="container mt-5 grid justify-content-center align-content-center">
+    <div class="sub-container col-7 grid justify-content-between">
+      <h4 class="text-dark col-12 -mb-3 ml-3">
+        Search Vacancy
+      </h4>
+      <div class="search-options grid col-12 justify-content-evenly mt-3">
+        <input pInputText type="text" placeholder="Search Job" class="col-12 md:col-3">
+        <input pInputText type="text" placeholder="Location" class="col-12 md:col-3">
+        <input pInputText type="text" placeholder="Job Type" class="col-12 md:col-3">
+        <button type="submit" pButton pRipple class="p-button-success col-12 text-center md:col-1">
+          <i class="pi pi-search m-1"></i> Cari
+        </button>
+      </div>
   </div>
+</div>
 
   <!-- Company Industries -->
   <div class="container mt-5 grid justify-content-center align-content-center">

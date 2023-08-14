@@ -1,0 +1,85 @@
+<!-- home.component.html -->
+<div class="home-container">
+  <pre>{{ selectedCategories|json }}</pre>
+  <!-- Search Options -->
+  <div class="container mt-5 grid justify-content-center align-content-center">
+    <div class="sub-container col-10 grid justify-content-between">
+      <h4 class="text-dark col-10 -mb-3">
+        Search Vacancy
+      </h4>
+      <div class="search-options grid col-12 justify-content-between mt-3">
+        <input pInputText type="text" placeholder="Search Job" class="col-12 md:col-3">
+        <input pInputText type="text" placeholder="Location" class="col-12 md:col-3">
+        <input pInputText type="text" placeholder="Job Position" class="col-12 md:col-3">
+        <button type="submit" pButton pRipple class="p-button-success col-12 text-center md:col-1">
+          <i class="pi pi-search m-1"></i> Cari
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container grid justify-content-center">
+    <div class="sub-container grid col-10">
+      <div class="filter col-12 md:col-3 shadow-1 surface-card border-round-sm mt-5">
+        <p-accordion [multiple]="true" [activeIndex]="[0]">
+          <p-accordionTab header="Employment Type">
+            <div class="flex flex-column gap-2">
+              <div *ngFor="let category of categories" class="field-checkbox">
+                <p-checkbox name="group" [value]="category" [inputId]="category.key"></p-checkbox>
+                <label [for]="category.key">{{ category.name }}</label>
+              </div>
+            </div>
+          </p-accordionTab>
+          <p-accordionTab header="Salary">
+            <div class="grid justify-content-center">
+              <span class="col-3">Start : </span>
+              <p-inputNumber class="col-9" id="idNumber" inputId="withoutgrouping" [useGrouping]="false">
+              </p-inputNumber>
+              <span class="col-3">End : </span>
+              <p-inputNumber class="col-9" id="idNumber" inputId="withoutgrouping" [useGrouping]="false">
+              </p-inputNumber>
+              <button type="submit" pButton pRipple class="p-button-success col-12 text-center">
+                <i class="pi pi-search m-1"></i> Cari
+              </button>
+            </div>
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+      <div class="content col-12 md:col-9 grid">
+        <p-card class="col-12 md:col-6 mt-4" *ngFor="let industry of companyIndustries">
+          <div class="thumbnail grid">
+            <div class="col-4 justify-content-center align-content-center">
+              <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image" width="100" [preview]="true"></p-image>
+            </div>
+              <div class="title col-8 grid">
+                <span class="col-10">Software Engineering Lead</span>
+                <i class="pi pi-heart col-2 flex justify-content-end"></i>
+                <a routerLink="" class="col-12 text-primary" style="text-decoration: none;">PT Mirae Assset Sekuritas</a>
+              </div>
+          </div>
+          <div class="city">
+            <i class="pi pi-map-marker"></i>
+            <span>
+              Jakarta Selatan
+            </span>
+          </div>
+          <div class="Salary">
+            <i class="pi pi-dollar"></i>
+            <span> 3000000 -</span>
+            <span> 7000000</span>
+          </div>
+          <div class="Industry">
+            <i class="pi pi-building"></i>
+            <span> Financial Service</span>
+          </div>
+          <ng-template pTemplate="footer">
+            <small>
+              <i class="pi pi-clock"></i>
+              <span> Diperbaharui 31 hari yang lalu</span>
+            </small>
+        </ng-template>
+       </p-card>
+      </div>
+    </div>
+  </div>
+</div>
