@@ -5,7 +5,7 @@ import { NavbarModule } from "@component/navbar/navbar.module";
 
 @NgModule({
     declarations: [
-        BaseComponent
+        BaseComponent,
     ],
     imports: [
         NavbarModule,

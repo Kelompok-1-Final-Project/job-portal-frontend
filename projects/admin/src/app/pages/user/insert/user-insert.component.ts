@@ -8,10 +8,10 @@ interface Country {
   }
 
 @Component({
-    selector: 'company-insert',
-    templateUrl: './company-insert.component.html'
+    selector: 'user-insert',
+    templateUrl: './user-insert.component.html'
 })
-export class CompanyInsertComponent implements AfterViewChecked {
+export class UserInsertComponent implements AfterViewChecked {
     selectedCountry: Country | undefined;
     countries: Country[] = [
       { name: 'Indonesia' },

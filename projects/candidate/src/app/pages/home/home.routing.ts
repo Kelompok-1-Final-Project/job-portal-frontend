@@ -7,19 +7,22 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { FileUploadModule } from 'primeng/fileupload';
-import { BenefitListComponent } from "./list/test-list.component";
 import { DialogModule } from 'primeng/dialog';
+import { HomeComponent } from "./index/index.component";
+import { CarouselModule } from 'primeng/carousel';
+import { CardModule } from 'primeng/card';
+import { ImageModule } from 'primeng/image';
 
 const routes : Routes = [
     {
         path : '',
-        component : BenefitListComponent
+        component : HomeComponent
     }
 ];
 
 @NgModule({
     declarations : [
-        BenefitListComponent
+        HomeComponent
     ],
     imports : [
         RouterModule.forChild(routes),
@@ -30,6 +33,9 @@ const routes : Routes = [
         DropdownModule,
         InputTextModule,
         DialogModule,
+        CarouselModule,
+        CardModule,
+        ImageModule,
         FileUploadModule
     ],
     exports : [
@@ -37,6 +43,6 @@ const routes : Routes = [
     ]
  } )
 
-export class BenefitRouting {
+export class HomeRouting {
 
 }

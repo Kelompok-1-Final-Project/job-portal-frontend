@@ -40,6 +40,11 @@ const routes : Routes = [
         .then(c => c.CandidateModule)
     },{
         component : BaseComponent,
+        path : 'users',
+        loadChildren : () => import ('./pages/user/user.module')
+        .then(c => c.UserModule)
+    },{
+        component : BaseComponent,
         path : 'benefits',
         loadChildren : () => import ('./pages/benefit/benefit.module')
         .then(c => c.BenefitModule)

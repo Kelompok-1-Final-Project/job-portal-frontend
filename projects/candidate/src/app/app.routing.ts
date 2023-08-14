@@ -10,12 +10,24 @@ import { BaseModule } from "@component/base/base.module";
 import { ButtonComponent } from "@component/button/button.component";
 import { UrlPipe } from "@pipes/url.pipe";
 import { SharedModuleComponent } from "@shared/shared.module";
+import { RegisterComponent } from "./pages/register/register.component";
+import { BaseComponent } from "@component/base/base.component";
 
 const routes : Routes = [
     {
         component : LoginComponent,
         path : 'login',
         // canMatch : [ authValidation ]
+    },
+    {
+        component : RegisterComponent,
+        path : 'register',
+        // canMatch : [ authValidation ]
+    },{
+        component : BaseComponent,
+        path : 'home',
+        loadChildren : () => import ('./pages/home/home.module')
+        .then(c => c.HomeModule)
     },
     {
         path : '',
@@ -32,6 +44,7 @@ const routes : Routes = [
     declarations : [
         DashboardComponent,
         LoginComponent,
+        RegisterComponent,
         NotFoundComponent
     ],
     imports : [
@@ -47,7 +60,8 @@ const routes : Routes = [
     exports : [
         RouterModule,
         DashboardComponent,
-        LoginComponent
+        LoginComponent,
+        RegisterComponent
     ]
 })
 
