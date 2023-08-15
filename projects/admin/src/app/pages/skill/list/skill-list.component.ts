@@ -17,15 +17,15 @@ export class SkillListComponent implements OnInit{
     skills: Skills[] = [
       {
         skillCode: 'CP001',
-        skillName: 'Jakarta',
+        skillName: 'Leadership',
       },
       {
         skillCode: 'CP002',
-        skillName: 'Surabaya',
+        skillName: 'Public Speaking',
       },
       {
         skillCode: 'CP003',
-        skillName: 'Bandung',
+        skillName: 'Communication',
       },
     ];
     ngOnInit(): void {

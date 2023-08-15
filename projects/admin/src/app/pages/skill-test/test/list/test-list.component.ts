@@ -1,31 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 
-interface Benefits {
-  benefitCode: string;
-  benefitName: string;
-}
-
 @Component({
-    selector : 'benefit-list',
-    templateUrl : './benefit-list.component.html'
+    selector : 'test-list',
+    templateUrl : './test-list.component.html'
 })
-export class BenefitListComponent implements OnInit{
+export class TestListComponent implements OnInit{
   visibleAdd:boolean = false;
   visibleUpdate:boolean = false;
   visibleDelete:boolean = false;
     constructor(){}
-    benefits: Benefits[] = [
+    benefits = [
       {
-        benefitCode: 'CP001',
-        benefitName: 'Jakarta',
+        jobName: 'Fullstack Developer',
+        testName: 'Java & Typescript Test',
       },
       {
-        benefitCode: 'CP002',
-        benefitName: 'Surabaya',
+        jobName: 'Backend Developer',
+        testName: 'Java Test',
       },
       {
-        benefitCode: 'CP003',
-        benefitName: 'Bandung',
+        jobName: 'Frontend Developer',
+        testName: 'Typescript',
       },
     ];
     ngOnInit(): void {

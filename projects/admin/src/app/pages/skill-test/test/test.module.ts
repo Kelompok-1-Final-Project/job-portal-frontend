@@ -1,13 +1,13 @@
 import { NgModule } from "@angular/core";
-import { BenefitRouting} from "./test.routing";
+import { TestRouting} from "./test.routing";
 
 
 @NgModule({
     imports : [
-        BenefitRouting
+        TestRouting
     ]
 })
 
-export class BenefitModule{
+export class TestModule{
 
 }

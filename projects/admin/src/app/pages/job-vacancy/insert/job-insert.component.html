@@ -1,8 +1,7 @@
-<form>
-  <!-- <pre>{{ companyInsertReqDto.value|json }}</pre> -->
-  <div class="container">
-    <div class="card-container w-screen flex flex-wrap justify-content-center align-items-center"
-      style="min-height: 700px">
+<!-- <pre>{{ companyInsertReqDto.value|json }}</pre> -->
+<div class="container">
+  <form>
+    <div class="card-container flex flex-wrap justify-content-center align-items-center" style="min-height: 700px">
       <div class="grid shadow-8 m-4 surface-card border-round-sm border-400 p-3 md:col-9 text">
         <div class="flex col-12">
           <h2 class="text-center">Vacancy Information</h2>
@@ -18,21 +17,20 @@
           <label for="companyName" class="form-label">Position<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-autoComplete class="col-12" [dropdown]="true" [suggestions]="filteredCountries" field="name">
-          </p-autoComplete>
+          <p-dropdown optionLabel="name"></p-dropdown>
         </div>
         <div class="col-6 md:col-2">
           <label for="companyName" class="form-label">Salary<span style="color: red;">*</span></label>
         </div>
         <div class="col-6 md:col-4">
-          <input pInputText type="text" class="form-control col-5" id="companyName" aria-describedby="companyNameHelp"
-            required formControlName="companyName">
+          <input pInputText type="text" class="form-control col-5" id="companyName" required
+            formControlName="companyName">
           <span class="col-2">To :</span>
-          <input pInputText type="text" class="form-control col-5" id="companyName" aria-describedby="companyNameHelp"
-            required formControlName="companyName">
+          <input pInputText type="text" class="form-control col-5" id="companyName" required
+            formControlName="companyName">
         </div>
         <div class="col-12 md:col-2">
-          <label for="companyAddress" class="form-label">Published Time<span style="color: red;">*</span></label>
+          <label for="companyAddress" class="form-label">Expired Time<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
           <p-calendar [showIcon]="true"></p-calendar>
@@ -50,35 +48,33 @@
           <label for="companyName" class="form-label">Status<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-autoComplete class="col-12" [dropdown]="true" [suggestions]="filteredCountries" field="name">
-          </p-autoComplete>
+          <p-dropdown optionLabel="name"></p-dropdown>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Hr Person in Contact<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-autoComplete class="col-12" [dropdown]="true" [suggestions]="filteredCountries" field="name">
-          </p-autoComplete>
+          <p-dropdown optionLabel="name"></p-dropdown>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Interview in Contact<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-autoComplete class="col-12" [dropdown]="true" [suggestions]="filteredCountries" field="name">
-          </p-autoComplete>
+          <p-dropdown optionLabel="name"></p-dropdown>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Employment Type<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-autoComplete class="col-12" [dropdown]="true" [suggestions]="filteredCountries" field="name">
-          </p-autoComplete>
+          <p-dropdown optionLabel="name"></p-dropdown>
         </div>
         <div class="flex col-12">
           <h2 class="text-center">Summary and Responsibility</h2>
         </div>
         <div class="col-12 md:col-4">
-          <!-- <p-editor></p-editor> -->
+          <!-- <div class="card">
+            <p-editor [style]="{ height: '320px' }"></p-editor>
+        </div> -->
           <textarea pInputText name="" id="" cols="30" rows="10"></textarea>
         </div>
 
@@ -86,27 +82,77 @@
           <h2 class="text-center">Benefit</h2>
         </div>
         <div class="col-12 md:col-6">
-          <p-autoComplete class="col-10" [dropdown]="true" [suggestions]="filteredCountries" field="name">
-          </p-autoComplete>
-          <button class="col-2" type="button" pButton pRipple class="p-button-primary" icon="pi pi-plus"></button>
+          <!-- <p-dropdown optionLabel="name"></p-dropdown>
+          <button class="col-2" type="button" pButton pRipple class="p-button-primary" icon="pi pi-plus"></button> -->
+          <span class="p-fluid">
+            <p-autoComplete [(ngModel)]="selectedCountry" [suggestions]="filteredCountries"
+              (completeMethod)="filterCountry($event)" field="name" [multiple]="true"></p-autoComplete>
+          </span>
         </div>
         <div class="flex col-12">
           <h2 class="text-center">Assesment</h2>
         </div>
         <div class="col-12 md:col-6">
           <p-inputSwitch formControlName="checked"></p-inputSwitch>
-          <span class="p-fluid">
-            <p-autoComplete [(ngModel)]="selectedCountry" [suggestions]="filteredCountries" 
-                (completeMethod)="filterCountry($event)" field="name" [multiple]="true"></p-autoComplete>
-        </span>
+        </div>
+
+        <div class="flex justify-content-center col-12">
+          <button pButton pRipple label="Add Form" type="button" (click)="onAdd()"></button>
+        </div>
+        <div class="flex justify-content-center">
+          <form [formGroup]="questionsInsertReqDto" class="grid align-items-center w-8 gy-md-3"
+            (ngSubmit)="onSubmit()">
+            <div class="w-full">
+              <div class="mt-2" *ngFor="let qf of forms.controls; let i = index;" formArrayName="data">
+                <div [formGroupName]="i">
+                  <div class="col-12 my-2">
+                    <button pButton pRipple label="Delete Form" class="p-button-danger" type="button" (click)="remove(i)"></button>
+                  </div>
+                  <div class="col-12 md:col-2">
+                    <label for="question">Question <span class="text-red-500">*</span></label>
+                  </div>
+                  <div class="col-12 md:col-10">
+                    <input class="w-full" type="text" pInputText id="question" required formControlName="question">
+                  </div>
+                  <div class="col-12">
+                    <label for="option">Option</label>
+                  </div>
+                  <div class="col-12">
+                    <button pButton pRipple label="Add Option" type="button" (click)="onAddOption(i)"></button>
+                  </div>
+                  <div class="col-12 md:col-10 my-2" *ngFor="let q of questionOption(i).controls; let j = index;"
+                    formArrayName="questionOptions">
+                    <div class="grid gy-2"  [formGroupName]="j">
+                      <div class="col-12 md:col-10">
+                        <input class="w-full" type="text" pInputText id="option" required
+                          formControlName="optionData">
+                      </div>
+                      <div class="col-12 md:col-2">
+                        <p-dropdown formControlName="isAnswer" [options]="keyAnswer" optionValue="value"
+                          optionLabel="name" placeholder="Choose Key"></p-dropdown>
+                      </div>
+                      <div class="col-12 my-2">
+                        <button pButton pRipple label="Delete Option" class="p-button-danger" type="submit" (click)="removeOption(i, j)" [loading]="loading"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 md:col-10 mt-2 text-center md:text-left">
+                <button pButton pRipple label="Back" type="button" class="p-button-secondary"
+                  routerLink="/dashboard"></button>
+                <button pButton pRipple label="Submit" type="submit"></button>
+              </div>
+            </div>
+          </form>
         </div>
 
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <button type="button" routerLink="/companies" pButton pRipple class="p-button-secondary mr-3"
+          <button type="button" routerLink="/job-vacancies" pButton pRipple class="p-button-secondary mr-3"
             icon="pi pi-angle-double-left">. Back to previous menu</button>
           <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
         </div>
       </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>

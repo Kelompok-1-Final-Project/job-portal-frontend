@@ -7,7 +7,8 @@
     <div class="grid justify-content-end mb-3">
       <button routerLink="create" pButton pRipple class="p-button-primary" label="Add User"></button>
     </div>
-    <p-table [value]="users" dataKey="nik"
+    <!-- <pre>{{ selectedVacancies|json }}</pre> -->
+    <p-table [value]="users" dataKey="nik" 
       [tableStyle]="{ 'min-width': '50rem' }">
       <ng-template pTemplate="header">
         <tr>
@@ -22,20 +23,18 @@
           <th scope="col">Action</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-c let-i="rowIndex">
+      <ng-template pTemplate="body" let-columns="columns" let-c let-i="rowIndex">
         <tr>
           <td>
             <p-tableCheckbox [value]="c" binary="true"></p-tableCheckbox>
           </td>
-          <th scope="row">{{ i+1 }}</th>
+          <td scope="row">{{ i+1 }}</td>
           <td>{{ c.nik}}</td>
           <td>{{ c.name }}</td>
           <td>{{ c.email }}</td>
           <td>{{ c.mobileNumber }}</td>
           <td>
-            <div class="p-buttonset">
-              <button routerLink="" pButton pRipple class="p-button-secondary" label="Edit"></button>
-            </div>
+              <button pButton pRipple class="p-button-secondary" label="Edit"></button>
           </td>
         </tr>
       </ng-template>

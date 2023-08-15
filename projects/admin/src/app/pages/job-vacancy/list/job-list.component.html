@@ -8,13 +8,11 @@
       <button routerLink="create" pButton pRipple class="p-button-primary" label="Add Vacancy"></button>
     </div>
     <pre>{{ selectedVacancies|json }}</pre>
-    <p-table [value]="vacancies" [(selection)]="selectedVacancies" dataKey="nik"
+    <p-table [value]="vacancies" [(selection)]="selectedVacancies" dataKey="code"
       [tableStyle]="{ 'min-width': '50rem' }">
       <ng-template pTemplate="header">
         <tr>
-          <th style="width: 4rem">
-            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-          </th>
+          <th>No</th>
           <th scope="col">Code</th>
           <th scope="col">Vacancy Title</th>
           <th scope="col">HR PIC </th>
@@ -24,10 +22,10 @@
           <th scope="col">Action</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-c let-i="rowIndex">
+      <ng-template pTemplate="body" let-columns="columns" let-c let-i="rowIndex">
         <tr>
-          <td>
-            <p-tableCheckbox [value]="c" binary="true"></p-tableCheckbox>
+          <td scope="row">
+            {{i+1}}
           </td>
           <td>{{ c.code}}</td>
           <td>{{ c.vacancyTitle }}</td>
@@ -37,6 +35,8 @@
           <td>{{ c.endDate }}</td>
           <td>
             <div class="p-buttonset">
+              <button routerLink="/candidate-statuses" pButton pRipple class="p-button-success" label="Detail">
+              </button>
               <button routerLink="detail/{{ c.code }}" pButton pRipple class="p-button-secondary" label="Edit">
               </button>
             </div>

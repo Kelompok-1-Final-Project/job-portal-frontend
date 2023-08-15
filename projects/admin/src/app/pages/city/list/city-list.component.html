@@ -1,4 +1,3 @@
-
 <div class="container grid justify-content-center p-3">
   <div class=" grid justify-content-center col-12">
     <h3 class="text-center">Table City List</h3>
@@ -23,18 +22,38 @@
           <td>{{ p.cityName }}</td>
           <td>
             <div class="p-buttonset">
-              <button routerLink="/products/update/{{ p.id }}" pButton pRipple class="p-button-success" label="Edit Product"></button>
+              <button routerLink="/products/update/{{ p.id }}" pButton pRipple class="p-button-success"
+                label="Edit Product"></button>
               <button routerLink="/products" pButton pRipple class="p-button-danger" label="Delete"></button>
             </div>
-          </td> 
+          </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
 
+  <!-- <p-dialog header="Add Data benefit" [style]="{ width: '30vw' }">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Benefit Code</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 p-disabled" id="inputName" required formControlName="productName" value="JKAHS">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">Benefit Name</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
+      </div>
+        <div class="flex flex-wrap justify-content-end mt-2 col-12">
+          <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        </div>
+      </div>
+  </p-dialog> -->
 
-<!-- Modal -->
-<!-- <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="changeStatusModalLabel" aria-hidden="true">
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="changeStatusModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

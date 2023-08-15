@@ -10,7 +10,9 @@ interface Cities {
     templateUrl : './city-list.component.html'
 })
 export class CityListComponent implements OnInit{
-  
+
+    // visibleUpdate: boolean = false;
+
     constructor(){}
     cities: Cities[] = [
       {

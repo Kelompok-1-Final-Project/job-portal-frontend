@@ -29,15 +29,13 @@
           <td>
             <p-tableCheckbox [value]="c" binary="true"></p-tableCheckbox>
           </td>
-          <th scope="row">{{ i+1 }}</th>
+          <td scope="row">{{ i+1 }}</td>
           <td>{{ c.nik}}</td>
           <td>{{ c.name }}</td>
           <td>{{ c.email }}</td>
           <td>{{ c.mobileNumber }}</td>
           <td>
-            <div class="p-buttonset">
-              <button routerLink="" pButton pRipple class="p-button-secondary" label="Edit"></button>
-            </div>
+              <button pButton pRipple class="p-button-secondary" label="Detail"></button>
           </td>
         </tr>
       </ng-template>
@@ -53,7 +51,7 @@
         </div>
         <div class="card col-12">
           <pre>{{ selectedVacancies|json }}</pre>
-          <p-table [value]="vacancies" [(selection)]="selectedVacancies" dataKey="nik"
+          <p-table [value]="vacancies" [(selection)]="selectedVacancies" dataKey="code"
             [tableStyle]="{ 'min-width': '50rem' }">
             <ng-template pTemplate="header">
               <tr>
@@ -84,7 +82,7 @@
         </div>
       </div>
       <div class="grid justify-content-end">
-        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        <button pButton pRipple class="p-button-primary">Submit</button>
       </div>
     </div>
   </p-dialog>

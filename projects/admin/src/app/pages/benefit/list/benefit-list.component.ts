@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-interface Benefits {
-  benefitCode: string;
-  benefitName: string;
-}
-
 @Component({
     selector : 'benefit-list',
     templateUrl : './benefit-list.component.html'
@@ -14,18 +9,18 @@ export class BenefitListComponent implements OnInit{
   visibleUpdate:boolean = false;
   visibleDelete:boolean = false;
     constructor(){}
-    benefits: Benefits[] = [
+    benefits = [
       {
-        benefitCode: 'CP001',
-        benefitName: 'Jakarta',
+        benefitCode: 'BN001',
+        benefitName: 'Laptop',
       },
       {
-        benefitCode: 'CP002',
-        benefitName: 'Surabaya',
+        benefitCode: 'BN002',
+        benefitName: 'Transport',
       },
       {
-        benefitCode: 'CP003',
-        benefitName: 'Bandung',
+        benefitCode: 'BN003',
+        benefitName: 'Asuransi',
       },
     ];
     ngOnInit(): void {

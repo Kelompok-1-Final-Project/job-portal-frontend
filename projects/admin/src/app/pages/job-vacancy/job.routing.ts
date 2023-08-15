@@ -6,32 +6,32 @@ import { ButtonComponent } from "@component/button/button.component";
 import { SharedModuleComponent } from "@shared/shared.module";
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { JobInsertComponent } from "./insert/job-insert.component";
-import {EditorModule} from 'primeng/editor';
+import { EditorModule } from 'primeng/editor';
 import { JobListComponent } from "./list/job-list.component";
 import { JobUpdateComponent } from "./update/job-update.component";
 
-const routes : Routes = [
+const routes: Routes = [
     {
-        path : '',
-        component : JobListComponent
+        path: '',
+        component: JobListComponent
     },
     {
-        path : 'detail/:code',
-        component : JobUpdateComponent
+        path: 'detail/:code',
+        component: JobUpdateComponent
     },
     {
-        path : 'create',
-        component : JobInsertComponent
+        path: 'create',
+        component: JobInsertComponent
     }
 ]
 
 @NgModule({
-    declarations : [
+    declarations: [
         JobInsertComponent,
         JobListComponent,
         JobUpdateComponent
     ],
-    imports :[
+    imports: [
         RouterModule.forChild(routes),
         CommonModule,
         ReactiveFormsModule,
@@ -39,12 +39,11 @@ const routes : Routes = [
         AutoCompleteModule,
         EditorModule,
         SharedModuleComponent
-
     ],
-    exports :[
+    exports: [
         RouterModule
     ]
 })
-export class JobRouting{
+export class JobRouting {
 
 }
