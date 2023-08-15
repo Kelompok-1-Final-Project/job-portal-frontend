@@ -28,6 +28,11 @@ const routes : Routes = [
         path : 'home',
         loadChildren : () => import ('./pages/home/home.module')
         .then(c => c.HomeModule)
+    },{
+        component : BaseComponent,
+        path : 'profile',
+        loadChildren : () => import ('./pages/profile/profile.module')
+        .then(c => c.ProfileModule)
     },
     {
         path : '',

@@ -8,37 +8,31 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DialogModule } from 'primeng/dialog';
-import { HomeComponent } from "./index/index.component";
-import { CarouselModule } from 'primeng/carousel';
 import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
-import { VacancyComponent } from "./vacancy/vacancy.component";
 import { TreeModule } from 'primeng/tree';
 import { AccordionModule } from 'primeng/accordion';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { VacancyDetailComponent } from "./vacancy-detail/vacancy-detail.component";
-import { ContextMenu, ContextMenuModule } from 'primeng/contextmenu';
+import { ProfileDetailComponent } from "./detail/profile-detail.component";
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { AvatarModule } from 'primeng/avatar';
+import { ChipModule } from "primeng/chip";
+import {CalendarModule} from 'primeng/calendar';
+
+
 
 
 const routes : Routes = [
     {
         path : '',
-        component : HomeComponent
-    },{
-        path : 'job',
-        component : VacancyComponent
-    },{
-        path : 'detail/:id',
-        component : VacancyDetailComponent
+        component : ProfileDetailComponent
     }
 ];
 
 @NgModule({
     declarations : [
-        HomeComponent,
-        VacancyComponent,
-        VacancyDetailComponent
+        ProfileDetailComponent,
     ],
     imports : [
         RouterModule.forChild(routes),
@@ -49,7 +43,6 @@ const routes : Routes = [
         DropdownModule,
         InputTextModule,
         DialogModule,
-        CarouselModule,
         CardModule,
         ImageModule,
         TreeModule,
@@ -57,6 +50,9 @@ const routes : Routes = [
         CheckboxModule,
         InputNumberModule,
         ContextMenuModule,
+        AvatarModule,
+        ChipModule,
+        CalendarModule,
         FileUploadModule
     ],
     exports : [
@@ -64,6 +60,6 @@ const routes : Routes = [
     ]
  } )
 
-export class HomeRouting {
+export class ProfileRouting {
 
 }

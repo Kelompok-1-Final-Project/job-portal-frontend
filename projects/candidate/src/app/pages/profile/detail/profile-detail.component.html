@@ -1,0 +1,606 @@
+<div class="profile-container grid justify-content-center m-3">
+  <p-accordion class="col-10 md:col-8">
+    <p-accordionTab header="Basic Information" [selected]="true">
+      <div class="p-2 md:p-1">
+        <div class="grid">
+          <div class="">
+            <img src="https://via.placeholder.com/150" alt="Foto Profil">
+          </div>
+          <div class="col-8">
+            <div class="info grid">
+              <div class="name col-6 p-3">
+                <h3>Torangto Situngkir</h3>
+              </div>
+              <div class="button col-6">
+                <button pButton type="button" icon="pi pi-pencil mr-3" class="p-button-success mb-2"
+                  (click)="editUser()">Edit
+                  profile</button>
+              </div>
+              <div class="left-info col-6 p-3">
+                <div class="nik">
+                  <div class="font-semibold text-gray-500">NIK</div>
+                  <div class="mb-3">12117238476232453</div>
+                </div>
+                <div class="email">
+                  <div class="font-semibold text-gray-500">Email</div>
+                  <div class="mb-3">ayamgoreng72@gmail.com</div>
+                </div>
+                <div class="gender">
+                  <div class="font-semibold text-gray-500">Gender</div>
+                  <div class="mb-3">Male</div>
+                </div>
+                <div class="years-old">
+                  <div class="font-semibold text-gray-500">Years Old</div>
+                  <div class="mb-3">23 years old</div>
+                </div>
+              </div>
+              <div class="right-info col-6 p-3">
+                <div class="phone">
+                  <div class="font-semibold text-gray-500">Phone</div>
+                  <div class="mb-3">081237812842</div>
+                </div>
+                <div class="marital-status">
+                  <div class="font-semibold text-gray-500">Marital Status</div>
+                  <div class="mb-3">Single</div>
+                </div>
+                <div class="expected-salary">
+                  <div class="font-semibold text-gray-500">Expected Salary</div>
+                  <div class="mb-3">Rp4.000.000 - Rp8.000.000</div>
+                </div>
+                <div class="cv-file">
+                  <div class="font-semibold text-gray-500">CV File</div>
+                  <div class="mb-3"><a href="#">Download</a></div>
+                </div>
+              </div>
+              <div class="summary p-3">
+                <div class="summary">
+                  <div class="font-semibold text-gray-500">Summary</div>
+                  <div class="">Saya adalah adlaah fresh graduate lulusan teknik informatika Lorem, ipsum dolor sit amet
+                    consectetur adipisicing elit. Sit, ratione. Porro nemo at cum sequi error repudiandae iure expedita
+                    voluptatibus provident totam. Cum id totam eveniet recusandae nam iste similique.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+
+
+  <p-accordion class="col-10 md:col-8">
+    <p-accordionTab header="Education" [selected]="true">
+      <div class="grid justify-content-end">
+        <button pButton type="button" icon="pi pi-plus" class="p-button-primary" (click)="addEducation()">Add</button>
+      </div>
+      <div class="p-2 md:p-1">
+        <div class="grid">
+          <div class="col-2 text-gray-500">Aug 2018 - Nov 2022</div>
+          <div class="col-8">
+            <div class="font-semibold">Universitas Pembangunan Nasional "Veteran" Yogyakarta (University of National
+              Development "Veteran" Yogyakarta)
+            </div>
+          </div>
+          <div class="col-12 lg:col-2 mt-4">
+            <div class="grid justify-content-end">
+              <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"
+                (click)="deleteEducation(3)"></button>
+              <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"
+                (click)="updateEducation(3)"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+
+  <p-accordion class="col-10 md:col-8">
+    <p-accordionTab header="Work Experience" [selected]="true">
+      <div class="grid justify-content-end">
+        <button pButton type="button" icon="pi pi-plus" class="p-button-primary" (click)="addWorkExp()">Add</button>
+      </div>
+      <div class="p-2 md:p-1">
+        <div class="grid">
+          <div class="col-2 text-gray-500">Feb 2021 - Mar 2021</div>
+          <div class="col-8">
+            <div class="font-semibold">Dinas Perhubungan Kabupaten Dairi</div>
+            <div class="text-gray-500">Fullstack Developer</div>
+          </div>
+          <div class="col-12 lg:col-2 mt-4">
+            <div class="grid justify-content-end">
+              <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"
+                (click)="deleteWorkExp(4)"></button>
+              <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"
+                (click)="updateWorkExp(3)"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+
+  <p-accordion class="col-10 md:col-8">
+    <p-accordionTab header="Skills" [selected]="true">
+      <div class="grid p-buttonset justify-content-center md:justify-content-end p-butto">
+        <button pButton type="button" icon="pi pi-plus ml-1" class="p-button-primary" (click)="addSkill(3)">Add</button>
+        <button pButton type="button" icon="pi pi-pencil ml-1" class="p-button-success" (click)="updateSkill(3)">Edit
+          Skill</button>
+      </div>
+      <div class="m-2 md:p-1 mt-5">
+        <div class="grid justify-content-between ">
+          <div
+            class="skill col-12 md:col-6 lg:col-3 lg:m-0 border-100 surface-overlay border-3 border-round font-bold grid justify-content-center">
+            <p-chip class="intermediate col-12 text-center" label="Intermediate"></p-chip>
+            <h3 class="p-1">Version Control(Git)</h3>
+          </div>
+          <div
+            class="skill col-12 md:col-6 lg:col-3 lg:m-0 border-100 surface-overlay border-3 border-round font-bold grid justify-content-center">
+            <p-chip class="novice col-12 text-center" label="Novice"></p-chip>
+            <h3 class="p-1">Python Basic</h3>
+          </div>
+          <div
+            class="skill col-12 md:col-6 lg:col-3 lg:m-0 border-100 surface-overlay border-3 border-round font-bold grid justify-content-center">
+            <p-chip class="intermediate col-12 text-center" label="Intermediate"></p-chip>
+            <h3 class="p-1" class="text-center">HTML, CSS, Bootstrap</h3>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+
+  <p-accordion class="col-10 md:col-8">
+    <p-accordionTab header="Organization Experience" [selected]="true">
+      <div class="grid justify-content-end">
+        <button pButton type="button" icon="pi pi-plus" class="p-button-primary"
+          (click)="addOrganization()">Add</button>
+      </div>
+      <div class="p-2 md:p-1">
+        <div class="grid">
+          <div class="col-12 md:col-8">
+            <div class="font-bold">Imadio</div>
+            <div class="font-semibold">Perkab</div>
+            <div class="text-gray-500">Febuary 2019 - November 2019 <span>(10 Bulan)</span></div>
+            <div class="text-gray-500">Oarganisasi Daerah </div>
+          </div>
+          <div class="col-12 lg:col-4 mt-4">
+            <div class="grid justify-content-end">
+              <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"
+                (click)="deleteOrganization(3)"></button>
+              <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"
+                (click)="updateOrganization(3)"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+
+
+  <p-accordion class="col-10 md:col-8">
+    <p-accordionTab header="Family" [selected]="true">
+      <div class="grid justify-content-end">
+        <button pButton type="button" icon="pi pi-plus" class="p-button-primary" (click)="addFamily()">Add</button>
+      </div>
+      <div class="p-2 md:p-1">
+        <div class="grid">
+          <div class="col-12 md:col-8">
+            <div class="font-bold">Neymar JR</div>
+            <div class="font-semibold">Brother</div>
+            <div class="text-gray-500">Senior High School</div>
+            <div class="text-gray-500">01-08-2000</div>
+          </div>
+          <div class="col-12 lg:col-4 mt-4">
+            <div class="grid justify-content-end">
+              <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"
+                (click)="deleteFamily(3)"></button>
+              <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"
+                (click)="updateFamily(3)"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </p-accordionTab>
+  </p-accordion>
+</div>
+
+<!-- Modal Edit User-->
+<p-dialog header="Edit Profile" [modal]="true" [(visible)]="visibleEditUser" [style]="{ width: '50vw' }">
+  <form>
+    <div class="container">
+      <div class="card-container grid justify-content-center align-items-center">
+        <div class="grid border-50 m-4 p-3 md:col-9 text">
+          <label for="formFile" class="col-12 md:col-3 form-label">Candidate Photo</label>
+          <p-fileUpload mode="basic" class="col-12 md:col-9" chooseLabel="Upload" accept="image/*">
+          </p-fileUpload>
+          <div class="col-12 md:col-3">
+            <label for="companyName">Email</label>
+          </div>
+          <div class="col-12 md:col-9">
+            <input pInputText type="text" class="form-control col-12" id="companyName"
+              aria-describedby="companyNameHelp" required formControlName="companyName">
+          </div>
+          <div class="col-12 md:col-3">
+            <label for="companyName">Fullname</label>
+          </div>
+          <div class="col-12 md:col-9">
+            <input pInputText type="text" class="form-control col-12" id="companyName"
+              aria-describedby="companyNameHelp" required formControlName="companyName">
+          </div>
+          <div class="col-12 md:col-3">
+            <label for="companyName">Mobile Phone</label>
+          </div>
+          <div class="col-12 md:col-9">
+            <input pInputText type="text" class="form-control col-12" id="companyName"
+              aria-describedby="companyNameHelp" required formControlName="companyName">
+          </div>
+          <div class="col-12 md:col-3">
+            <label for="companyName">Gender</label>
+          </div>
+          <div class="col-12 md:col-9">
+            <p-dropdown optionLabel="name"></p-dropdown>
+          </div>
+          <div class="col-12 md:col-3">
+            <label for="formFile">Upload CV</label>
+          </div>
+          <div class="col-12 md:col-9">
+            <p-fileUpload mode="basic" chooseLabel="Upload" accept="image/*">
+            </p-fileUpload>
+          </div>
+          <div class="col-6 md:col-3">
+            <label for="companyName">Expected Salary</label>
+          </div>
+          <div class="col-6 md:col-9">
+            <input pInputText type="text" class="form-control col-5" id="companyName" aria-describedby="companyNameHelp"
+              required formControlName="companyName">
+            <span class="col-2">To :</span>
+            <input pInputText type="text" class="form-control col-5" id="companyName" aria-describedby="companyNameHelp"
+              required formControlName="companyName">
+          </div>
+          <div class="col-12 md:col-3">
+            <label for="companyAddress">Birthdate</label>
+          </div>
+          <div class="col-12 md:col-9">
+            <p-calendar [showIcon]="true"></p-calendar>
+          </div>
+          <div class="col-12 md:col-3">
+            <label for="companyName">Marital Status</label>
+          </div>
+          <div class="col-12 md:col-9">
+            <p-dropdown optionLabel="name"></p-dropdown>
+          </div>
+          <div class="flex flex-wrap justify-content-end mt-2 col-12">
+            <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</p-dialog>
+
+<!-- Modal Add Education -->
+<p-dialog header="Add Education" [modal]="true" [(visible)]="visibleAddEducation" [style]="{ width: '30vw' }">
+  <div class="grid surface-card border-round-sm border-400">
+    <div class="col-12 md:col-3">
+      <label for="inputName">Education Name</label>
+    </div>
+    <div class="col-12 md:col-9">
+      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">From </label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">To </label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+    <div class="flex flex-wrap justify-content-end mt-2 col-12">
+      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- Modal Update Education-->
+<p-dialog header="Edit Education" [modal]="true" [(visible)]="visibleUpdateEducation" [style]="{ width: '30vw' }">
+  <div class="grid surface-card border-round-sm border-400">
+    <div class="col-12 md:col-3">
+      <label for="inputName">Education Name<span class="text-red-500">*</span></label>
+    </div>
+    <div class="col-12 md:col-9">
+      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">From<span class="text-red-500">*</span></label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">To<span class="text-red-500">*</span></label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+    <div class="flex flex-wrap justify-content-end mt-2 col-12">
+      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- Modal Delete Education-->
+<p-dialog header="Delete Education" [modal]="true" [(visible)]="visibleDeleteEducation" [style]="{ width: '30vw' }">
+  <div class="grid surface-card border-round-sm border-400">
+    <div class="col-12">
+      <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
+    </div>
+    <div class="flex flex-wrap justify-content-end mt-2 col-12">
+      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary">Submit</button>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- Modal Add Work Experience -->
+<p-dialog header="Add Work Experience" [modal]="true" [(visible)]="visibleAddWorkExp" [style]="{ width: '30vw' }">
+  <div class="grid surface-card border-round-sm border-400">
+    <div class="col-12 md:col-3">
+      <label for="inputName">Job Title</label>
+    </div>
+    <div class="col-12 md:col-9">
+      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputJobPosition">Job Position</label>
+    </div>
+    <div class="col-12 md:col-9">
+      <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="productName">
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">From </label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">To </label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+    <div class="flex flex-wrap justify-content-end mt-2 col-12">
+      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- Modal Update Experience-->
+<p-dialog header="Edit Work Experience" [modal]="true" [(visible)]="visibleUpdateWorkExp" [style]="{ width: '30vw' }">
+  <div class="grid surface-card border-round-sm border-400">
+    <div class="col-12 md:col-3">
+      <label for="inputName">Education Name<span class="text-red-500">*</span></label>
+    </div>
+    <div class="col-12 md:col-9">
+      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">From<span class="text-red-500">*</span></label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">To<span class="text-red-500">*</span></label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+    <div class="flex flex-wrap justify-content-end mt-2 col-12">
+      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- Modal Delete Experience-->
+<p-dialog header="Delete Work Experience" [modal]="true" [(visible)]="visibleDeleteWorkExp" [style]="{ width: '30vw' }">
+  <div class="grid surface-card border-round-sm border-400">
+    <div class="col-12">
+      <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
+    </div>
+    <div class="flex flex-wrap justify-content-end mt-2 col-12">
+      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary">Submit</button>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- Modal Add Skill-->
+<p-dialog header="Add Skill" [modal]="true" [(visible)]="visibleAddSkill" [style]="{ width: '30vw' }">
+  <div class="grid surface-card border-round-sm border-400">
+    <div class="col-12 md:col-3">
+      <label for="inputName">Skill Name<span class="text-red-500">*</span></label>
+    </div>
+    <div class="col-12 md:col-9">
+      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">Skill Level<span class="text-red-500">*</span></label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-dropdown optionLabel="name"></p-dropdown>
+    </div>
+    <div class="flex flex-wrap justify-content-end mt-2 col-12">
+      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- Modal Update Skill-->
+<p-dialog header="Edit Skill" [modal]="true" [(visible)]="visibleUpdateSkill" [style]="{ width: '50vw' }">
+  <div class="grid surface-card border-round-sm border-400">
+    <div class="col-12 md:col-9">
+      <input pInputText type="text" class="form-control col-12 mb-3" id="companyName" required formControlName="companyName">
+      <p-dropdown optionLabel="name" styleClass="w-full"></p-dropdown>
+    </div>
+    <div class="col-12 md:col-3">
+      <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"></button>
+      <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"></button>
+    </div>
+    <div class="flex flex-wrap justify-content-end mt-2 col-12">
+      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- Modal Add Organization -->
+<p-dialog header="Add Work Organization" [modal]="true" [(visible)]="visibleAddOrganization"
+  [style]="{ width: '30vw' }">
+  <div class="grid surface-card border-round-sm border-400">
+    <div class="col-12 md:col-3">
+      <label for="inputName">Organization Name</label>
+    </div>
+    <div class="col-12 md:col-9">
+      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputJobPosition">Position</label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-dropdown optionLabel="name"></p-dropdown>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">From </label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">To </label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+    <div class="flex flex-wrap justify-content-end mt-2 col-12">
+      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- Modal Update Organization-->
+<p-dialog header="Edit Organization" [modal]="true" [(visible)]="visibleUpdateOrganization" [style]="{ width: '30vw' }">
+  <div class="grid surface-card border-round-sm border-400">
+    <div class="col-12 md:col-3">
+      <label for="inputName">Organization Name</label>
+    </div>
+    <div class="col-12 md:col-9">
+      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputJobPosition">Position</label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-dropdown optionLabel="name"></p-dropdown>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">From </label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">To </label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- Modal Delete Organization-->
+<p-dialog header="Delete Organization" [modal]="true" [(visible)]="visibleDeleteOrganization"
+  [style]="{ width: '30vw' }">
+  <div class="grid surface-card border-round-sm border-400">
+    <div class="col-12">
+      <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
+    </div>
+    <div class="flex flex-wrap justify-content-end mt-2 col-12">
+      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary">Submit</button>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- Modal Add Family -->
+<p-dialog header="Add Family" [modal]="true" [(visible)]="visibleAddFamily" [style]="{ width: '30vw' }">
+  <div class="grid surface-card border-round-sm border-400">
+    <div class="col-12 md:col-3">
+      <label for="inputName">Organization Name</label>
+    </div>
+    <div class="col-12 md:col-9">
+      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputJobPosition">Position</label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-dropdown optionLabel="name"></p-dropdown>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">From </label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">To </label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+    <div class="flex flex-wrap justify-content-end mt-2 col-12">
+      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- Modal Update Family-->
+<p-dialog header="Edit Family" [modal]="true" [(visible)]="visibleUpdateFamily" [style]="{ width: '30vw' }">
+  <div class="grid surface-card border-round-sm border-400">
+    <div class="col-12 md:col-3">
+      <label for="inputName">Organization Name</label>
+    </div>
+    <div class="col-12 md:col-9">
+      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputJobPosition">Position</label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-dropdown optionLabel="name"></p-dropdown>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">From </label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">To </label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true"></p-calendar>
+    </div>
+  </div>
+</p-dialog>
+
+<!-- Modal Delete Family-->
+<p-dialog header="Delete Family" [modal]="true" [(visible)]="visibleDeleteFamily" [style]="{ width: '30vw' }">
+  <div class="grid surface-card border-round-sm border-400">
+    <div class="col-12">
+      <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
+    </div>
+    <div class="flex flex-wrap justify-content-end mt-2 col-12">
+      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary">Submit</button>
+    </div>
+  </div>
+</p-dialog>
