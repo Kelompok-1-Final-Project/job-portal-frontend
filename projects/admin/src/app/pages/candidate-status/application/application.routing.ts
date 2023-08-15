@@ -10,18 +10,18 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ApplicationListComponent } from "./list/application-list.component";
 import { DialogModule } from 'primeng/dialog';
 
-const routes : Routes = [
+const routes: Routes = [
     {
-        path : '',
-        component : ApplicationListComponent,
+        path: '',
+        component: ApplicationListComponent,
     }
 ];
 
 @NgModule({
-    declarations : [
+    declarations: [
         ApplicationListComponent
     ],
-    imports : [
+    imports: [
         RouterModule.forChild(routes),
         CommonModule,
         ReactiveFormsModule,
@@ -32,10 +32,10 @@ const routes : Routes = [
         DialogModule,
         FileUploadModule
     ],
-    exports : [
+    exports: [
         RouterModule
     ]
- } )
+})
 
 export class ApplicationRouting {
 

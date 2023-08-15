@@ -10,6 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FileUploadModule } from 'primeng/fileupload';
 import { CityListComponent } from "./list/city-list.component";
 import { CityInsertComponent } from "./insert/city-insert.component";
+import { DialogModule } from "primeng/dialog";
 
 const routes : Routes = [
     {
@@ -39,7 +40,8 @@ const routes : Routes = [
         ButtonModule,
         DropdownModule,
         InputTextModule,
-        FileUploadModule
+        FileUploadModule,
+        DialogModule
     ],
     exports : [
         RouterModule

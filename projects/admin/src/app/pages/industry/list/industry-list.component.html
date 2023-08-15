@@ -5,7 +5,7 @@
   </div>
   <div class="card col-9">
     <div class="grid justify-content-end mb-3">
-      <button pButton pRipple class="p-button-primary" (click)="add()" label="Add benefit"></button>
+      <button pButton pRipple class="p-button-primary" (click)="add()" label="Add Industry"></button>
     </div>
     <p-table [value]="industries" [tableStyle]="{ 'min-width': '50rem' }">
       <ng-template pTemplate="header">
@@ -23,7 +23,7 @@
           <td>{{ p.industryName }}</td>
           <td>
             <div class="p-buttonset">
-              <button pButton pRipple class="p-button-success" (click)="update(3)" label="Edit Industry"></button>
+              <button pButton pRipple class="p-button-success" (click)="update(3)" label="Edit Industry "></button>
               <button (click)="deleteModal(3)" icon="pi pi-times" pButton pRipple class="p-button-danger" label="Delete"></button>
             </div>
           </td> 
@@ -49,7 +49,7 @@
 </p-dialog>
 
 <!-- Modal Update-->
-<p-dialog header="Add Data Industry" [(visible)]="visibleUpdate" [style]="{ width: '30vw' }">
+<!-- <p-dialog header="Add Data Industry" [(visible)]="visibleUpdate" [style]="{ width: '30vw' }">
   <div class="grid surface-card border-round-sm border-400">
     <div class="col-12 md:col-3">
       <label for="inputName">Industry Code</label>
@@ -67,10 +67,10 @@
         <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
       </div>
     </div>
-</p-dialog>
+</p-dialog> -->
 
 <!-- Modal Delete -->
-<p-dialog header="Delete Data Industry" [(visible)]="visibleDelete" [style]="{ width: '30vw' }">
+<!-- <p-dialog header="Delete Data Industry" [(visible)]="visibleDelete" [style]="{ width: '30vw' }">
   <div class="grid surface-card border-round-sm border-400">
     <div class="col-12">
       <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
@@ -79,4 +79,4 @@
         <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary">Submit</button>
       </div>
     </div>
-</p-dialog>
+</p-dialog> -->

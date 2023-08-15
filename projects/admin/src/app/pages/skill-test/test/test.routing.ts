@@ -7,19 +7,25 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { FileUploadModule } from 'primeng/fileupload';
-import { BenefitListComponent } from "./list/test-list.component";
+import { TestListComponent } from "./list/test-list.component";
 import { DialogModule } from 'primeng/dialog';
+import { TestDetailComponent } from "./detail/test-detail.component";
 
 const routes : Routes = [
     {
         path : '',
-        component : BenefitListComponent
+        component : TestListComponent
+    },
+    {
+        path: 'details/:id',
+        component : TestDetailComponent 
     }
 ];
 
 @NgModule({
     declarations : [
-        BenefitListComponent
+        TestListComponent,
+        TestDetailComponent
     ],
     imports : [
         RouterModule.forChild(routes),
@@ -37,6 +43,6 @@ const routes : Routes = [
     ]
  } )
 
-export class BenefitRouting {
+export class TestRouting {
 
 }

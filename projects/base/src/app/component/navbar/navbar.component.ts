@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     // private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   // ngOnInit():void{
   //     const profile = this.authService.getProfile();
@@ -56,126 +56,180 @@ export class NavbarComponent implements OnInit {
     // }
     //Primeng
     this.items = [{
-        label: 'Ticketing - Torangto',
-        icon:'pi pi-fw pi-ticket',
-        routerLink: "/dashboard",
-      },{
-        label: 'Home',
-        icon : 'pi pi-spin pi-box',
-        routerLink: "/dashboard",
-      },
-      {
-        label: 'Master Data',
-        icon : "pi pi-fw pi-server",
-        items: [{
-            label: 'List-User',
-            routerLink: "/users",
-            icon : 'pi pi-fw pi-user',
-            // visible : this.isAdmin
-          },
-          {
-            label: 'Company',
-            routerLink: "/companies",
-            icon : 'pi pi-fw pi-building',
-            // visible : this.isAdmin
-          },
-          {
-            label: 'Product List',
-            routerLink: "/products",
-            icon : 'pi pi-fw pi-book',
-            // visible : this.isAdmin
-          },
-          {
-            label: 'Subscribed Product',
-            routerLink: "/subscriber",
-            icon : 'pi pi-fw pi-box',
-            // visible : this.isAdmin
-          },
-          {
-            label: 'PIC Customer',
-            routerLink: "/pic-customer",
-            icon : 'pi pi-fw pi-users',
-            // visible : this.isAdmin
-          },
-          {
-            label: 'My Subscribed Product',
-            routerLink: "/subscriber",
-            icon : 'pi pi-fw pi-box',
-            // visible : this.isCustomer
-          },
-          {
-            label: 'My Ticket (User)',
-            routerLink: "/tickets",
-            icon : 'pi pi-fw pi-ticket',
-            // visible : this.isCustomer
-          },
-          {
-            label: 'My Ticket (PIC)',
-            routerLink: "/tickets/ticket-pic",
-            icon : 'pi pi-fw pi-ticket',
-            // visible : this.isPic
-          },
-          {
-            label: 'My Ticket (Dev)',
-            icon : 'pi pi-fw pi-ticket',
-            routerLink: "/tickets",
-            // visible : this.isDeveloper
-          }
-        ]
-      },
-      {
-        label: 'Users',
+      label: 'Ticketing - Torangto',
+      icon: 'pi pi-fw pi-ticket',
+      routerLink: "/dashboard",
+    }, {
+      label: 'Home',
+      icon: 'pi pi-spin pi-box',
+      routerLink: "/dashboard",
+    },
+    {
+      label: 'Master Data',
+      icon: "pi pi-fw pi-server",
+      items: [{
+        label: 'User',
+        routerLink: "/users",
         icon: 'pi pi-fw pi-user',
-        items: [{
-            label: 'Profile',
-            icon: 'pi pi-fw pi-user',
-            routerLink: "/users/profile",
-          },
-          {
-            label: 'Change Password',
-            icon: 'pi pi-fw pi-cog',
-            routerLink: "/users/change-password",
-          },
-          {
-            label: 'Logout',
-            icon: 'pi pi-fw pi-power-off',
-            command: () => {
-              this.logout()
-            }
-          }
-        ]
+        // visible : this.isAdmin
       },
       {
-        label: 'About',
-        items: [{
-            label: 'Edit',
-            icon: 'pi pi-fw pi-pencil',
-            items: [{
-                label: 'Save',
-                icon: 'pi pi-fw pi-calendar-plus'
-              },
-              {
-                label: 'Delete',
-                icon: 'pi pi-fw pi-calendar-minus'
-              }
-            ]
-          },
-          {
-            label: 'Contact',
-            items: [{
-              label: 'Remove',
-              icon: 'pi pi-fw pi-calendar-minus'
-            }]
-          }
-        ]
+        label: 'Company',
+        routerLink: "/companies",
+        icon: 'pi pi-fw pi-building',
+        // visible : this.isAdmin
       },
       {
-        label: 'Quit',
+        label: 'Benefit',
+        routerLink: "/benefits",
+        icon: 'pi pi-fw pi-book',
+        // visible : this.isAdmin
+      },
+      {
+        label: 'Candidate',
+        routerLink: "/candidates",
+        icon: 'pi pi-fw pi-box',
+        // visible : this.isAdmin
+      },
+      {
+        label: 'City',
+        routerLink: "/cities",
+        icon: 'pi pi-fw pi-users',
+        // visible : this.isAdmin
+      },
+      {
+        label: 'Industry',
+        routerLink: "/industries",
+        icon: 'pi pi-fw pi-box',
+        // visible : this.isCustomer
+      },
+      {
+        label: 'Skill',
+        routerLink: "/skills",
+        icon: 'pi pi-fw pi-ticket',
+        // visible : this.isPic
+      },
+      {
+        label: 'Skill Test',
+        icon: 'pi pi-fw pi-ticket',
+        routerLink: "/skill-test",
+        // visible : this.isDeveloper
+      },
+      ]
+    },
+    {
+      label: 'Candidate Status',
+      icon: 'pi pi-fw pi-power-off',
+      items: [
+        {
+          label: 'Application',
+          routerLink: "/candidate-statuses/application",
+          icon: 'pi pi-fw pi-user',
+          // visible : this.isAdmin
+        },
+        {
+          label: 'Assessment',
+          routerLink: "/candidate-statuses/assessment",
+          icon: 'pi pi-fw pi-user',
+          // visible : this.isAdmin
+        },
+        {
+          label: 'Medical Checkup',
+          routerLink: "/candidate-statuses/mcu",
+          icon: 'pi pi-fw pi-user',
+          // visible : this.isAdmin
+        },
+        {
+          label: 'Interview',
+          routerLink: "/candidate-statuses/interview",
+          icon: 'pi pi-fw pi-user',
+          // visible : this.isAdmin
+        },
+        {
+          label: 'Offering',
+          routerLink: "/candidate-statuses/offering",
+          icon: 'pi pi-fw pi-user',
+          // visible : this.isAdmin
+        },
+        {
+          label: 'Hired',
+          routerLink: "/candidate-statuses/hired",
+          icon: 'pi pi-fw pi-user',
+          // visible : this.isAdmin
+        },
+        {
+          label: 'Blacklist',
+          icon: 'pi pi-fw pi-ticket',
+          routerLink: "/blacklist",
+          // visible : this.isDeveloper
+        }
+      ]
+    },
+    {
+      label: 'Question',
+      icon: 'pi pi-fw pi-ticket',
+      routerLink: "/questions",
+      // visible : this.isDeveloper
+    },
+    {
+      label: 'Job vacancy',
+      routerLink: "/job-vacancies",
+      icon: 'pi pi-fw pi-ticket',
+      // visible : this.isCustomer
+    },
+    {
+      label: 'Users',
+      icon: 'pi pi-fw pi-user',
+      items: [{
+        label: 'Profile',
+        icon: 'pi pi-fw pi-user',
+        routerLink: "/users/profile",
+      },
+      {
+        label: 'Change Password',
+        icon: 'pi pi-fw pi-cog',
+        routerLink: "/users/change-password",
+      },
+      {
+        label: 'Logout',
         icon: 'pi pi-fw pi-power-off',
         command: () => {
           this.logout()
         }
       }
+      ]
+    },
+    {
+      label: 'About',
+      items: [{
+        label: 'Edit',
+        icon: 'pi pi-fw pi-pencil',
+        items: [{
+          label: 'Save',
+          icon: 'pi pi-fw pi-calendar-plus'
+        },
+        {
+          label: 'Delete',
+          icon: 'pi pi-fw pi-calendar-minus'
+        }
+        ]
+      },
+      {
+        label: 'Contact',
+        items: [{
+          label: 'Remove',
+          icon: 'pi pi-fw pi-calendar-minus'
+        }]
+      }
+      ]
+    },
+    {
+      label: 'Quit',
+      icon: 'pi pi-fw pi-power-off',
+      command: () => {
+        this.logout()
+      }
+    }
     ];
   }
 }
