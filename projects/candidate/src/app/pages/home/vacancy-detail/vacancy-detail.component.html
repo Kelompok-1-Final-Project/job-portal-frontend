@@ -1,0 +1,129 @@
+<div class="home-container">
+  <div class="container grid justify-content-center">
+    <div class="sub-container col-6 mt-3 grid">
+      <div class="col-4 justify-content-center align-content-center">
+        <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image" width="200"
+          [preview]="true"></p-image>
+      </div>
+      <div class="title col-8 grid">
+        <span class="col-12">Software Engineering Lead</span>
+        <a routerLink="" class="col-12 text-primary" style="text-decoration: none;">PT Mirae Assset Sekuritas</a>
+        <div class="city col-12">
+          <i class="pi pi-map-marker"></i>
+          <span>
+            Jakarta Selatan
+          </span>
+        </div>
+        <div class="Salary col-12">
+          <i class="pi pi-dollar"></i>
+          <span> 3000000 -</span>
+          <span> 7000000</span>
+        </div>
+        <div class="Industry col-12">
+          <i class="pi pi-building"></i>
+          <span> Financial Service</span>
+        </div>
+        <div class="footer col-12 mt-3">
+          <small>
+            <i class="pi pi-clock"></i>
+            <span> Tayang 14 Hari Yang Lalu</span>
+            <span> * </span>
+            <span> Diperbaharui 3 hari yang lalu</span>
+          </small>
+        </div>
+        <div class="button grid col-12 gap-3 text-center">
+          <button type="submit" pButton pRipple class="p-button-primary col-3 text-center">
+            <span class="col-12">Lamar</span>
+          </button>
+          <button type="submit" pButton pRipple class="p-button-primary col-3 text-center">
+            <span class="col-12">
+              <i class="pi pi-star m-1"></i> Tandai
+            </span>
+          </button>
+          <button type="submit" pButton pRipple class="p-button-primary col-3 text-center">
+            <i class="pi pi-share-alt m-1"></i> Bagikan
+          </button>
+        </div>
+      </div>
+      <div class="description">
+        <p>
+          Job Description
+          Perkembangan teknologi yang kian pesat merupakan salah satu tantangan yang harus dihadapi oleh semua
+          perusahaan
+          di Indonesia, termasuk BCA. Menjawab tantangan ini, BCA terus mengedepankan inovasi agar dapat senantiasa
+          menjadi bank yang dapat diandalkan oleh masyarakat. Inovasi yang dilakukan BCA selama ini membutuhkan dukungan
+          dari semua pihak terutama bagian IT.
+        </p>
+        <p>
+          Minimum Qualifications
+          Min. Sarjana S1 dengan IPK Min. 3,00
+          Memiliki latar belakang pendidikan dari jurusan Teknik Informatika / Sistem Informasi / Teknik Komputer /
+          Statistik / Fisika / Matematika / Teknik Industri / Teknik Mesin / Teknik Elektro
+          Memiliki pengetahuan dasar dan ketertarikan di bidang IT
+          Memiliki pengalaman bekerja di bidang teknologi (IT) menjadi nilai tambah
+        </p>
+        <pre>{{ benefits.values|json }}</pre>
+        <div class="benefit">
+          <h3>
+            Benefit
+          </h3>
+          <div *ngFor="let benefit of benefits; let i = index">
+            <input type="checkbox" class="p-disabled">
+            <label>{{ benefit }}</label>
+          </div>
+        </div>
+        <div class="summary grid gap-1">
+          <h3>
+            Job Summary
+          </h3>
+          <div class="job-position col-3 mt-3">
+            <h4>Job Position</h4>
+            <span>
+              Java Developer
+            </span>
+          </div>
+          <div class="employment-type col-3 mt-3">
+            <h4>Employment Type</h4>
+            <span>
+              Intern
+            </span>
+          </div>
+          <div class="address col-3 mt-3">
+            <h4>Address</h4>
+            <span>
+              Jln. Kopi no 21 Sidikalang
+            </span>
+          </div>
+        </div>
+        <div class="company">
+          <div class="container grid justify-content-center">
+            <div class="sub-container grid col-12 shadow-1 surface-card border-round-sm">
+              <h3 class="col-12">About Company</h3>
+              <div class="sub-container grid">
+                <div class="col-4 justify-content-center align-content-center">
+                  <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image"
+                    width="150" [preview]="true"></p-image>
+                </div>
+                <div class="title col-8">
+                  <a routerLink="" class="col-12 text-primary" style="text-decoration: none;">PT Mirae Assset
+                    Sekuritas</a>
+                  <div class="city col-12">
+                    <i class="pi pi-map-marker"></i>
+                    <span>
+                      Jakarta Selatan
+                    </span>
+                  </div>
+                </div>
+                <div class="description grid justify-content-center">
+                  <span class="col-10">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem explicabo minima at vitae
+                    odio officia maxime suscipit praesentium illum cum quidem, minus iure aperiam recusandae voluptate
+                    eius nemo ipsam voluptates. Expedita atque eaque aut iste.
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

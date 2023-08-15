@@ -19,7 +19,6 @@ export class CandidateInsertComponent implements AfterViewChecked {
       { name: 'Singapore' },
       { name: 'Thailand' },
       { name: 'Vietnam' },
-      // Add more countries as needed
     ];
     filteredCountries: Country[];
 
