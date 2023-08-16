@@ -5,11 +5,11 @@ import {
 
 
 @Component({
-  selector: 'vacancy-detail',
-  templateUrl: './vacancy-detail.component.html'
+  selector: 'save-jobs',
+  templateUrl: './save-jobs.component.html'
 })
-export class VacancyDetailComponent implements OnInit {
-  visibleAssignJob:boolean=false;
+export class SaveJobsComponent implements OnInit {
+
   constructor() {}
 
   selectedCategories: any[] = [];
@@ -31,20 +31,8 @@ export class VacancyDetailComponent implements OnInit {
     'Finance',
   ];
 
-  benefits = [
-    'Asuransi kesehatan',
-    'Fasilitas olahraga',
-    'Laptop',
-    'Lunch gratis',
-    'Transportasi',
-    'Program pengembangan karyawan',
-  ];
 
   ngOnInit(){
-  }
-
-  assignJob(id:number){
-    this.visibleAssignJob=true;
   }
 
 }

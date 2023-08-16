@@ -8,42 +8,30 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DialogModule } from 'primeng/dialog';
-import { HomeComponent } from "./index/index.component";
 import { CarouselModule } from 'primeng/carousel';
 import { CardModule } from 'primeng/card';
 import { ImageModule } from 'primeng/image';
-import { VacancyComponent } from "./vacancy/vacancy.component";
 import { TreeModule } from 'primeng/tree';
 import { AccordionModule } from 'primeng/accordion';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { VacancyDetailComponent } from "./vacancy-detail/vacancy-detail.component";
 import { ContextMenuModule } from 'primeng/contextmenu';
-import { SaveJobsComponent } from "./save-jobs/save-jobs.component";
+import { ApplicationComponent } from "./list/list-app.component";
+import { TabViewModule } from 'primeng/tabview'; 
+import { TabMenuModule } from 'primeng/tabmenu';
+import { ChipModule } from "primeng/chip";
 
 
 const routes : Routes = [
     {
         path : '',
-        component : HomeComponent
-    },{
-        path : 'job',
-        component : VacancyComponent
-    },{
-        path : 'save-jobs',
-        component : SaveJobsComponent
-    },{
-        path : 'detail/:id',
-        component : VacancyDetailComponent
+        component : ApplicationComponent
     }
 ];
 
 @NgModule({
     declarations : [
-        HomeComponent,
-        VacancyComponent,
-        VacancyDetailComponent,
-        SaveJobsComponent
+        ApplicationComponent,
     ],
     imports : [
         RouterModule.forChild(routes),
@@ -62,6 +50,9 @@ const routes : Routes = [
         CheckboxModule,
         InputNumberModule,
         ContextMenuModule,
+        TabViewModule,
+        TabMenuModule,
+        ChipModule,
         FileUploadModule
     ],
     exports : [
@@ -69,6 +60,6 @@ const routes : Routes = [
     ]
  } )
 
-export class HomeRouting {
+export class ApplicationRouting {
 
 }

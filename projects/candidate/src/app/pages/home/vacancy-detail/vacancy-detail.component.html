@@ -32,7 +32,7 @@
           </small>
         </div>
         <div class="button grid col-12 gap-3 text-center">
-          <button type="submit" pButton pRipple class="p-button-primary col-3 text-center">
+          <button type="submit" pButton pRipple class="p-button-primary col-3 text-center" (click)="assignJob(3)">
             <span class="col-12">Lamar</span>
           </button>
           <button type="submit" pButton pRipple class="p-button-primary col-3 text-center">
@@ -133,31 +133,24 @@
         </div>
       </div>
     </div>
+    
+    <p-dialog header="Upload Resume" [modal]="true" [(visible)]="visibleAssignJob" [style]="{ width: '30vw' }">
+      <div class="grid surface-card border-round-sm border-400">
+        <div class="col-12 md:col-3">
+          <label for="resumeUpload">Assign Job</label>
+        </div>
+        <div class="col-12 md:col-9">
+          <p-fileUpload mode="basic" accept=".pdf"></p-fileUpload>
+          <p class="text-muted mt-1">Upload file in PDF</p>
+        </div>
+        <div class="col-12 mt-2">
+          <span>Previous File: previous file</span>
+        </div>
+        <div class="flex flex-wrap justify-content-end mt-2 col-12">
+          <button type="submit" pButton pRipple class="p-button-primary mr-2">Submit</button>
+        </div>
+      </div>
+    </p-dialog>
+    
 
-    <p-accordion>
-      <p-accordionTab header="Education" [selected]="true">
-        <div class="grid justify-content-end">
-          <button pButton type="button" icon="pi pi-plus" class="p-button-primary">Add</button>
-        </div>
-        <div class="p-2 md:p-1">
-          <div class="grid">
-            <div class="col-2 text-gray-500">Aug 2018 - Nov 2022</div>
-            <div class="col-9">
-              <div class="font-semibold">Universitas Pembangunan Nasional "Veteran" Yogyakarta (University of National
-                Development "Veteran" Yogyakarta)</div>
-              <div class="text-gray-500">Informatics Engineering</div>
-              <div class="text-gray-500">Judul TA : Klasifikasi Penyakit Pada Daun Kentang Menggunakan Pengolahan Citra
-                Dengan Metode Convolutional Neural Network (CNN) Lorem ipsum dolor sit amet consectetur adipisicing
-                elit. Vel rerum ab, ducimus earum eius, laudantium maxime minus possimus dignissimos, optio accusantium?
-                Nobis recusandae incidunt quaerat amet vitae, libero id iusto?</div>
-            </div>
-            <div class="col-1 mt-4">
-              <div class="grid justify-content-end">
-                <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"></button>
-                <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"></button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </p-accordionTab>
-    </p-accordion>
+    
