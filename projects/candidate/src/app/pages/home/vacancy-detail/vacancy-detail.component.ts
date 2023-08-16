@@ -9,7 +9,7 @@ import {
   templateUrl: './vacancy-detail.component.html'
 })
 export class VacancyDetailComponent implements OnInit {
-
+  visibleAssignJob:boolean=false;
   constructor() {}
 
   selectedCategories: any[] = [];
@@ -41,6 +41,10 @@ export class VacancyDetailComponent implements OnInit {
   ];
 
   ngOnInit(){
+  }
+
+  assignJob(id:number){
+    this.visibleAssignJob=true;
   }
 
 }

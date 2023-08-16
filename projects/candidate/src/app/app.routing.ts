@@ -35,6 +35,12 @@ const routes : Routes = [
         .then(c => c.ProfileModule)
     },
     {
+        component : BaseComponent,
+        path : 'applications',
+        loadChildren : () => import ('./pages/my-application/application.module')
+        .then(c => c.ApplicationModule)
+    },
+    {
         path : '',
         redirectTo : '/login',
         pathMatch : 'full'
