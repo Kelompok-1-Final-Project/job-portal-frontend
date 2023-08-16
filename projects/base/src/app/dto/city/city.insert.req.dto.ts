@@ -1,3 +1,3 @@
-export interface CityInsertReqDto{
-    cityName : string
+export interface CityInsertReqDto {
+    cityName: string
 }

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IndustryGetResDto } from '@dto/industry/industry.get.res.dto';
-import { IndustryService } from '../../../services/industry.service';
+import { IndustryService } from '@serviceAdmin/industry.service';
 import { Title } from '@angular/platform-browser';
+import { NonNullableFormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 interface Industries {
   industryCode: string;
@@ -9,45 +11,60 @@ interface Industries {
 }
 
 @Component({
-    selector : 'industry-list',
-    templateUrl : './industry-list.component.html'
+  selector: 'industry-list',
+  templateUrl: './industry-list.component.html'
 })
-export class IndustryListComponent implements OnInit{
-  visibleAdd:boolean = false;
-  visibleUpdate:boolean = false;
-  visibleDelete:boolean = false;
-    constructor(
-      private industryService : IndustryService,
-      private title: Title
-    ){
-      this.title.setTitle('Industry | Job Portal Admin')
-    }
-    industries!: IndustryGetResDto[]
+export class IndustryListComponent implements OnInit {
+  visibleAdd: boolean = false;
+  visibleUpdate: boolean = false;
+  visibleDelete: boolean = false;
 
-    ngOnInit(): void {
-      this.getAllIndustry();
-      console.log(this.industries)
-    }
+  industryInsertReqDto = this.fb.group ({
+    industryName : ['']
+  })
 
-    getAllIndustry(){
-      this.industryService.getAll().subscribe(result => {
-        this.industries = result
-      })
-    }
+  constructor(
+    private industryService: IndustryService,
+    private title: Title,
+    private fb: NonNullableFormBuilder,
+    private router: Router
+  ) {
+    this.title.setTitle('Industry | Job Portal Admin')
+  }
+  industries!: IndustryGetResDto[]
 
-    add(){
-      this.visibleAdd=true;
-    }
-    update(id:number){
-      this.visibleUpdate=true;
-    }
+  ngOnInit(): void {
+    this.getAllIndustry();
+    console.log(this.industries)
+  }
 
-    deleteModal(id:number){
-      this.visibleDelete=true;
-    }
+  getAllIndustry() {
+    this.industryService.getAll().subscribe(result => {
+      this.industries = result
+    })
+  }
 
-    confirmDelete(){
-      
-    }
+  insertIndustry(){
+    const data = this.industryInsertReqDto.getRawValue()
+    this.industryService.insert(data).subscribe(result => {
+      this.router.navigateByUrl('/industries')
+      this.visibleAdd = false
+    })
+  }
+
+  add() {
+    this.visibleAdd = true;
+  }
+  update(id: number) {
+    this.visibleUpdate = true;
+  }
+
+  deleteModal(id: number) {
+    this.visibleDelete = true;
+  }
+
+  confirmDelete() {
 
   }
+
+}

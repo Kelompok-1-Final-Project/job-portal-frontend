@@ -4,7 +4,7 @@
   </div>
   <div class="card col-9">
     <button routerLink="/job-vacancies" pButton pRipple class="p-button-secondary" label="Back"></button>
-    <p-table [value]="jobs" [paginator]="true" [rows]="10">
+    <p-table [value]="candidates" [paginator]="true" [rows]="10">
       <ng-template pTemplate="header">
         <tr>
           <th>No</th>
@@ -18,11 +18,11 @@
         <tr>
           <td>{{ i+1 }}</td>
           <td>{{row.candidateName}}</td>
-          <td>{{row.jobTitle}}</td>
-          <td>{{row.status}}</td>
+          <td>{{row.jobName}}</td>
+          <td>{{row.statusName}}</td>
           <td>
-            <p-dropdown appendTo="body" [options]="cities" placeholder="Select Status" optionValue="statusId"
-              optionLabel="name"></p-dropdown>
+            <p-dropdown appendTo="body" [options]="status" placeholder="Select Status" optionValue="statusId"
+              optionLabel="progressName"></p-dropdown>
           </td>
         </tr>
       </ng-template>

@@ -1,7 +1,7 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import {Component,OnInit} from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { ApplicationGetResDto } from '@dto/application/application.get.res.dto';
+import { StatusProgressService } from '@serviceAdmin/statusprogress.service';
 
 @Component({
   selector: 'application-list',
@@ -10,27 +10,23 @@ import {
 export class ApplicationListComponent implements OnInit {
 
   visibleUpdateStatus:boolean=false;
-  constructor() {}
-  jobs = [{
-      candidateName: 'Anggi Wirahmat',
-      jobTitle: 'Software Engineer',
-    },
-    {
-      candidateName: 'M Firman',
-      jobTitle: 'Backend-Developer',
-    },
-    {
-      candidateName: 'Torangto Situngkir',
-      jobTitle: 'Fullstack Developer',
-    },
-  ];
+  application!: ApplicationGetResDto[]
 
-  modalUpdate(id:number){
-    this.visibleUpdateStatus=true;
+  constructor(
+    private title: Title,
+    private statusProgressService: StatusProgressService
+  ){
+    this.title.setTitle('Application | Job Portal Admin')
   }
 
-  updateStatus(row: any) {
+  ngOnInit(): void {
+    this.getApplication()
   }
 
-  ngOnInit(): void {}
+  getApplication(){
+    this.statusProgressService.getApplication().subscribe(result => {
+      this.application = result
+    })
+  }
+
 }

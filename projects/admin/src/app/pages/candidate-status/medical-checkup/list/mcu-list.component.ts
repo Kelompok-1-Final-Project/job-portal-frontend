@@ -2,6 +2,9 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { MedicalCheckupGetResDto } from '@dto/medicalcheckup/medical-checkup.get.res.dto';
+import { StatusProgressService } from '@serviceAdmin/statusprogress.service';
 
 @Component({
   selector: 'mcu-list',
@@ -10,28 +13,23 @@ import {
 export class McuListComponent implements OnInit {
 
   visibleUpdateStatus:boolean=false;
-  constructor() {}
-  mcus = [
-    {
-      candidateId: 'CAND001',
-      candidateName: 'Torangto Situngkir',
-    },
-    {
-      candidateId: 'CAND002',
-      candidateName: 'M Firman',
-    },
-    {
-      candidateId: 'CAND002',
-      candidateName: 'Anggi Wirahmat',
-    },
-  ];
-
-  modalUpdate(id:number){
-    this.visibleUpdateStatus=true;
+  mcus!: MedicalCheckupGetResDto[]
+  
+  constructor(
+    private title : Title,
+    private statusProgressService: StatusProgressService
+  ){
+    this.title.setTitle('Medical Checkup | Job Portal Admin')
+  }
+  
+  ngOnInit(): void {
+    this.getMedicalCheckup()
   }
 
-  updateStatus(row: any) {
+  getMedicalCheckup(){
+    this.statusProgressService.getMedicalCheckup().subscribe(result => {
+      this.mcus = result
+    })
   }
 
-  ngOnInit(): void {}
 }

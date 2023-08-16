@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CandidateService } from "../../../services/candidate.service";
+import { CandidateService } from "@serviceAdmin/candidate.service";
 import { Title } from "@angular/platform-browser";
 import { CandidateGetResDto } from "@dto/candidate/candidate.get.res.dto";
 

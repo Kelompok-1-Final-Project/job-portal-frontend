@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { QuestionGetResDto } from '@dto/question/question.get.res.dto';
-import { QuestionService } from 'projects/admin/src/app/services/question.service';
+import { QuestionService } from '@serviceAdmin/question.service';
 
 @Component({
   selector: 'question-list',

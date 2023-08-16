@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { SkillTestGetResDto } from '@dto/skilltest/skill-test.get.res.dto';
-import { SkillTestService } from 'projects/admin/src/app/services/skilltest.service';
+import { SkillTestService } from '@serviceAdmin/skilltest.service';
 
 @Component({
   selector: 'test-list',

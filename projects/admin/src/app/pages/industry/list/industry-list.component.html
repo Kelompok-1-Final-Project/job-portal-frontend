@@ -35,7 +35,32 @@
 
   <!-- Modal Add-->
   <p-dialog header="Add Data Industry" [(visible)]="visibleAdd" [style]="{ width: '30vw' }">
+    <pre>{{industryInsertReqDto.value | json}}</pre>
+    <form [formGroup]="industryInsertReqDto" (ngSubmit)="insertIndustry()">
+      <div class="grid surface-card border-round-sm border-400">
+        <div class="col-12 md:col-3">
+          <label for="inputName">Industry Name</label>
+        </div>
+        <div class="col-12 md:col-9">
+          <input pInputText type="text" class="col-12 " id="inputName" required formControlName="industryName">
+        </div>
+        <div class="flex flex-wrap justify-content-end mt-2 col-12">
+          <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+  </p-dialog>
+
+  <!-- Modal Update-->
+  <p-dialog header="Add Data Industry" [(visible)]="visibleUpdate" [style]="{ width: '30vw' }">
     <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Industry Code</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 p-disabled" id="inputName" required formControlName="productName"
+          value="JKAHS">
+      </div>
       <div class="col-12 md:col-3">
         <label for="inputName">Industry Name</label>
       </div>
@@ -48,35 +73,14 @@
     </div>
   </p-dialog>
 
-  <!-- Modal Update-->
-  <!-- <p-dialog header="Add Data Industry" [(visible)]="visibleUpdate" [style]="{ width: '30vw' }">
-  <div class="grid surface-card border-round-sm border-400">
-    <div class="col-12 md:col-3">
-      <label for="inputName">Industry Code</label>
-    </div>
-    <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 p-disabled" id="inputName" required formControlName="productName" value="JKAHS">
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">Industry Name</label>
-    </div>
-    <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
-    </div>
-      <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
-      </div>
-    </div>
-</p-dialog> -->
-
   <!-- Modal Delete -->
-  <!-- <p-dialog header="Delete Data Industry" [(visible)]="visibleDelete" [style]="{ width: '30vw' }">
-  <div class="grid surface-card border-round-sm border-400">
-    <div class="col-12">
-      <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
-    </div>
+  <p-dialog header="Delete Data Industry" [(visible)]="visibleDelete" [style]="{ width: '30vw' }">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12">
+        <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
+      </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary">Submit</button>
       </div>
     </div>
-</p-dialog> -->
+  </p-dialog>
