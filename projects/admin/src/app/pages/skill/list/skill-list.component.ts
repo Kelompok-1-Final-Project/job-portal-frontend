@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { SkillGetResDto } from '@dto/skill/skill.get.res.dto';
+import { SkillService } from '../../../services/skill.service';
 
 interface Skills {
   skillCode: string;
@@ -6,44 +9,45 @@ interface Skills {
 }
 
 @Component({
-    selector : 'skill-list',
-    templateUrl : './skill-list.component.html'
+  selector: 'skill-list',
+  templateUrl: './skill-list.component.html'
 })
-export class SkillListComponent implements OnInit{
-  visibleAdd:boolean = false;
-  visibleUpdate:boolean = false;
-  visibleDelete:boolean = false;
-    constructor(){}
-    skills: Skills[] = [
-      {
-        skillCode: 'CP001',
-        skillName: 'Leadership',
-      },
-      {
-        skillCode: 'CP002',
-        skillName: 'Public Speaking',
-      },
-      {
-        skillCode: 'CP003',
-        skillName: 'Communication',
-      },
-    ];
-    ngOnInit(): void {
-    }
+export class SkillListComponent implements OnInit {
+  visibleAdd: boolean = false;
+  visibleUpdate: boolean = false;
+  visibleDelete: boolean = false;
+  skills!: SkillGetResDto[]
 
-    add(){
-      this.visibleAdd=true;
-    }
-    update(id:number){
-      this.visibleUpdate=true;
-    }
+  constructor(
+    private title: Title,
+    private skillService: SkillService
+  ){
+    this.title.setTitle('Skill | Job Portal Admin')
+  }
 
-    deleteModal(id:number){
-      this.visibleDelete=true;
-    }
+  ngOnInit(): void {
+    this.getAllSkill()
+  }
+  
+  getAllSkill() {
+    this.skillService.getAll().subscribe(result => {
+      this.skills = result
+    })
+  }
 
-    confirmDelete(){
-      
-    }
+  add() {
+    this.visibleAdd = true;
+  }
+  update(id: number) {
+    this.visibleUpdate = true;
+  }
+
+  deleteModal(id: number) {
+    this.visibleDelete = true;
+  }
+
+  confirmDelete() {
 
   }
+
+}
