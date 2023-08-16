@@ -18,7 +18,8 @@ import { AccordionModule } from 'primeng/accordion';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { VacancyDetailComponent } from "./vacancy-detail/vacancy-detail.component";
-import { ContextMenu, ContextMenuModule } from 'primeng/contextmenu';
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { SaveJobsComponent } from "./save-jobs/save-jobs.component";
 
 
 const routes : Routes = [
@@ -29,6 +30,9 @@ const routes : Routes = [
         path : 'job',
         component : VacancyComponent
     },{
+        path : 'save-jobs',
+        component : SaveJobsComponent
+    },{
         path : 'detail/:id',
         component : VacancyDetailComponent
     }
@@ -38,7 +42,8 @@ const routes : Routes = [
     declarations : [
         HomeComponent,
         VacancyComponent,
-        VacancyDetailComponent
+        VacancyDetailComponent,
+        SaveJobsComponent
     ],
     imports : [
         RouterModule.forChild(routes),

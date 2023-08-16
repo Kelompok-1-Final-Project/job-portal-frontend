@@ -11,7 +11,9 @@ import { ButtonComponent } from "@component/button/button.component";
 import { UrlPipe } from "@pipes/url.pipe";
 import { SharedModuleComponent } from "@shared/shared.module";
 import { RegisterComponent } from "./pages/register/register.component";
+import { CardModule } from 'primeng/card';
 import { BaseComponent } from "@component/base/base.component";
+import { TestComponent } from "./pages/test/test.component";
 
 const routes : Routes = [
     {
@@ -22,6 +24,11 @@ const routes : Routes = [
     {
         component : RegisterComponent,
         path : 'register',
+        // canMatch : [ authValidation ]
+    },
+    {
+        component : TestComponent,
+        path : 'tests',
         // canMatch : [ authValidation ]
     },{
         component : BaseComponent,
@@ -56,6 +63,7 @@ const routes : Routes = [
         DashboardComponent,
         LoginComponent,
         RegisterComponent,
+        TestComponent,
         NotFoundComponent
     ],
     imports : [
@@ -66,6 +74,7 @@ const routes : Routes = [
         ButtonComponent,
         ReactiveFormsModule,
         UrlPipe,
+        CardModule,
         SharedModuleComponent
     ],
     exports : [
