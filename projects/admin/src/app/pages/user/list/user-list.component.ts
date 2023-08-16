@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import { UserGetResDto } from "@dto/user/user.get.res.dto";
+import { UserService } from "../../../services/user.service";
+import { Title } from "@angular/platform-browser";
 
 @Component({
     selector : 'user-list',
@@ -6,41 +9,30 @@ import { Component, OnInit } from "@angular/core";
 })
 export class UserListComponent implements OnInit{
   visibleAssign:boolean=false;
-    users =  [
-      {
-        nik: '123786128731',
-        name: 'John Doe',
-        email: 'john@example.com',
-        mobileNumber: '123-456-7890'
-      },
-      {
-        nik: '126351271221',
-        name: 'Jane Smith',
-        email: 'jane@example.com',
-        mobileNumber: '987-654-3210'
-      },
-    ];
+  users!: UserGetResDto[]  
 
-    constructor (){
-
+    constructor (
+      private userService: UserService,
+      private title: Title
+    ){
+      this.title.setTitle('Login | Job Portal Admin')
     }
 
     ngOnInit() : void{
-        this.getCompany();
+        this.getAllUser()
     }
 
-    getCompany(){
-        // this.companyService.getCompanies(true).subscribe(result => {
-        //     this.companies= result;
-        // })
+    getAllUser(){
+      this.userService.getAll().subscribe(result => {
+        this.users = result
+      })
     }
 
-    getPhotoUrl(base64String: string): string {
-        return 'data:image/jpeg;base64,' + base64String;
-      }
+    // getPhotoUrl(base64String: string): string {
+    //     return 'data:image/jpeg;base64,' + base64String;
+    //   }
 
-      
-    assign(id:number){
-      this.visibleAssign=true;
-    }
+    // assign(id:number){
+    //   this.visibleAssign=true;
+    // }
 }

@@ -1,32 +1,21 @@
 import { Component, OnInit } from "@angular/core";
+import { CompanyGetResDto } from "@dto/company/company.get.res.dto";
+import { CompanyService } from "../../../services/company.service";
+import { Title } from "@angular/platform-browser";
 
 @Component({
   selector: 'company-list',
   templateUrl: './company-list.component.html'
 })
 export class CompanyListComponent implements OnInit {
-  companies = [
-    {
-      id: 1,
-      companyCode: 'CP001',
-      companyName: 'PT Lawencon',
-      companyIndustry: 'Technology',
-      companyAddress: 'Jakarta Selatan',
-      files: 'path-to-image-1.png'
-    },
-    {
-      id: 2,
-      companyCode: 'CP002',
-      companyName: 'Pt LiNov Prestasi',
-      companyIndustry: 'Finance',
-      companyAddress: 'Surabaya',
-      files: 'path-to-image-2.png'
-    },
-    // Add more companies as needed
-  ];
+  
+  companies!: CompanyGetResDto[]
 
-  constructor() {
-
+  constructor(
+    private companyService: CompanyService,
+    private title: Title
+  ) {
+    this.title.setTitle('Company | Job Portal Admin')
   }
 
   ngOnInit(): void {
@@ -34,12 +23,12 @@ export class CompanyListComponent implements OnInit {
   }
 
   getCompany() {
-    // this.companyService.getCompanies(true).subscribe(result => {
-    //     this.companies= result;
-    // })
+    this.companyService.getAll().subscribe(result => {
+      this.companies = result
+    })
   }
 
-  getPhotoUrl(base64String: string): string {
-    return 'data:image/jpeg;base64,' + base64String;
-  }
+  // getPhotoUrl(base64String: string): string {
+  //   return 'data:image/jpeg;base64,' + base64String;
+  // }
 }

@@ -1,4 +1,3 @@
-<pre>{{ users|json }}</pre>
 <div class="container grid justify-content-center p-3">
   <div class=" grid justify-content-center col-12">
     <h3 class="text-center">User List</h3>
@@ -7,7 +6,6 @@
     <div class="grid justify-content-end mb-3">
       <button routerLink="create" pButton pRipple class="p-button-primary" label="Add User"></button>
     </div>
-    <!-- <pre>{{ selectedVacancies|json }}</pre> -->
     <p-table [value]="users" dataKey="nik" 
       [tableStyle]="{ 'min-width': '50rem' }">
       <ng-template pTemplate="header">
@@ -16,10 +14,11 @@
             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
           </th>
           <th scope="col">No</th>
-          <th scope="col">Nik</th>
-          <th scope="col">Name </th>
           <th scope="col">Email</th>
+          <th scope="col">Name </th>
+          <th scope="col">Role</th>
           <th scope="col">Mobile Number</th>
+          <th scope="col">Is Active</th>
           <th scope="col">Action</th>
         </tr>
       </ng-template>
@@ -29,10 +28,11 @@
             <p-tableCheckbox [value]="c" binary="true"></p-tableCheckbox>
           </td>
           <td scope="row">{{ i+1 }}</td>
-          <td>{{ c.nik}}</td>
-          <td>{{ c.name }}</td>
-          <td>{{ c.email }}</td>
-          <td>{{ c.mobileNumber }}</td>
+          <td>{{ c.userEmail}}</td>
+          <td>{{ c.fullName }}</td>
+          <td>{{ c.roleName }}</td>
+          <td>{{ c.userPhone }}</td>
+          <td>{{ c.isActive }}</td>
           <td>
               <button pButton pRipple class="p-button-secondary" label="Edit"></button>
           </td>

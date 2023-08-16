@@ -1,5 +1,7 @@
+<pre>{{userLoginReqDto.value | json}}</pre>
+
 <div class="h-screen flex align-items-center justify-content-center">
-    <form (ngSubmit)="onLogin()" class="grid gy-md-3">
+    <form [formGroup]="userLoginReqDto" (ngSubmit)="onLogin()" class="grid gy-md-3">
         <div class="col-12 text-center">
             <h1>Login</h1>
         </div>
@@ -7,13 +9,13 @@
             <label for="email" class="form-label">Email</label>
         </div>
         <div class="col-12">
-            <input class="w-full" type="email" pInputText id="email" >
+            <input class="w-full" type="email" pInputText id="email" formControlName="userEmail" >
         </div>
         <div class="col-12">
             <label for="password" class="form-label">Password</label>
         </div>
         <div class="col-12">
-            <p-password styleClass = "w-full" [inputStyle]="{'width':'100%'}" [toggleMask]="true" id="password" [feedback]="false"></p-password>
+            <p-password styleClass = "w-full" [inputStyle]="{'width':'100%'}" [toggleMask]="true" id="password" [feedback]="false" formControlName="userPassword"></p-password>
         </div>
         <div class="col-12 mt-2 text-center">
             <app-button classBtn = "w-4" label="Login" [loading] = "loading" btnType = "submit"></app-button>

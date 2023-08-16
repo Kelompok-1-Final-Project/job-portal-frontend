@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Title } from "@angular/platform-browser";
-import { RoleCode } from "@constant/role.enum";
+import { LoginService } from "../../services/login.service";
 
 
 @Component({
@@ -19,15 +19,21 @@ export class LoginComponent {
 
     constructor(
         private fb: NonNullableFormBuilder,
+        private loginService : LoginService,
         private router: Router,
         private title: Title) {
-        this.title.setTitle('Login | Bootest Anggi')
+        this.title.setTitle('Login | Job Portal Admin')
     }
 
     onLogin() {
         if (this.userLoginReqDto.valid) {
             const data = this.userLoginReqDto.getRawValue()
             this.loading = true
+            this.loginService.login(data).subscribe(result => {
+                localStorage.setItem('data', JSON.stringify(result))
+                this.loading = false
+                this.router.navigateByUrl('/dashboard')
+            })
             // this.loginService.login(data).subscribe({
             //     next: (result) => {
             //         localStorage.setItem('data', JSON.stringify(result))
@@ -44,6 +50,8 @@ export class LoginComponent {
             //         this.loading = false
             //     }
             // })
+        } else {
+            console.log('Invalid Login')
         }
     }
 }
