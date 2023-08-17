@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { UserGetResDto } from "@dto/user/user.get.res.dto";
-import { UserService } from "../../../services/user.service";
+import { UserService } from "@serviceAdmin/user.service";
 import { Title } from "@angular/platform-browser";
 
 @Component({

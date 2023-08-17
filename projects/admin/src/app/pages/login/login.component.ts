@@ -2,7 +2,7 @@ import { Component } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Title } from "@angular/platform-browser";
-import { LoginService } from "../../services/login.service";
+import { LoginService } from "@serviceAdmin/login.service";
 
 
 @Component({
@@ -19,7 +19,7 @@ export class LoginComponent {
 
     constructor(
         private fb: NonNullableFormBuilder,
-        private loginService : LoginService,
+        private loginService: LoginService,
         private router: Router,
         private title: Title) {
         this.title.setTitle('Login | Job Portal Admin')
@@ -29,26 +29,16 @@ export class LoginComponent {
         if (this.userLoginReqDto.valid) {
             const data = this.userLoginReqDto.getRawValue()
             this.loading = true
-            this.loginService.login(data).subscribe(result => {
-                localStorage.setItem('data', JSON.stringify(result))
-                this.loading = false
-                this.router.navigateByUrl('/dashboard')
+            this.loginService.login(data).subscribe({
+                next: (result) => {
+                    localStorage.setItem('data', JSON.stringify(result))
+                    this.loading = false
+                    this.router.navigateByUrl('/dashboard')
+                },
+                error: () => {
+                    this.loading = false
+                }
             })
-            // this.loginService.login(data).subscribe({
-            //     next: (result) => {
-            //         localStorage.setItem('data', JSON.stringify(result))
-            //         this.loading = false
-            //         if (result.roleCode == RoleCode.CANDIDATE) {
-            //             this.router.navigateByUrl('/test')
-            //         }
-            //         else {
-            //             this.router.navigateByUrl('/dashboard')
-            //         }
-
-            //     },
-            //     error: () => {
-            //         this.loading = false
-            //     }
             // })
         } else {
             console.log('Invalid Login')

@@ -2,6 +2,9 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { HiredGetResDto } from '@dto/hired/hired.get.res.dto';
+import { StatusProgressService } from '@serviceAdmin/statusprogress.service';
 
 @Component({
   selector: 'hired-list',
@@ -10,27 +13,22 @@ import {
 export class HiredListComponent implements OnInit {
 
   visibleUpdateStatus:boolean=false;
-  constructor() {}
-  jobs = [{
-      candidateName: 'Anggi Wirahmat',
-      jobTitle: 'Software Engineer',
-    },
-    {
-      candidateName: 'M Firman',
-      jobTitle: 'Backend-Developer',
-    },
-    {
-      candidateName: 'Torangto Situngkir',
-      jobTitle: 'Fullstack Developer',
-    },
-  ];
-
-  modalUpdate(id:number){
-    this.visibleUpdateStatus=true;
+  hired!: HiredGetResDto[]
+  
+  constructor(
+    private title: Title,
+    private statusProgressService: StatusProgressService
+  ){
+    this.title.setTitle('Hired | Job Portal Admin')
+  }
+  
+  ngOnInit(): void {
+    this.getHired()
   }
 
-  updateStatus(row: any) {
+  getHired(){
+    this.statusProgressService.getHired().subscribe(result => {
+      this.hired = result
+    })
   }
-
-  ngOnInit(): void {}
 }

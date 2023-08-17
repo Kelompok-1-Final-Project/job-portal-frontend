@@ -2,6 +2,9 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { OfferingGetResDto } from '@dto/offering/offering.get.res.dto';
+import { StatusProgressService } from '@serviceAdmin/statusprogress.service';
 
 @Component({
   selector: 'offering-list',
@@ -9,28 +12,23 @@ import {
 })
 export class OfferingListComponent implements OnInit {
 
-  visibleUpdateStatus:boolean=false;
-  constructor() {}
-  jobs = [{
-      candidateName: 'Anggi Wirahmat',
-      jobTitle: 'Software Engineer',
-    },
-    {
-      candidateName: 'M Firman',
-      jobTitle: 'Backend-Developer',
-    },
-    {
-      candidateName: 'Torangto Situngkir',
-      jobTitle: 'Fullstack Developer',
-    },
-  ];
+  visibleUpdateStatus: boolean = false;
+  offering!: OfferingGetResDto[]
 
-  modalUpdate(id:number){
-    this.visibleUpdateStatus=true;
+  constructor(
+    private statusProgressService: StatusProgressService,
+    private title: Title
+  ) {
+    this.title.setTitle('Offering | Job Portal Admin')
   }
 
-  updateStatus(row: any) {
+  ngOnInit(): void {
+    this.getOffering()
   }
 
-  ngOnInit(): void {}
+  getOffering() {
+    this.statusProgressService.getOffering().subscribe(result => {
+      this.offering = result
+    })
+  }
 }

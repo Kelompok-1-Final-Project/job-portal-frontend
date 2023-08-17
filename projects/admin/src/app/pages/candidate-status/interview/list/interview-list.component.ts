@@ -2,6 +2,9 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { InterviewGetResDto } from '@dto/interview/interview.get.res.dto';
+import { StatusProgressService } from '@serviceAdmin/statusprogress.service';
 
 @Component({
   selector: 'interview-list',
@@ -10,40 +13,21 @@ import {
 export class InterviewListComponent implements OnInit {
 
   visibleUpdateStatus:boolean=false;
-  constructor() {}
-  interviews = [
-    {
-      interviewId: 'ASDAS',
-      candidateName: 'Torangto Situngkir',
-      jobTitle: 'Software Engineer',
-      interviewerName: 'Julian Wicaksono',
-      schedule: '2023-08-15 10:00 AM',
-      notes: 'Candidate performed well in technical assessment.'
-    },
-    {
-      interviewId: 'ASFA',
-      candidateName: 'Anggi Wirahmat',
-      jobTitle: 'Data Analyst',
-      interviewerName: 'Budi Santoso',
-      schedule: '2023-08-20 02:30 PM',
-      notes: 'Candidate had relevant experience in data analysis.'
-    },
-    {
-      interviewId: 'DFSG',
-      candidateName: 'M Firman',
-      jobTitle: 'Sales Representative',
-      interviewerName: 'Deddy Corbuzier',
-      schedule: '2023-08-25 09:15 AM',
-      notes: 'Candidate demonstrated strong communication skills.'
-    },
-  ];
+  constructor(
+    private statusProgressService : StatusProgressService,
+    private title: Title
+  ) {
+    this.title.setTitle('Interview | Job Portal Admin')
+  }
+  interviews!: InterviewGetResDto[]
 
-  modalUpdate(id:number){
-    this.visibleUpdateStatus=true;
+  ngOnInit(): void {
+    this.getInterview()
   }
 
-  updateStatus(row: any) {
+  getInterview(){
+    this.statusProgressService.getInterview().subscribe(result => {
+      this.interviews = result
+    })
   }
-
-  ngOnInit(): void {}
 }

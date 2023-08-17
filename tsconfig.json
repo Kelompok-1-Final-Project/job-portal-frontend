@@ -25,7 +25,8 @@
     ],
     "paths": {
       "@dto/*" : ["projects/base/src/app/dto/*"] ,
-      "@service/*" : ["projects/base/src/app/service/*"],
+      "@serviceCandidate/*" : ["projects/candidate/src/app/services/*"],
+      "@serviceAdmin/*" : ["projects/admin/src/app/services/*"],
       "@component/*" : ["projects/base/src/app/component/*"],
       "@constant/*" : ["projects/base/src/app/constant/*"],
       "@pipes/*" : ["projects/base/src/app/pipes/*"],

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { CityGetResDto } from '@dto/city/city.get.res.dto';
 import { CompanyGetResDto } from '@dto/company/company.get.res.dto';
-import { CityService } from '../../../services/city.service';
+import { CityService } from '@serviceAdmin/city.service';
 
 interface Cities {
   cityCode: string;
@@ -14,7 +15,7 @@ interface Cities {
 })
 export class CityListComponent implements OnInit {
 
-  cities!: CompanyGetResDto[]
+  cities!: CityGetResDto[]
 
   constructor(
     private title: Title,
@@ -24,10 +25,10 @@ export class CityListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllCompany()
+    this.getAllCity()
   }
 
-  getAllCompany() {
+  getAllCity() {
     this.cityService.getAll().subscribe(result => {
       this.cities = result
     })

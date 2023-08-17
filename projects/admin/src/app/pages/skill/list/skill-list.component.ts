@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { SkillGetResDto } from '@dto/skill/skill.get.res.dto';
-import { SkillService } from '../../../services/skill.service';
+import { SkillService } from '@serviceAdmin/skill.service';
 
 interface Skills {
   skillCode: string;
@@ -34,6 +34,8 @@ export class SkillListComponent implements OnInit {
       this.skills = result
     })
   }
+
+  
 
   add() {
     this.visibleAdd = true;
