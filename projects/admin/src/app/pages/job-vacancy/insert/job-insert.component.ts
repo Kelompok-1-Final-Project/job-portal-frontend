@@ -26,7 +26,7 @@ interface QuestionInsertReqDto {
 export class JobInsertComponent implements AfterViewChecked {
 
   loading = false
-
+  text: string | undefined;
   selectedCountry: Country | undefined;
   countries: Country[] = [
     { name: 'Indonesia' },
