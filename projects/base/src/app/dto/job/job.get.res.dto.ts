@@ -6,8 +6,12 @@ export interface JobGetResDto{
 	description : string
 	endDate : string
 	companyName : string
+	industryName : string
+	cityName : string
 	positionName : string
 	statusName : string
 	employmentName : string
+	createdAt : string
+	UpdatedAt : string
 	ver : number
 }

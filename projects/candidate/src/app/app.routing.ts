@@ -46,6 +46,11 @@ const routes : Routes = [
         path : 'applications',
         loadChildren : () => import ('./pages/my-application/application.module')
         .then(c => c.ApplicationModule)
+    },{
+        component : BaseComponent,
+        path : 'companies/detail',
+        loadChildren : () => import ('./pages/company/company.module')
+        .then(c => c.CompanyModule)
     },
     {
         path : '',

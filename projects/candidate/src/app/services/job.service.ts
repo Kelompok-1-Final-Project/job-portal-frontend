@@ -12,7 +12,7 @@ export class JobService{
     constructor(private base: BaseService){}
 
     getAll(): Observable<JobGetResDto[]>{
-        return this.base.get<JobGetResDto[]>(`${BASE_URL}/jobs/filter/location/?loc=Jakar`, true)
+        return this.base.get<JobGetResDto[]>(`${BASE_URL_CAN}/jobs/filter/?n=&c=&p=&e=&ss=0&se=0`, true)
     }
 
     getAllEmploymentType(): Observable<EmploymentTypeGetResDto[]>{
