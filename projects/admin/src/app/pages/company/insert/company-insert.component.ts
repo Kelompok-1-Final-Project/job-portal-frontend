@@ -26,7 +26,9 @@ export class CompanyInsertComponent implements AfterViewChecked, OnDestroy {
     industryCode: [''],
     cityCode: [''],
     ext: [''],
-    file: ['']
+    file: [''],
+    address: [''],
+    description: ['']
   })
 
   constructor(

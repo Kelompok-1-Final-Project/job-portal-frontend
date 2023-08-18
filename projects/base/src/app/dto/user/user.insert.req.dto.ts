@@ -4,5 +4,4 @@ export interface UserInsertReqDto {
 	roleCode: string
 	userPhone: string
 	genderCode: string
-	idNumber: string
 }

@@ -4,4 +4,6 @@ export interface CompanyInsertReqDto{
 	cityCode : string
 	ext : string
 	file : string
+	address : string
+	description : string
 }

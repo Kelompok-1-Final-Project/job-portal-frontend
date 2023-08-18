@@ -1,61 +1,62 @@
-    <pre>{{ questionsInsertReqDto.value|json }}</pre>
-    <div class="container">
-      <div class="card-container w-screen flex flex-wrap justify-content-center align-items-center"
-        style="min-height: 700px">
-        <div class="grid shadow-8 m-4 surface-card border-round-sm border-400 p-3 md:col-6 text">
-          <div class="flex text-center justify-content-center col-12">
-            <h2 class="text-center">Create Question</h2>
-          </div>
-          <div class="flex justify-content-center col-12">
-            <button pButton pRipple label="Add Form" type="button" (click)="onAdd()"></button>
-          </div>
-          <div class="flex justify-content-center">
-            <form [formGroup]="questionsInsertReqDto" class="grid align-items-center w-8 gy-md-3"
-              (ngSubmit)="onSubmit()">
-              <div class="w-full">
-                <div class="mt-2" *ngFor="let qf of forms.controls; let i = index;" formArrayName="data">
-                  <div [formGroupName]="i">
-                    <div class="col-12 my-2">
-                      <button pButton pRipple label="Delete Form" class="p-button-danger" type="button" (click)="remove(i)"></button>
+<pre>{{ questionsInsertReqDto.value|json }}</pre>
+
+<div class="container">
+  <div class="card-container w-screen flex flex-wrap justify-content-center align-items-center"
+    style="min-height: 700px">
+    <div class="grid shadow-8 m-4 surface-card border-round-sm border-400 p-3 md:col-6 text">
+      <div class="flex text-center justify-content-center col-12">
+        <h2 class="text-center">Create Question</h2>
+      </div>
+      <div class="flex justify-content-center col-12">
+        <button pButton pRipple label="Add Form" type="button" (click)="onAdd()"></button>
+      </div>
+      <div class="flex justify-content-center">
+        <form [formGroup]="questionsInsertReqDto" class="grid align-items-center w-8 gy-md-3" (ngSubmit)="onSubmit()">
+          <div class="w-full">
+            <div class="mt-2" *ngFor="let qf of forms.controls; let i = index;" formArrayName="data">
+              <div [formGroupName]="i">
+                <div class="col-12 my-2">
+                  <button pButton pRipple label="Delete Form" class="p-button-danger" type="button"
+                    (click)="remove(i)"></button>
+                </div>
+                <div class="col-12 md:col-2">
+                  <label for="question">Question <span class="text-red-500">*</span></label>
+                </div>
+                <div class="col-12 md:col-10">
+                  <input class="w-full" type="text" pInputText id="question" required formControlName="question">
+                </div>
+                <div class="col-12">
+                  <label for="option">Option</label>
+                </div>
+                <div class="col-12">
+                  <button pButton pRipple label="Add Option" type="button" (click)="onAddOption(i)"></button>
+                </div>
+                <div class="col-12 md:col-10 my-2" *ngFor="let q of questionOption(i).controls; let j = index;"
+                  formArrayName="listQuestionOption">
+                  <div class="grid gy-2" [formGroupName]="j">
+                    <div class="col-12 md:col-10">
+                      <input class="w-full" type="text" pInputText id="option" required formControlName="labels">
                     </div>
                     <div class="col-12 md:col-2">
-                      <label for="question">Question <span class="text-red-500">*</span></label>
+                      <p-dropdown formControlName="isAnswer" [options]="keyAnswer" optionValue="value"
+                        optionLabel="name" placeholder="Choose Key"></p-dropdown>
                     </div>
-                    <div class="col-12 md:col-10">
-                      <input class="w-full" type="text" pInputText id="question" required formControlName="question">
-                    </div>
-                    <div class="col-12">
-                      <label for="option">Option</label>
-                    </div>
-                    <div class="col-12">
-                      <button pButton pRipple label="Add Option" type="button" (click)="onAddOption(i)"></button>
-                    </div>
-                    <div class="col-12 md:col-10 my-2" *ngFor="let q of questionOption(i).controls; let j = index;"
-                      formArrayName="questionOptions">
-                      <div class="grid gy-2"  [formGroupName]="j">
-                        <div class="col-12 md:col-10">
-                          <input class="w-full" type="text" pInputText id="option" required
-                            formControlName="optionData">
-                        </div>
-                        <div class="col-12 md:col-2">
-                          <p-dropdown formControlName="isAnswer" [options]="keyAnswer" optionValue="value"
-                            optionLabel="name" placeholder="Choose Key"></p-dropdown>
-                        </div>
-                        <div class="col-12 my-2">
-                          <button pButton pRipple label="Delete Option" class="p-button-danger" type="submit" (click)="onAdd()" (click)="removeOption(i, j)" [loading]="loading"></button>
-                        </div>
-                      </div>
+                    <div class="col-12 my-2">
+                      <button pButton pRipple label="Delete Option" class="p-button-danger" type="submit"
+                        (click)="removeOption(i, j)" [loading]="loading"></button>
                     </div>
                   </div>
                 </div>
-                <div class="col-12 md:col-10 mt-2 text-center md:text-left">
-                  <button pButton pRipple label="Back" type="button" class="p-button-secondary"
-                    routerLink="/dashboard"></button>
-                  <button pButton pRipple label="Submit" type="submit"></button>
-                </div>
               </div>
-            </form>
+            </div>
+            <div class="col-12 md:col-10 mt-2 text-center md:text-left">
+              <button pButton pRipple label="Back" type="button" class="p-button-secondary"
+                routerLink="/questions"></button>
+              <button pButton pRipple label="Submit" type="submit"></button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </div>
+  </div>
+</div>
