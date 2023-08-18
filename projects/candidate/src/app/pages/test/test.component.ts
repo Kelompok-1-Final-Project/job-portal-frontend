@@ -3,7 +3,10 @@ import { FormArray, FormBuilder, FormControl, FormGroup, NonNullableFormBuilder,
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { AnswerInsertReqDto } from "@dto/answer/answer.req.dto";
+import { QuestionOptionResDto } from "@dto/question/question-option.res.dto";
+import { QuestionGetResDto } from "@dto/question/question.get.res.dto";
 import { ResultInsertReqDto } from "@dto/result/result.insert.req.dto";
+import { QuestionService } from "projects/admin/src/app/services/question.service";
 
 @Component({
     selector : 'test.component.html',
@@ -12,7 +15,7 @@ import { ResultInsertReqDto } from "@dto/result/result.insert.req.dto";
 export class TestComponent{
     questions = [
         {
-            id:1,
+          questionId:1,
           question: 'Berapa 2 + 2?',
           questionOptions: [
             { optionId: 1, optionData: '3' },
@@ -22,7 +25,7 @@ export class TestComponent{
           ]
         },
         {
-            id:2,
+          questionId:2,
           question: 'Ibu kota perancis?',
           questionOptions: [
             { optionId: 5, optionData: 'Berlin' },
@@ -32,7 +35,9 @@ export class TestComponent{
           ]
         }
       ];
-      
+    // questions!:QuestionGetResDto[];
+    options : QuestionOptionResDto[] = []
+
     loading = false
 
     answerQuestion: AnswerInsertReqDto[] = []
@@ -43,6 +48,7 @@ export class TestComponent{
 
     constructor(
         private router : Router,
+        private questionService : QuestionService,
         private fb : NonNullableFormBuilder,
         private title: Title) {
         this.title.setTitle('Answer | Bootest Anggi')
@@ -57,11 +63,11 @@ export class TestComponent{
     }
 
     getData(){
-        // this.questionService.getByCandidate(true).subscribe(result => {
+        // this.questionService.getAll().subscribe(result => {
         //     this.questions = result
             for (let i = 0; i < this.questions.length; i++){
                 this.answers.push(this.fb.group({
-                    questionId : [this.questions.at(i)?.id],
+                    questionId : [this.questions.at(i)?.questionId],
                     optionId : [null],
                     [`questionOptionIdTemp${i}`]: [],
                     // candidateAssignId : [this.questions.at(i)?.candidateAssignId]
@@ -76,18 +82,11 @@ export class TestComponent{
         })
     }
 
-    getOption(questionId : number){
-        // this.questionService.getOption(questionId).subscribe(result => {
-        //     this.options = result
-        // })
-    }
-
-    optionShow(i : number) : boolean{
-        if(this.questions.at(i)?.questionOptions?.length != 0){
-            return true
-        }
-        return false
-    }
+    // getOption(questionId : number){
+    //     this.questionService.getOption(questionId).subscribe(result => {
+    //         this.options = result
+    //     })
+    // }
 
     onSubmit(){
         // if (this.answerCandidateReqDto.valid){

@@ -2,6 +2,13 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { NonNullableFormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserGetResDto } from '@dto/user/user.get.res.dto';
+import { UserSkillGetResDto } from '@dto/userskill/user-skill.get.res.dto';
+import { AuthService } from '@serviceCandidate/auth.service';
+import { CandidateService } from '@serviceCandidate/candidate.service';
+import { UserService } from '@serviceCandidate/user.service';
 
 
 @Component({
@@ -26,9 +33,28 @@ export class ProfileDetailComponent implements OnInit {
   visibleUpdateFamily: boolean = false;
   visibleDeleteFamily: boolean = false;
 
-  constructor() {}
+  userId!:string;
+  userName!:string;
+  userData! : UserGetResDto;
+  skilss! : UserSkillGetResDto[];
 
-  ngOnInit() {}
+  constructor(
+    private candidateService : CandidateService, 
+    private authService : AuthService,
+    private fb: NonNullableFormBuilder,
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    // this.userId  = this.authService.getUserId();
+    this.userId  = '';
+    this.userName  = '';
+
+    const data = this.candidateService.getCandidateByid(this.userName,true).subscribe(result => {
+        this.userData = result
+    })
+  }
+
 
   // User
   editUser() {
@@ -58,6 +84,11 @@ export class ProfileDetailComponent implements OnInit {
   }
 
   // Skill
+
+  getAllSkill(){
+    
+  }
+
   updateSkill(id: number) {
     this.visibleUpdateSkill = true;
   }
