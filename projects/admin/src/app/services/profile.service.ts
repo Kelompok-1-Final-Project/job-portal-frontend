@@ -5,6 +5,7 @@ import { MaritalGetResDto } from "@dto/profile/marital.get.res.dto";
 import { BASE_URL } from "@constant/api.constant";
 import { GenderGetResDto } from "@dto/profile/gender.get.res.dto";
 import { RoleGetResDto } from "@dto/profile/role.get.res.dto";
+import { PersonTypeGetResDto } from "@dto/profile/person-type.get.res.dto";
 
 @Injectable({
     providedIn: 'root'
@@ -22,5 +23,9 @@ export class ProfileService{
 
     getRole(): Observable<RoleGetResDto[]>{
         return this.base.get<RoleGetResDto[]>(`${BASE_URL}/profiles/role`, true)
+    }
+
+    getPersonType(): Observable<PersonTypeGetResDto[]>{
+        return this.base.get<PersonTypeGetResDto[]>(`${BASE_URL}/persontype`, true)
     }
 }

@@ -12,11 +12,11 @@ export class QuestionListComponent implements OnInit {
   visibleUpdate: boolean = false;
   visibleDelete: boolean = false;
   questions!: QuestionGetResDto[]
-  
+
   constructor(
     private title: Title,
     private questionService: QuestionService
-  ) { 
+  ) {
     this.title.setTitle('Question | Job Portal Admin')
   }
 
@@ -24,7 +24,7 @@ export class QuestionListComponent implements OnInit {
     this.getAllQuestion()
   }
 
-  getAllQuestion(){
+  getAllQuestion() {
     this.questionService.getAll().subscribe(result => {
       this.questions = result
     })
