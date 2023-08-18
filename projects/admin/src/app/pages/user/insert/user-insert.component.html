@@ -1,52 +1,48 @@
+<pre>{{userInsertReqDto.value | json}}</pre>
+
 <div class="container">
-<form>
-  <div class="row">
-    <div class="card-container flex flex-wrap justify-content-center align-items-center"
-      style="min-height: 700px">
-      <div class="grid shadow-8 m-4 surface-card border-round-sm border-400 p-3 md:col-9 text">
-        <div class="flex col-12">
-          <h2 class="text-center">User Information</h2>
-        </div>
-        <div class="col-12 md:col-6 grid">
-          <div class="col-12 md:col-3">
-            <label for="companyName">Email<span style="color: red;">*</span></label>
+  <form [formGroup]="userInsertReqDto" (ngSubmit)="insertUser()">
+    <div class="row">
+      <div class="card-container flex flex-wrap justify-content-center align-items-center" style="min-height: 700px">
+        <div class="grid shadow-8 m-4 surface-card border-round-sm border-400 p-3 md:col-9 text">
+          <div class="flex col-12">
+            <h2 class="text-center">User Information</h2>
           </div>
-          <div class="col-12 md:col-9">
-            <input pInputText type="text" class="form-control col-12" id="companyName"
-              aria-describedby="companyNameHelp" required formControlName="companyName">
+          <div class="col-12 md:col-6 grid">
+            <div class="col-12 md:col-3">
+              <label for="companyName">Email<span style="color: red;">*</span></label>
+            </div>
+            <div class="col-12 md:col-9">
+              <input pInputText type="text" class="form-control col-12" id="companyName"
+                aria-describedby="companyNameHelp" required formControlName="userEmail">
+            </div>
+            <div class="col-12 md:col-3">
+              <label for="companyName">Fullname<span style="color: red;">*</span></label>
+            </div>
+            <div class="col-12 md:col-9">
+              <input pInputText type="text" class="form-control col-12" id="companyName"
+                aria-describedby="companyNameHelp" required formControlName="fullName">
+            </div>
+            <div class="col-12 md:col-3">
+              <label for="companyName">Role</label>
+            </div>
+            <div class="col-12 md:col-9">
+              <p-dropdown [options]="roles" optionValue="roleCode" optionLabel="roleName" formControlName="roleCode"></p-dropdown>
+            </div>
+            <div class="col-12 md:col-3">
+              <label for="companyName">Mobile Phone</label>
+            </div>
+            <div class="col-12 md:col-9">
+              <input pInputText type="text" class="form-control col-12"
+                aria-describedby="companyNameHelp" required formControlName="userPhone">
+            </div>
+            <div class="col-12 md:col-3">
+              <label for="companyName">Gender</label>
+            </div>
+            <div class="col-12 md:col-9">
+              <p-dropdown [options]="genders" optionValue="genderCode" optionLabel="genderName" formControlName="genderCode"></p-dropdown>
+            </div>
           </div>
-          <div class="col-12 md:col-3">
-            <label for="companyName">Fullname<span style="color: red;">*</span></label>
-          </div>
-          <div class="col-12 md:col-9">
-            <input pInputText type="text" class="form-control col-12" id="companyName"
-              aria-describedby="companyNameHelp" required formControlName="companyName">
-          </div>
-          <div class="col-12 md:col-3">
-            <label for="companyName">Id Number<span style="color: red;">*</span></label>
-          </div>
-          <div class="col-12 md:col-9">
-            <p-inputNumber id="idNumber" inputId="withoutgrouping" [useGrouping]="false"></p-inputNumber>
-          </div>
-          <div class="col-12 md:col-3">
-            <label for="companyName">Role Code</label>
-          </div>
-          <div class="col-12 md:col-9">
-            <p-dropdown optionLabel="name"></p-dropdown>
-          </div>
-          <div class="col-12 md:col-3">
-            <label for="companyName">Mobile Phone</label>
-          </div>
-          <div class="col-12 md:col-9">
-            <p-inputNumber id="phone" inputId="withoutgrouping" [useGrouping]="false"></p-inputNumber>
-          </div>
-          <div class="col-12 md:col-3">
-            <label for="companyName">Gender</label>
-          </div>
-          <div class="col-12 md:col-9">
-            <p-dropdown optionLabel="name"></p-dropdown>
-          </div>
-        </div>
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
           <button type="button" routerLink="/users" pButton pRipple class="p-button-secondary mr-3"
@@ -55,5 +51,5 @@
         </div>
       </div>
     </div>
-</form>
+  </form>
 </div>

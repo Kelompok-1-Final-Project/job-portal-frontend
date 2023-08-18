@@ -2,22 +2,15 @@ import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { FormArray, NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-
-interface QuestionOptionReqDto {
-	optionData : string
-	isAnswer : boolean
-}
-
-interface QuestionInsertReqDto {
-	question : string
-	questionOptions? : QuestionOptionReqDto[]
-}
+import { QuestionOptionReqDto } from "@dto/question/question-option.req.dto";
+import { QuestionInsertReqDto } from "@dto/question/question.insert.req.dto";
+import { QuestionService } from "@serviceAdmin/question.service";
 
 @Component({
-    selector : 'question-insert',
-    templateUrl : './question-insert.component.html'
+    selector: 'question-insert',
+    templateUrl: './question-insert.component.html'
 })
-export class QuestionInsertComponent implements OnInit{
+export class QuestionInsertComponent implements OnInit {
 
     loading = false
 
@@ -34,21 +27,18 @@ export class QuestionInsertComponent implements OnInit{
         }
     )
 
-    constructor (
+    constructor(
         private fb: NonNullableFormBuilder,
-        private cd : ChangeDetectorRef,
-        private router : Router,
-        private title:Title
-    ){
+        private cd: ChangeDetectorRef,
+        private router: Router,
+        private title: Title,
+        private questionService: QuestionService
+    ) {
         this.title.setTitle('Create Question | InLook Info Looker')
     }
 
     ngOnInit(): void {
-        // this.getType()
-    }
 
-    ngAfterViewChecked(): void {
-        //this.cd.detectChanges()
     }
 
     get forms() {
@@ -56,19 +46,19 @@ export class QuestionInsertComponent implements OnInit{
     }
 
     questionOption(i: number) {
-        return this.forms.at(i).get("questionOptions") as FormArray
+        return this.forms.at(i).get("listQuestionOption") as FormArray
     }
 
     onAdd() {
         this.forms.push(this.fb.group({
             question: ['', [Validators.required]],
-            questionOptions: this.fb.array(this.questionOptionInsertdto),
+            listQuestionOption: this.fb.array(this.questionOptionInsertdto),
         }))
     }
 
-    patchTypeId(e : any, i : number){
+    patchTypeId(e: any, i: number) {
         this.forms.at(i).patchValue({
-            typeId : e.value
+            typeId: e.value
         })
     }
 
@@ -78,19 +68,22 @@ export class QuestionInsertComponent implements OnInit{
 
     onAddOption(indexQuestion: number) {
         this.questionOption(indexQuestion).push(this.fb.group({
-            optionData: ['', [Validators.required]],
+            labels: ['', [Validators.required]],
             isAnswer: [false, [Validators.required]]
         }))
     }
 
     removeOption(indexOption: number, indexQuestion: number) {
-        this.questionOption(indexQuestion).removeAt(indexOption)
+        this.questionOption(indexOption).removeAt(indexQuestion)
     }
 
     onSubmit() {
         if (this.questionsInsertReqDto.valid) {
             this.loading = true
             const data = this.questionsInsertReqDto.getRawValue().data
+            this.questionService.insert(data).subscribe(result =>{
+                this.router.navigateByUrl('/questions')
+            })
         }
     }
 }

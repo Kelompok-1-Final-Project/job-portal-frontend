@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { SkillGetResDto } from '@dto/skill/skill.get.res.dto';
 import { SkillService } from '@serviceAdmin/skill.service';
 
@@ -17,10 +19,15 @@ export class SkillListComponent implements OnInit {
   visibleUpdate: boolean = false;
   visibleDelete: boolean = false;
   skills!: SkillGetResDto[]
+  skillInsertReqDto = this.fb.group({
+    skillName: ['']
+  })
 
   constructor(
     private title: Title,
-    private skillService: SkillService
+    private skillService: SkillService,
+    private fb: NonNullableFormBuilder,
+    private router: Router
   ){
     this.title.setTitle('Skill | Job Portal Admin')
   }
@@ -35,7 +42,13 @@ export class SkillListComponent implements OnInit {
     })
   }
 
-  
+  insertSkill(){
+    const data = this.skillInsertReqDto.getRawValue()
+    this.skillService.insert(data).subscribe(result => {
+      this.visibleAdd = false
+      this.router.navigateByUrl('/skills')
+    })
+  }
 
   add() {
     this.visibleAdd = true;

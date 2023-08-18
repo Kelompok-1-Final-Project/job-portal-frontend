@@ -1,3 +1,3 @@
-export interface SkillInsertReqDto{
-    skillName : string
+export interface SkillInsertReqDto {
+    skillName: string
 }
