@@ -2,6 +2,7 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -10,38 +11,30 @@ import {
 })
 export class VacancyDetailComponent implements OnInit {
   visibleAssignJob:boolean=false;
-  constructor() {}
+  idJob!:string;
 
-  selectedCategories: any[] = [];
+  constructor(
+    private activatedRoute : ActivatedRoute,
+    private router : Router
+  ) {
 
-  categories: any[] = [
-      { name: 'Internship', key: 'ET001' },
-      { name: 'Contract', key: 'ET002' },
-      { name: 'Full Time', key: 'ET003' },
-      { name: 'Part Time', key: 'ET004' }
-  ];
-  companyIndustries = [
-    'Technology',
-    'Finance',
-    'Healthcare',
-    'Education',
-    'Healthcare',
-    'Education',
-    'Technology',
-    'Finance',
-  ];
-
-  benefits = [
-    'Asuransi kesehatan',
-    'Fasilitas olahraga',
-    'Laptop',
-    'Lunch gratis',
-    'Transportasi',
-    'Program pengembangan karyawan',
-  ];
+  }
+  
+  init() {
+    this.activatedRoute.params.subscribe(id => {
+      this.idJob = String(Object.values(id));
+    })
+  }
 
   ngOnInit(){
+    this.init();
   }
+
+  // getJob() {
+  //   this.jobService.getAll().subscribe(result => {
+  //     this.jobs = result
+  //   })
+  // }
 
   assignJob(id:number){
     this.visibleAssignJob=true;

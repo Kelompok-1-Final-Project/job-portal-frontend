@@ -2,6 +2,14 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { NonNullableFormBuilder } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { IndustryGetResDto } from '@dto/industry/industry.get.res.dto';
+import { EmploymentTypeGetResDto } from '@dto/job/employment-type.get.res.dto';
+import { JobGetResDto } from '@dto/job/job.get.res.dto';
+import { IndustryService } from '@serviceCandidate/industry.service';
+import { JobService } from '@serviceCandidate/job.service';
 
 
 @Component({
@@ -10,7 +18,12 @@ import {
 })
 export class VacancyComponent implements OnInit {
 
-  constructor() {}
+  constructor(
+    private jobService: JobService,
+    private title: Title,
+    private fb: NonNullableFormBuilder,
+    private router: Router
+  ) {}
 
   selectedCategories: any[] = [];
 
@@ -20,19 +33,25 @@ export class VacancyComponent implements OnInit {
       { name: 'Full Time', key: 'ET003' },
       { name: 'Part Time', key: 'ET004' }
   ];
-  companyIndustries = [
-    'Technology',
-    'Finance',
-    'Healthcare',
-    'Education',
-    'Healthcare',
-    'Education',
-    'Technology',
-    'Finance',
-  ];
 
+  jobs!: JobGetResDto[]
+  types! : EmploymentTypeGetResDto[]
+
+  getAllJobs() {
+    this.jobService.getAll().subscribe(result => {
+      this.jobs = result
+    })
+  }
+
+  getAllTypes() {
+    this.jobService.getAllEmploymentType().subscribe(result => {
+      this.types = result
+    })
+  }
 
   ngOnInit(){
+    this.getAllJobs();
+    this.getAllTypes();
   }
 
 }
