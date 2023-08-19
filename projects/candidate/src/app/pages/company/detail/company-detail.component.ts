@@ -13,10 +13,10 @@ import { JobService } from '@serviceCandidate/job.service';
 
 
 @Component({
-  selector: 'vacancy-index',
-  templateUrl: './vacancy.component.html'
+  selector: 'company-detail',
+  templateUrl: './company-detail.component.html'
 })
-export class VacancyComponent implements OnInit {
+export class CompanyDetailComponent implements OnInit {
 
   constructor(
     private jobService: JobService,

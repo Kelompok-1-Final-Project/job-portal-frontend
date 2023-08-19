@@ -244,7 +244,7 @@ export class NavbarComponent implements OnInit {
       items: [{
         label: 'jobs',
         routerLink: "/home/job",
-        icon: 'pi pi-fw pi-user',
+        icon: 'pi pi-fw pi-building',
         // visible : this.isAdmin
       },
       {

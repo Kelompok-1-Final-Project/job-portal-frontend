@@ -3,53 +3,65 @@ import { FormArray, FormBuilder, FormControl, FormGroup, NonNullableFormBuilder,
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { AnswerInsertReqDto } from "@dto/answer/answer.req.dto";
-import { ResultInsertReqDto } from "@dto/result/result.insert.req.dto";
+import { OptionTestGetResDtos } from "@dto/answer/question-option.res.dto";
+import { QuestionTestGetResDto } from "@dto/answer/question-test.get.res.dto";
+import { TestGetResDto } from "@dto/answer/test.get.res.dto";
+import { QuestionOptionResDto } from "@dto/question/question-option.res.dto";
+import { AuthService } from "@serviceCandidate/auth.service";
+import { QuestionService } from "@serviceCandidate/question.service";
 
 @Component({
     selector : 'test.component.html',
     templateUrl : './test.component.html'
 })
 export class TestComponent{
-    questions = [
-        {
-            id:1,
-          question: 'Berapa 2 + 2?',
-          questionOptions: [
-            { optionId: 1, optionData: '3' },
-            { optionId: 2, optionData: '4' },
-            { optionId: 3, optionData: '5' },
-            { optionId: 4, optionData: '6' }
-          ]
-        },
-        {
-            id:2,
-          question: 'Ibu kota perancis?',
-          questionOptions: [
-            { optionId: 5, optionData: 'Berlin' },
-            { optionId: 6, optionData: 'Madrid' },
-            { optionId: 7, optionData: 'Rome' },
-            { optionId: 8, optionData: 'Paris' }
-          ]
-        }
-      ];
-      
+    // questions = [
+    //     {
+    //       questionId:1,
+    //       question: 'Berapa 2 + 2?',
+    //       questionOptions: [
+    //         { optionId: 1, optionData: '3' },
+    //         { optionId: 2, optionData: '4' },
+    //         { optionId: 3, optionData: '5' },
+    //         { optionId: 4, optionData: '6' }
+    //       ]
+    //     },
+    //     {
+    //       questionId:2,
+    //       question: 'Ibu kota perancis?',
+    //       questionOptions: [
+    //         { optionId: 5, optionData: 'Berlin' },
+    //         { optionId: 6, optionData: 'Madrid' },
+    //         { optionId: 7, optionData: 'Rome' },
+    //         { optionId: 8, optionData: 'Paris' }
+    //       ]
+    //     }
+    //   ];
+    test!: TestGetResDto;
+    questions!:QuestionTestGetResDto[];
+    options : OptionTestGetResDtos[] = []
+    candidateId!:string;
     loading = false
 
     answerQuestion: AnswerInsertReqDto[] = []
 
     answerCandidateReqDto = this.fb.group({
-        data : this.fb.array(this.answerQuestion)
+        skillTestId : [''],
+        candidateId:[''],
+        answerCandidateReqDtos : this.fb.array(this.answerQuestion)
     })
 
     constructor(
         private router : Router,
+        private authService : AuthService,
+        private questionService : QuestionService,
         private fb : NonNullableFormBuilder,
         private title: Title) {
         this.title.setTitle('Answer | Bootest Anggi')
     }
 
     get answers() {
-        return this.answerCandidateReqDto.get("data") as FormArray
+        return this.answerCandidateReqDto.get("answerCandidateReqDtos") as FormArray
     }
 
     ngOnInit(){
@@ -57,17 +69,19 @@ export class TestComponent{
     }
 
     getData(){
-        // this.questionService.getByCandidate(true).subscribe(result => {
-        //     this.questions = result
-            for (let i = 0; i < this.questions.length; i++){
+        this.questionService.getAll().subscribe(result => {
+            this.test = result
+            this.candidateId=this.authService.getUserId();            
+            this.answerCandidateReqDto.get('skillTestId')?.setValue(result.testId);
+            this.answerCandidateReqDto.get('candidateId')?.setValue(this.candidateId);
+            for (let i = 0; i < this.test.questionGetResDtos.length; i++){
                 this.answers.push(this.fb.group({
-                    questionId : [this.questions.at(i)?.id],
+                    questionId : [this.test.questionGetResDtos.at(i)?.questionCode],
                     optionId : [null],
                     [`questionOptionIdTemp${i}`]: [],
-                    // candidateAssignId : [this.questions.at(i)?.candidateAssignId]
                 }))
             }
-        // })
+        })
     }
 
     patchOption(e : any, i : number){
@@ -76,18 +90,11 @@ export class TestComponent{
         })
     }
 
-    getOption(questionId : number){
-        // this.questionService.getOption(questionId).subscribe(result => {
-        //     this.options = result
-        // })
-    }
-
-    optionShow(i : number) : boolean{
-        if(this.questions.at(i)?.questionOptions?.length != 0){
-            return true
-        }
-        return false
-    }
+    // getOption(questionId : number){
+    //     this.questionService.getOption(questionId).subscribe(result => {
+    //         this.options = result
+    //     })
+    // }
 
     onSubmit(){
         // if (this.answerCandidateReqDto.valid){
