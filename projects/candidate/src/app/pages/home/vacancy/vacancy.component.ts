@@ -23,7 +23,9 @@ export class VacancyComponent implements OnInit {
     private title: Title,
     private fb: NonNullableFormBuilder,
     private router: Router
-  ) {}
+  ) {
+    
+  }
 
   selectedCategories: any[] = [];
 

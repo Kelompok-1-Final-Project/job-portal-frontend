@@ -43,12 +43,13 @@ const routes : Routes = [
     },
     {
         component : BaseComponent,
-        path : 'applications',
-        loadChildren : () => import ('./pages/my-application/application.module')
+        path : 'status-progress',
+        loadChildren : () => import ('./pages/status-progress/application.module')
         .then(c => c.ApplicationModule)
-    },{
+    },
+    {
         component : BaseComponent,
-        path : 'companies/detail',
+        path : 'companies',
         loadChildren : () => import ('./pages/company/company.module')
         .then(c => c.CompanyModule)
     },

@@ -2,13 +2,36 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { UserGetResDto } from '@dto/user/user.get.res.dto';
-import { UserSkillGetResDto } from '@dto/userskill/user-skill.get.res.dto';
-import { AuthService } from '@serviceCandidate/auth.service';
-import { CandidateService } from '@serviceCandidate/candidate.service';
-import { UserService } from '@serviceCandidate/user.service';
+import {
+  NonNullableFormBuilder, Validators
+} from '@angular/forms';
+import {
+  ActivatedRoute,
+  Router
+} from '@angular/router';
+import {
+  CandidateGetResDto
+} from '@dto/candidate/candidate.get.res.dto';
+import { EducationGetResDto } from '@dto/education/education.get.res.dto';
+import { FamilyGetResDto } from '@dto/family/family.get.res.dto';
+import { OrganizationGetResDto } from '@dto/organization/organization.get.res.dto';
+import {
+  UserGetResDto
+} from '@dto/user/user.get.res.dto';
+import {
+  UserSkillGetResDto
+} from '@dto/userskill/user-skill.get.res.dto';
+import { WorkExperienceGetResDto } from '@dto/workexperience/work-experience.get.res.dto';
+import {
+  AuthService
+} from '@serviceCandidate/auth.service';
+import {
+  CandidateService
+} from '@serviceCandidate/candidate.service';
+import { ProfileService } from '@serviceCandidate/profile.service';
+import {
+  UserService
+} from '@serviceCandidate/user.service';
 
 
 @Component({
@@ -33,26 +56,38 @@ export class ProfileDetailComponent implements OnInit {
   visibleUpdateFamily: boolean = false;
   visibleDeleteFamily: boolean = false;
 
-  userId!:string;
-  userName!:string;
-  userData! : UserGetResDto;
-  skilss! : UserSkillGetResDto[];
+  userId!: string;
+  userData!: CandidateGetResDto;
+  educations!:EducationGetResDto[];
+  workExperience!:WorkExperienceGetResDto[];
+  skills!: UserSkillGetResDto[];
+  organization!:OrganizationGetResDto[];
+  families! : FamilyGetResDto[];
+
+
+  educationInsertReqDto = this.fb.group({
+    candidateId: ['', [Validators.required]],
+    educationName: ['', [Validators.required]],
+    startDate: ['', [Validators.required]],
+    endDate: ['', [Validators.required]]
+  })
 
   constructor(
-    private candidateService : CandidateService, 
-    private authService : AuthService,
+    private candidateService: CandidateService,
+    private authService: AuthService,
+    private profileService : ProfileService,
     private fb: NonNullableFormBuilder,
     private router: Router
   ) {}
 
   ngOnInit() {
-    // this.userId  = this.authService.getUserId();
-    this.userId  = '';
-    this.userName  = '';
-
-    const data = this.candidateService.getCandidateByid(this.userName,true).subscribe(result => {
-        this.userData = result
-    })
+    this.userId  = this.authService.getUserId();
+    this.getCandidateData();
+    this.getCandidateEducation();
+    this.getCandidateWorkExperience();
+    this.getCandidateSkill();
+    this.getCandidateOrganization();
+    this.getCandidateFamily();
   }
 
 
@@ -60,61 +95,98 @@ export class ProfileDetailComponent implements OnInit {
   editUser() {
     this.visibleEditUser = true;
   }
+  getCandidateData() {
+    this.candidateService.getCandidateByid(this.userId).subscribe(result => {
+      this.userData = result
+    })
+  }
 
   // Education
+  getCandidateEducation(){
+    this.profileService.getEducation(this.userId).subscribe(result => {
+      this.educations= result
+    })
+  }
+
+  insertEducation(){
+    const data = this.educationInsertReqDto.getRawValue()
+    data.candidateId = this.userId;
+    this.profileService.insertEducation(data).subscribe(result => {
+      this.visibleAddEducation = false;
+    })
+  }
+
   addEducation() {
     this.visibleAddEducation = true;
   }
-  updateEducation(id: number) {
+  updateEducation(id: string) {
     this.visibleUpdateEducation = true;
   }
-  deleteEducation(id: number) {
+  deleteEducation(id: string) {
     this.visibleDeleteEducation = true;
   }
 
   // Work Experience
+  getCandidateWorkExperience(){
+    this.profileService.getWorkExperience(this.userId).subscribe(result => {
+      this.workExperience= result
+    })
+  }
   addWorkExp() {
     this.visibleAddWorkExp = true;
   }
-  updateWorkExp(id: number) {
+  updateWorkExp(id: string) {
     this.visibleUpdateWorkExp = true;
   }
-  deleteWorkExp(id: number) {
+  deleteWorkExp(id: string) {
     this.visibleDeleteWorkExp = true;
   }
 
   // Skill
 
-  getAllSkill(){
-    
+  getCandidateSkill() {
+    this.profileService.getSkills(this.userId).subscribe(result => {
+      this.skills= result
+    })
   }
 
-  updateSkill(id: number) {
+  updateSkill(id: string) {
     this.visibleUpdateSkill = true;
   }
-  addSkill(id: number) {
+  addSkill(id: string) {
     this.visibleAddSkill = true;
   }
 
   // Organization
+  getCandidateOrganization(){
+    this.profileService.getOrganizations(this.userId).subscribe(result => {
+      this.organization= result
+    })
+  }
+
   addOrganization() {
     this.visibleAddOrganization = true;
   }
-  updateOrganization(id: number) {
+  updateOrganization(id: string) {
     this.visibleUpdateOrganization = true;
   }
-  deleteOrganization(id: number) {
+  deleteOrganization(id: string) {
     this.visibleDeleteOrganization = true;
   }
 
-  // Organization
+  // Family
+  getCandidateFamily(){
+    this.profileService.getFamily(this.userId).subscribe(result => {
+      this.families= result
+    })
+  }
   addFamily() {
     this.visibleAddFamily = true;
   }
-  updateFamily(id: number) {
+  updateFamily(id: string) {
     this.visibleUpdateFamily = true;
   }
-  deleteFamily(id: number) {
+  deleteFamily(id: string) {
     this.visibleDeleteFamily = true;
   }
 }

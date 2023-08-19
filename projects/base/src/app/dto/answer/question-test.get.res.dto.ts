@@ -2,6 +2,6 @@ import { OptionTestGetResDtos } from "./question-option.res.dto";
 
 export interface QuestionTestGetResDto {
     question : string;
-	questionCode : string;
+	questionId : string;
 	optionGetResDtos: OptionTestGetResDtos[];
 }

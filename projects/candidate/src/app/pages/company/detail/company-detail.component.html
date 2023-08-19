@@ -1,4 +1,5 @@
 <!-- home.component.html -->
+<pre>{{ idCompany|json }}</pre>
 <div class="home-container">
   <div class="company mt-4">
     <div class="container grid justify-content-center">
@@ -6,22 +7,23 @@
         <h3 class="col-12 col-offset-1">About Company</h3>
         <div class="sub-container grid">
           <div class="col-3 col-offset-1 justify-content-center align-content-center">
-            <img src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image"
+            <img [src]="companyData.fileId" alt="Image"
               width="150">
           </div>
           <div class="title col-8">
-            <a routerLink="" class="col-12 text-primary" style="text-decoration: none;">PT Mirae Assset
-              Sekuritas</a>
+            <span class="col-12 text-primary">
+              {{ companyData.companyName }}
+            </span>
             <div class="city col-12">
               <i class="pi pi-map-marker"></i>
               <span>
-                Jakarta Selatan
+                {{ companyData.companyName }}
               </span>
             </div>
           </div>
           <div class="description grid justify-content-center">
             <span class="col-10">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem explicabo minima at vitae
+              (Masih Kosong)Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem explicabo minima at vitae
               odio officia maxime suscipit praesentium illum cum quidem, minus iure aperiam recusandae voluptate
               eius nemo ipsam voluptates. Expedita atque eaque aut iste.
             </span>

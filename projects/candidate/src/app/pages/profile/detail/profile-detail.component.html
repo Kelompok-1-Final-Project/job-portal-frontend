@@ -1,5 +1,5 @@
-
 <pre>{{ userData|json }}</pre>
+<pre>{{ organization|json }}</pre>
 <div class="profile-container grid justify-content-center m-3">
   <p-accordion class="col-10 md:col-8">
     <p-accordionTab header="Basic Information" [selected]="true">
@@ -11,7 +11,7 @@
           <div class="col-8">
             <div class="info grid">
               <div class="name col-6 p-3">
-                <h3>Torangto Situngkir</h3>
+                <h3>{{ userData.fullName }}</h3>
               </div>
               <div class="button col-6">
                 <button pButton type="button" icon="pi pi-pencil mr-3" class="p-button-success mb-2"
@@ -21,45 +21,44 @@
               <div class="left-info col-6 p-3">
                 <div class="nik">
                   <div class="font-semibold text-gray-500">NIK</div>
-                  <div class="mb-3">12117238476232453</div>
+                  <div class="mb-3">{{ userData.idNumber ? userData.idNumber:'-' }}</div>
                 </div>
                 <div class="email">
                   <div class="font-semibold text-gray-500">Email</div>
-                  <div class="mb-3">ayamgoreng72@gmail.com</div>
+                  <div class="mb-3">{{ userData.email}}</div>
                 </div>
                 <div class="gender">
                   <div class="font-semibold text-gray-500">Gender</div>
-                  <div class="mb-3">Male</div>
+                  <div class="mb-3">{{ userData.idNumber ? userData.idNumber:'-' }}</div>
                 </div>
                 <div class="years-old">
                   <div class="font-semibold text-gray-500">Years Old</div>
-                  <div class="mb-3">23 years old</div>
+                  <div class="mb-3">{{ userData.age ? userData.age+' years old':'-' }}</div>
                 </div>
               </div>
               <div class="right-info col-6 p-3">
                 <div class="phone">
                   <div class="font-semibold text-gray-500">Phone</div>
-                  <div class="mb-3">081237812842</div>
+                  <div class="mb-3">{{ userData.phone ? userData.phone:'-' }}</div>
                 </div>
                 <div class="marital-status">
                   <div class="font-semibold text-gray-500">Marital Status</div>
-                  <div class="mb-3">Single</div>
+                  <div class="mb-3">{{ userData.maritalStatus ? userData.maritalStatus:'-' }}</div>
                 </div>
                 <div class="expected-salary">
                   <div class="font-semibold text-gray-500">Expected Salary</div>
-                  <div class="mb-3">Rp4.000.000 - Rp8.000.000</div>
+                  <div class="mb-3">{{ userData.expectedSalary ? userData.expectedSalary:'-' }}</div>
                 </div>
                 <div class="cv-file">
                   <div class="font-semibold text-gray-500">CV File</div>
-                  <div class="mb-3"><a href="#">Download</a></div>
+                  <div class="mb-3"><a href="#">{{ userData.cvId ? userData.cvId:'' }}</a>{{ !userData.cvId ? '-':'' }}
+                  </div>
                 </div>
               </div>
               <div class="summary p-3">
                 <div class="summary">
                   <div class="font-semibold text-gray-500">Summary</div>
-                  <div class="">Saya adalah adlaah fresh graduate lulusan teknik informatika Lorem, ipsum dolor sit amet
-                    consectetur adipisicing elit. Sit, ratione. Porro nemo at cum sequi error repudiandae iure expedita
-                    voluptatibus provident totam. Cum id totam eveniet recusandae nam iste similique.</div>
+                  <div class="">{{ userData.summary ? userData.summary:'-' }}</div>
                 </div>
               </div>
             </div>
@@ -76,19 +75,18 @@
         <button pButton type="button" icon="pi pi-plus" class="p-button-primary" (click)="addEducation()">Add</button>
       </div>
       <div class="p-2 md:p-1">
-        <div class="grid">
-          <div class="col-2 text-gray-500">Aug 2018 - Nov 2022</div>
+        <div class="grid" *ngFor="let e of educations">
+          <div class="col-2 text-gray-500">{{ e.startDate }} - {{ e.endDate }}</div>
           <div class="col-8">
-            <div class="font-semibold">Universitas Pembangunan Nasional "Veteran" Yogyakarta (University of National
-              Development "Veteran" Yogyakarta)
+            <div class="font-semibold">{{e.educationName}}
             </div>
           </div>
           <div class="col-12 lg:col-2 mt-4">
             <div class="grid justify-content-end">
               <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"
-                (click)="deleteEducation(3)"></button>
+                (click)="deleteEducation(e.id)"></button>
               <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"
-                (click)="updateEducation(3)"></button>
+                (click)="updateEducation(e.id)"></button>
             </div>
           </div>
         </div>
@@ -102,18 +100,18 @@
         <button pButton type="button" icon="pi pi-plus" class="p-button-primary" (click)="addWorkExp()">Add</button>
       </div>
       <div class="p-2 md:p-1">
-        <div class="grid">
-          <div class="col-2 text-gray-500">Feb 2021 - Mar 2021</div>
+        <div class="grid" *ngFor="let w of workExperience">
+          <div class="col-2 text-gray-500">{{ w.startDate }} - {{ w.endDate }}</div>
           <div class="col-8">
-            <div class="font-semibold">Dinas Perhubungan Kabupaten Dairi</div>
-            <div class="text-gray-500">Fullstack Developer</div>
+            <div class="font-semibold">{{ w.companyName }}</div>
+            <div class="text-gray-500">{{ w.positionName }}</div>
           </div>
           <div class="col-12 lg:col-2 mt-4">
             <div class="grid justify-content-end">
               <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"
-                (click)="deleteWorkExp(4)"></button>
+                (click)="deleteWorkExp(w.id)"></button>
               <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"
-                (click)="updateWorkExp(3)"></button>
+                (click)="updateWorkExp(w.id)"></button>
             </div>
           </div>
         </div>
@@ -124,26 +122,18 @@
   <p-accordion class="col-10 md:col-8">
     <p-accordionTab header="Skills" [selected]="true">
       <div class="grid p-buttonset justify-content-center md:justify-content-end p-butto">
-        <button pButton type="button" icon="pi pi-plus ml-1" class="p-button-primary" (click)="addSkill(3)">Add</button>
-        <button pButton type="button" icon="pi pi-pencil ml-1" class="p-button-success" (click)="updateSkill(3)">Edit
+        <button pButton type="button" icon="pi pi-plus ml-1" class="p-button-primary"
+          (click)="addSkill('')">Add</button>
+        <button pButton type="button" icon="pi pi-pencil ml-1" class="p-button-success" (click)="updateSkill('')">Edit
           Skill</button>
       </div>
       <div class="m-2 md:p-1 mt-5">
         <div class="grid justify-content-between ">
           <div
-            class="skill col-12 md:col-6 lg:col-3 lg:m-0 border-100 surface-overlay border-3 border-round font-bold grid justify-content-center">
-            <p-chip class="intermediate col-12 text-center" label="Intermediate"></p-chip>
-            <h3 class="p-1">Version Control(Git)</h3>
-          </div>
-          <div
-            class="skill col-12 md:col-6 lg:col-3 lg:m-0 border-100 surface-overlay border-3 border-round font-bold grid justify-content-center">
-            <p-chip class="novice col-12 text-center" label="Novice"></p-chip>
-            <h3 class="p-1">Python Basic</h3>
-          </div>
-          <div
-            class="skill col-12 md:col-6 lg:col-3 lg:m-0 border-100 surface-overlay border-3 border-round font-bold grid justify-content-center">
-            <p-chip class="intermediate col-12 text-center" label="Intermediate"></p-chip>
-            <h3 class="p-1" class="text-center">HTML, CSS, Bootstrap</h3>
+            class="skill col-12 md:col-6 lg:col-3 lg:m-0 border-100 surface-overlay border-3 border-round font-bold grid justify-content-center"
+            *ngFor="let s of skills">
+            <p-chip class="intermediate col-12 text-center" label="{{ s.levelName }}"></p-chip>
+            <h3 class="p-1">{{ s.skillName }}</h3>
           </div>
         </div>
       </div>
@@ -157,19 +147,19 @@
           (click)="addOrganization()">Add</button>
       </div>
       <div class="p-2 md:p-1">
-        <div class="grid">
+        <div class="grid" *ngFor="let o of organization">
           <div class="col-12 md:col-8">
-            <div class="font-bold">Imadio</div>
-            <div class="font-semibold">Perkab</div>
-            <div class="text-gray-500">Febuary 2019 - November 2019 <span>(10 Bulan)</span></div>
-            <div class="text-gray-500">Oarganisasi Daerah </div>
+            <div class="font-bold">{{ o.organizationName }}</div>
+            <div class="font-semibold">{{ o.positionName }}</div>
+            <div class="text-gray-500">{{ o.startDate }} - {{ o.endDate }} <span>(10 Bulan)</span></div>
+            <div class="text-gray-500">{{ o.description }}</div>
           </div>
           <div class="col-12 lg:col-4 mt-4">
             <div class="grid justify-content-end">
               <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"
-                (click)="deleteOrganization(3)"></button>
+                (click)="deleteOrganization(o.id)"></button>
               <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"
-                (click)="updateOrganization(3)"></button>
+                (click)="updateOrganization(o.id)"></button>
             </div>
           </div>
         </div>
@@ -194,9 +184,9 @@
           <div class="col-12 lg:col-4 mt-4">
             <div class="grid justify-content-end">
               <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"
-                (click)="deleteFamily(3)"></button>
+                (click)="deleteFamily('')"></button>
               <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"
-                (click)="updateFamily(3)"></button>
+                (click)="updateFamily('')"></button>
             </div>
           </div>
         </div>
@@ -281,29 +271,31 @@
 
 <!-- Modal Add Education -->
 <p-dialog header="Add Education" [modal]="true" [(visible)]="visibleAddEducation" [style]="{ width: '30vw' }">
-  <div class="grid surface-card border-round-sm border-400">
-    <div class="col-12 md:col-3">
-      <label for="inputName">Education Name</label>
+  <form [formGroup]="educationInsertReqDto" (ngSubmit)="insertEducation()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Education Name</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 " id="inputName" required formControlName="educationName">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">From </label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">To </label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+      </div>
     </div>
-    <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">From </label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true"></p-calendar>
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">To </label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true"></p-calendar>
-    </div>
-    <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
-    </div>
-  </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Update Education-->
@@ -442,7 +434,8 @@
 <p-dialog header="Edit Skill" [modal]="true" [(visible)]="visibleUpdateSkill" [style]="{ width: '50vw' }">
   <div class="grid surface-card border-round-sm border-400">
     <div class="col-12 md:col-9">
-      <input pInputText type="text" class="form-control col-12 mb-3" id="companyName" required formControlName="companyName">
+      <input pInputText type="text" class="form-control col-12 mb-3" id="companyName" required
+        formControlName="companyName">
       <p-dropdown optionLabel="name" styleClass="w-full"></p-dropdown>
     </div>
     <div class="col-12 md:col-3">
