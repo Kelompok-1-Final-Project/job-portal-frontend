@@ -6,8 +6,7 @@
     <div class="grid justify-content-end mb-3">
       <button routerLink="create" pButton pRipple class="p-button-primary" label="Add User"></button>
     </div>
-    <p-table [value]="users" dataKey="nik" 
-      [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [value]="users" dataKey="nik" [tableStyle]="{ 'min-width': '50rem' }">
       <ng-template pTemplate="header">
         <tr>
           <th style="width: 4rem">
@@ -32,9 +31,12 @@
           <td>{{ c.fullName }}</td>
           <td>{{ c.roleName }}</td>
           <td>{{ c.userPhone }}</td>
-          <td>{{ c.isActive }}</td>
           <td>
-              <button pButton pRipple class="p-button-secondary" label="Edit"></button>
+            {{c.isActive}}
+            <!-- <p-tag>[value]="c.isActive" [severity]="getSev(c.isActive)"</p-tag> -->
+          </td>
+          <td>
+            <button pButton pRipple class="p-button-secondary" label="Edit"></button>
           </td>
         </tr>
       </ng-template>

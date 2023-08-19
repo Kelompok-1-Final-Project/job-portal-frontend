@@ -17,7 +17,7 @@
           <label for="companyName" class="form-label">Position<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown optionLabel="name"></p-dropdown>
+          <p-dropdown [options]="position" optionValue="positionCode" optionLabel="positionName"></p-dropdown>
         </div>
         <div class="col-6 md:col-2">
           <label for="companyName" class="form-label">Salary<span style="color: red;">*</span></label>
@@ -39,7 +39,7 @@
           <label for="companyName" class="form-label">Company<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown optionLabel="name"></p-dropdown>
+          <p-dropdown [options]="companies" optionValue="companyCode" optionLabel="companyName"></p-dropdown>
         </div>
         <div class="flex col-12">
           <h2 class="text-center">Vacancy Status</h2>
@@ -48,25 +48,25 @@
           <label for="companyName" class="form-label">Status<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown optionLabel="name"></p-dropdown>
+          <p-dropdown [options]="status" optionValue="statusCode" optionLabel="statusName"></p-dropdown>
         </div>
         <div class="col-12 md:col-2">
-          <label for="companyName" class="form-label">Hr Person in Contact<span style="color: red;">*</span></label>
+          <label for="companyName" class="form-label">Hr PIC<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown optionLabel="name"></p-dropdown>
+          <p-dropdown [options]="hr" optionValue="userId" optionLabel="fullName"></p-dropdown>
         </div>
         <div class="col-12 md:col-2">
-          <label for="companyName" class="form-label">Interview in Contact<span style="color: red;">*</span></label>
+          <label for="companyName" class="form-label">Interviewer PIC<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown optionLabel="name"></p-dropdown>
+          <p-dropdown [options]="interviewer" optionValue="userId" optionLabel="fullName"></p-dropdown>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Employment Type<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown optionLabel="name"></p-dropdown>
+          <p-dropdown [options]="employment" optionValue="typeCode" optionLabel="typeName"></p-dropdown>
         </div>
         <div class="flex col-12">
           <h2 class="text-center">Summary and Responsibility</h2>
@@ -75,8 +75,8 @@
           <div class="card">
             <div class="card">
               <p-editor [(ngModel)]="text" [style]="{ height: '320px' }"></p-editor>
+            </div>
           </div>
-        </div>
           <!-- <textarea pInputText name="" id="" cols="30" rows="10"></textarea> -->
         </div>
 
@@ -84,11 +84,9 @@
           <h2 class="text-center">Benefit</h2>
         </div>
         <div class="col-12 md:col-6">
-          <!-- <p-dropdown optionLabel="name"></p-dropdown>
-          <button class="col-2" type="button" pButton pRipple class="p-button-primary" icon="pi pi-plus"></button> -->
           <span class="p-fluid">
-            <p-autoComplete [(ngModel)]="selectedCountry" [suggestions]="filteredCountries"
-              (completeMethod)="filterCountry($event)" field="name" [multiple]="true"></p-autoComplete>
+            <p-autoComplete [(ngModel)]="selectedBenefit" [suggestions]="filteredBenefit"
+              (completeMethod)="filterCountry($event)" field="benefitName" [multiple]="true"></p-autoComplete>
           </span>
         </div>
         <div class="flex col-12">
@@ -102,13 +100,13 @@
           <button pButton pRipple label="Add Form" type="button" (click)="onAdd()"></button>
         </div>
         <div class="flex justify-content-center">
-          <form [formGroup]="questionsInsertReqDto" class="grid align-items-center w-8 gy-md-3"
-            (ngSubmit)="onSubmit()">
+          <form [formGroup]="questionsInsertReqDto" class="grid align-items-center w-8 gy-md-3" (ngSubmit)="onSubmit()">
             <div class="w-full">
               <div class="mt-2" *ngFor="let qf of forms.controls; let i = index;" formArrayName="data">
                 <div [formGroupName]="i">
                   <div class="col-12 my-2">
-                    <button pButton pRipple label="Delete Form" class="p-button-danger" type="button" (click)="remove(i)"></button>
+                    <button pButton pRipple label="Delete Form" class="p-button-danger" type="button"
+                      (click)="remove(i)"></button>
                   </div>
                   <div class="col-12 md:col-2">
                     <label for="question">Question <span class="text-red-500">*</span></label>
@@ -124,17 +122,17 @@
                   </div>
                   <div class="col-12 md:col-10 my-2" *ngFor="let q of questionOption(i).controls; let j = index;"
                     formArrayName="questionOptions">
-                    <div class="grid gy-2"  [formGroupName]="j">
+                    <div class="grid gy-2" [formGroupName]="j">
                       <div class="col-12 md:col-10">
-                        <input class="w-full" type="text" pInputText id="option" required
-                          formControlName="optionData">
+                        <input class="w-full" type="text" pInputText id="option" required formControlName="optionData">
                       </div>
                       <div class="col-12 md:col-2">
                         <p-dropdown formControlName="isAnswer" [options]="keyAnswer" optionValue="value"
                           optionLabel="name" placeholder="Choose Key"></p-dropdown>
                       </div>
                       <div class="col-12 my-2">
-                        <button pButton pRipple label="Delete Option" class="p-button-danger" type="submit" (click)="removeOption(i, j)" [loading]="loading"></button>
+                        <button pButton pRipple label="Delete Option" class="p-button-danger" type="submit"
+                          (click)="removeOption(i, j)" [loading]="loading"></button>
                       </div>
                     </div>
                   </div>

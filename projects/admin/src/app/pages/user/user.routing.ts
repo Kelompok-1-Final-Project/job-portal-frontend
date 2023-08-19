@@ -10,6 +10,7 @@ import { TableModule } from 'primeng/table';
 import { UserListComponent } from "./list/user-list.component";
 import { UserUpdateComponent } from "./update/user-update.component";
 import { UserInsertComponent } from "./insert/user-insert.component";
+import { TagModule } from 'primeng/tag';
 
 const routes : Routes = [
     {
@@ -40,8 +41,8 @@ const routes : Routes = [
         AutoCompleteModule,
         PanelModule,
         TableModule,
-        SharedModuleComponent
-
+        SharedModuleComponent,
+        TagModule
     ],
     exports :[
         UserInsertComponent,

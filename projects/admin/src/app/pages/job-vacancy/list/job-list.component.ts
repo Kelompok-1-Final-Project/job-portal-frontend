@@ -1,67 +1,39 @@
 import { Component, OnInit } from "@angular/core";
-
-interface Vacancies {
-  code: string,
-  vacancyTitle:  string,
-  hrPic:  string,
-  userPic:  string,
-  position:  string,
-  endDate:  string
-  }
+import { Title } from "@angular/platform-browser";
+import { JobGetResDto } from "@dto/job/job.get.res.dto";
+import { JobService } from "@serviceAdmin/job.service";
 
 @Component({
-    selector : 'job-list',
-    templateUrl : './job-list.component.html'
+  selector: 'job-list',
+  templateUrl: './job-list.component.html'
 })
-export class JobListComponent implements OnInit{
-  visibleAssign:boolean=false;
-  vacancies: Vacancies[] =  [
-    {
-      code: 'C001',
-      vacancyTitle: 'Software Developer',
-      hrPic: 'John HR',
-      userPic: 'Jane User',
-      position: 'Developer',
-      endDate: '2023-08-31'
-    },
-    {
-      code: 'C002',
-      vacancyTitle: 'Data Analyst',
-      hrPic: 'Alice HR',
-      userPic: 'Bob User',
-      position: 'Analyst',
-      endDate: '2023-09-15'
-    },
-    {
-      code: 'C003',
-      vacancyTitle: 'Sales Representative',
-      hrPic: 'Eva HR',
-      userPic: 'David User',
-      position: 'Sales',
-      endDate: '2023-09-30'
-    }
-  ];
-    selectedVacancies!: Vacancies;
-    constructor (){
+export class JobListComponent implements OnInit {
+  visibleAssign: boolean = false;
 
-    }
+  vacancies!: JobGetResDto[]
+  constructor(
+    private title: Title,
+    private jobService: JobService
+  ) {
+    this.title.setTitle('Job Vacancies | Admin Job Portal')
+  }
 
-    ngOnInit() : void{
-        this.getCompany();
-    }
+  ngOnInit(): void {
+    this.getJob()
+  }
 
-    getCompany(){
-        // this.companyService.getCompanies(true).subscribe(result => {
-        //     this.companies= result;
-        // })
-    }
+  getJob() {
+    this.jobService.getAll().subscribe(result => {
+      this.vacancies = result
+    })
+  }
 
-    getPhotoUrl(base64String: string): string {
-        return 'data:image/jpeg;base64,' + base64String;
-      }
+  // getPhotoUrl(base64String: string): string {
+  //     return 'data:image/jpeg;base64,' + base64String;
+  //   }
 
-      
-    assign(id:number){
-      this.visibleAssign=true;
-    }
+
+  // assign(id:number){
+  //   this.visibleAssign=true;
+  // }
 }
