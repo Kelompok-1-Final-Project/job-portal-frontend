@@ -7,7 +7,6 @@
       <button (click)="assign(3)" pButton pRipple class="p-button-primary mr-3" label="Assign Vacancy"></button>
       <button routerLink="create" pButton pRipple class="p-button-primary" label="Add Candidate"></button>
     </div>
-    <pre>{{ selectedCandidates|json }}</pre>
     <p-table [value]="candidates" [(selection)]="selectedCandidates" dataKey="email"
       [tableStyle]="{ 'min-width': '50rem' }">
       <ng-template pTemplate="header">

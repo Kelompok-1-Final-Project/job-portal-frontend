@@ -9,5 +9,8 @@ export interface JobGetResDto {
 	positionName: string
 	statusName: string
 	employmentName: string
-	ver: number
+	ver: string
+	hrName: string
+	interviewerName: string
+	jobCode: string
 }

@@ -20,4 +20,12 @@ export class QuestionService {
     insert(data: QuestionInsertReqDto[]): Observable<InsertResDto> {
         return this.base.post<InsertResDto>(`${BASE_URL}/questions`, data, true)
     }
+
+    getDetailQuestionById(param: string): Observable<QuestionGetResDto> {
+        return this.base.get<QuestionGetResDto>(`${BASE_URL}/questions/detail?i=${param}`, true)
+    }
+
+    getQuestionBySkillTest(param: string): Observable<QuestionGetResDto> {
+        return this.base.get<QuestionGetResDto>(`${BASE_URL}//questions/by-skill-test?skillTestId=${param}`, true)
+    }
 }
