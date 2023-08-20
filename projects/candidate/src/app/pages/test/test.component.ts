@@ -7,6 +7,7 @@ import { OptionTestGetResDtos } from "@dto/answer/question-option.res.dto";
 import { QuestionTestGetResDto } from "@dto/answer/question-test.get.res.dto";
 import { TestGetResDto } from "@dto/answer/test.get.res.dto";
 import { QuestionOptionResDto } from "@dto/question/question-option.res.dto";
+import { AnswerService } from "@serviceCandidate/answer.service";
 import { AuthService } from "@serviceCandidate/auth.service";
 import { QuestionService } from "@serviceCandidate/question.service";
 
@@ -55,9 +56,10 @@ export class TestComponent{
         private router : Router,
         private authService : AuthService,
         private questionService : QuestionService,
+        private answerService : AnswerService,
         private fb : NonNullableFormBuilder,
         private title: Title) {
-        this.title.setTitle('Answer | Bootest Anggi')
+        this.title.setTitle('Answer | InLook')
     }
 
     get answers() {
@@ -76,7 +78,7 @@ export class TestComponent{
             this.answerCandidateReqDto.get('candidateId')?.setValue(this.candidateId);
             for (let i = 0; i < this.test.questionGetResDtos.length; i++){
                 this.answers.push(this.fb.group({
-                    questionId : [this.test.questionGetResDtos.at(i)?.questionCode],
+                    questionId : [this.test.questionGetResDtos.at(i)?.questionId],
                     optionId : [null],
                     [`questionOptionIdTemp${i}`]: [],
                 }))
@@ -97,13 +99,13 @@ export class TestComponent{
     // }
 
     onSubmit(){
-        // if (this.answerCandidateReqDto.valid){
-        //     this.loading = true
-        //     const data = this.answerCandidateReqDto.getRawValue().data
-        //     this.answerService.insert(data).subscribe(result => {
-        //         localStorage.clear()
-        //         this.router.navigateByUrl('/login')
-        //     })
-        // }
+        if (this.answerCandidateReqDto.valid){
+            this.loading = true
+            const data = this.answerCandidateReqDto.getRawValue()
+            this.answerService.insert(data).subscribe(result => {
+                localStorage.clear()
+                this.router.navigateByUrl('/login')
+            })
+        }
     }
 }

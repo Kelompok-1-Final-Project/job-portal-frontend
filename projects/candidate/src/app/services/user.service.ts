@@ -20,6 +20,5 @@ export class UserService{
 
     insert( data:CandidateRegistrationReqDto):Observable<UpdateResDto>{
         return this.base.post<UpdateResDto>(`${BASE_URL_CAN}/users/`,data);
-      }
-
+    }
 }
