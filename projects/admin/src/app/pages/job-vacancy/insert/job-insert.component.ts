@@ -2,10 +2,17 @@ import { AfterViewChecked, ChangeDetectorRef, Component } from "@angular/core";
 import { FormArray, NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
+import { BenefitGetResDto } from "@dto/benefit/benefit.get.res.dto";
+import { CompanyGetResDto } from "@dto/company/company.get.res.dto";
+import { EmploymentTypeGetResDto } from "@dto/job/employment-type.get.res.dto";
+import { JobPositionGetResDto } from "@dto/job/job-position.get.res.dto";
+import { JobStatusGetResDto } from "@dto/job/job-status.get.res.dto";
+import { UserGetResDto } from "@dto/user/user.get.res.dto";
+import { BenefitService } from "@serviceAdmin/benefit.service";
+import { CompanyService } from "@serviceAdmin/company.service";
+import { JobService } from "@serviceAdmin/job.service";
+import { UserService } from "@serviceAdmin/user.service";
 
-interface Country {
-  name: string;
-}
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
   query: string;
@@ -27,42 +34,96 @@ export class JobInsertComponent implements AfterViewChecked {
 
   loading = false
   text: string | undefined;
-  selectedCountry: Country | undefined;
-  countries: Country[] = [
-    { name: 'Indonesia' },
-    { name: 'Malaysia' },
-    { name: 'Singapore' },
-    { name: 'Thailand' },
-    { name: 'Vietnam' },
-  ];
-  filteredCountries: Country[];
-
   keyAnswer = [
     { name: 'True', value: true },
     { name: 'False', value: false }
   ]
   questionInsertDto: QuestionInsertReqDto[] = []
   questionOptionInsertdto: QuestionOptionReqDto[] = []
-
+  
   questionsInsertReqDto = this.fb.group(
     {
       data: this.fb.array(this.questionInsertDto)
     }
-  )
+    )
+    
+    status!: JobStatusGetResDto[]
+    companies!: CompanyGetResDto[]
+    employment!: EmploymentTypeGetResDto[]
+    benefits!: BenefitGetResDto[]
+    filteredBenefit!: BenefitGetResDto[]
+    selectedBenefit: BenefitGetResDto | undefined;
+    visibleAssessment = false
+    hr!: UserGetResDto[]
+    interviewer!: UserGetResDto[]
+    position!: JobPositionGetResDto[]
 
   constructor(private fb: NonNullableFormBuilder,
     private cd: ChangeDetectorRef,
     private router: Router,
     private title: Title,
+    private jobService: JobService,
+    private companyService: CompanyService,
+    private benefitService: BenefitService,
+    private userService: UserService
   ) {
-    this.filteredCountries = this.countries;
+    this.filteredBenefit = this.benefits
   }
 
   ngOnInit(): void {
+    this.getStatus()
+    this.getCompany()
+    this.getEmploymentType()
+    this.getBenefit()
+    this.getHr()
+    this.getInterviewer()
+    this.getPosition()
   }
 
   ngAfterViewChecked(): void {
 
+  }
+
+  getStatus(){
+    this.jobService.getStatus().subscribe(result => {
+      this.status = result
+    })
+  }
+
+  getCompany(){
+    this.companyService.getAll().subscribe(result => {
+      this.companies = result
+    })
+  }
+
+  getEmploymentType(){
+    this.jobService.getEmploymentType().subscribe(result => {
+      this.employment = result
+    })
+  }
+
+  getBenefit(){
+    this.benefitService.getAll().subscribe(result => {
+      this.benefits = result
+    })
+  }
+
+  getHr(){
+    this.userService.getHr().subscribe(result => {
+      this.hr = result
+    })
+  }
+
+  getInterviewer(){
+    this.userService.getInterviewer().subscribe(result => {
+      this.interviewer = result
+    })
+  }
+
+  getPosition(){
+    this.jobService.getJobPosition().subscribe(result => {
+      this.position = result
+    })
   }
 
   get forms() {
@@ -107,13 +168,13 @@ export class JobInsertComponent implements AfterViewChecked {
     let filtered: any[] = [];
     let query = event.query;
 
-    for (let i = 0; i < (this.countries as any[]).length; i++) {
-      let country = (this.countries as any[])[i];
-      if (country.name.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-        filtered.push(country);
+    for (let i = 0; i < (this.benefits as any[]).length; i++) {
+      let benefit = (this.benefits as any[])[i];
+      if (benefit.benefitName.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+        filtered.push(benefit);
       }
     }
 
-    this.filteredCountries = filtered;
+    this.filteredBenefit = filtered;
   }
 }

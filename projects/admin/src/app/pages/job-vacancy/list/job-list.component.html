@@ -1,46 +1,42 @@
-<pre>{{ vacancies|json }}</pre>
 <div class="container grid justify-content-center p-3">
   <div class=" grid justify-content-center col-12">
     <h3 class="text-center">Table Job List</h3>
   </div>
-  <div class="card col-9">
+  <div class="card col-12">
     <div class="grid justify-content-end mb-3">
       <button routerLink="create" pButton pRipple class="p-button-primary" label="Add Vacancy"></button>
     </div>
-    <pre>{{ selectedVacancies|json }}</pre>
-    <p-table [value]="vacancies" [(selection)]="selectedVacancies" dataKey="code"
-      [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [value]="vacancies" [tableStyle]="{ 'min-width': '50rem' }" selectionMode="single">
       <ng-template pTemplate="header">
         <tr>
           <th>No</th>
           <th scope="col">Code</th>
-          <th scope="col">Vacancy Title</th>
-          <th scope="col">HR PIC </th>
-          <th scope="col">User PIC</th>
-          <th scope="col">Position</th>
+          <th scope="col">Title</th>
+          <th scope="col">Salary Start</th>
+          <th scope="col">Salary End</th>
+          <th scope="col">Description</th>
           <th scope="col">End Date</th>
-          <th scope="col">Action</th>
+          <th scope="col">Company</th>
+          <th scope="col">Position</th>
+          <th scope="col">Status</th>
+          <th scope="col">Employment</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-columns="columns" let-c let-i="rowIndex">
-        <tr>
+        <tr [pSelectableRow]="c" routerLink="./details/{{ c.id }}">
           <td scope="row">
             {{i+1}}
           </td>
-          <td>{{ c.code}}</td>
-          <td>{{ c.vacancyTitle }}</td>
-          <td>{{ c.hrPic }}</td>
-          <td>{{ c.userPic }}</td>
-          <td>{{ c.position }}</td>
+          <td>{{ c.jobCode}}</td>
+          <td>{{ c.jobTitle }}</td>
+          <td>{{ c.salaryStart }}</td>
+          <td>{{ c.salaryEnd }}</td>
+          <td>{{ c.description }}</td>
           <td>{{ c.endDate }}</td>
-          <td>
-            <div class="p-buttonset">
-              <button routerLink="/candidate-statuses" pButton pRipple class="p-button-success" label="Detail">
-              </button>
-              <button routerLink="detail/{{ c.code }}" pButton pRipple class="p-button-secondary" label="Edit">
-              </button>
-            </div>
-          </td>
+          <td>{{ c.companyName }}</td>
+          <td>{{ c.positionName }}</td>
+          <td>{{ c.statusName }}</td>
+          <td>{{ c.employmentName }}</td>
         </tr>
       </ng-template>
     </p-table>

@@ -9,6 +9,7 @@ import { JobInsertComponent } from "./insert/job-insert.component";
 import { EditorModule } from 'primeng/editor';
 import { JobListComponent } from "./list/job-list.component";
 import { JobUpdateComponent } from "./update/job-update.component";
+import { JobDetailComponent } from "./detail/job-detail.component";
 
 const routes: Routes = [
     {
@@ -16,12 +17,16 @@ const routes: Routes = [
         component: JobListComponent
     },
     {
-        path: 'detail/:code',
+        path: 'update/:code',
         component: JobUpdateComponent
     },
     {
         path: 'create',
         component: JobInsertComponent
+    },
+    {
+        path: 'details/:id',
+        component: JobDetailComponent
     }
 ]
 
@@ -29,7 +34,8 @@ const routes: Routes = [
     declarations: [
         JobInsertComponent,
         JobListComponent,
-        JobUpdateComponent
+        JobUpdateComponent,
+        JobDetailComponent
     ],
     imports: [
         RouterModule.forChild(routes),

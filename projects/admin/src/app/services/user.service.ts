@@ -19,4 +19,12 @@ export class UserService{
     insert(data: UserInsertReqDto): Observable<InsertResDto>{
         return this.base.post<InsertResDto>(`${BASE_URL}/users`, data, true)
     }
+
+    getHr(): Observable<UserGetResDto[]>{
+        return this.base.get<UserGetResDto[]>(`${BASE_URL}/users/hr`, true)
+    }
+
+    getInterviewer(): Observable<UserGetResDto[]>{
+        return this.base.get<UserGetResDto[]>(`${BASE_URL}/users/interviewer`, true)
+    }
 }
