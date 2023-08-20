@@ -1,65 +1,114 @@
-<!-- <pre>{{ companyInsertReqDto.value|json }}</pre> -->
 <div class="container">
     <form>
-        <div class="card-container flex flex-wrap justify-content-center align-items-center" style="min-height: 700px">
-            <!-- <div class="grid shadow-8 m-4 surface-card border-round-sm border-400 p-3 md:col-9 text"> -->
-                <div class="flex col-12">
-                    <h2 class="text-center">Vacancy Information</h2>
-                </div>
-                <div class="col-12 md:col-2">
-                    <label for="companyName" class="form-label">Vacancy Title</label>
-                </div>
-                <div class="col-12 md:col-4">
-                    <label>{{job.jobTitle}}</label>
-                </div>
-                <div class="col-12 md:col-2">
-                    <label for="companyName" class="form-label">Position</label>
-                </div>
-                <div class="col-12 md:col-4">
-                    <label>{{job.positionName}}</label>
-                </div>
-                <div class="col-6 md:col-2">
-                    <label for="companyName" class="form-label">Salary</label>
-                </div>
-                <div class="col-6 md:col-4">
-                    <label>{{job.salaryStart}}</label>
-                    <span class="col-2"> - </span>
-                    <label>{{job.salaryEnd}}</label>
-                </div>
-                <div class="col-12 md:col-2">
-                    <label for="companyAddress" class="form-label">Expired Time</label>
-                </div>
-                <div class="col-12 md:col-4">
-                    <label>{{job.endDate}}</label>
-                </div>
-                <div class="col-6 md:col-2">
-                    <label for="companyName" class="form-label">Company</label>
-                </div>
-                <div class="col-6 md:col-4">
-                    <label>{{job.companyName}}</label>
-                </div>
-                <div class="col-6 md:col-2">
-                    <label for="companyName" class="form-label">Employment Type</label>
-                </div>
-                <div class="col-6 md:col-4">
-                    <label>{{job.employmentName}}</label>
-                </div>
-                <div class="flex col-12">
-                    <h2 class="text-center">Vacancy Status</h2>
-                </div>
-                <div class="col-12 md:col-2">
-                    <label for="companyName" class="form-label">Status<span style="color: red;">*</span></label>
-                </div>
-                <div class="col-12 md:col-4">
-                    <label>{{job.statusName}}</label>
-                </div>
-                <div class="col-12 md:col-2">
-                    <label for="companyName" class="form-label">Hr PIC<span style="color: red;">*</span></label>
-                </div>
-                <div class="col-12 md:col-4">
-                    
-                </div>
-            <!-- </div> -->
+        <div class="card-container flex flex-wrap justify-content-start align-items-center" style="min-height: 700px">
+            <div class="flex col-12">
+                <h2 class="text-center text-3xl font-bold mb-6">Vacancy Information</h2>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+                <label class="text-sm font-medium">Vacancy Title</label>
+                <p class="text-lg">{{ job.jobTitle }}</p>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+                <label class="text-sm font-medium">Position</label>
+                <p class="text-lg">{{ job.positionName }}</p>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+                <label class="text-sm font-medium">Salary</label>
+                <p class="text-lg">{{ job.salaryStart }} - {{ job.salaryEnd }}</p>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+                <label class="text-sm font-medium">Expired Time</label>
+                <p class="text-lg">{{ job.endDate }}</p>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+                <label class="text-sm font-medium">Company</label>
+                <p class="text-lg">{{ job.companyName }}</p>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+                <label class="text-sm font-medium">Employment Type</label>
+                <p class="text-lg">{{ job.employmentName }}</p>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+                <label class="text-sm font-medium">Status</label>
+                <p class="text-lg">{{ job.statusName }}</p>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+                <label class="text-sm font-medium">Description</label>
+                <p class="text-lg">{{ job.description }}</p>
+            </div>
+            <div class="flex col-12">
+                <h2 class="text-center text-3xl font-bold mb-6">Vacancy PIC</h2>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+                <label class="text-sm font-medium">HR</label>
+                <p class="text-lg">{{job.hrName}}</p>
+            </div>
+            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+                <label class="text-sm font-medium">Interviewer</label>
+                <p class="text-lg">{{job.interviewerName}}</p>
+            </div>
         </div>
+
+        <p-tabView>
+            <p-tabPanel header="Candidate Status">
+                <div class=" grid justify-content-center col-12">
+                    <h3 class="text-center">All Candidate Progress</h3>
+                </div>
+                <div class="card">
+                    <p-table [value]="candidates" [paginator]="true" [rows]="10">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>No</th>
+                                <th>Candidate Name</th>
+                                <th>Job Title</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-row let-i="rowIndex">
+                            <tr>
+                                <td>{{ i+1 }}</td>
+                                <td>{{row.candidateName}}</td>
+                                <td>{{row.jobName}}</td>
+                                <td>{{row.statusName}}</td>
+                                <td>
+                                    <p-dropdown [options]="status" appendTo="body" placeholder="Select Status"
+                                        optionValue="statusId" optionLabel="progressName"></p-dropdown>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Question Test">
+                <div class="container">
+                    <h3>Skill Test</h3>
+
+                    <div class="question-details">
+                        <div class="test">
+                            <h4 class="detail-heading">Test:</h4>
+                            <p>{{ test.testName }}</p>
+                        </div>
+
+                        <div class="question">
+                            <h4 class="detail-heading">Questions:</h4>
+                            <div  *ngFor="let q of test.questionGetResDtos; let i = index">
+                                <p>{{i+1}}. {{q.question}}</p>
+                                <ul>
+                                    <li *ngFor="let o of q.optionGetResDtos">
+                                        <span>{{o.label}} </span>
+                                        <span class="option-answer">({{o.isAnswer}})</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Result Test">
+                <h3>Result Test</h3>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+            </p-tabPanel>
+        </p-tabView>
     </form>
 </div>

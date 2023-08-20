@@ -1,5 +1,5 @@
 export interface QuestionOptionResDto {
 	questionOptionId: string
-	labels: string
+	label: string
 	isAnswer: boolean
 }

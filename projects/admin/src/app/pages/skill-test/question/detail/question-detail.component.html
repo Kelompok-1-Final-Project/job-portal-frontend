@@ -1,27 +1,28 @@
 <div class="container">
   <h3>Edit Question</h3>
 
-  <form>
-    <label for="question">Question:</label>
-    
-    <textarea pInputText rows="4" cols="50" type="text" id="question" name="question" [value]="question"></textarea>
-    <button class="ml-3" (click)="editQuestion(3)" pButton icon="pi pi-pencil" label="Edit Question"></button>
+  <form class="edit-form">
+    <label for="question">Edit Question:</label>
+    <textarea pInputTextarea rows="4" cols="50" id="question" name="question" [value]="questions.question"></textarea>
+    <button pButton class="edit-button" (click)="editQuestion(3)" icon="pi pi-pencil" label="Edit Question"></button>
   </form>
 
-  <p-table [value]="options">
+  <p-table [value]="questions.optionGetResDtos" class="options-table">
     <ng-template pTemplate="header">
       <tr>
         <th>No</th>
         <th>Option</th>
+        <th>Answer</th>
         <th>Action</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-option let-i="rowIndex">
       <tr>
-        <td>{{ i+1 }}</td>
-        <td><input pInputText type="text" [value]="options[i]"></td>
+        <td>{{ i + 1 }}</td>
+        <td><input pInputText type="text" [(ngModel)]="option.labels"></td>
+        <td><input pInputText type="text" [(ngModel)]="option.isAnswer"></td>
         <td>
-          <button (click)="editOption(i)" pButton icon="pi pi-pencil" label="Edit"></button>
+          <button pButton (click)="editOption(i)" icon="pi pi-pencil" label="Edit"></button>
         </td>
       </tr>
     </ng-template>

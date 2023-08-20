@@ -1,5 +1,5 @@
 export interface JobGetResDto{
-    id : string
+  id : string
 	jobTitle : string
 	salaryStart : number
 	salaryEnd : number

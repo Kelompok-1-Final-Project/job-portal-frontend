@@ -16,7 +16,7 @@ export class CompanyService{
         return this.base.get<CompanyGetResDto[]>(`${BASE_URL}/companies`)
     }
 
-    insert(data : CompanyInsertReqDto): Observable<InsertResDto>{
+    insert(data: CompanyInsertReqDto): Observable<InsertResDto>{
         return this.base.post<InsertResDto>(`${BASE_URL}/companies`, data, true)
     }
 }

@@ -10,6 +10,7 @@ import { EditorModule } from 'primeng/editor';
 import { JobListComponent } from "./list/job-list.component";
 import { JobUpdateComponent } from "./update/job-update.component";
 import { JobDetailComponent } from "./detail/job-detail.component";
+import { TabViewModule } from 'primeng/tabview';
 
 const routes: Routes = [
     {
@@ -44,7 +45,8 @@ const routes: Routes = [
         ButtonComponent,
         AutoCompleteModule,
         EditorModule,
-        SharedModuleComponent
+        SharedModuleComponent,
+        TabViewModule
     ],
     exports: [
         RouterModule
