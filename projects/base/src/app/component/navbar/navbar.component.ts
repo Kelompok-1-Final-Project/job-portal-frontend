@@ -244,7 +244,7 @@ export class NavbarComponent implements OnInit {
       items: [{
         label: 'jobs',
         routerLink: "/home/job",
-        icon: 'pi pi-fw pi-user',
+        icon: 'pi pi-fw pi-building',
         // visible : this.isAdmin
       },
       {
@@ -292,62 +292,14 @@ export class NavbarComponent implements OnInit {
       ]
     },
     {
-      label: 'Candidate Status',
-      icon: 'pi pi-fw pi-power-off',
-      items: [
-        {
-          label: 'Application',
-          routerLink: "/candidate-statuses/application",
-          icon: 'pi pi-fw pi-user',
-          // visible : this.isAdmin
-        },
-        {
-          label: 'Assessment',
-          routerLink: "/candidate-statuses/assessment",
-          icon: 'pi pi-fw pi-user',
-          // visible : this.isAdmin
-        },
-        {
-          label: 'Medical Checkup',
-          routerLink: "/candidate-statuses/mcu",
-          icon: 'pi pi-fw pi-user',
-          // visible : this.isAdmin
-        },
-        {
-          label: 'Interview',
-          routerLink: "/candidate-statuses/interview",
-          icon: 'pi pi-fw pi-user',
-          // visible : this.isAdmin
-        },
-        {
-          label: 'Offering',
-          routerLink: "/candidate-statuses/offering",
-          icon: 'pi pi-fw pi-user',
-          // visible : this.isAdmin
-        },
-        {
-          label: 'Hired',
-          routerLink: "/candidate-statuses/hired",
-          icon: 'pi pi-fw pi-user',
-          // visible : this.isAdmin
-        },
-        {
-          label: 'Blacklist',
-          icon: 'pi pi-fw pi-ticket',
-          routerLink: "/blacklist",
-          // visible : this.isDeveloper
-        }
-      ]
-    },
-    {
       label: 'Question',
       icon: 'pi pi-fw pi-ticket',
-      routerLink: "/questions",
+      routerLink: "/tests",
       // visible : this.isDeveloper
     },
     {
       label: 'Job vacancy',
-      routerLink: "/job-vacancies",
+      routerLink: "/home/job",
       icon: 'pi pi-fw pi-ticket',
       // visible : this.isCustomer
     },
@@ -358,6 +310,11 @@ export class NavbarComponent implements OnInit {
         label: 'Profile',
         icon: 'pi pi-fw pi-user',
         routerLink: "/users/profile",
+      },
+      {
+        label: 'My Applications',
+        icon: 'pi pi-fw pi-cog',
+        routerLink: "/status-progress",
       },
       {
         label: 'Change Password',

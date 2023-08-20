@@ -1,6 +1,7 @@
 <!-- home.component.html -->
 <div class="home-container">
-  <pre>{{ selectedCategories|json }}</pre>
+  <!-- <pre>{{ types | json }}</pre>
+  <pre>{{ jobs | json }}</pre> -->
   <!-- Search Options -->
   <div class="container mt-5 grid justify-content-center align-content-center">
     <div class="sub-container col-10 grid justify-content-between">
@@ -24,9 +25,9 @@
         <p-accordion [multiple]="true" [activeIndex]="[0]">
           <p-accordionTab header="Employment Type">
             <div class="flex flex-column gap-2">
-              <div *ngFor="let category of categories" class="field-checkbox">
-                <p-checkbox name="group" [value]="category" [inputId]="category.key"></p-checkbox>
-                <label [for]="category.key">{{ category.name }}</label>
+              <div *ngFor="let type of types" class="field-checkbox">
+                <p-checkbox name="group" [value]="type" [inputId]="type.typeCode"></p-checkbox>
+                <label [for]="type.typeCode">{{ type.typeName }}</label>
               </div>
             </div>
           </p-accordionTab>
@@ -46,40 +47,42 @@
         </p-accordion>
       </div>
       <div class="content col-12 md:col-9 grid">
-        <p-card class="col-12 md:col-6 mt-4" *ngFor="let industry of companyIndustries">
-          <div class="thumbnail grid">
-            <div class="col-4 justify-content-center align-content-center">
-              <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image" width="100"
-                [preview]="true"></p-image>
+        <p-card class="col-12 md:col-6 mt-4" *ngFor="let job of jobs">
+          <a routerLink="/home/detail/{{ job.id }}" style="text-decoration: none;">
+            <div class="thumbnail grid">
+              <div class="col-4 justify-content-center align-content-center">
+                <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image" width="100"
+                  [preview]="true"></p-image>
+              </div>
+              <div class="title col-8 grid">
+                <span class="col-10">{{ job.jobTitle }}</span>
+                <i class="pi pi-heart col-2 flex justify-content-end"></i>
+                <a routerLink="/companies/detail/{{ 2 }}" class="col-12 text-primary"
+                  style="text-decoration: none;">{{ job.companyName }}</a>
+              </div>
             </div>
-            <div class="title col-8 grid">
-              <span class="col-10">Software Engineering Lead</span>
-              <i class="pi pi-heart col-2 flex justify-content-end"></i>
-              <a routerLink="" class="col-12 text-primary" style="text-decoration: none;">PT Mirae Assset Sekuritas</a>
+            <div class="city">
+              <i class="pi pi-map-marker"></i>
+              <span>
+                {{ job.cityName }}
+              </span>
             </div>
-          </div>
-          <div class="city">
-            <i class="pi pi-map-marker"></i>
-            <span>
-              Jakarta Selatan
-            </span>
-          </div>
-          <div class="Salary">
-            <i class="pi pi-dollar"></i>
-            <span> 3000000 -</span>
-            <span> 7000000</span>
-          </div>
-          <div class="Industry">
-            <i class="pi pi-building"></i>
-            <span> Financial Service</span>
-          </div>
-          <ng-template pTemplate="footer">
-            <small>
-              <i class="pi pi-clock"></i>
-              <span> Diperbaharui 31 hari yang lalu</span>
-            </small>
-          </ng-template>
-                 
+            <div class="Salary">
+              <i class="pi pi-dollar"></i>
+              <span> {{ job.salaryStart }} -</span>
+              <span> {{ job.salaryEnd }}</span>
+            </div>
+            <div class="Industry">
+              <i class="pi pi-building"></i>
+              <span>{{ job.industryName }}</span>
+            </div>
+            <div class="footer">
+              <small>
+                <i class="pi pi-clock"></i>
+                <span> Diperbaharui 31 hari yang lalu</span>
+              </small>
+            </div>
+          </a>
         </p-card>
       </div>
     </div>

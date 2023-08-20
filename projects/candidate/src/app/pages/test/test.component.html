@@ -1,20 +1,21 @@
 <pre>{{ answerCandidateReqDto.value|json }}</pre>
+<!-- <pre>{{ test|json }}</pre> -->
 <div class="container grid justify-content-center">
   <h2 class="text-center text-primary-500 col-12">Test Assesment</h2>
   <div class="col-9 border-1 p-3">
     <form [formGroup]="answerCandidateReqDto" (ngSubmit)="onSubmit()" class="grid gy-md-3 justify-content-center">
       <div class="col-11 bg-primary-100 m-3 shadow-2 m-4 surface-card border-round-sm border-400"
-        *ngFor="let q of answers.controls; let i = index" formArrayName="data">
+        *ngFor="let q of answers.controls; let i = index" formArrayName="answerCandidateReqDtos">
         <div [formGroupName]="i">
           <div>
             <div class="form-check">
               <div class="col-11 m-2">
-                <label class="font-semibold">{{i + 1}}.{{questions[i].question}}</label>
+                <label class="font-semibold">{{i + 1}}.{{test.questionGetResDtos[i].question}}</label>
               </div>
-              <div class="col-11 m-2" *ngFor="let o of questions[i].questionOptions; let j = index">
+              <div class="col-11 m-2" *ngFor="let o of test.questionGetResDtos[i].optionGetResDtos; let j = index">
                 <p-radioButton [value]="o.optionId" formControlName="questionOptionIdTemp{{ i }}"
                   inputId="{{o.optionId}}" (onClick)="patchOption($event, i)"></p-radioButton>
-                <label for="{{o.optionId}}" class="ml-2">{{o.optionData}}</label>
+                <label for="{{o.optionId}}" class="ml-2">{{o.label}}</label>
               </div>
             </div>
           </div>
