@@ -75,7 +75,7 @@
         <button pButton type="button" icon="pi pi-plus" class="p-button-primary" (click)="addEducation()">Add</button>
       </div>
       <div class="p-2 md:p-1">
-        <div class="grid" *ngFor="let e of educations">
+        <div class="grid" *ngFor="let e of educations;let i =index">
           <div class="col-2 text-gray-500">{{ e.startDate }} - {{ e.endDate }}</div>
           <div class="col-8">
             <div class="font-semibold">{{e.educationName}}
@@ -300,29 +300,31 @@
 
 <!-- Modal Update Education-->
 <p-dialog header="Edit Education" [modal]="true" [(visible)]="visibleUpdateEducation" [style]="{ width: '30vw' }">
+  <form [formGroup]="educationUpdateReqDto" (ngSubmit)="submitUpdateEducation()">
   <div class="grid surface-card border-round-sm border-400">
     <div class="col-12 md:col-3">
       <label for="inputName">Education Name<span class="text-red-500">*</span></label>
     </div>
     <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
+      <input pInputText type="text" class="col-12 " id="inputName" required  [value]="" formControlName="educationName">
     </div>
     <div class="col-12 md:col-3">
       <label for="inputName">From<span class="text-red-500">*</span></label>
     </div>
     <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true"></p-calendar>
+      <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
     </div>
     <div class="col-12 md:col-3">
       <label for="inputName">To<span class="text-red-500">*</span></label>
     </div>
     <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true"></p-calendar>
+      <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
       <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
     </div>
   </div>
+</form>
 </p-dialog>
 
 <!-- Modal Delete Education-->
@@ -332,69 +334,79 @@
       <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary">Submit</button>
+      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary" (click)="submitDeleteEducation()">Submit</button>
     </div>
   </div>
 </p-dialog>
 
 <!-- Modal Add Work Experience -->
 <p-dialog header="Add Work Experience" [modal]="true" [(visible)]="visibleAddWorkExp" [style]="{ width: '30vw' }">
+  <form [formGroup]="workExperienceInsertReqDto" (ngSubmit)="insertWorkExperience()">
   <div class="grid surface-card border-round-sm border-400">
     <div class="col-12 md:col-3">
-      <label for="inputName">Job Title</label>
+      <label for="inputName">Company Name</label>
     </div>
     <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
+      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="companyName">
     </div>
     <div class="col-12 md:col-3">
       <label for="inputJobPosition">Job Position</label>
     </div>
     <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="productName">
+      <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="positionName">
     </div>
     <div class="col-12 md:col-3">
       <label for="inputName">From </label>
     </div>
     <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true"></p-calendar>
+      <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
     </div>
     <div class="col-12 md:col-3">
       <label for="inputName">To </label>
     </div>
     <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true"></p-calendar>
+      <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
       <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
     </div>
   </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Update Experience-->
 <p-dialog header="Edit Work Experience" [modal]="true" [(visible)]="visibleUpdateWorkExp" [style]="{ width: '30vw' }">
+  <form [formGroup]="workExperienceUpdateReqDto" (ngSubmit)="submitUpdateWorkExp()">
   <div class="grid surface-card border-round-sm border-400">
     <div class="col-12 md:col-3">
-      <label for="inputName">Education Name<span class="text-red-500">*</span></label>
+      <label for="inputName">Company Name</label>
     </div>
     <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
+      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="companyName">
     </div>
     <div class="col-12 md:col-3">
-      <label for="inputName">From<span class="text-red-500">*</span></label>
+      <label for="inputJobPosition">Job Position</label>
     </div>
     <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true"></p-calendar>
+      <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="positionName">
     </div>
     <div class="col-12 md:col-3">
-      <label for="inputName">To<span class="text-red-500">*</span></label>
+      <label for="inputName">From </label>
     </div>
     <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true"></p-calendar>
+      <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputName">To </label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
       <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
     </div>
   </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Delete Experience-->
@@ -404,7 +416,7 @@
       <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary">Submit</button>
+      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary" (click)="submitDeleteWorkExp()">Submit</button>
     </div>
   </div>
 </p-dialog>
@@ -451,65 +463,84 @@
 <!-- Modal Add Organization -->
 <p-dialog header="Add Work Organization" [modal]="true" [(visible)]="visibleAddOrganization"
   [style]="{ width: '30vw' }">
+  <form [formGroup]="organizationInsertReqDto" (ngSubmit)="insertOrganization()">
   <div class="grid surface-card border-round-sm border-400">
     <div class="col-12 md:col-3">
       <label for="inputName">Organization Name</label>
     </div>
     <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
+      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="organizationName">
     </div>
     <div class="col-12 md:col-3">
       <label for="inputJobPosition">Position</label>
     </div>
     <div class="col-12 md:col-9">
-      <p-dropdown optionLabel="name"></p-dropdown>
+      <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="positionName">
     </div>
     <div class="col-12 md:col-3">
       <label for="inputName">From </label>
     </div>
     <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true"></p-calendar>
+      <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
     </div>
     <div class="col-12 md:col-3">
       <label for="inputName">To </label>
     </div>
     <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true"></p-calendar>
+      <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputJobPosition">Description</label>
+    </div>
+    <div class="col-12 md:col-9">
+      <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="description">
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
       <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
     </div>
   </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Update Organization-->
 <p-dialog header="Edit Organization" [modal]="true" [(visible)]="visibleUpdateOrganization" [style]="{ width: '30vw' }">
+  <form [formGroup]="organizationUpdateReqDto" (ngSubmit)="submitUpdateOrganization()">
   <div class="grid surface-card border-round-sm border-400">
     <div class="col-12 md:col-3">
       <label for="inputName">Organization Name</label>
     </div>
     <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
+      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="organizationName">
     </div>
     <div class="col-12 md:col-3">
       <label for="inputJobPosition">Position</label>
     </div>
     <div class="col-12 md:col-9">
-      <p-dropdown optionLabel="name"></p-dropdown>
+      <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="positionName">
     </div>
     <div class="col-12 md:col-3">
       <label for="inputName">From </label>
     </div>
     <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true"></p-calendar>
+      <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
     </div>
     <div class="col-12 md:col-3">
       <label for="inputName">To </label>
     </div>
     <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true"></p-calendar>
+      <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+    </div>
+    <div class="col-12 md:col-3">
+      <label for="inputJobPosition">Description</label>
+    </div>
+    <div class="col-12 md:col-9">
+      <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="description">
+    </div>
+    <div class="flex flex-wrap justify-content-end mt-2 col-12">
+      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
     </div>
   </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Delete Organization-->
@@ -520,7 +551,7 @@
       <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary">Submit</button>
+      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary" (click)="submitDeleteOrganization()">Submit</button>
     </div>
   </div>
 </p-dialog>

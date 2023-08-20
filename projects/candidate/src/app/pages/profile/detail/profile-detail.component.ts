@@ -32,6 +32,7 @@ import { ProfileService } from '@serviceCandidate/profile.service';
 import {
   UserService
 } from '@serviceCandidate/user.service';
+import { convertUTCToLocalDate } from '@utils/date-convert.util';
 
 
 @Component({
@@ -57,6 +58,8 @@ export class ProfileDetailComponent implements OnInit {
   visibleDeleteFamily: boolean = false;
 
   userId!: string;
+  patchId!:string;
+  patchIndex!:number;
   userData!: CandidateGetResDto;
   educations!:EducationGetResDto[];
   workExperience!:WorkExperienceGetResDto[];
@@ -68,8 +71,52 @@ export class ProfileDetailComponent implements OnInit {
   educationInsertReqDto = this.fb.group({
     candidateId: ['', [Validators.required]],
     educationName: ['', [Validators.required]],
+    startDate: [''],
+    endDate: ['']
+  })
+
+  educationUpdateReqDto = this.fb.group({
+    educationId: ['', [Validators.required]],
+    candidateId: ['', [Validators.required]],
+    educationName: ['', [Validators.required]],
+    startDate: [''],
+    endDate: ['']
+  })
+
+  workExperienceInsertReqDto = this.fb.group({
+    candidateId: ['', [Validators.required]],
+    companyName: ['', [Validators.required]],
+    positionName: ['', [Validators.required]],
     startDate: ['', [Validators.required]],
     endDate: ['', [Validators.required]]
+  })
+
+  workExperienceUpdateReqDto = this.fb.group({
+    experienceId: ['', [Validators.required]],
+    candidateId: ['', [Validators.required]],
+    companyName: ['', [Validators.required]],
+    positionName: ['', [Validators.required]],
+    startDate: ['', [Validators.required]],
+    endDate: ['', [Validators.required]]
+  })
+
+  organizationInsertReqDto = this.fb.group({
+    candidateId: ['', [Validators.required]],
+    organizationName: ['', [Validators.required]],
+    positionName: ['', [Validators.required]],
+    startDate: ['', [Validators.required]],
+    endDate: ['', [Validators.required]],
+    description: ['', [Validators.required]]
+  })
+
+  organizationUpdateReqDto = this.fb.group({
+    organizationId: ['', [Validators.required]],
+    candidateId: ['', [Validators.required]],
+    organizationName: ['', [Validators.required]],
+    positionName: ['', [Validators.required]],
+    startDate: ['', [Validators.required]],
+    endDate: ['', [Validators.required]],
+    description: ['', [Validators.required]]
   })
 
   constructor(
@@ -116,13 +163,30 @@ export class ProfileDetailComponent implements OnInit {
     })
   }
 
+  submitUpdateEducation(){
+    const data = this.educationUpdateReqDto.getRawValue()
+    data.candidateId = this.userId;
+    data.educationId = this.patchId;
+    this.profileService.updateEducation(data).subscribe(result => {
+      this.visibleAddEducation = false;
+    })
+  }
+
+  submitDeleteEducation(){
+    this.profileService.deleteEducation(this.patchId).subscribe(result => {
+      this.visibleAddEducation = false;
+    })
+  }
+
   addEducation() {
     this.visibleAddEducation = true;
   }
   updateEducation(id: string) {
+    this.patchId = id;
     this.visibleUpdateEducation = true;
   }
   deleteEducation(id: string) {
+    this.patchId = id;
     this.visibleDeleteEducation = true;
   }
 
@@ -132,13 +196,39 @@ export class ProfileDetailComponent implements OnInit {
       this.workExperience= result
     })
   }
+
+  insertWorkExperience(){
+    const data = this.workExperienceInsertReqDto.getRawValue()
+    data.candidateId = this.userId;
+    this.profileService.insertWorkExp(data).subscribe(result => {
+      this.visibleAddWorkExp = false;
+    })
+  }
+
+  submitUpdateWorkExp(){
+    const data = this.workExperienceUpdateReqDto.getRawValue()
+    data.candidateId = this.userId;
+    data.experienceId = this.patchId;
+    this.profileService.updateWorkExp(data).subscribe(result => {
+      this.visibleUpdateWorkExp = false;
+    })
+  }
+
+  submitDeleteWorkExp(){
+    this.profileService.deleteWorkExp(this.patchId).subscribe(result => {
+      this.visibleDeleteWorkExp = false;
+    })
+  }
+
   addWorkExp() {
     this.visibleAddWorkExp = true;
   }
   updateWorkExp(id: string) {
+    this.patchId = id;
     this.visibleUpdateWorkExp = true;
   }
   deleteWorkExp(id: string) {
+    this.patchId = id;
     this.visibleDeleteWorkExp = true;
   }
 
@@ -164,13 +254,38 @@ export class ProfileDetailComponent implements OnInit {
     })
   }
 
+  insertOrganization(){
+    const data = this.organizationInsertReqDto.getRawValue()
+    data.candidateId = this.userId;
+    this.profileService.insertOrganiztion(data).subscribe(result => {
+      this.visibleAddOrganization = false;
+    })
+  }
+
+  submitUpdateOrganization(){
+    const data = this.organizationUpdateReqDto.getRawValue()
+    data.candidateId = this.userId;
+    data.organizationId = this.patchId;
+    this.profileService.updateOrganization(data).subscribe(result => {
+      this.visibleUpdateOrganization = false;
+    })
+  }
+
+  submitDeleteOrganization(){
+    this.profileService.deleteOrganization(this.patchId).subscribe(result => {
+      this.visibleDeleteOrganization = false;
+    })
+  }
+
   addOrganization() {
     this.visibleAddOrganization = true;
   }
   updateOrganization(id: string) {
+    this.patchId = id;
     this.visibleUpdateOrganization = true;
   }
   deleteOrganization(id: string) {
+    this.patchId = id;
     this.visibleDeleteOrganization = true;
   }
 
