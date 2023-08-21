@@ -10,4 +10,7 @@ export interface JobInsertReqDto{
 	employmentCode : string
 	hrId : string
 	interviewerId : string
+	benefitCode: string[]
+	testName: string
+	questionId : string[]
 }

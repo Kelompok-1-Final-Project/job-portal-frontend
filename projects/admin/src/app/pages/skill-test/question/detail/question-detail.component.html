@@ -1,13 +1,13 @@
 <div class="container">
-  <h3>Edit Question</h3>
+  <h3>Question Detail</h3>
+  <h4>Question: </h4>
 
   <form class="edit-form">
-    <label for="question">Edit Question:</label>
-    <textarea pInputTextarea rows="4" cols="50" id="question" name="question" [value]="questions.question"></textarea>
+    <textarea pInputTextarea rows="4" cols="50" id="question" name="question" [value]="questions.question" disabled></textarea>
     <button pButton class="edit-button" (click)="editQuestion(3)" icon="pi pi-pencil" label="Edit Question"></button>
   </form>
 
-  <p-table [value]="questions.optionGetResDtos" class="options-table">
+  <p-table [value]="questions.listQuestionOption" class="options-table">
     <ng-template pTemplate="header">
       <tr>
         <th>No</th>
@@ -19,8 +19,8 @@
     <ng-template pTemplate="body" let-option let-i="rowIndex">
       <tr>
         <td>{{ i + 1 }}</td>
-        <td><input pInputText type="text" [(ngModel)]="option.labels"></td>
-        <td><input pInputText type="text" [(ngModel)]="option.isAnswer"></td>
+        <td>{{option.labels}}</td>
+        <td>{{option.isAnswer}}</td>
         <td>
           <button pButton (click)="editOption(i)" icon="pi pi-pencil" label="Edit"></button>
         </td>
