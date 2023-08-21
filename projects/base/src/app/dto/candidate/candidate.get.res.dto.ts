@@ -3,8 +3,10 @@ export interface CandidateGetResDto {
   idNumber: string;
   phone: string;
   email: string;
-  maritalStatusId: string;
+  birthdate : string;
+  maritalStatusCode: string;
   maritalStatus: string;
+  genderCode : string;
   gender: string;
   expectedSalary: number;
   age: string;

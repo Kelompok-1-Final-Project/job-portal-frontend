@@ -16,6 +16,10 @@ import { WorkExperienceInsertReqDto } from "@dto/workexperience/work-experience.
 import { WorkExperienceUpdateReqDto } from "@dto/workexperience/work-experience.update.req.dto";
 import { OrganizationInsertReqDto } from "@dto/organization/organization.insert.req.dto";
 import { OrganizationUpdateReqDto } from "@dto/organization/organization.update.req.dto";
+import { ProfileGetResDto } from "@dto/profile/profile.get.res.dto";
+import { ProfileUpdateReqDto } from "@dto/profile/profile.update.req.dto";
+import { MaritalGetResDto } from "@dto/profile/marital.get.res.dto";
+import { GenderGetResDto } from "@dto/profile/gender.get.res.dto";
 
 @Injectable({
     providedIn: 'root'
@@ -76,7 +80,18 @@ export class ProfileService{
     }
 
     getFamily(userId:string): Observable<FamilyGetResDto[]>{
-        return this.base.get<FamilyGetResDto[]>(`${BASE_URL_CAN}/families?candidateId=${userId}`, true)
+        return this.base.get<FamilyGetResDto[]>(`${BASE_URL_CAN}/families/candidate?id=${userId}`, true)
     }
 
+    updateProfile(data : ProfileUpdateReqDto): Observable<UpdateResDto>{
+        return this.base.patch<UpdateResDto>(`${BASE_URL_CAN}/profiles`, data, true)
+    }
+
+    getAllMarital(): Observable<MaritalGetResDto[]>{
+        return this.base.get<MaritalGetResDto[]>(`${BASE_URL_CAN}/profiles/marital`, true)
+    }
+
+    getAllGender(): Observable<GenderGetResDto[]>{
+        return this.base.get<GenderGetResDto[]>(`${BASE_URL_CAN}/profiles/gender`, true)
+    }
 }
