@@ -14,7 +14,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { PanelModule } from 'primeng/panel';
-
+import { ImageModule } from 'primeng/image';
 
 
 @NgModule({
@@ -33,7 +33,8 @@ import { PanelModule } from 'primeng/panel';
         CalendarModule,
         CheckboxModule,
         PanelModule,
-        InputNumberModule
+        InputNumberModule,
+        ImageModule
     ],
     exports: [
         InputTextModule,
@@ -50,7 +51,8 @@ import { PanelModule } from 'primeng/panel';
         CalendarModule,
         CheckboxModule,
         PanelModule,
-        InputNumberModule
+        InputNumberModule,
+        ImageModule
     ]
 })
 export class SharedModuleComponent {
