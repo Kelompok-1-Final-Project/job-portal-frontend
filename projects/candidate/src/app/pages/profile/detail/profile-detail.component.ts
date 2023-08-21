@@ -14,10 +14,9 @@ import {
 } from '@dto/candidate/candidate.get.res.dto';
 import { EducationGetResDto } from '@dto/education/education.get.res.dto';
 import { FamilyGetResDto } from '@dto/family/family.get.res.dto';
+import { LevelGetResDto } from '@dto/level/level.get.res.dto';
 import { OrganizationGetResDto } from '@dto/organization/organization.get.res.dto';
-import {
-  UserGetResDto
-} from '@dto/user/user.get.res.dto';
+import { SkillGetResDto } from '@dto/skill/skill.get.res.dto';
 import {
   UserSkillGetResDto
 } from '@dto/userskill/user-skill.get.res.dto';
@@ -29,11 +28,7 @@ import {
   CandidateService
 } from '@serviceCandidate/candidate.service';
 import { ProfileService } from '@serviceCandidate/profile.service';
-import {
-  UserService
-} from '@serviceCandidate/user.service';
-import { convertUTCToLocalDate } from '@utils/date-convert.util';
-
+import { SkillService } from '@serviceCandidate/skill.service';
 
 @Component({
   selector: 'profile-detail',
@@ -64,6 +59,10 @@ export class ProfileDetailComponent implements OnInit {
   educations!:EducationGetResDto[];
   workExperience!:WorkExperienceGetResDto[];
   skills!: UserSkillGetResDto[];
+  allSkill!: SkillGetResDto[];
+
+  
+  level!:LevelGetResDto[];
   organization!:OrganizationGetResDto[];
   families! : FamilyGetResDto[];
 
@@ -123,6 +122,7 @@ export class ProfileDetailComponent implements OnInit {
     private candidateService: CandidateService,
     private authService: AuthService,
     private profileService : ProfileService,
+    private skillService : SkillService,
     private fb: NonNullableFormBuilder,
     private router: Router
   ) {}
@@ -237,6 +237,18 @@ export class ProfileDetailComponent implements OnInit {
   getCandidateSkill() {
     this.profileService.getSkills(this.userId).subscribe(result => {
       this.skills= result
+    })
+  }
+
+  getAllLevel(){
+    this.skillService.getAllLevel().subscribe(result => {
+      this.level= result
+    })
+  }
+
+  getAllSkills(){
+    this.skillService.getAll().subscribe(result => {
+      this.allSkill= result
     })
   }
 
