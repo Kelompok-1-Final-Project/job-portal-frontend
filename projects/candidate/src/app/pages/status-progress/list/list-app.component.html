@@ -1,5 +1,4 @@
 <pre>{{ applications|json }}</pre>
-<pre>anjay mabar</pre>
 
 <div class="app-container grid justify-content-center mt-5">
   <div class="container col-9">
@@ -11,7 +10,7 @@
               {{ !applications ? '0 Applications' : '' }}
               {{ applications ? applications[0].totalStage+' Applications' : '' }}
             </h3>
-            <span class="p-float-label">
+            <span class="p-float-label col-12">
               <p-dropdown [options]="options" optionLabel="name" inputId="float-label" styleClass="w-full"></p-dropdown>
               <label for="float-label">View By</label>
             </span>

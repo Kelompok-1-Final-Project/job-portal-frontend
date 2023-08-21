@@ -1,5 +1,6 @@
+<!-- <pre>{{ relationship|json }}</pre> -->
 <pre>{{ userData|json }}</pre>
-<pre>{{ organization|json }}</pre>
+
 <div class="profile-container grid justify-content-center m-3">
   <p-accordion class="col-10 md:col-8">
     <p-accordionTab header="Basic Information" [selected]="true">
@@ -15,8 +16,9 @@
               </div>
               <div class="button col-6">
                 <button pButton type="button" icon="pi pi-pencil mr-3" class="p-button-success mb-2"
-                  (click)="editUser()">Edit
-                  profile</button>
+                  (click)="editUser()">
+                  Edit rofile
+                </button>
               </div>
               <div class="left-info col-6 p-3">
                 <div class="nik">
@@ -86,7 +88,7 @@
               <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"
                 (click)="deleteEducation(e.id)"></button>
               <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"
-                (click)="updateEducation(e.id)"></button>
+                (click)="updateEducation(e.id,i)"></button>
             </div>
           </div>
         </div>
@@ -100,7 +102,7 @@
         <button pButton type="button" icon="pi pi-plus" class="p-button-primary" (click)="addWorkExp()">Add</button>
       </div>
       <div class="p-2 md:p-1">
-        <div class="grid" *ngFor="let w of workExperience">
+        <div class="grid" *ngFor="let w of workExperience;let i =index">
           <div class="col-2 text-gray-500">{{ w.startDate }} - {{ w.endDate }}</div>
           <div class="col-8">
             <div class="font-semibold">{{ w.companyName }}</div>
@@ -111,7 +113,7 @@
               <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"
                 (click)="deleteWorkExp(w.id)"></button>
               <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"
-                (click)="updateWorkExp(w.id)"></button>
+                (click)="updateWorkExp(w.id,i)"></button>
             </div>
           </div>
         </div>
@@ -147,7 +149,7 @@
           (click)="addOrganization()">Add</button>
       </div>
       <div class="p-2 md:p-1">
-        <div class="grid" *ngFor="let o of organization">
+        <div class="grid" *ngFor="let o of organization;let i=index">
           <div class="col-12 md:col-8">
             <div class="font-bold">{{ o.organizationName }}</div>
             <div class="font-semibold">{{ o.positionName }}</div>
@@ -159,7 +161,7 @@
               <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"
                 (click)="deleteOrganization(o.id)"></button>
               <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"
-                (click)="updateOrganization(o.id)"></button>
+                (click)="updateOrganization(o.id,i)"></button>
             </div>
           </div>
         </div>
@@ -167,26 +169,25 @@
     </p-accordionTab>
   </p-accordion>
 
-
   <p-accordion class="col-10 md:col-8">
     <p-accordionTab header="Family" [selected]="true">
       <div class="grid justify-content-end">
         <button pButton type="button" icon="pi pi-plus" class="p-button-primary" (click)="addFamily()">Add</button>
       </div>
       <div class="p-2 md:p-1">
-        <div class="grid">
+        <div class="grid" *ngFor="let f of families;let i = index">
           <div class="col-12 md:col-8">
-            <div class="font-bold">Neymar JR</div>
-            <div class="font-semibold">Brother</div>
-            <div class="text-gray-500">Senior High School</div>
-            <div class="text-gray-500">01-08-2000</div>
+            <div class="font-bold">{{ f.familyName }}</div>
+            <div class="font-semibold">{{ f.relationshipName }}</div>
+            <div class="text-gray-500">{{ f.familyDegree }}</div>
+            <div class="text-gray-500">{{ f.familyBirthDate }}</div>
           </div>
           <div class="col-12 lg:col-4 mt-4">
             <div class="grid justify-content-end">
               <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"
-                (click)="deleteFamily('')"></button>
+                (click)="deleteFamily(f.id)"></button>
               <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"
-                (click)="updateFamily('')"></button>
+                (click)="updateFamily(f.id,i)"></button>
             </div>
           </div>
         </div>
@@ -196,69 +197,66 @@
 </div>
 
 <!-- Modal Edit User-->
-<p-dialog header="Edit Profile" [modal]="true" [(visible)]="visibleEditUser" [style]="{ width: '50vw' }">
-  <form>
+<p-dialog header="Edit Profile" [modal]="true" [(visible)]="visibleEditUser" [style]="{ width: '100vw' }">
+  <pre>{{ candidateUpdateReqDto.value|json }}</pre>
+  <form [formGroup]="candidateUpdateReqDto" (ngSubmit)="submitUpdateCandidate()">
     <div class="container">
       <div class="card-container grid justify-content-center align-items-center">
         <div class="grid border-50 m-4 p-3 md:col-9 text">
           <label for="formFile" class="col-12 md:col-3 form-label">Candidate Photo</label>
-          <p-fileUpload mode="basic" class="col-12 md:col-9" chooseLabel="Upload" accept="image/*">
+          <p-fileUpload mode="basic" class="col-12 md:col-9" chooseLabel="Upload" accept="image/*" (onSelect)="fileUpload($event)">
           </p-fileUpload>
           <div class="col-12 md:col-3">
-            <label for="companyName">Email</label>
+            <label for="nik">NIK</label>
           </div>
           <div class="col-12 md:col-9">
-            <input pInputText type="text" class="form-control col-12" id="companyName"
-              aria-describedby="companyNameHelp" required formControlName="companyName">
+            <input pInputText type="text" class="form-control col-12" id="nik" required formControlName="idNumber">
           </div>
           <div class="col-12 md:col-3">
-            <label for="companyName">Fullname</label>
+            <label for="email">Email</label>
           </div>
           <div class="col-12 md:col-9">
-            <input pInputText type="text" class="form-control col-12" id="companyName"
-              aria-describedby="companyNameHelp" required formControlName="companyName">
+            <input pInputText type="text" class="form-control col-12" id="email" required formControlName="email">
           </div>
           <div class="col-12 md:col-3">
-            <label for="companyName">Mobile Phone</label>
+            <label for="fullName">Fullname</label>
           </div>
           <div class="col-12 md:col-9">
-            <input pInputText type="text" class="form-control col-12" id="companyName"
-              aria-describedby="companyNameHelp" required formControlName="companyName">
+            <input pInputText type="text" class="form-control col-12" id="fullName" required formControlName="fullName">
+          </div>
+          <div class="col-12 md:col-3">
+            <label for="mobileNumber">Mobile Phone</label>
+          </div>
+          <div class="col-12 md:col-9">
+            <input pInputText type="text" class="form-control col-12" id="mobileNumber" required formControlName="mobileNumber">
           </div>
           <div class="col-12 md:col-3">
             <label for="companyName">Gender</label>
           </div>
           <div class="col-12 md:col-9">
-            <p-dropdown optionLabel="name"></p-dropdown>
+          <p-dropdown [options]="gender" optionValue="genderCode" optionLabel="genderName"
+            formControlName="genderCode" styleClass="w-full">
+          </p-dropdown>
           </div>
           <div class="col-12 md:col-3">
-            <label for="formFile">Upload CV</label>
+            <label for="salary">Expected Salary</label>
           </div>
           <div class="col-12 md:col-9">
-            <p-fileUpload mode="basic" chooseLabel="Upload" accept="image/*">
-            </p-fileUpload>
-          </div>
-          <div class="col-6 md:col-3">
-            <label for="companyName">Expected Salary</label>
-          </div>
-          <div class="col-6 md:col-9">
-            <input pInputText type="text" class="form-control col-5" id="companyName" aria-describedby="companyNameHelp"
-              required formControlName="companyName">
-            <span class="col-2">To :</span>
-            <input pInputText type="text" class="form-control col-5" id="companyName" aria-describedby="companyNameHelp"
-              required formControlName="companyName">
+            <p-inputNumber id="salary" inputId="percent" prefix="Rp" styleClass="w-full" formControlName="expectedSalary"> </p-inputNumber>
           </div>
           <div class="col-12 md:col-3">
             <label for="companyAddress">Birthdate</label>
           </div>
           <div class="col-12 md:col-9">
-            <p-calendar [showIcon]="true"></p-calendar>
+            <p-calendar [showIcon]="true" formControlName="birthdate" styleClass="w-full"></p-calendar>
           </div>
           <div class="col-12 md:col-3">
             <label for="companyName">Marital Status</label>
           </div>
           <div class="col-12 md:col-9">
-            <p-dropdown optionLabel="name"></p-dropdown>
+            <p-dropdown [options]="marital" optionValue="maritalStatusCode" optionLabel="maritalStatusName" styleClass="w-full"
+              formControlName="maritalStatusCode">
+            </p-dropdown>
           </div>
           <div class="flex flex-wrap justify-content-end mt-2 col-12">
             <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
@@ -300,31 +298,33 @@
 
 <!-- Modal Update Education-->
 <p-dialog header="Edit Education" [modal]="true" [(visible)]="visibleUpdateEducation" [style]="{ width: '30vw' }">
+  <pre>{{ educationUpdateReqDto.value|json }}</pre>
   <form [formGroup]="educationUpdateReqDto" (ngSubmit)="submitUpdateEducation()">
-  <div class="grid surface-card border-round-sm border-400">
-    <div class="col-12 md:col-3">
-      <label for="inputName">Education Name<span class="text-red-500">*</span></label>
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Education Name<span class="text-red-500">*</span></label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 " id="inputName" required [value]="userId"
+          formControlName="educationName">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">From<span class="text-red-500">*</span></label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">To<span class="text-red-500">*</span></label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+      </div>
     </div>
-    <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputName" required  [value]="" formControlName="educationName">
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">From<span class="text-red-500">*</span></label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">To<span class="text-red-500">*</span></label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
-    </div>
-    <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
-    </div>
-  </div>
-</form>
+  </form>
 </p-dialog>
 
 <!-- Modal Delete Education-->
@@ -334,7 +334,8 @@
       <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary" (click)="submitDeleteEducation()">Submit</button>
+      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary"
+        (click)="submitDeleteEducation()">Submit</button>
     </div>
   </div>
 </p-dialog>
@@ -342,70 +343,70 @@
 <!-- Modal Add Work Experience -->
 <p-dialog header="Add Work Experience" [modal]="true" [(visible)]="visibleAddWorkExp" [style]="{ width: '30vw' }">
   <form [formGroup]="workExperienceInsertReqDto" (ngSubmit)="insertWorkExperience()">
-  <div class="grid surface-card border-round-sm border-400">
-    <div class="col-12 md:col-3">
-      <label for="inputName">Company Name</label>
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Company Name</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 " id="inputName" required formControlName="companyName">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputJobPosition">Job Position</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="positionName">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">From </label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">To </label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+      </div>
     </div>
-    <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="companyName">
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputJobPosition">Job Position</label>
-    </div>
-    <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="positionName">
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">From </label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">To </label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
-    </div>
-    <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
-    </div>
-  </div>
   </form>
 </p-dialog>
 
 <!-- Modal Update Experience-->
 <p-dialog header="Edit Work Experience" [modal]="true" [(visible)]="visibleUpdateWorkExp" [style]="{ width: '30vw' }">
   <form [formGroup]="workExperienceUpdateReqDto" (ngSubmit)="submitUpdateWorkExp()">
-  <div class="grid surface-card border-round-sm border-400">
-    <div class="col-12 md:col-3">
-      <label for="inputName">Company Name</label>
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Company Name</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 " id="inputName" required formControlName="companyName">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputJobPosition">Job Position</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="positionName">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">From </label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">To </label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+      </div>
     </div>
-    <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="companyName">
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputJobPosition">Job Position</label>
-    </div>
-    <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="positionName">
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">From </label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">To </label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
-    </div>
-    <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
-    </div>
-  </div>
   </form>
 </p-dialog>
 
@@ -416,7 +417,8 @@
       <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary" (click)="submitDeleteWorkExp()">Submit</button>
+      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary"
+        (click)="submitDeleteWorkExp()">Submit</button>
     </div>
   </div>
 </p-dialog>
@@ -464,82 +466,82 @@
 <p-dialog header="Add Work Organization" [modal]="true" [(visible)]="visibleAddOrganization"
   [style]="{ width: '30vw' }">
   <form [formGroup]="organizationInsertReqDto" (ngSubmit)="insertOrganization()">
-  <div class="grid surface-card border-round-sm border-400">
-    <div class="col-12 md:col-3">
-      <label for="inputName">Organization Name</label>
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Organization Name</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 " id="inputName" required formControlName="organizationName">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputJobPosition">Position</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="positionName">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">From </label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">To </label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputJobPosition">Description</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="description">
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+      </div>
     </div>
-    <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="organizationName">
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputJobPosition">Position</label>
-    </div>
-    <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="positionName">
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">From </label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">To </label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputJobPosition">Description</label>
-    </div>
-    <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="description">
-    </div>
-    <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
-    </div>
-  </div>
   </form>
 </p-dialog>
 
 <!-- Modal Update Organization-->
 <p-dialog header="Edit Organization" [modal]="true" [(visible)]="visibleUpdateOrganization" [style]="{ width: '30vw' }">
   <form [formGroup]="organizationUpdateReqDto" (ngSubmit)="submitUpdateOrganization()">
-  <div class="grid surface-card border-round-sm border-400">
-    <div class="col-12 md:col-3">
-      <label for="inputName">Organization Name</label>
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Organization Name</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 " id="inputName" required formControlName="organizationName">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputJobPosition">Position</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="positionName">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">From </label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">To </label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputJobPosition">Description</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="description">
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+      </div>
     </div>
-    <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="organizationName">
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputJobPosition">Position</label>
-    </div>
-    <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="positionName">
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">From </label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">To </label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputJobPosition">Description</label>
-    </div>
-    <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="description">
-    </div>
-    <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
-    </div>
-  </div>
   </form>
 </p-dialog>
 
@@ -551,72 +553,89 @@
       <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary" (click)="submitDeleteOrganization()">Submit</button>
+      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary"
+        (click)="submitDeleteOrganization()">Submit</button>
     </div>
   </div>
 </p-dialog>
 
 <!-- Modal Add Family -->
 <p-dialog header="Add Family" [modal]="true" [(visible)]="visibleAddFamily" [style]="{ width: '30vw' }">
-  <div class="grid surface-card border-round-sm border-400">
-    <div class="col-12 md:col-3">
-      <label for="inputName">Organization Name</label>
+  <form [formGroup]="familyInsertReqDto" (ngSubmit)="insertFamily()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Family Name</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 " id="inputName" required formControlName="familyName">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="relation">Relationship</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-dropdown [options]="relationship" optionValue="relationshipCode" optionLabel="relationshipName" id="relation"
+          formControlName="relationshipCode">
+        </p-dropdown>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="degree">Degree</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-dropdown [options]="degree" optionValue="degreeCode" optionLabel="degreeName" id="degree"
+          formControlName="degreeCode">
+        </p-dropdown>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">Birthdate</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="birthdate"></p-calendar>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+      </div>
     </div>
-    <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputJobPosition">Position</label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-dropdown optionLabel="name"></p-dropdown>
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">From </label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true"></p-calendar>
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">To </label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true"></p-calendar>
-    </div>
-    <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
-    </div>
-  </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Update Family-->
 <p-dialog header="Edit Family" [modal]="true" [(visible)]="visibleUpdateFamily" [style]="{ width: '30vw' }">
-  <div class="grid surface-card border-round-sm border-400">
-    <div class="col-12 md:col-3">
-      <label for="inputName">Organization Name</label>
+  <pre>{{ familyUpdateReqDto.value|json}}</pre>
+  <form [formGroup]="familyUpdateReqDto" (ngSubmit)="submitUpdateFamily()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Family Name</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 " id="inputName" required formControlName="familyName">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="relation">Relationship</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-dropdown [options]="relationship" optionValue="relationshipCode" optionLabel="relationshipName" id="relation"
+          formControlName="relationshipCode">
+        </p-dropdown>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="degree">Degree</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-dropdown [options]="degree" optionValue="degreeCode" styleClass="w-full" optionLabel="degreeName" id="degree"
+          formControlName="degreeCode">
+        </p-dropdown>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">Birthdate</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="birthdate"></p-calendar>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+      </div>
     </div>
-    <div class="col-12 md:col-9">
-      <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputJobPosition">Position</label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-dropdown optionLabel="name"></p-dropdown>
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">From </label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true"></p-calendar>
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputName">To </label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-calendar [showIcon]="true"></p-calendar>
-    </div>
-  </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Delete Family-->
@@ -626,7 +645,7 @@
       <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary">Submit</button>
+      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary" (click)="submitDeleteFamily()">Submit</button>
     </div>
   </div>
 </p-dialog>

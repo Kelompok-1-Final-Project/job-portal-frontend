@@ -1,7 +1,9 @@
 export interface FamilyGetResDto{
-    familyId : string
+    id : string
 	familyName : string
-	realtionshipName : string
-	degreeName : string
-	birthdate : string
+	relationshipName : string
+	relationshipCode : string
+	familyDegree : string
+	degreeCode : string
+	familyBirthDate : string
 }
