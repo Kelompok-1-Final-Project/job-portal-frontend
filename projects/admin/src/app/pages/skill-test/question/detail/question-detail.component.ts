@@ -34,12 +34,13 @@ export class QuestionDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params['id']
       this.getQuestionById()
-      this.listOption = this.questions.optionGetResDtos
+      // console.log(this.questions.optionGetResDtos)
     })
   }
 
   getQuestionById() {
     this.questionService.getDetailQuestionById(this.id).subscribe(result => {
+      console.log(result)
       this.questions = result
     })
   }

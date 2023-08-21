@@ -72,7 +72,7 @@
                                 <td>{{row.jobName}}</td>
                                 <td>{{row.statusName}}</td>
                                 <td>
-                                    <p-dropdown [options]="status" appendTo="body" placeholder="Select Status"
+                                    <p-dropdown styleClass="w-full" [options]="status" appendTo="body" placeholder="Select Status"
                                         optionValue="statusId" optionLabel="progressName"></p-dropdown>
                                 </td>
                             </tr>
@@ -95,7 +95,7 @@
                             <div  *ngFor="let q of test.questionGetResDtos; let i = index">
                                 <p>{{i+1}}. {{q.question}}</p>
                                 <ul>
-                                    <li *ngFor="let o of q.optionGetResDtos">
+                                    <li *ngFor="let o of q.listQuestionOption">
                                         <span>{{o.label}} </span>
                                         <span class="option-answer">({{o.isAnswer}})</span>
                                     </li>
@@ -106,8 +106,29 @@
                 </div>
             </p-tabPanel>
             <p-tabPanel header="Result Test">
-                <h3>Result Test</h3>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                <div class=" grid justify-content-center col-12">
+                    <h3 class="text-center">All Candidate Progress</h3>
+                </div>
+                <div class="card">
+                    <p-table [value]="candidates" [paginator]="true" [rows]="10">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>No</th>
+                                <th>Candidate Name</th>
+                                <th>Grade</th>
+                                <th>Notes</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-row let-i="rowIndex">
+                            <tr>
+                                <td>{{ i+1 }}</td>
+                                <td>{{row.candidateName}}</td>
+                                <td>90</td>
+                                <td>Good Job</td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
             </p-tabPanel>
         </p-tabView>
     </form>

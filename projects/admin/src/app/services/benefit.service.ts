@@ -17,7 +17,7 @@ export class BenefitService {
         return this.base.get<BenefitGetResDto[]>(`${BASE_URL}/benefits`, true)
     }
 
-    insert(data: BenefitInsertReqDto): Observable<InsertResDto>{
+    insert(data: BenefitInsertReqDto): Observable<InsertResDto> {
         return this.base.post<InsertResDto>(`${BASE_URL}/benefits`, data, true)
     }
 }

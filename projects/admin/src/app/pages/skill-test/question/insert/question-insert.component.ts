@@ -81,7 +81,7 @@ export class QuestionInsertComponent implements OnInit {
         if (this.questionsInsertReqDto.valid) {
             this.loading = true
             const data = this.questionsInsertReqDto.getRawValue().data
-            this.questionService.insert(data).subscribe(result =>{
+            this.questionService.insert(data).subscribe(result => {
                 this.router.navigateByUrl('/questions')
             })
         }
