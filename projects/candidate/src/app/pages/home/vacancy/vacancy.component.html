@@ -56,8 +56,9 @@
               </div>
               <div class="title col-8 grid">
                 <span class="col-10">{{ job.jobTitle }}</span>
-                <i class="pi pi-heart col-2 flex justify-content-end"></i>
-                <a routerLink="/companies/detail/{{ 2 }}" class="col-12 text-primary"
+                <!-- <i class="pi pi-heart col-2 flex justify-content-end"></i> -->
+                <i class="pi pi-heart col-2 flex justify-content-end" [style.color]="job.companyName ? 'red' : 'black'" (click)="toggleFavorite(active)"></i>
+                <a routerLink="/companies/detail/{{ job.companyId }}" class="text-primary"
                   style="text-decoration: none;">{{ job.companyName }}</a>
               </div>
             </div>

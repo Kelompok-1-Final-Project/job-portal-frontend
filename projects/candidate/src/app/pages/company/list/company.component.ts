@@ -17,37 +17,28 @@ import { CompanyService } from '@serviceCandidate/company.service';
 
 
 @Component({
-  selector: 'company-detail',
-  templateUrl: './company-detail.component.html'
+  selector: 'company',
+  templateUrl: './company.component.html'
 })
-export class CompanyDetailComponent implements OnInit {
+export class CompanyListComponent implements OnInit {
 
   idCompany: string=``;
-  companyData!: CompanyDataGetResDto; 
+  companyData!: CompanyDataGetResDto[]; 
 
   constructor(
     private companyService: CompanyService,
-    private activatedRoute: ActivatedRoute,
     private title: Title,
     private fb: NonNullableFormBuilder,
     private router: Router
   ) {}
 
-  init() {
-    this.activatedRoute.params.subscribe(id => {
-      this.idCompany = String(Object.values(id));
-    })
-  }
-
   getCompany() {
-    this.companyService.getById(this.idCompany).subscribe(result => {
+    this.companyService.getAll().subscribe(result => {
         this.companyData = result;
-        console.log('test:'+result);
     })
   }
 
   ngOnInit() {
-    this.init();
     this.getCompany();
   }
 

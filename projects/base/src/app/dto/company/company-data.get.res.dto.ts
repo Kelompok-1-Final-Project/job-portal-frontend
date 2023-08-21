@@ -1,10 +1,10 @@
-export interface CompanyGetResDto{
+export interface CompanyDataGetResDto{
     companyId : string
 	companyCode : string
 	companyName : string
 	fileId : string
 	industryName : string
-	description : string
-	address : string
-	cityName : string
+    description:string;
+	address:string;
+	cityName:string;
 }

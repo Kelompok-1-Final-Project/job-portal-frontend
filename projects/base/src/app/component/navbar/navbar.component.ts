@@ -254,45 +254,15 @@ export class NavbarComponent implements OnInit {
         // visible : this.isAdmin
       },
       {
-        label: 'Benefit',
-        routerLink: "/benefits",
-        icon: 'pi pi-fw pi-book',
+        label: 'Save Jobs',
+        routerLink: "/home/save-jobs",
+        icon: 'pi pi-fw pi-heart',
         // visible : this.isAdmin
-      },
-      {
-        label: 'Candidate',
-        routerLink: "/candidates",
-        icon: 'pi pi-fw pi-box',
-        // visible : this.isAdmin
-      },
-      {
-        label: 'City',
-        routerLink: "/cities",
-        icon: 'pi pi-fw pi-users',
-        // visible : this.isAdmin
-      },
-      {
-        label: 'Industry',
-        routerLink: "/industries",
-        icon: 'pi pi-fw pi-box',
-        // visible : this.isCustomer
-      },
-      {
-        label: 'Skill',
-        routerLink: "/skills",
-        icon: 'pi pi-fw pi-ticket',
-        // visible : this.isPic
-      },
-      {
-        label: 'Skill Test',
-        icon: 'pi pi-fw pi-ticket',
-        routerLink: "/skill-test",
-        // visible : this.isDeveloper
-      },
+      }
       ]
     },
     {
-      label: 'Question',
+      label: 'Test Skill',
       icon: 'pi pi-fw pi-ticket',
       routerLink: "/tests",
       // visible : this.isDeveloper
@@ -309,7 +279,7 @@ export class NavbarComponent implements OnInit {
       items: [{
         label: 'Profile',
         icon: 'pi pi-fw pi-user',
-        routerLink: "/users/profile",
+        routerLink: "/profile",
       },
       {
         label: 'My Applications',
