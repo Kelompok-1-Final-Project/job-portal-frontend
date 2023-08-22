@@ -6,7 +6,7 @@
     <div class="grid justify-content-end mb-3">
       <button routerLink="create" pButton pRipple class="p-button-primary" label="Add Question"></button>
     </div>
-    <p-table [value]="questions" [tableStyle]="{ 'min-width': '50rem' }" selectionMode="single">
+    <p-table [value]="questions" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }" selectionMode="single">
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>

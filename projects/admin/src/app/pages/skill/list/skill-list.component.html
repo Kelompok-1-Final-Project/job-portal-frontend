@@ -6,7 +6,7 @@
     <div class="grid justify-content-end mb-3">
       <button pButton pRipple class="p-button-primary" (click)="add()" label="Add Skill"></button>
     </div>
-    <p-table [value]="skills" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [value]="skills" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }">
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>

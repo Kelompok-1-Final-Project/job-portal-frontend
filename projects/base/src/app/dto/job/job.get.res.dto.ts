@@ -13,4 +13,6 @@ export interface JobGetResDto {
 	hrName: string
 	interviewerName: string
 	jobCode: string
+	hrId: string
+	interviewerId: string
 }

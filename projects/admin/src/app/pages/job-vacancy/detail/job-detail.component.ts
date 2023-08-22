@@ -1,10 +1,13 @@
 import { Component, OnInit } from "@angular/core";
+import { NonNullableFormBuilder } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
+import { ProgressStatus } from "@constant/progress.enum";
 import { CandidateProgressGetResDto } from "@dto/candidateprogress/candidate-progress.get.res.dto";
 import { JobGetResDto } from "@dto/job/job.get.res.dto";
 import { StatusProgressGetResDto } from "@dto/progress/status-progress.get.res.dto";
 import { TestGetResDto } from "@dto/question/test.get.res.dto";
+import { ResultGetResDto } from "@dto/result/result.get.res.dto";
 import { JobService } from "@serviceAdmin/job.service";
 import { SkillTestService } from "@serviceAdmin/skilltest.service";
 import { StatusProgressService } from "@serviceAdmin/statusprogress.service";
@@ -20,13 +23,57 @@ export class JobDetailComponent implements OnInit {
     candidates!: CandidateProgressGetResDto[]
     status!: StatusProgressGetResDto[]
     test!: TestGetResDto
+    results!: ResultGetResDto[]
+    visibleAssessment: boolean = false
+    visibleInterview: boolean = false
+    visibleMcu: boolean = false
+    visibleOffering: boolean = false
+    visibleHired: boolean = false
+    visibleRejected: boolean = false
+
+    assessmentInsertReqDto = this.fb.group({
+        candidateId: [''],
+        jobId: [''],
+        hrId: [''],
+        schedule: ['']
+    })
+
+    interviewInsertReqDto = this.fb.group({
+        candidateId: [''],
+        jobId: [''],
+        interviewerId: [''],
+        schedule: ['']
+    })
+
+    medicalcheckupInsertReqDto = this.fb.group({
+        candidateId: [''],
+        jobId: [''],
+        ext: [''],
+        file: ['']
+    })
+
+    offeringInsertReqDto = this.fb.group({
+        candidateId: [''],
+        jobId: ['']
+    })
+
+    hiredInsertReqDto = this.fb.group({
+        candidateId: [''],
+        jobId: ['']
+    })
+
+    rejectedInsertReqDto = this.fb.group({
+        candidateProgressId: [''],
+        statusProcessCode: ['']
+    })
 
     constructor(
         private title: Title,
         private route: ActivatedRoute,
         private jobService: JobService,
         private statusProgressService: StatusProgressService,
-        private skillTestService: SkillTestService
+        private skillTestService: SkillTestService,
+        private fb: NonNullableFormBuilder
     ) {
         this.title.setTitle('Job Detail | Job Portal Admin')
     }
@@ -35,34 +82,128 @@ export class JobDetailComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.id = params['id']
             this.getJobById()
-            this.getCandidateStatus()
             this.getStatus()
             this.getSkillTest()
-            console.log(`${this.test.questionGetResDtos[0].question} = testing`)
+            this.getResult()
         })
     }
 
-    getSkillTest(){
-        this.skillTestService.getTest(this.id).subscribe(result =>{
+    getSkillTest() {
+        this.skillTestService.getTest(this.id).subscribe(result => {
             this.test = result
         })
     }
 
-    getJobById(){
-        this.jobService.getById(this.id).subscribe(result =>{
+    getJobById() {
+        this.jobService.getById(this.id).subscribe(result => {
             this.job = result
+            this.getCandidateStatus()
         })
     }
 
-    getCandidateStatus(){
-        this.statusProgressService.getCandidateStatus().subscribe(result =>{
+    getCandidateStatus() {
+        this.statusProgressService.getCandidateByJob(this.job.jobCode).subscribe(result => {
             this.candidates = result
         })
     }
 
-    getStatus(){
+    getStatus() {
         this.statusProgressService.getStatus().subscribe(result => {
-            this.status = result           
+            this.status = result
         })
+    }
+
+    getResult() {
+        this.skillTestService.getResult(this.id).subscribe(result => {
+            this.results = result
+        })
+    }
+
+    changeStatus(code: string, candidateId: string, progressId: string) {
+        if (code == ProgressStatus.ASSESSMENT) {
+            this.visibleAssessment = true
+            this.assessmentInsertReqDto.get('hrId')?.setValue(this.job.hrId)
+            this.assessmentInsertReqDto.get('candidateId')?.setValue(candidateId)
+            this.assessmentInsertReqDto.get('jobId')?.setValue(this.job.id)
+        } else if (code == ProgressStatus.INTERVIEW) {
+            this.visibleInterview = true
+            this.interviewInsertReqDto.get('candidateId')?.setValue(candidateId)
+            this.interviewInsertReqDto.get('jobId')?.setValue(this.job.id)
+            this.interviewInsertReqDto.get('interviewerId')?.setValue(this.job.interviewerId)
+        } else if (code == ProgressStatus.MEDICAL) {
+            this.visibleMcu = true
+            this.medicalcheckupInsertReqDto.get('candidateId')?.setValue(candidateId)
+            this.medicalcheckupInsertReqDto.get('jobId')?.setValue(this.job.id)
+        } else if (code == ProgressStatus.OFFERING){
+            this.visibleOffering = true
+            this.offeringInsertReqDto.get('candidateId')?.setValue(candidateId)
+            this.offeringInsertReqDto.get('jobId')?.setValue(this.job.id)
+        } else if (code == ProgressStatus.HIRED){
+            this.visibleHired = true
+            this.hiredInsertReqDto.get('candidateId')?.setValue(candidateId)
+            this.hiredInsertReqDto.get('jobId')?.setValue(this.job.id)
+        } else if (code == ProgressStatus.REJECTED){
+            this.visibleRejected = true
+            this.rejectedInsertReqDto.get('candidateProgressId')?.setValue(progressId)
+            this.rejectedInsertReqDto.get('statusProcessCode')?.setValue(code)
+        }
+    }
+
+    insertAssessment() {
+        const data = this.assessmentInsertReqDto.getRawValue()
+        this.statusProgressService.insertAssessment(data).subscribe(result => {
+            this.visibleAssessment = false
+        })
+    }
+
+    insertInterview() {
+        const data = this.interviewInsertReqDto.getRawValue()
+        this.statusProgressService.insertInterview(data).subscribe(result => {
+            this.visibleInterview = false
+        })
+    }
+
+    insertMcu() {
+        const data = this.medicalcheckupInsertReqDto.getRawValue()
+        this.statusProgressService.insertMedicalCheckup(data).subscribe(result => {
+            this.visibleMcu = false
+        })
+    }
+
+    insertOffering(){
+        const data = this.offeringInsertReqDto.getRawValue()
+        this.statusProgressService.insertOffering(data).subscribe(result => {
+            this.visibleOffering = false
+        })
+    }
+
+    insertHired(){
+        const data = this.hiredInsertReqDto.getRawValue()
+        this.statusProgressService.insertHired(data).subscribe(result =>{
+            this.visibleHired = false
+        })
+    }
+
+    insertRejected(){   
+        const data = this.rejectedInsertReqDto.getRawValue()
+        this.statusProgressService.updateReject(data).subscribe(result => {
+            this.visibleRejected = false
+        })
+    }
+
+    cancelMcu() {
+        this.visibleMcu = false
+    }
+
+    cancelOffering(){
+        this.visibleOffering = false
+    }
+
+    cancelHired(){
+        this.visibleHired = false
+    }
+
+    cancelRejected(){
+        this.visibleRejected = false
     }
 }

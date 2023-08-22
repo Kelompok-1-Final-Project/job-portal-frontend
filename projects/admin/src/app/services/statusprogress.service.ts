@@ -10,6 +10,14 @@ import { HiredGetResDto } from "@dto/hired/hired.get.res.dto";
 import { OfferingGetResDto } from "@dto/offering/offering.get.res.dto";
 import { StatusProgressGetResDto } from "@dto/progress/status-progress.get.res.dto";
 import { CandidateProgressGetResDto } from "@dto/candidateprogress/candidate-progress.get.res.dto";
+import { AssessmentInsertReqDto } from "@dto/assessment/assessment.insert.req.dto";
+import { InsertResDto } from "@dto/insert.res.dto";
+import { InterviewInsertReqDto } from "@dto/interview/interview.insert.req.dto";
+import { MedicalCheckupInsertReqDto } from "@dto/medicalcheckup/medical-checkup.insert.req.dto";
+import { OfferingInsertReqDto } from "@dto/offering/offering.insert.req.dto";
+import { HiredInsertReqDto } from "@dto/hired/hired.insert.req.dto";
+import { CandidateRejectReqDto } from "@dto/candidateprogress/candidate-reject.req.dto";
+import { UpdateResDto } from "@dto/update.res.dto";
 
 @Injectable({
     providedIn: 'root'
@@ -47,5 +55,33 @@ export class StatusProgressService{
 
     getCandidateStatus(): Observable<CandidateProgressGetResDto[]>{
         return this.base.get<CandidateProgressGetResDto[]>(`${BASE_URL}/status-progress/candidate`, true)
+    }
+
+    getCandidateByJob(param: string): Observable<CandidateProgressGetResDto[]>{
+        return this.base.get<CandidateProgressGetResDto[]>(`${BASE_URL}/jobcandidatestatus?jobCode=${param}`, true)
+    }
+
+    insertAssessment(data:AssessmentInsertReqDto): Observable<InsertResDto>{
+        return this.base.post<InsertResDto>(`${BASE_URL}/status-progress/assessment`,data, true)
+    }
+
+    insertInterview(data: InterviewInsertReqDto): Observable<InsertResDto>{
+        return this.base.post<InsertResDto>(`${BASE_URL}/status-progress/interview`, data, true)
+    }
+
+    insertMedicalCheckup(data: MedicalCheckupInsertReqDto): Observable<InsertResDto>{
+        return this.base.post<InsertResDto>(`${BASE_URL}/status-progress/medical-checkup`, data, true)
+    }
+
+    insertOffering(data: OfferingInsertReqDto):Observable<InsertResDto>{
+        return this.base.post<InsertResDto>(`${BASE_URL}/status-progress/offering`, data, true)
+    }
+
+    insertHired(data: HiredInsertReqDto): Observable<InsertResDto>{
+        return this.base.post<InsertResDto>(`${BASE_URL}/status-progress/hired`, data, true)
+    }
+
+    updateReject(data: CandidateRejectReqDto): Observable<UpdateResDto>{
+        return this.base.patch<UpdateResDto>(`${BASE_URL}/status-progress/rejected`, data, true)
     }
 }

@@ -186,7 +186,6 @@ export class JobInsertComponent implements AfterViewChecked {
   }
 
   benefit(event: any) {
-    console.log(event)
     this.benefitList.clear()
     for (let i = 0; i < event.length; i++) {
       this.benefitList.push(this.fb.control(event[i].benefitCode))
