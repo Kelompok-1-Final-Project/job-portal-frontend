@@ -7,6 +7,8 @@ import { EmploymentTypeGetResDto } from "@dto/job/employment-type.get.res.dto";
 import { SaveJobInsertReqDto } from "@dto/savejob/save-job.insert.req.dto";
 import { DeleteResDto } from "@dto/delete.res.dto";
 import { InsertResDto } from "@dto/insert.res.dto";
+import { SaveJobGetResDto } from "@dto/savejob/save-job.get.res.dto";
+import { SearchJobReqDto } from "@dto/job/searchJobReqDto";
 
 @Injectable({
     providedIn: 'root'
@@ -14,8 +16,13 @@ import { InsertResDto } from "@dto/insert.res.dto";
 export class JobService{
     constructor(private base: BaseService){}
 
-    getAll(): Observable<JobGetResDto[]>{
-        return this.base.get<JobGetResDto[]>(`${BASE_URL_CAN}/jobs/filter/?n=&c=&p=&e=&ss=0&se=0`, true)
+    getAll(data : SearchJobReqDto): Observable<JobGetResDto[]>{
+        return this.base.get<JobGetResDto[]>(`${BASE_URL_CAN}/jobs/filter/?n=${data.jobName}&c=${data.location}&p=${data.position}&e=${data.employmentType}&ss=${data.salaryStart}&se=${data.salaryEnd}`
+        , true)
+    }
+
+    getAllSaveJobs(id:string): Observable<SaveJobGetResDto[]>{
+        return this.base.get<SaveJobGetResDto[]>(`${BASE_URL_CAN}/save-jobs/${id}`, true)
     }
 
     getById(id:string):Observable<JobGetResDto>{

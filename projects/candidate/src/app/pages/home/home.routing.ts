@@ -20,6 +20,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { VacancyDetailComponent } from "./vacancy-detail/vacancy-detail.component";
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { SaveJobsComponent } from "./save-jobs/save-jobs.component";
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 
 const routes : Routes = [
@@ -62,6 +64,8 @@ const routes : Routes = [
         CheckboxModule,
         InputNumberModule,
         ContextMenuModule,
+        RadioButtonModule,
+        AutoCompleteModule,
         FileUploadModule
     ],
     exports : [

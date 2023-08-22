@@ -9,4 +9,6 @@ export interface SaveJobGetResDto {
 	positionName : string
 	statusName : string
 	employmentName : string
+	jobId:string;
+	totalSaveJob:string;
 }

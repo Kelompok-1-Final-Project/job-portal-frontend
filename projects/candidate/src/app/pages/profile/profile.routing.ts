@@ -19,6 +19,7 @@ import { ContextMenuModule } from 'primeng/contextmenu';
 import { AvatarModule } from 'primeng/avatar';
 import { ChipModule } from "primeng/chip";
 import {CalendarModule} from 'primeng/calendar';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
 
 
 
@@ -53,6 +54,7 @@ const routes : Routes = [
         AvatarModule,
         ChipModule,
         CalendarModule,
+        OverlayPanelModule,
         FileUploadModule
     ],
     exports : [
