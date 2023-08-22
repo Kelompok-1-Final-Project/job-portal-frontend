@@ -1,5 +1,8 @@
 enum RoleName {
-    CANDIDATE = "Candidate", REVIEWER = "Reviewer", HR = "Human Resource", SUPERADMIN = "Super Admin"
+    CANDIDATE = "Candidate", 
+    REVIEWER = "Reviewer", 
+    HR = "Human Resource", 
+    SUPERADMIN = "Super Admin"
 }
 
 enum RoleCode {

@@ -1,13 +1,13 @@
-<div class="container grid justify-content-center p-3">
+<div>
   <div class=" grid justify-content-center col-12">
     <h3 class="text-center">Table Candidate List</h3>
   </div>
-  <div class="card col-9">
+  <div>
     <div class="grid justify-content-end mb-3">
       <button (click)="assign(3)" pButton pRipple class="p-button-primary mr-3" label="Assign Vacancy"></button>
       <button routerLink="create" pButton pRipple class="p-button-primary" label="Add Candidate"></button>
     </div>
-    <p-table [value]="candidates" [(selection)]="selectedCandidates" dataKey="email"
+    <p-table [value]="candidates" [paginator]="true" [rows]="10" [(selection)]="selectedCandidates" dataKey="email"
       [tableStyle]="{ 'min-width': '50rem' }">
       <ng-template pTemplate="header">
         <tr>

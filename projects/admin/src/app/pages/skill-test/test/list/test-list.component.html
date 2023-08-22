@@ -3,7 +3,7 @@
     <h3 class="text-center">Skill Test List</h3>
   </div>
   <div class="card col-9">
-    <p-table [value]="skilltests" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [value]="skilltests" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }">
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>

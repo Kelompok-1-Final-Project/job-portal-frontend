@@ -6,7 +6,7 @@
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
                 <label class="text-sm font-medium">Vacancy Title</label>
-                <p class="text-lg">{{ job.jobTitle }}</p>
+                <p class="text-lg">{{ job.jobCode }}</p>
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
                 <label class="text-sm font-medium">Position</label>
@@ -73,8 +73,9 @@
                                 <td>{{row.statusName}}</td>
                                 <td>
                                     <p-dropdown styleClass="w-full" [options]="status" appendTo="body"
-                                        placeholder="Select Status" optionValue="statusId"
-                                        optionLabel="progressName"></p-dropdown>
+                                        optionValue="progressCode" optionLabel="progressName" [ngModel]="row.statusCode"
+                                        [ngModelOptions]="{standalone: true}"
+                                        (onChange)="changeStatus($event.value, row.candidateId, row.candidateProgressId)"></p-dropdown>
                                 </td>
                             </tr>
                         </ng-template>
@@ -111,7 +112,7 @@
                     <h3 class="text-center">All Candidate Progress</h3>
                 </div>
                 <div class="card">
-                    <p-table [value]="candidates" [paginator]="true" [rows]="10">
+                    <p-table [value]="results" [paginator]="true" [rows]="10">
                         <ng-template pTemplate="header">
                             <tr>
                                 <th>No</th>
@@ -124,8 +125,8 @@
                             <tr>
                                 <td>{{ i+1 }}</td>
                                 <td>{{row.candidateName}}</td>
-                                <td>90</td>
-                                <td>Good Job</td>
+                                <td>{{row.grade}}</td>
+                                <td>{{row.notes}}</td>
                             </tr>
                         </ng-template>
                     </p-table>
@@ -134,3 +135,103 @@
         </p-tabView>
     </form>
 </div>
+
+<!-- Modal Assessment-->
+<p-dialog header="Add Data Assessment" [(visible)]="visibleAssessment" [style]="{ width: '30vw' }">
+    <pre>{{assessmentInsertReqDto.value | json}}</pre>
+    <form [formGroup]="assessmentInsertReqDto" (ngSubmit)="insertAssessment()">
+        <div class="grid surface-card border-round-sm border-400">
+            <div class="col-12 md:col-3">
+                <label for="inputName">Schedule</label>
+            </div>
+            <div class="col-12 md:col-9">
+                <p-calendar [showIcon]="true" formControlName="schedule"></p-calendar>
+            </div>
+            <div class="flex flex-wrap justify-content-end mt-2 col-12">
+                <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</p-dialog>
+
+<!-- Modal Interview-->
+<p-dialog header="Add Data Interview" [(visible)]="visibleInterview" [style]="{ width: '30vw' }">
+    <pre>{{interviewInsertReqDto.value | json}}</pre>
+    <form [formGroup]="interviewInsertReqDto" (ngSubmit)="insertInterview()">
+        <div class="grid surface-card border-round-sm border-400">
+            <div class="col-12 md:col-3">
+                <label for="inputName">Schedule</label>
+            </div>
+            <div class="col-12 md:col-9">
+                <p-calendar [showIcon]="true" formControlName="schedule"></p-calendar>
+            </div>
+            <div class="flex flex-wrap justify-content-end mt-2 col-12">
+                <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</p-dialog>
+
+<!-- Modal MCU-->
+<p-dialog header="Add Data Medical Checkup" [(visible)]="visibleMcu" [style]="{ width: '30vw' }">
+    <pre>{{medicalcheckupInsertReqDto.value | json}}</pre>
+    <form [formGroup]="medicalcheckupInsertReqDto" (ngSubmit)="insertMcu()">
+        <div class="grid surface-card border-round-sm border-400">
+            <div class="col-12">
+                <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Medical Checkup?</h3>
+            </div>
+            <div class="flex flex-wrap justify-content-end mt-2 col-12">
+                <button type="submit" pButton pRipple class="p-button-primary">Yes</button>
+                <button type="button" pButton pRipple class="p-button-secondary" (click)="cancelMcu()">No</button>
+            </div>
+        </div>
+    </form>
+</p-dialog>
+
+<!-- Modal Offering-->
+<p-dialog header="Add Data Offering" [(visible)]="visibleOffering" [style]="{ width: '30vw' }">
+    <pre>{{offeringInsertReqDto.value | json}}</pre>
+    <form [formGroup]="offeringInsertReqDto" (ngSubmit)="insertOffering()">
+        <div class="grid surface-card border-round-sm border-400">
+            <div class="col-12">
+                <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Offering?</h3>
+            </div>
+            <div class="flex flex-wrap justify-content-end mt-2 col-12">
+                <button type="submit" pButton pRipple class="p-button-primary">Yes</button>
+                <button type="button" pButton pRipple class="p-button-secondary" (click)="cancelOffering()">No</button>
+            </div>
+        </div>
+    </form>
+</p-dialog>
+
+<!-- Modal Hired-->
+<p-dialog header="Add Data Hired" [(visible)]="visibleHired" [style]="{ width: '30vw' }">
+    <pre>{{hiredInsertReqDto.value | json}}</pre>
+    <form [formGroup]="hiredInsertReqDto" (ngSubmit)="insertHired()">
+        <div class="grid surface-card border-round-sm border-400">
+            <div class="col-12">
+                <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Hired?</h3>
+            </div>
+            <div class="flex flex-wrap justify-content-end mt-2 col-12">
+                <button type="submit" pButton pRipple class="p-button-primary">Yes</button>
+                <button type="button" pButton pRipple class="p-button-secondary" (click)="cancelHired()">No</button>
+            </div>
+        </div>
+    </form>
+</p-dialog>
+
+<!-- Modal Rejected-->
+<p-dialog header="Add Data Rejected" [(visible)]="visibleRejected" [style]="{ width: '30vw' }">
+    <pre>{{rejectedInsertReqDto.value | json}}</pre>
+    <form [formGroup]="rejectedInsertReqDto" (ngSubmit)="insertRejected()">
+        <div class="grid surface-card border-round-sm border-400">
+            <div class="col-12">
+                <h3 for="inputName">Apakah anda ingin memasukkan candidate ke dalam rejected?</h3>
+            </div>
+            <div class="flex flex-wrap justify-content-end mt-2 col-12">
+                <button type="submit" pButton pRipple class="p-button-primary">Yes</button>
+                <button type="button" pButton pRipple class="p-button-secondary" (click)="cancelRejected()">No</button>
+            </div>
+        </div>
+    </form>
+</p-dialog>
