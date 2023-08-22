@@ -4,4 +4,7 @@ export interface CompanyGetResDto{
 	companyName : string
 	fileId : string
 	industryName : string
+	description : string
+	address : string
+	cityName : string
 }

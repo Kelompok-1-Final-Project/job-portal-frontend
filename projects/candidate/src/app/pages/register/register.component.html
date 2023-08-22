@@ -1,5 +1,6 @@
-<form>
+<form [formGroup]="userInsertReqDto" (ngSubmit)="insert()">
   <div class="container">
+    <p-image src="../../../assets/images/04.-Come-Back-Later.svg" alt="Login Image" width="100%"></p-image>
     <div class="card-container w-screen flex flex-wrap justify-content-center align-items-center"
       style="min-height: 700px">
       <div class="grid shadow-8 m-4 surface-card border-round-sm border-400 p-3 md:col-9 text">
@@ -8,32 +9,31 @@
         </div>
         <div class="col-12 md:col-6 grid">
           <div class="col-12 md:col-3">
-            <label for="companyName">Email<span style="color: red;">*</span></label>
+            <label for="eemail">Email<span style="color: red;">*</span></label>
           </div>
           <div class="col-12 md:col-9">
-            <input pInputText type="text" class="form-control col-12" id="companyName"
-              aria-describedby="companyNameHelp" required formControlName="companyName">
+            <input pInputText type="text" class="form-control col-12" id="email"required formControlName="email">
           </div>
           <div class="col-12 md:col-3">
-            <label for="companyName">Fullname<span style="color: red;">*</span></label>
+            <label for="fullName">Fullname<span style="color: red;">*</span></label>
           </div>
           <div class="col-12 md:col-9">
-            <input pInputText type="text" class="form-control col-12" id="companyName"
-              aria-describedby="companyNameHelp" required formControlName="companyName">
+            <input pInputText type="text" class="form-control col-12" id="fullName" required formControlName="fullname">
           </div>
           <div class="col-12 md:col-3">
-            <label for="companyName">Password</label>
+            <label for="password">Password</label>
           </div>
           <div class="col-12 md:col-9">
             <p-password styleClass="w-full" [inputStyle]="{'width':'100%'}" [toggleMask]="true" id="password"
-              [feedback]="false"></p-password>
+              [feedback]="false" formControlName="pass">
+            </p-password>
           </div>
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
           <button type="submit" pButton pRipple class="p-button-primary">Register</button>
         </div>
         <div class="flex flex-wrap justify-content-center mt-2 col-12">
-          <a>
+          <a routerLink="/login">
             Already have an account? Login!
           </a>
         </div>

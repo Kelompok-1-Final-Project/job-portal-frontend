@@ -2,6 +2,11 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CompanyGetResDto } from '@dto/company/company.get.res.dto';
+import { JobGetResDto } from '@dto/job/job.get.res.dto';
+import { CompanyService } from '@serviceCandidate/company.service';
+import { JobService } from '@serviceCandidate/job.service';
 
 
 @Component({
@@ -10,40 +15,42 @@ import {
 })
 export class VacancyDetailComponent implements OnInit {
   visibleAssignJob:boolean=false;
-  constructor() {}
+  idJob!:string;
+  idCompany!:string;
+  job!:JobGetResDto;
+  company!:CompanyGetResDto;
 
-  selectedCategories: any[] = [];
+  constructor(
+    private activatedRoute : ActivatedRoute,
+    private jobService : JobService,
+    private companyService : CompanyService,
+    private router : Router
+  ) {
 
-  categories: any[] = [
-      { name: 'Internship', key: 'ET001' },
-      { name: 'Contract', key: 'ET002' },
-      { name: 'Full Time', key: 'ET003' },
-      { name: 'Part Time', key: 'ET004' }
-  ];
-  companyIndustries = [
-    'Technology',
-    'Finance',
-    'Healthcare',
-    'Education',
-    'Healthcare',
-    'Education',
-    'Technology',
-    'Finance',
-  ];
-
-  benefits = [
-    'Asuransi kesehatan',
-    'Fasilitas olahraga',
-    'Laptop',
-    'Lunch gratis',
-    'Transportasi',
-    'Program pengembangan karyawan',
-  ];
-
-  ngOnInit(){
+  }
+  
+  init() {
+    this.activatedRoute.params.subscribe(id => {
+      this.idJob = String(Object.values(id));
+    })
   }
 
-  assignJob(id:number){
+  ngOnInit(){
+    this.init();
+    this.getJob();
+  }
+
+  getJob() {
+    this.jobService.getById(this.idJob).subscribe(result => {
+      this.job = result;
+      this.companyService.getById(result.companyId).subscribe(result => {
+        this.company = result;
+        console.log(this.company);
+      })
+    })
+  }
+
+  assignJob(id:string){
     this.visibleAssignJob=true;
   }
 

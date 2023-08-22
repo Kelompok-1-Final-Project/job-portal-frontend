@@ -1,0 +1,32 @@
+<!-- home.component.html -->
+<pre>{{ companyData|json }}</pre>
+<div class="home-container">
+  <div class="content col-12 md:col-9 grid">
+    <p-card class="col-12 md:col-6 mt-4" *ngFor="let c of companyData">
+      <a routerLink="/companies/detail/{{ c.companyId }}" style="text-decoration: none;">
+        <div class="thumbnail grid">
+          <div class="col-4 justify-content-center align-content-center">
+            <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image" width="100"
+              [preview]="true">
+            </p-image>
+          </div>
+          <div class="title col-8 grid">
+            <span class="col-10">{{ c.companyName }}</span>
+            <i class="pi pi-heart col-2 flex justify-content-end"></i>
+            <span>{{ c.cityName }}</span>
+          </div>
+        </div>
+        <div class="Industry">
+          <i class="pi pi-building"></i>
+          <span>{{ c.industryName }}</span>
+        </div>
+        <div class="footer">
+          <small>
+            <i class="pi pi-clock"></i>
+            <span> Diperbaharui 31 hari yang lalu</span>
+          </small>
+        </div>
+      </a>
+    </p-card>
+  </div>
+</div>
