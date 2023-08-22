@@ -72,8 +72,9 @@
                                 <td>{{row.jobName}}</td>
                                 <td>{{row.statusName}}</td>
                                 <td>
-                                    <p-dropdown styleClass="w-full" [options]="status" appendTo="body" placeholder="Select Status"
-                                        optionValue="statusId" optionLabel="progressName"></p-dropdown>
+                                    <p-dropdown styleClass="w-full" [options]="status" appendTo="body"
+                                        placeholder="Select Status" optionValue="statusId"
+                                        optionLabel="progressName"></p-dropdown>
                                 </td>
                             </tr>
                         </ng-template>
@@ -92,10 +93,10 @@
 
                         <div class="question">
                             <h4 class="detail-heading">Questions:</h4>
-                            <div  *ngFor="let q of test.questionGetResDtos; let i = index">
+                            <div *ngFor="let q of test.questionGetResDtos; let i = index">
                                 <p>{{i+1}}. {{q.question}}</p>
                                 <ul>
-                                    <li *ngFor="let o of q.listQuestionOption">
+                                    <li *ngFor="let o of q.optionGetResDtos">
                                         <span>{{o.label}} </span>
                                         <span class="option-answer">({{o.isAnswer}})</span>
                                     </li>

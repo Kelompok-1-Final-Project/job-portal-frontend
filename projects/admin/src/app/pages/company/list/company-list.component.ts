@@ -8,7 +8,7 @@ import { Title } from "@angular/platform-browser";
   templateUrl: './company-list.component.html'
 })
 export class CompanyListComponent implements OnInit {
-  
+
   companies!: CompanyGetResDto[]
 
   constructor(
