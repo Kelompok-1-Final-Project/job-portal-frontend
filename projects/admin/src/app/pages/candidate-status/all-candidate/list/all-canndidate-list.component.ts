@@ -19,13 +19,13 @@ export class AllCandidateListComponent implements OnInit {
 
   cities: City[] | undefined;
   visibleUpdateStatus: boolean = false;
-  status!: StatusProgressGetResDto[] 
+  status!: StatusProgressGetResDto[]
   candidates!: CandidateProgressGetResDto[]
 
   constructor(
     private title: Title,
     private statusProgressService: StatusProgressService
-  ){
+  ) {
     this.title.setTitle('Candidate Progress | Job Portal Admin')
   }
 
@@ -34,13 +34,13 @@ export class AllCandidateListComponent implements OnInit {
     this.getCandidateStatus()
   }
 
-  getStatus(){
+  getStatus() {
     this.statusProgressService.getStatus().subscribe(result => {
       this.status = result
     })
   }
 
-  getCandidateStatus(){
+  getCandidateStatus() {
     this.statusProgressService.getCandidateStatus().subscribe(result => {
       this.candidates = result
     })

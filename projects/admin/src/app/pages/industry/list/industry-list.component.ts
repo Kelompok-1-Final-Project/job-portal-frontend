@@ -19,8 +19,8 @@ export class IndustryListComponent implements OnInit {
   visibleUpdate: boolean = false;
   visibleDelete: boolean = false;
 
-  industryInsertReqDto = this.fb.group ({
-    industryName : ['']
+  industryInsertReqDto = this.fb.group({
+    industryName: ['']
   })
 
   constructor(
@@ -44,7 +44,7 @@ export class IndustryListComponent implements OnInit {
     })
   }
 
-  insertIndustry(){
+  insertIndustry() {
     const data = this.industryInsertReqDto.getRawValue()
     this.industryService.insert(data).subscribe(result => {
       this.router.navigateByUrl('/industries')
