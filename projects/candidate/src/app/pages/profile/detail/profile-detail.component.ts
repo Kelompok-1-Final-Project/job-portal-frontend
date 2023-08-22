@@ -43,7 +43,8 @@ import { convertUTCToLocalDate } from '@utils/date-convert.util';
 
 @Component({
   selector: 'profile-detail',
-  templateUrl: './profile-detail.component.html'
+  templateUrl: './profile-detail.component.html',
+  styleUrls : ['./profile-detail.component.css']
 })
 export class ProfileDetailComponent implements OnInit,AfterViewChecked {
 
@@ -56,6 +57,7 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
   visibleDeleteWorkExp: boolean = false;
   visibleUpdateSkill: boolean = false;
   visibleAddSkill: boolean = false;
+  visibleDeleteConfirmation : boolean = false;
   visibleAddOrganization: boolean = false;
   visibleUpdateOrganization: boolean = false;
   visibleDeleteOrganization: boolean = false;
@@ -66,6 +68,7 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
   userId!: string;
   patchId!:string;
   patchIndex!:number;
+  patchImage!:string;
   userData!: CandidateGetResDto;
   educations!:EducationGetResDto[];
   workExperience!:WorkExperienceGetResDto[];
@@ -127,6 +130,12 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     endDate: ['', [Validators.required]]
   })
 
+  skillCandidateReqDto = this.fb.group({
+    candidateId: ['', [Validators.required]],
+    skillId: ['', [Validators.required]],
+    levelId: ['', [Validators.required]],
+  })
+
   organizationInsertReqDto = this.fb.group({
     candidateId: ['', [Validators.required]],
     organizationName: ['', [Validators.required]],
@@ -179,6 +188,7 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
 
   ngOnInit() {
     this.userId  = this.authService.getUserId();
+    this.patchImage = "https://via.placeholder.com/150";
     this.getCandidateData();
     this.getCandidateEducation();
     this.getCandidateWorkExperience();
@@ -189,6 +199,8 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     this.getAllDegree();
     this.getAllMaritalStatus();
     this.getAllGender();
+    this.getAllLevel();
+    this.getAllSkills();
   }
 
 
@@ -336,6 +348,26 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     })
   }
 
+  submitAddSkillCandidate(){
+    const data = this.skillCandidateReqDto.getRawValue();
+    this.skillService.insertSkillCandidate(data).subscribe(result => {
+      this.visibleAddSkill = false;
+      this.getCandidateSkill();
+    })
+  }
+
+  submitDeleteSkill(){
+    this.skillService.deleteSkillCandidate(this.patchId).subscribe(result => {
+      this.visibleDeleteConfirmation = false;
+      this.getCandidateSkill();
+    })
+  }
+  
+  deleteSkill(id:string){
+    this.patchId = id;
+    this.visibleDeleteConfirmation=true;
+  }
+
   getAllLevel(){
     this.skillService.getAllLevel().subscribe(result => {
       this.level= result
@@ -348,12 +380,19 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     })
   }
 
-  updateSkill(id: string) {
+  updateSkill() {
     this.visibleUpdateSkill = true;
   }
-  addSkill(id: string) {
-    this.visibleAddSkill = true;
+
+  updateLevelSkill(){
+
   }
+
+  addSkill() {
+    this.visibleAddSkill = true;
+    this.skillCandidateReqDto.get('candidateId')?.setValue(this.userId);
+  }
+
 
   // Organization
   getCandidateOrganization(){
@@ -363,7 +402,7 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
   }
 
   insertOrganization(){
-    const data = this.organizationInsertReqDto.getRawValue()
+    const data = this.organizationInsertReqDto.getRawValue();
     data.candidateId = this.userId;
     this.profileService.insertOrganiztion(data).subscribe(result => {
       this.visibleAddOrganization = false;
