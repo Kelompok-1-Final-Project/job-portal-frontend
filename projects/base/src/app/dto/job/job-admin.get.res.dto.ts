@@ -1,5 +1,5 @@
-export interface JobGetResDto {
-	id: string
+export interface JobAdminGetResDto{
+    id: string
 	jobTitle: string
 	salaryStart: number
 	salaryEnd: number

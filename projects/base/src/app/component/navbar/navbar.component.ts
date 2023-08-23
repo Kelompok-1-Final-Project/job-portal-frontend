@@ -110,6 +110,11 @@ export class NavbarComponent implements OnInit {
         routerLink: "/skill-test",
         // visible : this.isDeveloper
       },
+      {
+        label: 'Employee',
+        icon: 'pi pi-fw pi-user',
+        routerLink: "/employees"
+      }
       ]
     },
     {

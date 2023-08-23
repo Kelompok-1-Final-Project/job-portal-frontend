@@ -1,4 +1,6 @@
-<form (ngSubmit)="submit()">
+<pre>{{cityUpdateReqDto.value | json}}</pre>
+
+<form [formGroup]="cityUpdateReqDto" (ngSubmit)="updateCity()">
   <div class="container">
     <div class="card-container w-screen flex flex-wrap justify-content-center align-items-center"
       style="min-height: 700px">
@@ -11,20 +13,22 @@
           <label for="inputCode" class="form-label"> City Code <span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-9">
-          <input pInputText type="text" class="form-control col-12" id="inputCode" aria-describedby="inputName" required value="JHAGS" disabled>
+          <input pInputText type="text" class="form-control col-12" id="inputCode" aria-describedby="inputName" required
+            value={{code}} disabled>
         </div>
         <div class="col-12 md:col-3">
           <label for="inputName" class="form-label">City Name<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-9">
-          <input pInputText type="text" class="form-control col-12 " id="inputName" aria-describedby="inputName" required formControlName="productName">
+          <input pInputText type="text" class="form-control col-12 " id="inputName" aria-describedby="inputName"
+            required formControlName="cityName">
         </div>
-          <div class="flex flex-wrap justify-content-end mt-2 col-12">
-            <button type="button" routerLink="/products" pButton pRipple class="p-button-secondary mr-3"
-              icon="pi pi-angle-double-left">. Back to previous menu</button>
-            <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
-          </div>
+        <div class="flex flex-wrap justify-content-end mt-2 col-12">
+          <button type="button" routerLink="/cities" pButton pRipple class="p-button-secondary mr-3"
+            icon="pi pi-angle-double-left">. Back to previous menu</button>
+          <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
         </div>
-        </div>
+      </div>
     </div>
+  </div>
 </form>

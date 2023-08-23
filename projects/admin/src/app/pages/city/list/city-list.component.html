@@ -17,15 +17,13 @@
       </ng-template>
       <ng-template pTemplate="body" let-p let-i="rowIndex">
         <tr>
-          <th scope="row">{{ i+1 }}</th>
+          <td scope="row">{{ i+1 }}</td>
           <td>{{ p.cityCode }}</td>
           <td>{{ p.cityName }}</td>
           <td>
-            <div class="p-buttonset">
-              <!-- <button routerLink="/products/update/{{ p.id }}" pButton pRipple class="p-button-success"
-                label="Edit Product"></button> -->
-              <button routerLink="/products" pButton pRipple class="p-button-danger" label="Delete"></button>
-            </div>
+              <button routerLink="/cities/update/{{ p.cityCode }}" pButton pRipple class="p-button-secondary"
+                icon="pi pi-pencil" style="margin-right: 0.3rem;" pTooltip="Edit" tooltipPosition="top"></button>
+              <button routerLink="/products" pButton pRipple class="p-button-danger" icon="pi pi-trash"></button>
           </td>
         </tr>
       </ng-template>

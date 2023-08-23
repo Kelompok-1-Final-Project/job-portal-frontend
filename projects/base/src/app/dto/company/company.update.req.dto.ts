@@ -1,7 +1,10 @@
 export interface CompanyUpdateReqDto{
-    companyCode : string
 	companyName : string
+	companyCode : string
+	industryCode : string
+	cityCode : string
 	ext : string
 	file : string
-	industryCode : string
+	address : string
+	description : string
 }

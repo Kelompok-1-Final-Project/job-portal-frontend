@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
-import { JobGetResDto } from "@dto/job/job.get.res.dto";
+import { JobAdminGetResDto } from "@dto/job/job-admin.get.res.dto";
 import { JobService } from "@serviceAdmin/job.service";
 
 @Component({
@@ -10,7 +10,7 @@ import { JobService } from "@serviceAdmin/job.service";
 export class JobListComponent implements OnInit {
   visibleAssign: boolean = false;
 
-  vacancies!: JobGetResDto[]
+  vacancies!: JobAdminGetResDto[]
   constructor(
     private title: Title,
     private jobService: JobService
@@ -27,13 +27,5 @@ export class JobListComponent implements OnInit {
       this.vacancies = result
     })
   }
-
-  // getPhotoUrl(base64String: string): string {
-  //     return 'data:image/jpeg;base64,' + base64String;
-  //   }
-
-
-  // assign(id:number){
-  //   this.visibleAssign=true;
-  // }
+  
 }

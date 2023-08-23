@@ -17,24 +17,22 @@
       </ng-template>
       <ng-template pTemplate="body" let-p let-i="rowIndex">
         <tr>
-          <th scope="row">{{ i+1 }}</th>
+          <td scope="row">{{ i+1 }}</td>
           <td>{{ p.skillCode }}</td>
           <td>{{ p.skillName }}</td>
           <td>
-            <div class="p-buttonset">
-              <!-- <button pButton pRipple class="p-button-success" (click)="update(3)" label="Edit Skill"></button> -->
-              <button (click)="deleteModal(3)" icon="pi pi-times" pButton pRipple class="p-button-danger"
-                label="Delete"></button>
-            </div>
+            <button pButton pRipple class="p-button-secondary" pTooltip="Edit" tooltipPosition="top" icon="pi pi-pencil"
+              (click)="update(p.skillCode)" style="margin-right: 0.3rem;"></button>
+            <button (click)="deleteModal(3)" icon="pi pi-trash" pTooltip="Delete" pButton pRipple
+              class="p-button-danger"></button>
           </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
 
-
   <!-- Modal Add-->
-  <p-dialog header="Add Data Skill" [(visible)]="visibleAdd" [style]="{ width: '30vw' }">
+  <p-dialog header="Add Data Skill" [modal]="true" [(visible)]="visibleAdd" [style]="{ width: '30vw' }">
     <pre>{{skillInsertReqDto.value | json}}</pre>
     <form [formGroup]="skillInsertReqDto" (ngSubmit)="insertSkill()">
       <div class="grid surface-card border-round-sm border-400">
@@ -51,8 +49,32 @@
     </form>
   </p-dialog>
 
+  <!-- Modal Update-->
+  <p-dialog header="Update Data Skill" [modal]="true" [(visible)]="visibleUpdate" [style]="{ width: '30vw' }">
+    <pre>{{skillUpdateReqDto.value | json}}</pre>
+    <form [formGroup]="skillUpdateReqDto" (ngSubmit)="updateSkill()">
+      <div class="grid surface-card border-round-sm border-400">
+        <div class="col-12 md:col-3">
+          <label for="inputName">Skill Code</label>
+        </div>
+        <div class="col-12 md:col-9">
+          <input pInputText type="text" class="col-12 p-disabled" id="inputName" value={{code}}>
+        </div>
+        <div class="col-12 md:col-3">
+          <label for="inputName">Skill Name</label>
+        </div>
+        <div class="col-12 md:col-9">
+          <input pInputText type="text" class="col-12 " id="inputName" required formControlName="skillName">
+        </div>
+        <div class="flex flex-wrap justify-content-end mt-2 col-12">
+          <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        </div>
+      </div>
+    </form>
+  </p-dialog>
+
   <!-- Modal Delete -->
-  <p-dialog header="Delete Data Skill" [(visible)]="visibleDelete" [style]="{ width: '30vw' }">
+  <p-dialog header="Delete Data Skill" [modal]="true" [(visible)]="visibleDelete" [style]="{ width: '30vw' }">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12">
         <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>

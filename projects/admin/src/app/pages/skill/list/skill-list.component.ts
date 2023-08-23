@@ -1,26 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { SkillGetResDto } from '@dto/skill/skill.get.res.dto';
 import { SkillService } from '@serviceAdmin/skill.service';
-
-interface Skills {
-  skillCode: string;
-  skillName: string;
-}
 
 @Component({
   selector: 'skill-list',
   templateUrl: './skill-list.component.html'
 })
 export class SkillListComponent implements OnInit {
+
   visibleAdd: boolean = false;
   visibleDelete: boolean = false;
+  visibleUpdate: boolean = false
   skills!: SkillGetResDto[]
+  code!: string
 
   skillInsertReqDto = this.fb.group({
-    skillName: ['']
+    skillName: ['', [Validators.required]]
+  })
+
+  skillUpdateReqDto = this.fb.group({
+    skillCode: ['', [Validators.required]],
+    skillName: ['', [Validators.required]]
   })
 
   constructor(
@@ -51,11 +54,24 @@ export class SkillListComponent implements OnInit {
   }
 
   add() {
-    this.visibleAdd = true;
+    this.visibleAdd = true
+  }
+
+  update(code: string){
+    this.code = code
+    this.skillUpdateReqDto.get('skillCode')?.setValue(code)
+    this.visibleUpdate = true
+  }
+
+  updateSkill(){
+    const data = this.skillUpdateReqDto.getRawValue()
+    this.skillService.update(data).subscribe(result =>{
+      this.visibleUpdate = false
+    })
   }
 
   deleteModal(id: number) {
-    this.visibleDelete = true;
+    this.visibleDelete = true
   }
 
   confirmDelete() {

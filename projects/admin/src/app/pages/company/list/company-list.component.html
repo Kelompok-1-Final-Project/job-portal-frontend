@@ -29,11 +29,9 @@
           <td>{{ c.cityName }}</td>
           <td>{{ c.description }}</td>
           <td>
-            <div class="p-buttonset">
-              <!-- <button routerLink="/companies/update/{{ c.id }}" pButton pRipple class="p-button-secondary"
-                label="Edit"></button> -->
-              <button routerLink="/users/profile" pButton pRipple class="p-button-danger" label="Delete"></button>
-            </div>
+            <button routerLink="/companies/update/{{ c.companyCode }}" icon="pi pi-pencil" pButton pRipple class="p-button-secondary"
+              pTooltip="Edit" tooltipPosition="top" style="margin-right: 0.3rem;"></button>
+            <button routerLink="/users/profile" icon="pi pi-trash" pButton pRipple class="p-button-danger"></button>
           </td>
         </tr>
       </ng-template>

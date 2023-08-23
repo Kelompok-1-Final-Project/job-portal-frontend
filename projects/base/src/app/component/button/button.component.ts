@@ -1,29 +1,32 @@
 import { CommonModule } from "@angular/common";
 import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { RouterModule } from "@angular/router";
 import { SharedModuleComponent } from "@shared/shared.module";
 
 @Component({
-    selector : 'app-button',
-    template : `
-        <p-button icon="{{ iconBtn }}" label="{{ label }}" *ngIf="show" [loading]="loading" type="{{ btnType }}" styleClass="{{ classBtn }}" (click)= "clickBtn()"></p-button>
+    selector: 'app-button',
+    template: `
+        <button pButton icon="{{ iconBtn }}" label="{{ label }}" *ngIf="show" [loading]="loading" type="{{ btnType }}" style="{{ classBtn }}" routerLink="{{link}}" (click)= "clickBtn()"></button>
     `,
-    imports : [
+    imports: [
         CommonModule,
-        SharedModuleComponent
+        SharedModuleComponent,
+        RouterModule
     ],
-    standalone : true
+    standalone: true
 })
-export class ButtonComponent{
+export class ButtonComponent {
     @Input() label = ''
     @Input() classBtn = ''
     @Input() btnType = ''
     @Input() iconBtn = ''
     @Input() loading = false
     @Input() show = true
+    @Input() link: string | undefined = undefined
 
     @Output() clickChange = new EventEmitter<void>()
 
-    clickBtn(){
+    clickBtn() {
         this.clickChange.emit()
     }
 }

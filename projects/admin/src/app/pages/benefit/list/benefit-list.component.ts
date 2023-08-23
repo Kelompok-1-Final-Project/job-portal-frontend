@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BenefitGetResDto } from '@dto/benefit/benefit.get.res.dto';
 import { BenefitService } from '@serviceAdmin/benefit.service';
 import { Title } from '@angular/platform-browser';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'benefit-list',
@@ -14,15 +15,22 @@ export class BenefitListComponent implements OnInit {
   visibleDelete: boolean = false;
 
   benefits!: BenefitGetResDto[]
+  code!: string
 
   benefitInsertReqDto = this.fb.group({
-    benefitName : ['']
+    benefitName : ['', [Validators.required]]
+  })
+
+  benefitUpdateReqDto = this.fb.group({
+    benefitCode: ['', [Validators.required]],
+    benefitName: ['', [Validators.required]]
   })
 
   constructor(
     private benefitService: BenefitService,
     private title: Title,
-    private fb: NonNullableFormBuilder
+    private fb: NonNullableFormBuilder,
+    private router: Router
   ) {
     this.title.setTitle('Benefit | Job Portal Admin')
   }
@@ -44,20 +52,26 @@ export class BenefitListComponent implements OnInit {
     })
   }
 
-  add() {
-    this.visibleAdd = true;
+  updateBenefit(){
+    const data = this.benefitUpdateReqDto.getRawValue()
+    this.benefitService.update(data).subscribe(result =>{
+      this.visibleUpdate = false
+      this.router.navigateByUrl('/benefits')
+    })
   }
 
-  update(id: number) {
-    this.visibleUpdate = true;
+  add() {
+    this.visibleAdd = true
+  }
+
+  update(code: string) {
+    this.visibleUpdate = true
+    this.code = code
+    this.benefitUpdateReqDto.get('benefitCode')?.setValue(code)
   }
 
   deleteModal(id: number) {
-    this.visibleDelete = true;
+    this.visibleDelete = true
   }
-
-  // confirmDelete(){
-
-  // }
 
 }

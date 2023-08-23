@@ -6,6 +6,8 @@ import { BASE_URL } from "@constant/api.constant";
 import { InsertResDto } from "@dto/insert.res.dto";
 import { CityInsertReqDto } from "@dto/city/city.insert.req.dto";
 import { CityGetResDto } from "@dto/city/city.get.res.dto";
+import { CityUpdateReqDto } from "@dto/city/city.update.req.dto";
+import { UpdateResDto } from "@dto/update.res.dto";
 
 @Injectable({
     providedIn: 'root'
@@ -19,5 +21,9 @@ export class CityService{
 
     insert(data : CityInsertReqDto): Observable<InsertResDto>{
         return this.base.post<InsertResDto>(`${BASE_URL}/cities`, data, true)
+    }
+
+    update(data: CityUpdateReqDto): Observable<UpdateResDto>{
+        return this.base.patch<UpdateResDto>(`${BASE_URL}/cities`, data, true)
     }
 }

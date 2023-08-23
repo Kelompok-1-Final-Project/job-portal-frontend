@@ -6,17 +6,22 @@
     <div class="grid justify-content-end mb-3">
       <button routerLink="create" pButton pRipple class="p-button-primary" label="Add Question"></button>
     </div>
-    <p-table [value]="questions" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }" selectionMode="single">
+    <p-table [value]="questions" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }"
+      selectionMode="single">
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>
           <th scope="col">Question</th>
+          <th scope="col">Action</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-question let-i="rowIndex">
         <tr [pSelectableRow]="question" routerLink="./detail/{{question.questionId}}">
           <td scope="row">{{ i+1 }}</td>
           <td>{{ question.question }}</td>
+          <td>
+            <button pButton pRipple icon="pi pi-trash" class="p-button-danger" pTooltip="Delete"></button>
+          </td>
         </tr>
       </ng-template>
     </p-table>
