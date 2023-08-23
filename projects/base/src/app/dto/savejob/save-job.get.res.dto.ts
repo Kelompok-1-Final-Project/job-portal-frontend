@@ -11,4 +11,8 @@ export interface SaveJobGetResDto {
 	employmentName : string
 	jobId:string;
 	totalSaveJob:string;
+	createdAt:string;
+	updatedAt:string;
+	industryName:string;
+	cityName:string;
 }
