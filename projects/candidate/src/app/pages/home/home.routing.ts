@@ -32,6 +32,9 @@ const routes : Routes = [
         path : 'job',
         component : VacancyComponent
     },{
+        path : 'job/industry/:id',
+        component : VacancyComponent
+    },{
         path : 'save-jobs',
         component : SaveJobsComponent
     },{

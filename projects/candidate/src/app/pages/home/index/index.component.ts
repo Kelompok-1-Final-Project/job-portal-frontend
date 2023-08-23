@@ -11,12 +11,16 @@ import {
 import {
   Router
 } from '@angular/router';
+import { CityGetResDto } from '@dto/city/city.get.res.dto';
 import {
   IndustryGetResDto
 } from '@dto/industry/industry.get.res.dto';
+import { JobPositionGetResDto } from '@dto/job/job-position.get.res.dto';
+import { CityService } from '@serviceCandidate/city.service';
 import {
   IndustryService
 } from '@serviceCandidate/industry.service';
+import { JobService } from '@serviceCandidate/job.service';
 
 
 @Component({
@@ -27,6 +31,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private industryService: IndustryService,
+    private jobService : JobService,
+    private cityService : CityService,
     private title: Title,
     private fb: NonNullableFormBuilder,
     private router: Router
@@ -35,6 +41,19 @@ export class HomeComponent implements OnInit {
   }
 
   industries!: IndustryGetResDto[]
+  locations!:CityGetResDto[];
+  positions!:JobPositionGetResDto[];
+
+
+  searchJobReqDto = this.fb.group({
+    jobName :[''],
+    location :[''],
+    position :[''],
+    employmentType :[''],
+    salaryStart :[0],
+    salaryEnd :[0],
+    userId : ['']
+  })
 
   carouselImages = [
     'https://www.istockphoto.com/id/foto/lanskap-gunung-gm517188688-89380423?phrase=alam%20dan%20lanskap',
@@ -47,8 +66,28 @@ export class HomeComponent implements OnInit {
       this.industries = result
     })
   }
+
+  searchJobs(){
+    this.jobService.searchJobs=this.searchJobReqDto.getRawValue();
+    this.router.navigateByUrl('home/job')  
+  }
+
+  getAllLocations(){
+    this.cityService.getAll().subscribe(result => {
+      this.locations = result;
+    })
+  }
+
+  getAllPosition(){
+    this.jobService.getAllPosition().subscribe(result => {
+      this.positions = result;
+    })
+  }
+
   ngOnInit(): void {
     this.getAllIndustry();
+    this.getAllLocations();
+    this.getAllPosition();
   }
 
 }

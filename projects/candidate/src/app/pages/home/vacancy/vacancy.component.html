@@ -1,5 +1,6 @@
 <!-- home.component.html -->
-<pre>{{ filteredLocation | json }}</pre>
+<pre>{{ industryId|json }}</pre>
+<pre>{{ jobs | json }}</pre>
 <pre>{{ locations | json }}</pre>
 <pre>{{ searchJobReqDto.value|json }}</pre>
 <div class="home-container">
@@ -11,16 +12,24 @@
           Search Vacancy
         </h4>
         <div class="search-options grid col-12 justify-content-between mt-3">
-          <input pInputText type="text" placeholder="Search Job" class="col-12 md:col-3" formControlName="jobName">
-          <p-autoComplete placeholder="Location" [suggestions]="filteredLocation"
-          (completeMethod)="filterLocation($event)" field="cityName" formControlName="location"
-          (ngModelChange)="getLocation($event)" 
-          ></p-autoComplete>
-          <!-- <input pInputText type="text" placeholder="Location" class="col-12 md:col-3" formControlName="location"> -->
-          <input pInputText type="text" placeholder="Job Position" class="col-12 md:col-3" formControlName="position">
-          <button type="submit" pButton pRipple class="p-button-success col-12 text-center md:col-1">
-            <i class="pi pi-search m-1"></i> Cari
-          </button>
+          <div class="col-12 md:col-3">
+            <input pInputText type="text" placeholder="Search Job">
+          </div>
+          <div class="col-12 md:col-3">
+            <p-dropdown placeholder="Location" [options]="locations" [filter]="true" optionValue="cityId"
+              optionLabel="cityName" formControlName="location" [editable]="true" styleClass="w-full">
+            </p-dropdown>
+          </div>
+          <div class="col-12 md:col-3">
+            <p-dropdown placeholder="Position" [options]="positions" [filter]="true" optionValue="id"
+              optionLabel="positionName" formControlName="position" [editable]="true" styleClass="w-full">
+            </p-dropdown>
+          </div>
+          <div class="col-12 text-center md:col-1">
+            <button type="submit" pButton pRipple class="p-button-success">
+              <i class="pi pi-search m-1"></i> Cari
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -28,15 +37,15 @@
   <div class="container grid justify-content-center">
     <div class="sub-container grid col-10">
       <div class="filter col-12 md:col-3 shadow-1 surface-card border-round-sm mt-5">
-        <form [formGroup]="searchJobReqDto" >
+        <form [formGroup]="searchJobReqDto">
           <p-accordion [multiple]="true" [activeIndex]="[0]">
             <p-accordionTab header="Employment Type">
               <div class="flex flex-column gap-2">
-                <div *ngFor="let type of types" class="field-checkbox" >
-                  <!-- <p-checkbox name="group" [value]="type" [inputId]="type.typeCode" formControlName="employmentType"></p-checkbox> -->
-                  <!-- <label [for]="type.typeCode">{{ type.typeName }}</label> -->
+                <div *ngFor="let type of types" class="field-checkbox">
 
-                  <p-radioButton [inputId]="type.typeCode" [value]="type.typeCode" formControlName="employmentType"></p-radioButton>
+                  <p-radioButton [inputId]="type.typeCode" [value]="type.id" formControlName="employmentType"
+                    (click)="getAllJobsByEmploymentType(type.id)">
+                  </p-radioButton>
                   <label [for]="type.typeCode" class="ml-2">{{ type.typeName }}</label>
 
                 </div>
@@ -45,12 +54,15 @@
             <p-accordionTab header="Salary">
               <div class="grid justify-content-center">
                 <span class="col-3">Start : </span>
-                <p-inputNumber class="col-9" id="idNumber" inputId="withoutgrouping" [useGrouping]="false" formControlName="salaryStart">
+                <p-inputNumber class="col-9" id="idNumber" inputId="withoutgrouping" [useGrouping]="false"
+                  formControlName="salaryStart">
                 </p-inputNumber>
                 <span class="col-3">End : </span>
-                <p-inputNumber class="col-9" id="idNumber" inputId="withoutgrouping" [useGrouping]="false" formControlName="salaryEnd">
+                <p-inputNumber class="col-9" id="idNumber" inputId="withoutgrouping" [useGrouping]="false"
+                  formControlName="salaryEnd">
                 </p-inputNumber>
-                <button type="submit" pButton pRipple class="p-button-success col-12 text-center">
+                <button type="button" pButton pRipple class="p-button-success col-12 text-center"
+                  (click)="getAllJobsBySalary()">
                   <i class="pi pi-search m-1"></i> Cari
                 </button>
               </div>
@@ -60,42 +72,41 @@
       </div>
 
       <div class="content col-12 md:col-9 grid">
-        <p-card class="col-12 md:col-6 mt-4" *ngFor="let job of jobs">
-          <a routerLink="/home/detail/{{ job.id }}" class="text-black-alpha-90" style="text-decoration: none;">
-            <div class="thumbnail grid">
-              <div class="col-4 justify-content-center align-content-center">
-                <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image" width="100"
-                  [preview]="true"></p-image>
-              </div>
-              <div class="title col-8 grid">
-                <span class="col-10">{{ job.jobTitle }}</span>
-                <!-- <i class="pi pi-heart col-2 flex justify-content-end"></i> -->
-                <i class="pi pi-heart col-2 flex justify-content-end" [style.color]="job.companyName ? 'black' : 'red'"></i>
-                <a routerLink="/companies/detail/{{ job.companyId }}" class="text-primary">{{ job.companyName }}</a>
-              </div>
+        <p-card (click)="routerLink(job.id)"  class="col-12 md:col-6 mt-4" *ngFor="let job of jobs">
+          <div class="thumbnail grid ">
+            <div class="col-4 justify-content-center align-content-center">
+              <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image" width="100"
+                [preview]="true"></p-image>
             </div>
-            <div class="city">
-              <i class="pi pi-map-marker"></i>
-              <span>
-                {{ job.cityName }}
-              </span>
+            <div class="title col-8 grid">
+              <span class="col-10">{{ job.jobTitle }}</span>
+              <!-- <i class="pi pi-heart col-2 flex justify-content-end"></i> -->
+              <i class="pi pi-heart-fill col-2 flex justify-content-end"
+                [style.color]="job.isBookmark ? 'red' : 'black'" (click)="changeSaveJob(job.id,job.isBookmark,job.saveJobId,$event)"></i>
+              <a routerLink="/companies/detail/{{ job.companyId }}" class="text-primary">{{ job.companyName }}</a>
             </div>
-            <div class="Salary">
-              <i class="pi pi-dollar"></i>
-              <span> {{ job.salaryStart }} -</span>
-              <span> {{ job.salaryEnd }}</span>
-            </div>
-            <div class="Industry">
-              <i class="pi pi-building"></i>
-              <span>{{ job.industryName }}</span>
-            </div>
-            <div class="footer">
-              <small>
-                <i class="pi pi-clock"></i>
-                <span> Diperbaharui 31 hari yang lalu</span>
-              </small>
-            </div>
-          </a>
+          </div>
+          <div class="city">
+            <i class="pi pi-map-marker"></i>
+            <span>
+              {{ job.cityName }}
+            </span>
+          </div>
+          <div class="Salary">
+            <i class="pi pi-dollar"></i>
+            <span> {{ job.salaryStart }} -</span>
+            <span> {{ job.salaryEnd }}</span>
+          </div>
+          <div class="Industry">
+            <i class="pi pi-building"></i>
+            <span>{{ job.industryName }}</span>
+          </div>
+          <div class="footer">
+            <small>
+              <i class="pi pi-clock"></i>
+              <span> Dibuat {{ job.createdAt }} hari yang lalu</span>
+            </small>
+          </div>
         </p-card>
       </div>
     </div>

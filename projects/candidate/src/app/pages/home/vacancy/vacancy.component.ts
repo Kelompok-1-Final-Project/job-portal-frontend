@@ -4,15 +4,14 @@ import {
 } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CityGetResDto } from '@dto/city/city.get.res.dto';
-import { IndustryGetResDto } from '@dto/industry/industry.get.res.dto';
 import { EmploymentTypeGetResDto } from '@dto/job/employment-type.get.res.dto';
+import { JobPositionGetResDto } from '@dto/job/job-position.get.res.dto';
 import { JobGetResDto } from '@dto/job/job.get.res.dto';
+import { AuthService } from '@serviceCandidate/auth.service';
 import { CityService } from '@serviceCandidate/city.service';
-import { IndustryService } from '@serviceCandidate/industry.service';
 import { JobService } from '@serviceCandidate/job.service';
-import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
 
 
 @Component({
@@ -22,15 +21,19 @@ import { AutoCompleteCompleteEvent } from 'primeng/autocomplete';
 })
 export class VacancyComponent implements OnInit {
   
-  jobs!: JobGetResDto[]
-  types! : EmploymentTypeGetResDto[]
+  userId:string='';
+  industryId:string='';
+  jobs!: JobGetResDto[];
+  types! : EmploymentTypeGetResDto[];
   locations!:CityGetResDto[];
+  positions!:JobPositionGetResDto[];
   filteredLocation!:CityGetResDto[];
-  listLocation:any='';
 
   constructor(
     private jobService: JobService,
     private cityService : CityService,
+    private authService : AuthService,
+    private activatedRoute : ActivatedRoute,
     private title: Title,
     private fb: NonNullableFormBuilder,
     private router: Router
@@ -44,27 +47,50 @@ export class VacancyComponent implements OnInit {
     position :[''],
     employmentType :[''],
     salaryStart :[0],
-    salaryEnd :[0]
-    
+    salaryEnd :[0],
+    userId : ['']
   })
 
-  filterLocation(event: AutoCompleteCompleteEvent) {
-    let filtered: any[] = [];
-    let query = event.query;
+  saveJobReqDto = {
+    candidateId:'',
+    jobId:''
+  }
 
-    for (let i = 0; i < (this.locations as any[]).length; i++) {
-        let location = (this.locations as any[])[i];
-        if (location.cityName.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-            filtered.push(location);
-        }
-    }
-
-    this.filteredLocation = filtered;
-}
-
+  init(){
+    this.activatedRoute.params.subscribe(id => {
+      this.industryId = String(Object.values(id));
+    })
+  }
 
   getAllJobs() {
     const data = this.searchJobReqDto.getRawValue();
+    data.userId=this.userId;
+    this.jobService.getAll(data).subscribe(result => {
+      this.jobs = result
+    })
+  }
+
+  routerLink(id:string){
+    this.router.navigateByUrl(`/home/detail/${id}`)
+  }
+
+  getAllJobsIndustry() {
+    this.jobService.getAllByIndustry(this.industryId).subscribe(result => {
+      this.jobs = result
+    })
+  }
+
+  getAllJobsByEmploymentType(emType:string){
+    const data = this.searchJobReqDto.getRawValue();
+    data.employmentType = emType;
+    this.jobService.getAll(data).subscribe(result => {
+      this.jobs = result
+    })
+  }
+
+  getAllJobsBySalary(){
+    const data = this.searchJobReqDto.getRawValue();
+    console.log(data);
     this.jobService.getAll(data).subscribe(result => {
       this.jobs = result
     })
@@ -76,32 +102,53 @@ export class VacancyComponent implements OnInit {
     })
   }
 
-  get locationList() {
-    return this.searchJobReqDto.get('cityCode');
-  }
-
-  getLocation(event: any) {
-    console.log(event);
-    // for (let i = 0; i < event.length; i++) {
-    //   this.searchJobReqDto.patchValue({
-    //     location:this.fb.control(event[i].cityCode)
-    // })
-    // }
-  //   this.searchJobReqDto.patchValue({
-  //     location: cityCode
-  // })
-}
-
   getAllLocations(){
     this.cityService.getAll().subscribe(result => {
       this.locations = result;
     })
   }
 
+  getAllPosition(){
+    this.jobService.getAllPosition().subscribe(result => {
+      this.positions = result;
+    })
+  }
+
+  changeSaveJob(jobId:string,isBookMark:boolean,saveJobId:string,event:any){
+    const data = this.saveJobReqDto;
+    this.saveJobReqDto.candidateId = this.userId;
+    this.saveJobReqDto.jobId = jobId;
+    event.stopPropagation();
+    if(isBookMark){
+      this.jobService.deleteSaveJob(saveJobId).subscribe(result => {
+        this.getAllJobs();
+      })
+    }else{
+      this.jobService.insertSaveJob(data).subscribe(result => {
+        this.getAllJobs();
+      })
+    }
+  }
+
   ngOnInit(){
-    this.getAllJobs();
+    this.init();
+    this.userId = this.authService.getUserId();
+    if(this.industryId!=''){
+      this.getAllJobsIndustry();
+      this.industryId='';
+    }else{
+      if(this.jobService.searchJobs!=null){
+        this.searchJobReqDto.patchValue({
+          jobName : this.jobService.searchJobs.jobName,
+          location : this.jobService.searchJobs.location,
+          position : this.jobService.searchJobs.position
+        })
+      }
+      this.getAllJobs();
+    }
     this.getAllTypes();
     this.getAllLocations();
+    this.getAllPosition();
   }
 
 }

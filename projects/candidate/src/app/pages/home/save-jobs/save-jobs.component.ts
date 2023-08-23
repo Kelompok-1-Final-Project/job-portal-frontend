@@ -30,9 +30,17 @@ export class SaveJobsComponent implements OnInit {
     this.getAllJobs();
   }
 
+  deleteSaveJob(saveJobId:string,event:any){
+    event.stopPropagation();
+      this.jobService.deleteSaveJob(saveJobId).subscribe(result => {
+        this.getAllJobs();
+      })
+  }
+
   getAllJobs() {
     this.jobService.getAllSaveJobs(this.userId).subscribe(result => {
       this.jobs = result
     })
   }
+
 }

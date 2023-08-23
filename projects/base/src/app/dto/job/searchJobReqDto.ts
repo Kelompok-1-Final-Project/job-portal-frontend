@@ -4,5 +4,6 @@ export interface SearchJobReqDto {
   position: string,
   employmentType: string,
   salaryStart: number,
-  salaryEnd: number
+  salaryEnd: number,
+  userId : string
 }
