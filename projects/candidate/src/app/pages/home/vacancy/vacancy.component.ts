@@ -70,10 +70,6 @@ export class VacancyComponent implements OnInit {
     })
   }
 
-  routerLink(id:string){
-    this.router.navigateByUrl(`/home/detail/${id}`)
-  }
-
   getAllJobsIndustry() {
     this.jobService.getAllByIndustry(this.industryId).subscribe(result => {
       this.jobs = result
