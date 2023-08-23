@@ -22,7 +22,7 @@
           <td>{{ p.industryName }}</td>
           <td>
             <div class="p-buttonset">
-              <button pButton pRipple class="p-button-success" (click)="update(3)" label="Edit Industry "></button>
+              <!-- <button pButton pRipple class="p-button-success" (click)="update(3)" label="Edit Industry "></button> -->
               <button (click)="deleteModal(3)" icon="pi pi-times" pButton pRipple class="p-button-danger"
                 label="Delete"></button>
             </div>
@@ -49,28 +49,6 @@
         </div>
       </div>
     </form>
-  </p-dialog>
-
-  <!-- Modal Update-->
-  <p-dialog header="Add Data Industry" [(visible)]="visibleUpdate" [style]="{ width: '30vw' }">
-    <div class="grid surface-card border-round-sm border-400">
-      <div class="col-12 md:col-3">
-        <label for="inputName">Industry Code</label>
-      </div>
-      <div class="col-12 md:col-9">
-        <input pInputText type="text" class="col-12 p-disabled" id="inputName" required formControlName="productName"
-          value="JKAHS">
-      </div>
-      <div class="col-12 md:col-3">
-        <label for="inputName">Industry Name</label>
-      </div>
-      <div class="col-12 md:col-9">
-        <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
-      </div>
-      <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
-      </div>
-    </div>
   </p-dialog>
 
   <!-- Modal Delete -->

@@ -16,7 +16,6 @@ interface Industries {
 })
 export class IndustryListComponent implements OnInit {
   visibleAdd: boolean = false;
-  visibleUpdate: boolean = false;
   visibleDelete: boolean = false;
 
   industryInsertReqDto = this.fb.group({
@@ -54,9 +53,6 @@ export class IndustryListComponent implements OnInit {
 
   add() {
     this.visibleAdd = true;
-  }
-  update(id: number) {
-    this.visibleUpdate = true;
   }
 
   deleteModal(id: number) {

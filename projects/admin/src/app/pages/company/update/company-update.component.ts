@@ -46,6 +46,10 @@ export class CompanyUpdateComponent{
     ngOnInit():void{
     }
 
+    updateCompany(){
+      
+    }
+
     fileUpload(event: any) {
         const toBase64 = (file: File) => new Promise<string>((resolve, reject) => {
           const reader = new FileReader();

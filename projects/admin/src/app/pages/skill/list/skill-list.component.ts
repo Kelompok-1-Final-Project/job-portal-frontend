@@ -16,9 +16,9 @@ interface Skills {
 })
 export class SkillListComponent implements OnInit {
   visibleAdd: boolean = false;
-  visibleUpdate: boolean = false;
   visibleDelete: boolean = false;
   skills!: SkillGetResDto[]
+
   skillInsertReqDto = this.fb.group({
     skillName: ['']
   })
@@ -52,9 +52,6 @@ export class SkillListComponent implements OnInit {
 
   add() {
     this.visibleAdd = true;
-  }
-  update(id: number) {
-    this.visibleUpdate = true;
   }
 
   deleteModal(id: number) {

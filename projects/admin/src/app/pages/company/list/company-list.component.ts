@@ -28,6 +28,8 @@ export class CompanyListComponent implements OnInit {
     })
   }
 
+  
+
   // getPhotoUrl(base64String: string): string {
   //   return 'data:image/jpeg;base64,' + base64String;
   // }
