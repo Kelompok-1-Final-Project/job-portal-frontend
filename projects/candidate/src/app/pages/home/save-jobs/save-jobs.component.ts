@@ -2,6 +2,11 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { JobGetResDto } from '@dto/job/job.get.res.dto';
+import { SaveJobGetResDto } from '@dto/savejob/save-job.get.res.dto';
+import { AuthService } from '@serviceCandidate/auth.service';
+import { JobService } from '@serviceCandidate/job.service';
 
 
 @Component({
@@ -10,29 +15,32 @@ import {
 })
 export class SaveJobsComponent implements OnInit {
 
-  constructor() {}
+  userId!:string;
+  constructor(
+    private jobService: JobService,
+    private authService : AuthService,
+    private title: Title,
+  ) {}
 
-  selectedCategories: any[] = [];
-
-  categories: any[] = [
-      { name: 'Internship', key: 'ET001' },
-      { name: 'Contract', key: 'ET002' },
-      { name: 'Full Time', key: 'ET003' },
-      { name: 'Part Time', key: 'ET004' }
-  ];
-  companyIndustries = [
-    'Technology',
-    'Finance',
-    'Healthcare',
-    'Education',
-    'Healthcare',
-    'Education',
-    'Technology',
-    'Finance',
-  ];
+  jobs!: SaveJobGetResDto[];
 
 
   ngOnInit(){
+    this.userId  = this.authService.getUserId();
+    this.getAllJobs();
+  }
+
+  deleteSaveJob(saveJobId:string,event:any){
+    event.stopPropagation();
+      this.jobService.deleteSaveJob(saveJobId).subscribe(result => {
+        this.getAllJobs();
+      })
+  }
+
+  getAllJobs() {
+    this.jobService.getAllSaveJobs(this.userId).subscribe(result => {
+      this.jobs = result
+    })
   }
 
 }

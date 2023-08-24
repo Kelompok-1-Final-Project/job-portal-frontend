@@ -1,9 +1,16 @@
-export interface CandidateGetResDto{
-    id : string
-	email : string
-	fullName : string
-	mobileNumber : string
-	typeName : string
-	genderName : string
-	ver : number
+export interface CandidateGetResDto {
+  fullName: string;
+  idNumber: string;
+  phone: string;
+  email: string;
+  birthdate : string;
+  maritalStatusCode: string;
+  maritalStatus: string;
+  genderCode : string;
+  gender: string;
+  expectedSalary: number;
+  age: string;
+  cvId: string;
+  photoId: string;
+  summary: string;
 }

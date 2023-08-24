@@ -1,5 +1,5 @@
 export interface FamilyInsertReqDto{
-    candidateId : string
+    userId : string
 	familyName : string
 	relationshipCode : string
 	degreeCode : string

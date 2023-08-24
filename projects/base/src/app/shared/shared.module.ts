@@ -14,7 +14,11 @@ import { CalendarModule } from 'primeng/calendar';
 import { CheckboxModule } from 'primeng/checkbox';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { PanelModule } from 'primeng/panel';
+<<<<<<< HEAD
 import { TooltipModule } from 'primeng/tooltip';
+=======
+import { ImageModule } from 'primeng/image';
+>>>>>>> 6e6d7c879ae194e368ba1b1784d1b0a43590971d
 
 
 @NgModule({
@@ -33,7 +37,8 @@ import { TooltipModule } from 'primeng/tooltip';
         CalendarModule,
         CheckboxModule,
         PanelModule,
-        InputNumberModule
+        InputNumberModule,
+        ImageModule
     ],
     exports: [
         InputTextModule,
@@ -51,7 +56,11 @@ import { TooltipModule } from 'primeng/tooltip';
         CheckboxModule,
         PanelModule,
         InputNumberModule,
+<<<<<<< HEAD
         TooltipModule
+=======
+        ImageModule
+>>>>>>> 6e6d7c879ae194e368ba1b1784d1b0a43590971d
     ]
 })
 export class SharedModuleComponent {

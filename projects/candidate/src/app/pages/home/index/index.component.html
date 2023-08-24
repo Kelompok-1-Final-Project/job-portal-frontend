@@ -15,47 +15,50 @@
   </p-carousel>
 
   <!-- Search Options -->
-  <!-- <div class="grid justify-content-center">
-      <h4 class="text-dark col-12 -mb-3 ml-3">
-        Search Vacancy
-    </h4>
-  </div>
-  <div class="search-options grid justify-content-evenly">
-    <input pInputText type="text" placeholder="Search Job">
-    <input pInputText type="text" placeholder="Location">
-    <input pInputText type="text" placeholder="Job Type">
-  </div> -->
-  
-  <!-- Search Options -->
   <div class="container mt-5 grid justify-content-center align-content-center">
     <div class="sub-container col-7 grid justify-content-between">
       <h4 class="text-dark col-12 -mb-3 ml-3">
         Search Vacancy
       </h4>
-      <div class="search-options grid col-12 justify-content-evenly mt-3">
-        <input pInputText type="text" placeholder="Search Job" class="col-12 md:col-3">
-        <input pInputText type="text" placeholder="Location" class="col-12 md:col-3">
-        <input pInputText type="text" placeholder="Job Type" class="col-12 md:col-3">
-        <button type="submit" pButton pRipple class="p-button-success col-12 text-center md:col-1">
-          <i class="pi pi-search m-1"></i> Cari
-        </button>
-      </div>
+      <form [formGroup]="searchJobReqDto" (ngSubmit)="searchJobs()">
+        <div class="search-options grid col-12 justify-content-evenly mt-3">
+          <div class="col-12 md:col-3">
+            <input pInputText type="text" placeholder="Search Job" formControlName="jobName">
+          </div>
+          <div class="col-12 md:col-3">
+            <p-dropdown placeholder="Location" [options]="locations" [filter]="true" optionValue="cityId"
+              optionLabel="cityName" formControlName="location" [editable]="true" [showClear]="true" styleClass="w-full">
+            </p-dropdown>
+          </div>
+          <div class="col-12 md:col-3">
+            <p-dropdown placeholder="Position" [options]="positions" [filter]="true" optionValue="id"
+              optionLabel="positionName" formControlName="position" [editable]="true" styleClass="w-full">
+            </p-dropdown>
+          </div>
+          <div class="col-12 md:col-3">
+            <button type="submit" pButton pRipple class="p-button-success col-12">
+              <i class="pi pi-search m-1"></i> Cari
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
 
   <!-- Company Industries -->
   <div class="container mt-5 grid justify-content-center align-content-center">
-      <div class="sub-container col-7 grid justify-content-between">
-        <h4 class="text-dark col-12 -mb-3 ml-3">
-            Company Industry
-        </h4>
-        <div class="industry-box" *ngFor="let industry of companyIndustries">
-            <div class="col-12 shadow-2 m-4 surface-card border-round-sm border-400 w-12rem text-center">
-                <p class="text-primary">
-                    {{industry}}
-                </p>
-            </div>
+    <div class="sub-container col-7 grid justify-content-between">
+      <h4 class="text-dark col-12 -mb-3 ml-3">
+        Company Industry
+      </h4>
+      <div class="industry-box" *ngFor="let industry of industries">
+        <div routerLink="job/industry/{{ industry.id }}"
+          class="col-12 shadow-2 m-4 surface-card border-round-sm border-400 w-12rem text-center">
+          <p class="text-primary">
+            {{industry.industryName}}
+          </p>
         </div>
+      </div>
     </div>
   </div>
 </div>

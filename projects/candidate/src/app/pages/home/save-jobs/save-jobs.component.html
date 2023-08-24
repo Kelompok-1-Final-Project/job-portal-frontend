@@ -1,42 +1,45 @@
 <!-- home.component.html -->
+
+<pre>{{ jobs|json }}</pre>
 <div class="home-container grid justify-content-center p-3">
   <div class="container col-9">
-    <h3>Your bookmarked jobs (1)</h3>
+    <h3>{{ jobs ?'Your bookmarked jobs ('+jobs[0].totalSaveJob+')' : "You haven't saved any jobs." }}</h3>
     <span>
       Don't forget these jobs that you have bookmarked before. Apply early and increase your chances to be hired!
     </span>
     <div class="content grid">
-      <p-card class="col-12 md:col-6 mt-4" *ngFor="let industry of companyIndustries">
+      <p-card class="col-12 md:col-6 mt-4" *ngFor="let j of jobs">
         <div class="thumbnail grid">
           <div class="col-4 justify-content-center align-content-center">
             <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image" width="100"
               [preview]="true"></p-image>
           </div>
           <div class="title col-8 grid">
-            <span class="col-10">Software Engineering Lead</span>
-            <i class="pi pi-heart-fill col-2 flex justify-content-end" style="color: deeppink"></i>
-            <a routerLink="" class="col-12 text-primary" style="text-decoration: none;">PT Mirae Assset Sekuritas</a>
+            <span class="col-10">{{ j.jobTitle }}</span>
+            <i class="pi pi-heart-fill col-2 flex justify-content-end" style="color: deeppink" (click)="deleteSaveJob(j.id,$event)"></i>
+            <a routerLink="/companies/detail/{{ j.id }}" class="col-12 text-primary" style="text-decoration: none;">{{ j.companyName }}</a>
           </div>
         </div>
         <div class="city">
           <i class="pi pi-map-marker"></i>
           <span>
-            Jakarta Selatan
+            {{ j.cityName }}
           </span>
         </div>
         <div class="Salary">
           <i class="pi pi-dollar"></i>
-          <span> 3000000 -</span>
-          <span> 7000000</span>
+          <span> {{ j.salaryStart }}</span>
+          <span>{{ " - " }}</span>
+          <span> {{ j.salaryEnd }}</span>
         </div>
         <div class="Industry">
           <i class="pi pi-building"></i>
-          <span> Financial Service</span>
+          <span>{{ j.industryName }}</span>
         </div>
         <ng-template pTemplate="footer">
           <small>
             <i class="pi pi-clock"></i>
-            <span> Diperbaharui 31 hari yang lalu</span>
+            <span> Diperbaharui {{ j.updatedAt }} hari yang lalu</span>
           </small>
         </ng-template>
       </p-card>
