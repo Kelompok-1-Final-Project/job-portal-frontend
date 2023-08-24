@@ -4,6 +4,7 @@ import { BenefitService } from '@serviceAdmin/benefit.service';
 import { Title } from '@angular/platform-browser';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'benefit-list',
@@ -40,21 +41,21 @@ export class BenefitListComponent implements OnInit {
   }
 
   getAllBenefit() {
-    this.benefitService.getAll().subscribe(result => {
+    firstValueFrom(this.benefitService.getAll()).then(result => {
       this.benefits = result
     })
   }
 
   insertBenefit(){
     const data = this.benefitInsertReqDto.getRawValue()
-    this.benefitService.insert(data).subscribe(result => {
+    firstValueFrom(this.benefitService.insert(data)).then(result => {
       this.visibleAdd = false
     })
   }
 
   updateBenefit(){
     const data = this.benefitUpdateReqDto.getRawValue()
-    this.benefitService.update(data).subscribe(result =>{
+    firstValueFrom(this.benefitService.update(data)).then(result =>{
       this.visibleUpdate = false
       this.router.navigateByUrl('/benefits')
     })

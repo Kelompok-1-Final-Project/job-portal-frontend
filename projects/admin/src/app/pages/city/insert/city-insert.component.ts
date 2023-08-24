@@ -3,6 +3,7 @@ import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { CityService } from "@serviceAdmin/city.service";
+import { firstValueFrom } from "rxjs";
 
 @Component({
     selector: 'city-insert',
@@ -29,7 +30,7 @@ export class CityInsertComponent implements OnInit {
 
     insertCity() {
         const data = this.cityInsertReqDto.getRawValue()
-        this.cityService.insert(data).subscribe(result => {
+        firstValueFrom(this.cityService.insert(data)).then(result => {
             this.router.navigateByUrl('/cities')
         })
     }

@@ -1,9 +1,16 @@
 <div class="container">
     <form>
         <div class="card-container flex flex-wrap justify-content-start align-items-center" style="min-height: 700px">
-            <button pRipple pButton label="Back" class="p-button-secondary" routerLink="/job-vacancies"></button>
             <div class="flex col-12">
-                <h2 class="text-center text-3xl font-bold mb-6">Vacancy Information</h2>
+                <h1 class="text-center font-bold">Vacancy Information</h1>
+            </div>
+            <div class="col-12">
+                <div class="grid justify-content-start">
+                    <button pRipple pButton icon="pi pi-arrow-left" style="margin-right: 0.3rem;" label="Back"
+                        class="p-button-secondary" routerLink="/job-vacancies"></button>
+                    <button pRipple pButton icon="pi pi-pencil" label="Update" class="p-button-primary"
+                        routerLink="/job-vacancies/update/{{job.id}}"></button>
+                </div>
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
                 <label class="text-sm font-medium">Vacancy Title</label>
@@ -73,9 +80,6 @@
                                 <td>{{row.jobName}}</td>
                                 <td>{{row.statusName}}</td>
                                 <td>
-                                    <button pButton pRipple style="margin-right: 0.3rem;" icon="pi pi-pencil"
-                                        pTooltip="Insert Notes" tooltipPosition="top"
-                                        *ngIf="isInterview(row.statusCode)"></button>
                                     <p-dropdown [options]="status" appendTo="body" optionValue="progressCode"
                                         optionLabel="progressName" [ngModel]="row.statusCode"
                                         [ngModelOptions]="{standalone: true}"
@@ -141,7 +145,7 @@
 </div>
 
 <!-- Modal Assessment-->
-<p-dialog header="Add Data Assessment" [(visible)]="visibleAssessment" [style]="{ width: '30vw' }">
+<p-dialog header="Add Data Assessment" [modal]="true" [(visible)]="visibleAssessment" [style]="{ width: '30vw' }">
     <pre>{{assessmentInsertReqDto.value | json}}</pre>
     <form [formGroup]="assessmentInsertReqDto" (ngSubmit)="insertAssessment()">
         <div class="grid surface-card border-round-sm border-400">
@@ -159,7 +163,7 @@
 </p-dialog>
 
 <!-- Modal Interview-->
-<p-dialog header="Add Data Interview" [(visible)]="visibleInterview" [style]="{ width: '30vw' }">
+<p-dialog header="Add Data Interview" [modal]="true" [(visible)]="visibleInterview" [style]="{ width: '30vw' }">
     <pre>{{interviewInsertReqDto.value | json}}</pre>
     <form [formGroup]="interviewInsertReqDto" (ngSubmit)="insertInterview()">
         <div class="grid surface-card border-round-sm border-400">
@@ -177,7 +181,7 @@
 </p-dialog>
 
 <!-- Modal MCU-->
-<p-dialog header="Add Data Medical Checkup" [(visible)]="visibleMcu" [style]="{ width: '30vw' }">
+<p-dialog header="Add Data Medical Checkup" [modal]="true" [(visible)]="visibleMcu" [style]="{ width: '30vw' }">
     <pre>{{medicalcheckupInsertReqDto.value | json}}</pre>
     <form [formGroup]="medicalcheckupInsertReqDto" (ngSubmit)="insertMcu()">
         <div class="grid surface-card border-round-sm border-400">
@@ -193,7 +197,7 @@
 </p-dialog>
 
 <!-- Modal Offering-->
-<p-dialog header="Add Data Offering" [(visible)]="visibleOffering" [style]="{ width: '30vw' }">
+<p-dialog header="Add Data Offering" [modal]="true" [(visible)]="visibleOffering" [style]="{ width: '30vw' }">
     <pre>{{offeringInsertReqDto.value | json}}</pre>
     <form [formGroup]="offeringInsertReqDto" (ngSubmit)="insertOffering()">
         <div class="grid surface-card border-round-sm border-400">
@@ -209,7 +213,7 @@
 </p-dialog>
 
 <!-- Modal Hired-->
-<p-dialog header="Add Data Hired" [(visible)]="visibleHired" [style]="{ width: '30vw' }">
+<p-dialog header="Add Data Hired" [modal]="true" [(visible)]="visibleHired" [style]="{ width: '30vw' }">
     <pre>{{hiredInsertReqDto.value | json}}</pre>
     <form [formGroup]="hiredInsertReqDto" (ngSubmit)="insertHired()">
         <div class="grid surface-card border-round-sm border-400">
@@ -225,7 +229,7 @@
 </p-dialog>
 
 <!-- Modal Rejected-->
-<p-dialog header="Add Data Rejected" [(visible)]="visibleRejected" [style]="{ width: '30vw' }">
+<p-dialog header="Add Data Rejected" [modal]="true" [(visible)]="visibleRejected" [style]="{ width: '30vw' }">
     <pre>{{rejectedInsertReqDto.value | json}}</pre>
     <form [formGroup]="rejectedInsertReqDto" (ngSubmit)="insertRejected()">
         <div class="grid surface-card border-round-sm border-400">

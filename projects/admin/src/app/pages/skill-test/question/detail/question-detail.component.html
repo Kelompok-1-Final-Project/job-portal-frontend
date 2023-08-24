@@ -33,7 +33,7 @@
 </div>
 
 <!-- Modal Update-->
-<p-dialog header="Update Question" [(visible)]="visibleUpdateQuestion" [style]="{ width: '30vw' }">
+<p-dialog header="Update Question" [modal]="true" [(visible)]="visibleUpdateQuestion" [style]="{ width: '30vw' }">
   <pre>{{questionUpdateReqDto.value | json}}</pre>
   <form [formGroup]="questionUpdateReqDto" (ngSubmit)="updateQuestion()">
     <div class="grid surface-card border-round-sm border-400">

@@ -5,6 +5,7 @@ import {
 import { Title } from '@angular/platform-browser';
 import { HiredGetResDto } from '@dto/hired/hired.get.res.dto';
 import { StatusProgressService } from '@serviceAdmin/statusprogress.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'hired-list',
@@ -27,7 +28,7 @@ export class HiredListComponent implements OnInit {
   }
 
   getHired(){
-    this.statusProgressService.getHired().subscribe(result => {
+    firstValueFrom(this.statusProgressService.getHired()).then(result => {
       this.hired = result
     })
   }

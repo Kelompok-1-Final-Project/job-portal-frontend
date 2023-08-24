@@ -6,6 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { CandidateProgressGetResDto } from '@dto/candidateprogress/candidate-progress.get.res.dto';
 import { StatusProgressGetResDto } from '@dto/progress/status-progress.get.res.dto';
 import { StatusProgressService } from '@serviceAdmin/statusprogress.service';
+import { firstValueFrom } from 'rxjs';
 
 interface City {
   name: string;
@@ -35,13 +36,13 @@ export class AllCandidateListComponent implements OnInit {
   }
 
   getStatus() {
-    this.statusProgressService.getStatus().subscribe(result => {
+    firstValueFrom(this.statusProgressService.getStatus()).then(result => {
       this.status = result
     })
   }
 
   getCandidateStatus() {
-    this.statusProgressService.getCandidateStatus().subscribe(result => {
+    firstValueFrom(this.statusProgressService.getCandidateStatus()).then(result => {
       this.candidates = result
     })
   }

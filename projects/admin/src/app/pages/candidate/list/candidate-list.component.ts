@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { CandidateService } from "@serviceAdmin/candidate.service";
 import { Title } from "@angular/platform-browser";
 import { CandidateGetResDto } from "@dto/candidate/candidate.get.res.dto";
+import { first, firstValueFrom } from "rxjs";
 
 interface Candidates {
   nik: string,
@@ -67,14 +68,10 @@ export class CandidateListComponent implements OnInit {
   }
 
   getAllCandidate() {
-    this.candidateService.getAll().subscribe(result => {
+    firstValueFrom(this.candidateService.getAll()).then(result => {
       this.candidates = result
     })
   }
-
-  // getPhotoUrl(base64String: string): string {
-  //     return 'data:image/jpeg;base64,' + base64String;
-  //   }
 
   assign(id: number) {
     this.visibleAssign = true;

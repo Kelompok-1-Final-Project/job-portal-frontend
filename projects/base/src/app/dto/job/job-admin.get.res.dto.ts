@@ -1,23 +1,17 @@
 export interface JobAdminGetResDto{
-    id: string
+    id : string
 	jobTitle: string
+	jobCode : string
+	hrId: string 
+	interviewerId: string
+	positionName: string
 	salaryStart: number
 	salaryEnd: number
-	description: string
 	endDate: string
-	companyId:string
 	companyName: string
-	companyPhoto: string
-	industryName: string
-	cityName: string
-	positionName: string
-	statusName: string
 	employmentName: string
-	createdAt: string
-	updatedAt: string
-	ver: string
-	totalJob:number;
-	isBookmark:boolean;
-	isApply:boolean;
-	saveJobId:string;
+	statusName: string
+	description: string
+	hrName: string
+	interviewerName: string
 }

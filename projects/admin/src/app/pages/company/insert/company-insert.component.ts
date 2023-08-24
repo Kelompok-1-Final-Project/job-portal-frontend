@@ -1,5 +1,5 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy } from "@angular/core";
-import { FormArray, NonNullableFormBuilder, Validators } from "@angular/forms";
+import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { CityGetResDto } from "@dto/city/city.get.res.dto";
@@ -8,19 +8,16 @@ import { CityService } from "@serviceAdmin/city.service";
 import { CompanyService } from "@serviceAdmin/company.service";
 import { IndustryService } from "@serviceAdmin/industry.service";
 import { FileUpload } from "primeng/fileupload";
-import { Subscription } from "rxjs";
+import { Subscription, firstValueFrom } from "rxjs";
 
 @Component({
   selector: 'company-insert',
   templateUrl: './company-insert.component.html'
 })
-export class CompanyInsertComponent implements AfterViewChecked, OnDestroy {
+export class CompanyInsertComponent implements AfterViewChecked {
 
   industries!: IndustryGetResDto[]
   cities!: CityGetResDto[]
-  companySubscription?: Subscription
-  industrySubcription?: Subscription
-  citySubscription?: Subscription
 
   companyInsertReqDto = this.fb.group({
     companyName: ['', [Validators.required]],
@@ -53,25 +50,21 @@ export class CompanyInsertComponent implements AfterViewChecked, OnDestroy {
     this.cd.detectChanges()
   }
 
-  ngOnDestroy(): void {
-    this.companySubscription?.unsubscribe()
-  }
-
   insertCompany() {
     const data = this.companyInsertReqDto.getRawValue()
-    this.companySubscription = this.companyService.insert(data).subscribe(result => {
+    firstValueFrom(this.companyService.insert(data)).then(result => {
       this.router.navigateByUrl('/companies')
     })
   }
 
   getIndustry() {
-    this.industrySubcription = this.industryService.getAll().subscribe(result => {
+    firstValueFrom(this.industryService.getAll()).then(result => {
       this.industries = result
     })
   }
 
   getCity() {
-    this.citySubscription = this.cityService.getAll().subscribe(result => {
+    firstValueFrom(this.cityService.getAll()).then(result => {
       this.cities = result
     })
   }
