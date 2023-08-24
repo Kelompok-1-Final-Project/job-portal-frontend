@@ -6,8 +6,9 @@
     <div class="grid justify-content-end mb-3">
       <button routerLink="create" pButton pRipple class="p-button-primary" label="Add Question"></button>
     </div>
-    <p-table [value]="questions" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }"
-      selectionMode="single">
+    <p-table [value]="questions" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>

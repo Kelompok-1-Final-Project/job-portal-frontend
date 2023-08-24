@@ -31,6 +31,9 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     visibleOffering: boolean = false
     visibleHired: boolean = false
     visibleRejected: boolean = false
+    visibleDeleteQuestion: boolean = false
+    testCode!: string
+    questionCode!: string
 
     assessmentInsertReqDto = this.fb.group({
         candidateId: ['', [Validators.required]],
@@ -211,5 +214,19 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
 
     cancelRejected() {
         this.visibleRejected = false
+    }
+
+    questionModal(){
+        this.visibleDeleteQuestion = true
+    }
+
+    cancelDeleteQuestion(){
+        this.visibleDeleteQuestion = false
+    }
+
+    deleteQuestionJob(){
+        firstValueFrom(this.jobService.deleteQuestion(this.testCode, this.questionCode)).then(result => {
+            this.visibleDeleteQuestion = false
+        })
     }
 }

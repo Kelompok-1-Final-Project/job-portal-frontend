@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { SkillGetResDto } from '@dto/skill/skill.get.res.dto';
 import { SkillService } from '@serviceAdmin/skill.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'skill-list',
@@ -65,7 +66,7 @@ export class SkillListComponent implements OnInit {
 
   updateSkill(){
     const data = this.skillUpdateReqDto.getRawValue()
-    this.skillService.update(data).subscribe(result =>{
+    firstValueFrom(this.skillService.update(data)).then(result =>{
       this.visibleUpdate = false
     })
   }

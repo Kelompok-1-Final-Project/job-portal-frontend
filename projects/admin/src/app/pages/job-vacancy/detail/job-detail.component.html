@@ -58,6 +58,20 @@
         </div>
 
         <p-tabView>
+            <p-tabPanel header="Job Benefit">
+                <div class="container">
+                    <h3>Job Benefit</h3>
+                    <div class="question-details">
+                        <h4 class="detail-heading">List:</h4>
+                        <ul>
+                            <li *ngFor="let o of test.questionGetResDtos[0].optionGetResDtos">
+                                <span>{{o.label}} </span>
+                                <span class="option-answer">({{o.isAnswer}})</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </p-tabPanel>
             <p-tabPanel header="Candidate Status">
                 <div class=" grid justify-content-center col-12">
                     <h3 class="text-center">All Candidate Progress</h3>
@@ -103,14 +117,21 @@
                         <div class="question">
                             <h4 class="detail-heading">Questions:</h4>
                             <div *ngFor="let q of test.questionGetResDtos; let i = index">
-                                <p>{{i+1}}. {{q.question}}</p>
-                                <ul>
-                                    <li *ngFor="let o of q.optionGetResDtos">
-                                        <span>{{o.label}} </span>
-                                        <span class="option-answer">({{o.isAnswer}})</span>
-                                    </li>
-                                </ul>
+                                <p-accordion [multiple]="true" [activeIndex]="[0]">
+                                    <p-accordionTab header="Question {{i+1}}">
+                                        <p>{{i+1}}. {{q.question}}</p>
+                                        <ul>
+                                            <li *ngFor="let o of q.optionGetResDtos">
+                                                <span>{{o.label}} </span>
+                                                <span class="option-answer">({{o.isAnswer}})</span>
+                                            </li>
+                                        </ul>
+                                        <button pButton pRipple class="p-button-danger" icon="pi pi-trash"
+                                            pTooltip="Delete Question" tooltipPosition="top" (click)="questionModal()"></button>
+                                    </p-accordionTab>
+                                </p-accordion>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -239,6 +260,23 @@
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
                 <button type="submit" pButton pRipple class="p-button-primary">Yes</button>
                 <button type="button" pButton pRipple class="p-button-secondary" (click)="cancelRejected()">No</button>
+            </div>
+        </div>
+    </form>
+</p-dialog>
+
+<!-- Modal Delete Question-->
+<p-dialog header="Delete Question" [modal]="true" [(visible)]="visibleDeleteQuestion" [style]="{ width: '30vw' }">
+    <form (ngSubmit)="deleteQuestionJob()">
+        <div class="grid surface-card border-round-sm border-400">
+            <div class="col-12">
+                <h3 for="inputName">Apakah anda ingin menghapus question dari job?</h3>
+            </div>
+            <div class="flex flex-wrap justify-content-end mt-2 col-12">
+                <button type="submit" pButton pRipple class="p-button-primary"
+                    style="margin-right: 0.3rem;">Yes</button>
+                <button type="button" pButton pRipple class="p-button-secondary"
+                    (click)="cancelDeleteQuestion()">No</button>
             </div>
         </div>
     </form>
