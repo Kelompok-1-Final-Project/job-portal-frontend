@@ -7,7 +7,7 @@
       <div class="p-2 md:p-1">
         <div class="grid">
           <div class="">
-            <img src="https://via.placeholder.com/150" alt="Foto Profil">
+            <img src="{{ userData.photoId|urlCandidate}}" alt="Foto Profil">
           </div>
           <div class="col-8">
             <div class="info grid">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="years-old">
                   <div class="font-semibold text-gray-500">Years Old</div>
-                  <div class="mb-3">{{ userData.age ? userData.age+' years old':'-' }}</div>
+                  <div class="mb-3">{{ userData.age ? userData.age:'-' }}</div>
                 </div>
               </div>
               <div class="right-info col-6 p-3">
@@ -49,7 +49,7 @@
                 </div>
                 <div class="expected-salary">
                   <div class="font-semibold text-gray-500">Expected Salary</div>
-                  <div class="mb-3">{{ userData.expectedSalary ? userData.expectedSalary:'-' }}</div>
+                  <div class="mb-3">{{ userData.expectedSalary ? 'Rp'+userData.expectedSalary:'-' }}</div>
                 </div>
                 <div class="cv-file">
                   <div class="font-semibold text-gray-500">CV File</div>
@@ -124,8 +124,7 @@
   <p-accordion class="col-10 md:col-8">
     <p-accordionTab header="Skills" [selected]="true">
       <div class="grid p-buttonset justify-content-center md:justify-content-end p-butto">
-        <button pButton type="button" icon="pi pi-plus ml-1" class="p-button-primary"
-          (click)="addSkill()">Add</button>
+        <button pButton type="button" icon="pi pi-plus ml-1" class="p-button-primary" (click)="addSkill()">Add</button>
         <button pButton type="button" icon="pi pi-pencil ml-1" class="p-button-success" (click)="updateSkill()">Edit
           Skill</button>
       </div>
@@ -197,14 +196,15 @@
 </div>
 
 <!-- Modal Edit User-->
-<p-dialog header="Edit Profile" [modal]="true" [(visible)]="visibleEditUser" [style]="{ width: '100vw' }">
+<p-dialog header="Edit Profile" [modal]="true" [(visible)]="visibleEditUser" [style]="{ width: '55vw' }">
   <pre>{{ candidateUpdateReqDto.value|json }}</pre>
   <form [formGroup]="candidateUpdateReqDto" (ngSubmit)="submitUpdateCandidate()">
     <div class="container">
       <div class="card-container grid justify-content-center align-items-center">
-        <div class="grid border-50 m-4 p-3 md:col-9 text">
+        <div class="grid border-50 m-4 p-3 md:col-10 text">
           <label for="formFile" class="col-12 md:col-3 form-label">Candidate Photo</label>
-          <p-fileUpload mode="basic" class="col-12 md:col-9" chooseLabel="Upload" accept="image/*" (onSelect)="fileUpload($event)">
+          <p-fileUpload mode="basic" class="col-12 md:col-9" chooseLabel="Upload" accept="image/*"
+            (onSelect)="fileUpload($event)">
           </p-fileUpload>
           <div class="col-12 md:col-3">
             <label for="nik">NIK</label>
@@ -228,21 +228,23 @@
             <label for="mobileNumber">Mobile Phone</label>
           </div>
           <div class="col-12 md:col-9">
-            <input pInputText type="text" class="form-control col-12" id="mobileNumber" required formControlName="mobileNumber">
+            <input pInputText type="text" class="form-control col-12" id="mobileNumber" required
+              formControlName="mobileNumber">
           </div>
           <div class="col-12 md:col-3">
             <label for="companyName">Gender</label>
           </div>
           <div class="col-12 md:col-9">
-          <p-dropdown [options]="gender" optionValue="genderCode" optionLabel="genderName"
-            formControlName="genderCode" styleClass="w-full">
-          </p-dropdown>
+            <p-dropdown [options]="gender" optionValue="genderCode" optionLabel="genderName"
+              formControlName="genderCode" styleClass="w-full">
+            </p-dropdown>
           </div>
           <div class="col-12 md:col-3">
             <label for="salary">Expected Salary</label>
           </div>
           <div class="col-12 md:col-9">
-            <p-inputNumber id="salary" inputId="percent" prefix="Rp" styleClass="w-full" formControlName="expectedSalary"> </p-inputNumber>
+            <p-inputNumber id="salary" inputId="percent" prefix="Rp" styleClass="w-full"
+              formControlName="expectedSalary"> </p-inputNumber>
           </div>
           <div class="col-12 md:col-3">
             <label for="companyAddress">Birthdate</label>
@@ -254,8 +256,8 @@
             <label for="companyName">Marital Status</label>
           </div>
           <div class="col-12 md:col-9">
-            <p-dropdown [options]="marital" optionValue="maritalStatusCode" optionLabel="maritalStatusName" styleClass="w-full"
-              formControlName="maritalStatusCode">
+            <p-dropdown [options]="marital" optionValue="maritalStatusCode" optionLabel="maritalStatusName"
+              styleClass="w-full" formControlName="maritalStatusCode">
             </p-dropdown>
           </div>
           <div class="flex flex-wrap justify-content-end mt-2 col-12">
@@ -427,29 +429,29 @@
 <p-dialog header="Add Skill" [modal]="true" [(visible)]="visibleAddSkill" [style]="{ width: '40vw' }">
   <pre>{{ skillCandidateReqDto.value|json}}</pre>
   <form [formGroup]="skillCandidateReqDto" (ngSubmit)="submitAddSkillCandidate()">
-    
-  <div class="grid surface-card border-round-sm border-400">
-    <div class="col-12 md:col-3">
-      <label for="inputName">Skill Name<span class="text-red-500">*</span></label>
+
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Skill Name<span class="text-red-500">*</span></label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-dropdown placeholder="Select Skill" [options]="allSkill" [filter]="true" optionValue="id"
+          optionLabel="skillName" id="inputName" formControlName="skillId" [editable]="true" styleClass="w-full">
+        </p-dropdown>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputLevel">Skill Level<span class="text-red-500">*</span></label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-dropdown placeholder="Select Level" [options]="level" optionValue="id" optionLabel="levelName"
+          id="inputLevel" formControlName="levelId" styleClass="w-full">
+        </p-dropdown>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+      </div>
     </div>
-    <div class="col-12 md:col-9">
-      <p-dropdown placeholder="Select Skill" [options]="allSkill" [filter]="true" optionValue="id" optionLabel="skillName" id="inputName"
-          formControlName="skillId" [editable]="true" styleClass="w-full">
-      </p-dropdown>
-    </div>
-    <div class="col-12 md:col-3">
-      <label for="inputLevel">Skill Level<span class="text-red-500">*</span></label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-dropdown placeholder="Select Level" [options]="level" optionValue="id" optionLabel="levelName" id="inputLevel"
-          formControlName="levelId" styleClass="w-full">
-      </p-dropdown>
-    </div>
-    <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
-    </div>
-  </div>
-</form>
+  </form>
 </p-dialog>
 
 <!-- Modal Update Skill-->
@@ -461,11 +463,13 @@
         <input pInputText value="{{ s.skillName }}" class="col-12 " disabled>
       </div>
       <div class="mb-2">
-        <p-dropdown [options]="level" placeholder="{{ s.levelName }}" optionValue="levelCode" optionLabel="levelName" styleClass="w-full"></p-dropdown>
+        <p-dropdown [options]="level" placeholder="{{ s.levelName }}" optionValue="levelCode" optionLabel="levelName"
+          styleClass="w-full"></p-dropdown>
       </div>
     </div>
     <div class="col-12 md:col-3">
-      <button pButton type="submit" icon="pi pi-trash" class="p-button-danger mb-2" (click)="deleteSkill(s.id)"></button>
+      <button pButton type="submit" icon="pi pi-trash" class="p-button-danger mb-2"
+        (click)="deleteSkill(s.id)"></button>
     </div>
   </div>
 </p-dialog>
@@ -579,6 +583,7 @@
 
 <!-- Modal Add Family -->
 <p-dialog header="Add Family" [modal]="true" [(visible)]="visibleAddFamily" [style]="{ width: '30vw' }">
+  <pre>{{ familyInsertReqDto.value|json}}</pre>
   <form [formGroup]="familyInsertReqDto" (ngSubmit)="insertFamily()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
@@ -663,7 +668,8 @@
       <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary" (click)="submitDeleteFamily()">Submit</button>
+      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary"
+        (click)="submitDeleteFamily()">Submit</button>
     </div>
   </div>
 </p-dialog>

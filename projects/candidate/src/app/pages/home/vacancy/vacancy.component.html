@@ -13,16 +13,16 @@
         </h4>
         <div class="search-options grid col-12 justify-content-between mt-3">
           <div class="col-12 md:col-3">
-            <input pInputText type="text" placeholder="Search Job">
+            <input pInputText type="text" placeholder="Search Job" formControlName="jobName" [style]="{'width':'100%'}">
           </div>
           <div class="col-12 md:col-3">
             <p-dropdown placeholder="Location" [options]="locations" [filter]="true" optionValue="cityId"
-              optionLabel="cityName" formControlName="location" [editable]="true" styleClass="w-full">
+              optionLabel="cityName" formControlName="location"[showClear]="true"  styleClass="w-full">
             </p-dropdown>
           </div>
           <div class="col-12 md:col-3">
             <p-dropdown placeholder="Position" [options]="positions" [filter]="true" optionValue="id"
-              optionLabel="positionName" formControlName="position" [editable]="true" styleClass="w-full">
+              optionLabel="positionName" formControlName="position"[showClear]="true" styleClass="w-full">
             </p-dropdown>
           </div>
           <div class="col-12 text-center md:col-1">
@@ -72,44 +72,43 @@
       </div>
 
       <div class="content col-12 md:col-9 grid">
-        <p-card class="col-12 md:col-6 mt-4" *ngFor="let job of jobs">
-          <a routerLink="/home/detail/{{job.id}}">
-            <div class="thumbnail grid ">
-              <div class="col-4 justify-content-center align-content-center">
-                <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image" width="100"
-                  [preview]="true"></p-image>
-              </div>
-              <div class="title col-8 grid">
-                <span class="col-10">{{ job.jobTitle }}</span>
-                <!-- <i class="pi pi-heart col-2 flex justify-content-end"></i> -->
-                <i class="pi pi-heart-fill col-2 flex justify-content-end"
-                  [style.color]="job.isBookmark ? 'red' : 'black'"
-                  (click)="changeSaveJob(job.id,job.isBookmark,job.saveJobId,$event)"></i>
+        <p-card class="col-12 md:col-6 mt-4" *ngFor="let job of jobs"  routerLink="/home/detail/{{job.id}}" >
+          <div class="thumbnail grid ">
+            <div class="col-4 justify-content-center align-content-center">
+              <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image" width="100"
+                [preview]="true"></p-image>
+            </div>
+            <div class="title col-8 grid">
+              <span class="col-10">{{ job.jobTitle }}</span>
+              <i class="pi pi-heart col-2 flex justify-content-end" *ngIf="!job.isBookmark" (click)="changeSaveJob(job.id,job.isBookmark,job.saveJobId,$event)" style="color: darkgrey;"></i>
+              <i class="pi pi-heart-fill col-2 flex justify-content-end" *ngIf="job.isBookmark" (click)="changeSaveJob(job.id,job.isBookmark,job.saveJobId,$event)" style="color: red;"></i>
+              <span class="col-10">
                 <a routerLink="/companies/detail/{{ job.companyId }}" class="text-primary">{{ job.companyName }}</a>
-              </div>
-            </div>
-            <div class="city">
-              <i class="pi pi-map-marker"></i>
-              <span>
-                {{ job.cityName }}
               </span>
+              
             </div>
-            <div class="Salary">
-              <i class="pi pi-dollar"></i>
-              <span> {{ job.salaryStart }} -</span>
-              <span> {{ job.salaryEnd }}</span>
-            </div>
-            <div class="Industry">
-              <i class="pi pi-building"></i>
-              <span>{{ job.industryName }}</span>
-            </div>
-            <div class="footer">
-              <small>
-                <i class="pi pi-clock"></i>
-                <span> Dibuat {{ job.createdAt }} hari yang lalu</span>
-              </small>
-            </div>
-          </a>
+          </div>
+          <div class="city">
+            <i class="pi pi-map-marker"></i>
+            <span>
+              {{ job.cityName }}
+            </span>
+          </div>
+          <div class="Salary">
+            <i class="pi pi-dollar"></i>
+            <span> {{ job.salaryStart }} -</span>
+            <span> {{ job.salaryEnd }}</span>
+          </div>
+          <div class="Industry">
+            <i class="pi pi-building"></i>
+            <span>{{ job.industryName }}</span>
+          </div>
+          <div class="footer">
+            <small>
+              <i class="pi pi-clock"></i>
+              <span> Dibuat {{ job.createdAt }} hari yang lalu</span>
+            </small>
+          </div>
         </p-card>
       </div>
     </div>

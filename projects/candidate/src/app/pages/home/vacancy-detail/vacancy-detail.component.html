@@ -46,7 +46,9 @@
             </span>
           </button>
           <button type="submit" pButton pRipple class="p-button-primary col-3 text-center">
-            <i class="pi pi-share-alt m-1"></i> Bagikan
+            <span class="col-12">
+              <i class="pi pi-share-alt m-1"></i> Bagikan
+            </span>
           </button>
         </div>
       </div>
@@ -61,6 +63,7 @@
           <h3>
             Benefit
           </h3>
+          <span *ngIf="!benefits[0]"> - </span>
           <div *ngFor="let benefit of benefits; let i = index">
             <input type="checkbox" class="p-disabled">
             <label>{{ benefit.benefitName }}</label>

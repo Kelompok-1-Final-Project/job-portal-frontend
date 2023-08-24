@@ -56,9 +56,9 @@ export class HomeComponent implements OnInit {
   })
 
   carouselImages = [
-    'https://www.istockphoto.com/id/foto/lanskap-gunung-gm517188688-89380423?phrase=alam%20dan%20lanskap',
-    'url-to-image-2',
-    'url-to-image-3'
+    'carousel-1.jpg',
+    'carousel-2.jpg',
+    'carousel-3.jpg',
   ];
 
   getAllIndustry() {

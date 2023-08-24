@@ -2,9 +2,24 @@ import {
   Component,
   OnInit
 } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { StageProgressGetResDto } from '@dto/progress/status-progress-user.get.res.dto';
-import { StatusProgressService } from '@serviceCandidate/statusprogress.service';
+import {
+  Title
+} from '@angular/platform-browser';
+import {
+  StageProgressGetResDto
+} from '@dto/progress/status-progress-user.get.res.dto';
+import {
+  UserEmailResDto
+} from '@dto/user/user-email-res.dto';
+import {
+  AuthService
+} from '@serviceCandidate/auth.service';
+import {
+  ProfileService
+} from '@serviceCandidate/profile.service';
+import {
+  StatusProgressService
+} from '@serviceCandidate/statusprogress.service';
 
 
 @Component({
@@ -12,17 +27,21 @@ import { StatusProgressService } from '@serviceCandidate/statusprogress.service'
   templateUrl: './list-app.component.html'
 })
 export class ApplicationComponent implements OnInit {
-  
-  userEmail:string='torang@gmail.com';
-  applications!:StageProgressGetResDto[];
-  assesments!:StageProgressGetResDto[];
-  interview!:StageProgressGetResDto[];
-  hired!:StageProgressGetResDto[];
-  offering!:StageProgressGetResDto[];
+
+  userId: string = '';
+  userEmail: string = '';
+  userEmailDto!: UserEmailResDto;
+  applications!: StageProgressGetResDto[];
+  assesments!: StageProgressGetResDto[];
+  interview!: StageProgressGetResDto[];
+  hired!: StageProgressGetResDto[];
+  offering!: StageProgressGetResDto[];
 
   constructor(
-    private statusService : StatusProgressService,
-    private title : Title,
+    private authService: AuthService,
+    private statusService: StatusProgressService,
+    private profileService: ProfileService,
+    private title: Title,
   ) {
     this.title.setTitle('Status Progress');
   }
@@ -39,11 +58,21 @@ export class ApplicationComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getAllApplication();
-    this.getAllAssesment();
-    this.getAllHired();
-    this.getAllInterview();
-    this.getAllOffering();
+    this.userId = this.authService.getUserId();
+
+    this.getUserEmail();
+  }
+
+  getUserEmail() {
+    this.profileService.getEmailUser(this.userId).subscribe(result => {
+      this.userEmailDto = result
+      this.userEmail = result.email
+      this.getAllApplication();
+      this.getAllAssesment();
+      this.getAllHired();
+      this.getAllInterview();
+      this.getAllOffering();
+    })
   }
 
   getAllApplication() {

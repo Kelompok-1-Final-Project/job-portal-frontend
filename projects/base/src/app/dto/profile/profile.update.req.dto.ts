@@ -4,7 +4,7 @@ export interface ProfileUpdateReqDto{
 	fullName:string;
 	email:string;
 	birthdate:string;
-	phone:string;
+	mobileNumber:string;
 	photoExt:string;
 	photoFiles:string;
 	expectedSalary:number;

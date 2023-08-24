@@ -15,6 +15,8 @@ import {
 import {
   MenuItem
 } from 'primeng/api';
+import { AuthService } from "../../service/auth.service";
+import { BASE_URL_CAN } from "@constant/api.constant";
 
 @Component({
   selector: 'app-navbar',
@@ -23,21 +25,14 @@ import {
 
 export class NavbarComponent implements OnInit {
 
-  imgUrl!: number;
+  imgUrl!: string;
   roleCode!: string;
 
   constructor(
-    // private authService: AuthService,
+    private authService: AuthService,
     private router: Router
   ) { }
 
-  // ngOnInit():void{
-  //     const profile = this.authService.getProfile();
-  //     if(profile){
-  //         this.imgUrl = profile.photoId;
-  //             this.roleCode = profile.roleCode
-  //     }
-  // }
 
   logout(): void {
     localStorage.clear();
@@ -49,6 +44,13 @@ export class NavbarComponent implements OnInit {
   itemsCandidate : MenuItem[] | undefined;
 
   ngOnInit() {
+
+    const profilePhoto = this.authService.getUserPhoto();
+          if (profilePhoto!='') {
+            this.imgUrl = `${BASE_URL_CAN}/files/${profilePhoto}`;
+          } else {
+            this.imgUrl = '/assets/avatar.png';
+          }
 
     this.items = [{
       label: 'Ticketing - Torangto',

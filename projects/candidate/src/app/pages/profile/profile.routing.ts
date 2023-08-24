@@ -20,6 +20,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { ChipModule } from "primeng/chip";
 import {CalendarModule} from 'primeng/calendar';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
+import { UrlPipeCandidate } from "@pipes/url.pipe";
 
 
 
@@ -55,6 +56,7 @@ const routes : Routes = [
         ChipModule,
         CalendarModule,
         OverlayPanelModule,
+        UrlPipeCandidate,
         FileUploadModule
     ],
     exports : [

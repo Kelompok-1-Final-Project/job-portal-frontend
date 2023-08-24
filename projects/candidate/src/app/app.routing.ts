@@ -8,7 +8,7 @@ import { CommonModule } from "@angular/common";
 import { authValidation } from "projects/base/src/app/validation/auth.validation";
 import { BaseModule } from "@component/base/base.module";
 import { ButtonComponent } from "@component/button/button.component";
-import { UrlPipe } from "@pipes/url.pipe";
+import { UrlPipeCandidate } from "@pipes/url.pipe";
 import { SharedModuleComponent } from "@shared/shared.module";
 import { RegisterComponent } from "./pages/register/register.component";
 import { CardModule } from 'primeng/card';
@@ -79,7 +79,7 @@ const routes : Routes = [
         CommonModule,
         ButtonComponent,
         ReactiveFormsModule,
-        UrlPipe,
+        UrlPipeCandidate,
         CardModule,
         SharedModuleComponent
     ],
