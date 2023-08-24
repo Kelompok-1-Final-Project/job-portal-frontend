@@ -9,6 +9,7 @@
           <th>No</th>
           <th>Candidate Name</th>
           <th>File</th>
+          <th>Action</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-row let-i="rowIndex">
@@ -19,6 +20,9 @@
             <a href="path_to_mcu_file/{{ row.mcuFile }}" download>
               <button pButton icon="pi pi-download mr-2"> mcu.pdf</button>
             </a>
+          </td>
+          <td>
+            
           </td>
         </tr>
       </ng-template>

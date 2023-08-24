@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { CompanyGetResDto } from "@dto/company/company.get.res.dto";
 import { CompanyService } from "@serviceAdmin/company.service";
 import { Title } from "@angular/platform-browser";
+import { firstValueFrom } from "rxjs";
 
 @Component({
   selector: 'company-list',
@@ -23,7 +24,7 @@ export class CompanyListComponent implements OnInit {
   }
 
   getCompany() {
-    this.companyService.getAll().subscribe(result => {
+    firstValueFrom(this.companyService.getAll()).then(result => {
       this.companies = result
     })
   }

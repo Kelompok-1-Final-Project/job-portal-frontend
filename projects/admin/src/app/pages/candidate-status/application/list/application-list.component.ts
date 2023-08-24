@@ -1,7 +1,8 @@
-import {Component,OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ApplicationGetResDto } from '@dto/application/application.get.res.dto';
 import { StatusProgressService } from '@serviceAdmin/statusprogress.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'application-list',
@@ -9,13 +10,13 @@ import { StatusProgressService } from '@serviceAdmin/statusprogress.service';
 })
 export class ApplicationListComponent implements OnInit {
 
-  visibleUpdateStatus:boolean=false;
+  visibleUpdateStatus: boolean = false;
   application!: ApplicationGetResDto[]
 
   constructor(
     private title: Title,
     private statusProgressService: StatusProgressService
-  ){
+  ) {
     this.title.setTitle('Application | Job Portal Admin')
   }
 
@@ -23,8 +24,8 @@ export class ApplicationListComponent implements OnInit {
     this.getApplication()
   }
 
-  getApplication(){
-    this.statusProgressService.getApplication().subscribe(result => {
+  getApplication() {
+    firstValueFrom(this.statusProgressService.getApplication()).then(result => {
       this.application = result
     })
   }

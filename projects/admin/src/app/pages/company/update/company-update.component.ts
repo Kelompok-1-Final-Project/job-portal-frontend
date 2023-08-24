@@ -7,6 +7,7 @@ import { IndustryGetResDto } from "@dto/industry/industry.get.res.dto";
 import { CityService } from "@serviceAdmin/city.service";
 import { CompanyService } from "@serviceAdmin/company.service";
 import { IndustryService } from "@serviceAdmin/industry.service";
+import { firstValueFrom } from "rxjs";
 
 interface Country {
   name: string;
@@ -46,7 +47,7 @@ export class CompanyUpdateComponent {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(param =>{
+    firstValueFrom(this.route.params).then(param =>{
       this.code = param['id']
       this.getCity()
       this.getIndustry()
@@ -57,19 +58,19 @@ export class CompanyUpdateComponent {
 
   updateCompany() {
     const data = this.companyUpdateReqDto.getRawValue()
-    this.companyService.update(data).subscribe(result => {
+    firstValueFrom(this.companyService.update(data)).then(result => {
       this.router.navigateByUrl('/companies')
     })
   }
 
   getIndustry(){
-    this.industryService.getAll().subscribe(result => {
+    firstValueFrom(this.industryService.getAll()).then(result => {
       this.industries = result
     })
   }
 
   getCity(){
-    this.cityService.getAll().subscribe(result => {
+    firstValueFrom(this.cityService.getAll()).then(result => {
       this.cities = result
     })
   }

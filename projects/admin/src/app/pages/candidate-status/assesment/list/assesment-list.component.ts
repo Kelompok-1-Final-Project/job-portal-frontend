@@ -5,6 +5,7 @@ import {
 import { Title } from '@angular/platform-browser';
 import { AssessmentGetResDto } from '@dto/assessment/assessment.get.res.dto';
 import { StatusProgressService } from '@serviceAdmin/statusprogress.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'assesment-list',
@@ -27,7 +28,7 @@ export class AssesmentListComponent implements OnInit {
   }
 
   getAssessment(){
-    this.statusProgressService.getAssessment().subscribe(result => {
+    firstValueFrom(this.statusProgressService.getAssessment()).then(result => {
       this.assesments = result
     })
   }

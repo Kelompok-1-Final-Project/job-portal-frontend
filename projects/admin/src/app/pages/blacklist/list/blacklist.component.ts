@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { BlacklistGetResDto } from "@dto/blacklist/blacklist.get.res.dto";
 import { BlacklistService } from "@serviceAdmin/blacklist.service";
+import { firstValueFrom } from "rxjs";
 
 @Component({
   selector: 'blacklist',
@@ -23,7 +24,7 @@ export class BlacklistComponent implements OnInit {
   }
 
   getBlacklist() {
-    this.blacklistService.getAll().subscribe(result => {
+    firstValueFrom(this.blacklistService.getAll()).then(result => {
       this.blacklist = result
     })
   }

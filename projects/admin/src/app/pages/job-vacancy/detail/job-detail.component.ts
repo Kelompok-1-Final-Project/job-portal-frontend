@@ -11,6 +11,7 @@ import { ResultGetResDto } from "@dto/result/result.get.res.dto";
 import { JobService } from "@serviceAdmin/job.service";
 import { SkillTestService } from "@serviceAdmin/skilltest.service";
 import { StatusProgressService } from "@serviceAdmin/statusprogress.service";
+import { firstValueFrom } from "rxjs";
 
 @Component({
     selector: 'job-detail',
@@ -80,7 +81,7 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     }
 
     ngOnInit(): void {
-        this.route.params.subscribe(params => {
+        firstValueFrom(this.route.params).then(params => {
             this.id = params['id']
             this.getJobById()
             this.getStatus()
@@ -210,9 +211,5 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
 
     cancelRejected() {
         this.visibleRejected = false
-    }
-
-    isInterview(code: string) {
-        return code == ProgressStatus.INTERVIEW
     }
 }

@@ -3,6 +3,7 @@ import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, Router } from "@angular/router";
 import { CityService } from "@serviceAdmin/city.service";
+import { firstValueFrom } from "rxjs";
 
 @Component({
     selector: 'city-update',
@@ -35,7 +36,7 @@ export class CityUpdateComponent implements OnInit {
 
     ngOnInit(): void {
         // this.init();
-        this.activatedRoute.params.subscribe(param => {
+        firstValueFrom(this.activatedRoute.params).then(param => {
             this.code = param['id']
             this.cityUpdateReqDto.get('cityCode')?.setValue(this.code)
         })
@@ -43,7 +44,7 @@ export class CityUpdateComponent implements OnInit {
 
     updateCity(){
         const data = this.cityUpdateReqDto.getRawValue()
-        this.cityService.update(data).subscribe(result => {
+        firstValueFrom(this.cityService.update(data)).then(result => {
             this.router.navigateByUrl('cities')
         })
     }

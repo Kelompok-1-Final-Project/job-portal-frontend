@@ -1,105 +1,92 @@
-<form>
-  <!-- <pre>{{ companyInsertReqDto.value|json }}</pre> -->
+<pre>{{ jobUpdateReqDto.value|json }}</pre>
+
+<form [formGroup]="jobUpdateReqDto" (ngSubmit)="updateJob()">
   <div class="container">
     <div class="card-container w-screen flex flex-wrap justify-content-center align-items-center"
       style="min-height: 700px">
       <div class="grid shadow-8 m-4 surface-card border-round-sm border-400 p-3 md:col-9 text">
         <div class="flex col-12">
-          <h2 class="text-center">Vacancy Information</h2>
+          <h2 class="text-center">Update Vacancy</h2>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Vacancy Code</label>
         </div>
         <div class="col-12 md:col-4">
-          <input pInputText type="text" class="form-control col-12 p-disabled" value="JKASJD" id="companyName" aria-describedby="companyNameHelp"
-            required formControlName="companyName">
+          <input pInputText type="text" class="form-control col-12 p-disabled" value={{job.jobCode}} required>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Vacancy Title</label>
         </div>
         <div class="col-12 md:col-4">
           <input pInputText type="text" class="form-control col-12" id="companyName" aria-describedby="companyNameHelp"
-            required formControlName="companyName">
+            required formControlName="jobTitle">
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Position</label>
         </div>
         <div class="col-12 md:col-4">
-          <p-autoComplete class="col-12" [dropdown]="true" [suggestions]="filteredCountries" field="name">
-          </p-autoComplete>
+          <p-dropdown [options]="positions" optionLabel="positionName" optionValue="positionCode"
+            formControlName="jobPositionCode"></p-dropdown>
         </div>
         <div class="col-6 md:col-2">
           <label for="companyName" class="form-label">Salary</label>
         </div>
         <div class="col-6 md:col-4">
           <input pInputText type="text" class="form-control col-5" id="companyName" aria-describedby="companyNameHelp"
-            required formControlName="companyName">
+            required formControlName="salaryStart">
           <span class="col-2">To :</span>
           <input pInputText type="text" class="form-control col-5" id="companyName" aria-describedby="companyNameHelp"
-            required formControlName="companyName">
+            required formControlName="salaryEnd">
         </div>
         <div class="col-12 md:col-2">
           <label for="companyAddress" class="form-label">Published Time</label>
         </div>
         <div class="col-12 md:col-4">
-          <p-calendar [showIcon]="true"></p-calendar>
+          <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Company</label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown optionLabel="name"></p-dropdown>
-        </div>
-        <div class="flex col-12">
-          <h2 class="text-center">Vacancy Status</h2>
+          <input pInputText type="text" class="form-control col-12 p-disabled" value={{job.companyName}}>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Status</label>
         </div>
         <div class="col-12 md:col-4">
-          <p-autoComplete class="col-12" [dropdown]="true" [suggestions]="filteredCountries" field="name">
-          </p-autoComplete>
+          <p-dropdown [options]="status" optionLabel="statusName" optionValue="statusCode"
+            formControlName="jobStatusCode"></p-dropdown>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Hr Person in Contact<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-autoComplete class="col-12" [dropdown]="true" [suggestions]="filteredCountries" field="name">
-          </p-autoComplete>
+          <p-dropdown [options]="hr" optionLabel="fullName" optionValue="userId" formControlName="hrId"></p-dropdown>
         </div>
         <div class="col-12 md:col-2">
-          <label for="companyName" class="form-label">Interview in Contact<span style="color: red;">*</span></label>
+          <label for="companyName" class="form-label">Interviewer PIC<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-autoComplete class="col-12" [dropdown]="true" [suggestions]="filteredCountries" field="name">
-          </p-autoComplete>
+          <p-dropdown [options]="interviewer" optionLabel="fullName" optionValue="userId"
+            formControlName="interviewerId"></p-dropdown>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Employment Type<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-autoComplete class="col-12" [dropdown]="true" [suggestions]="filteredCountries" field="name">
-          </p-autoComplete>
+          <p-dropdown [options]="employment" optionLabel="typeName" optionValue="typeCode"
+            formControlName="employmentTypeCode"></p-dropdown>
         </div>
         <div class="flex col-12">
           <h2 class="text-center">Summary and Responsibility</h2>
         </div>
         <div class="col-12 md:col-4">
           <!-- <p-editor></p-editor> -->
-          <textarea pInputText name="" id="" cols="30" rows="10"></textarea>
-        </div>
-
-        <div class="flex col-12">
-          <h2 class="text-center">Benefit</h2>
-        </div>
-        <div class="col-12 md:col-6">
-          <p-autoComplete class="col-10" [dropdown]="true" [suggestions]="filteredCountries" field="name">
-          </p-autoComplete>
-          <button class="col-2" type="button" pButton pRipple class="p-button-primary" icon="pi pi-plus"></button>
+          <textarea pInputText cols="30" rows="10" formControlName="description"></textarea>
         </div>
 
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <button type="button" routerLink="/companies" pButton pRipple class="p-button-secondary mr-3"
+          <button type="button" routerLink="/job-vacancies" pButton pRipple class="p-button-secondary mr-3"
             icon="pi pi-angle-double-left">. Back to previous menu</button>
           <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
         </div>

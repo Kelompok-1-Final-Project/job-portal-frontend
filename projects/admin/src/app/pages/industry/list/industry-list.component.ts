@@ -4,6 +4,7 @@ import { IndustryService } from '@serviceAdmin/industry.service';
 import { Title } from '@angular/platform-browser';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'industry-list',
@@ -40,14 +41,14 @@ export class IndustryListComponent implements OnInit {
   }
 
   getAllIndustry() {
-    this.industryService.getAll().subscribe(result => {
+    firstValueFrom(this.industryService.getAll()).then(result => {
       this.industries = result
     })
   }
 
   insertIndustry() {
     const data = this.industryInsertReqDto.getRawValue()
-    this.industryService.insert(data).subscribe(result => {
+    firstValueFrom(this.industryService.insert(data)).then(result => {
       this.router.navigateByUrl('/industries')
       this.visibleAdd = false
     })
@@ -55,7 +56,7 @@ export class IndustryListComponent implements OnInit {
 
   updateIndustry() {
     const data = this.industryUpdateReqDto.getRawValue()
-    this.industryService.update(data).subscribe(result => {
+    firstValueFrom(this.industryService.update(data)).then(result => {
       this.visibleUpdate = false
     })
   }
