@@ -7,6 +7,7 @@ import { IndustryGetResDto } from "@dto/industry/industry.get.res.dto";
 import { CityService } from "@serviceAdmin/city.service";
 import { CompanyService } from "@serviceAdmin/company.service";
 import { IndustryService } from "@serviceAdmin/industry.service";
+import { FileUpload } from "primeng/fileupload";
 import { Subscription } from "rxjs";
 
 @Component({
@@ -17,18 +18,18 @@ export class CompanyInsertComponent implements AfterViewChecked, OnDestroy {
 
   industries!: IndustryGetResDto[]
   cities!: CityGetResDto[]
-  companySubscription!: Subscription
-  industrySubcription!: Subscription
-  citySubscription!: Subscription
+  companySubscription?: Subscription
+  industrySubcription?: Subscription
+  citySubscription?: Subscription
 
   companyInsertReqDto = this.fb.group({
-    companyName: [''],
-    industryCode: [''],
-    cityCode: [''],
-    ext: [''],
-    file: [''],
-    address: [''],
-    description: ['']
+    companyName: ['', [Validators.required]],
+    industryCode: ['', [Validators.required]],
+    cityCode: ['', [Validators.required]],
+    ext: ['', [Validators.required]],
+    file: ['', [Validators.required]],
+    address: ['', [Validators.required]],
+    description: ['', [Validators.required]]
   })
 
   constructor(
@@ -53,7 +54,7 @@ export class CompanyInsertComponent implements AfterViewChecked, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.companySubscription.unsubscribe()
+    this.companySubscription?.unsubscribe()
   }
 
   insertCompany() {
@@ -73,5 +74,30 @@ export class CompanyInsertComponent implements AfterViewChecked, OnDestroy {
     this.citySubscription = this.cityService.getAll().subscribe(result => {
       this.cities = result
     })
+  }
+
+  photosUpload(event: any, fileUpload: FileUpload) {
+    const toBase64 = (file: File) => new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        if (typeof reader.result === "string") resolve(reader.result)
+      };
+      reader.onerror = error => reject(error);
+    });
+
+    for (let file of event.files) {
+      toBase64(file).then(result => {
+        const resultBase64 = result.substring(result.indexOf(",") + 1, result.length)
+        const resultExtension = file.name.substring(file.name.indexOf(".") + 1, file.name.length)
+
+        this.companyInsertReqDto.patchValue({
+          file: resultBase64,
+          ext: resultExtension
+        })
+        fileUpload.clear();
+
+      })
+    }
   }
 }

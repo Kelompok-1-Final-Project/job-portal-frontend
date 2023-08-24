@@ -1,10 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { NonNullableFormBuilder } from "@angular/forms";
+import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 import { ProgressStatus } from "@constant/progress.enum";
 import { CandidateProgressGetResDto } from "@dto/candidateprogress/candidate-progress.get.res.dto";
-import { JobGetResDto } from "@dto/job/job.get.res.dto";
+import { JobAdminGetResDto } from "@dto/job/job-admin.get.res.dto";
 import { StatusProgressGetResDto } from "@dto/progress/status-progress.get.res.dto";
 import { TestGetResDto } from "@dto/question/test.get.res.dto";
 import { ResultGetResDto } from "@dto/result/result.get.res.dto";
@@ -16,10 +16,10 @@ import { StatusProgressService } from "@serviceAdmin/statusprogress.service";
     selector: 'job-detail',
     templateUrl: 'job-detail.component.html'
 })
-export class JobDetailComponent implements OnInit {
+export class JobDetailComponent implements OnInit, AfterViewChecked {
 
     id!: string
-    job!: JobGetResDto
+    job!: JobAdminGetResDto
     candidates!: CandidateProgressGetResDto[]
     status!: StatusProgressGetResDto[]
     test!: TestGetResDto
@@ -32,39 +32,39 @@ export class JobDetailComponent implements OnInit {
     visibleRejected: boolean = false
 
     assessmentInsertReqDto = this.fb.group({
-        candidateId: [''],
-        jobId: [''],
-        hrId: [''],
-        schedule: ['']
+        candidateId: ['', [Validators.required]],
+        jobId: ['', [Validators.required]],
+        hrId: ['', [Validators.required]],
+        schedule: ['', [Validators.required]]
     })
 
     interviewInsertReqDto = this.fb.group({
-        candidateId: [''],
-        jobId: [''],
-        interviewerId: [''],
-        schedule: ['']
+        candidateId: ['', [Validators.required]],
+        jobId: ['', [Validators.required]],
+        interviewerId: ['', [Validators.required]],
+        schedule: ['', [Validators.required]]
     })
 
     medicalcheckupInsertReqDto = this.fb.group({
-        candidateId: [''],
-        jobId: [''],
-        ext: [''],
-        file: ['']
+        candidateId: ['', [Validators.required]],
+        jobId: ['', [Validators.required]],
+        ext: ['', [Validators.required]],
+        file: ['', [Validators.required]]
     })
 
     offeringInsertReqDto = this.fb.group({
-        candidateId: [''],
-        jobId: ['']
+        candidateId: ['', [Validators.required]],
+        jobId: ['', [Validators.required]]
     })
 
     hiredInsertReqDto = this.fb.group({
-        candidateId: [''],
-        jobId: ['']
+        candidateId: ['', [Validators.required]],
+        jobId: ['', [Validators.required]]
     })
 
     rejectedInsertReqDto = this.fb.group({
-        candidateProgressId: [''],
-        statusProcessCode: ['']
+        candidateProgressId: ['', [Validators.required]],
+        statusProcessCode: ['', [Validators.required]]
     })
 
     constructor(
@@ -73,7 +73,8 @@ export class JobDetailComponent implements OnInit {
         private jobService: JobService,
         private statusProgressService: StatusProgressService,
         private skillTestService: SkillTestService,
-        private fb: NonNullableFormBuilder
+        private fb: NonNullableFormBuilder,
+        private cd: ChangeDetectorRef
     ) {
         this.title.setTitle('Job Detail | Job Portal Admin')
     }
@@ -86,6 +87,10 @@ export class JobDetailComponent implements OnInit {
             this.getSkillTest()
             this.getResult()
         })
+    }
+
+    ngAfterViewChecked(): void {
+        this.cd.detectChanges()
     }
 
     getSkillTest() {
@@ -134,15 +139,15 @@ export class JobDetailComponent implements OnInit {
             this.visibleMcu = true
             this.medicalcheckupInsertReqDto.get('candidateId')?.setValue(candidateId)
             this.medicalcheckupInsertReqDto.get('jobId')?.setValue(this.job.id)
-        } else if (code == ProgressStatus.OFFERING){
+        } else if (code == ProgressStatus.OFFERING) {
             this.visibleOffering = true
             this.offeringInsertReqDto.get('candidateId')?.setValue(candidateId)
             this.offeringInsertReqDto.get('jobId')?.setValue(this.job.id)
-        } else if (code == ProgressStatus.HIRED){
+        } else if (code == ProgressStatus.HIRED) {
             this.visibleHired = true
             this.hiredInsertReqDto.get('candidateId')?.setValue(candidateId)
             this.hiredInsertReqDto.get('jobId')?.setValue(this.job.id)
-        } else if (code == ProgressStatus.REJECTED){
+        } else if (code == ProgressStatus.REJECTED) {
             this.visibleRejected = true
             this.rejectedInsertReqDto.get('candidateProgressId')?.setValue(progressId)
             this.rejectedInsertReqDto.get('statusProcessCode')?.setValue(code)
@@ -170,21 +175,21 @@ export class JobDetailComponent implements OnInit {
         })
     }
 
-    insertOffering(){
+    insertOffering() {
         const data = this.offeringInsertReqDto.getRawValue()
         this.statusProgressService.insertOffering(data).subscribe(result => {
             this.visibleOffering = false
         })
     }
 
-    insertHired(){
+    insertHired() {
         const data = this.hiredInsertReqDto.getRawValue()
-        this.statusProgressService.insertHired(data).subscribe(result =>{
+        this.statusProgressService.insertHired(data).subscribe(result => {
             this.visibleHired = false
         })
     }
 
-    insertRejected(){   
+    insertRejected() {
         const data = this.rejectedInsertReqDto.getRawValue()
         this.statusProgressService.updateReject(data).subscribe(result => {
             this.visibleRejected = false
@@ -195,15 +200,19 @@ export class JobDetailComponent implements OnInit {
         this.visibleMcu = false
     }
 
-    cancelOffering(){
+    cancelOffering() {
         this.visibleOffering = false
     }
 
-    cancelHired(){
+    cancelHired() {
         this.visibleHired = false
     }
 
-    cancelRejected(){
+    cancelRejected() {
         this.visibleRejected = false
+    }
+
+    isInterview(code: string) {
+        return code == ProgressStatus.INTERVIEW
     }
 }

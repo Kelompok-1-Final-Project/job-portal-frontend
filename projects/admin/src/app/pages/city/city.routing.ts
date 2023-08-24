@@ -11,6 +11,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { CityListComponent } from "./list/city-list.component";
 import { CityInsertComponent } from "./insert/city-insert.component";
 import { DialogModule } from "primeng/dialog";
+import { SharedModuleComponent } from "@shared/shared.module";
 
 const routes : Routes = [
     {
@@ -41,7 +42,8 @@ const routes : Routes = [
         DropdownModule,
         InputTextModule,
         FileUploadModule,
-        DialogModule
+        DialogModule,
+        SharedModuleComponent
     ],
     exports : [
         RouterModule

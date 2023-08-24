@@ -17,11 +17,11 @@ export class UserInsertComponent implements AfterViewChecked {
   genders!: GenderGetResDto[]
 
   userInsertReqDto = this.fb.group({
-    userEmail: [''],
-    fullName: [''],
-    roleCode: [''],
-    userPhone: [''],
-    genderCode: ['']
+    userEmail: ['', [Validators.required]],
+    fullName: ['', [Validators.required]],
+    roleCode: ['', [Validators.required]],
+    userPhone: ['', [Validators.required]],
+    genderCode: ['', [Validators.required]]
   })
 
   constructor(

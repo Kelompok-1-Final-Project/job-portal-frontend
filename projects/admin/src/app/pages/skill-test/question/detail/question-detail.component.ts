@@ -1,7 +1,5 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionOptionResDto } from '@dto/question/question-option.res.dto';
@@ -14,18 +12,22 @@ import { QuestionService } from '@serviceAdmin/question.service';
 })
 export class QuestionDetailComponent implements OnInit {
 
-  question: string = 'Apa itu Dependency Injection?';
-  // options: string[] = ['Tidak Tau', 'Dependency Injection adalah suautu cara dalam menyediakan object dengan membuatnya sebagai parameter ', 'adalah sebuah framework'];
-
   id!: string
   questions!: QuestionGetResDto
   listOption!: QuestionOptionResDto[]
+  visibleUpdateQuestion: boolean = false
+
+  questionUpdateReqDto = this.fb.group({
+    questionId: ['', [Validators.required]],
+    question: ['', [Validators.required]]
+  })
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private title: Title,
-    private questionService: QuestionService
+    private questionService: QuestionService,
+    private fb: NonNullableFormBuilder
   ) {
     this.title.setTitle('Question Detail | Job Portal Admin')
   }
@@ -34,7 +36,6 @@ export class QuestionDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params['id']
       this.getQuestionById()
-      // console.log(this.questions.optionGetResDtos)
     })
   }
 
@@ -45,13 +46,16 @@ export class QuestionDetailComponent implements OnInit {
     })
   }
 
-  editQuestion(index: number) {
+  editQuestion(id: string) {
+    this.questionUpdateReqDto.get('questionId')?.setValue(id)
+    this.visibleUpdateQuestion = true
+  }
+
+  updateQuestion() {
+    // this.questionService.
   }
 
   editOption(index: number) {
-  }
-
-  editOptions(id: number) {
 
   }
 

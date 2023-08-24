@@ -79,7 +79,8 @@
         <div class="col-12 md:col-4">
           <div class="card">
             <div class="card">
-              <p-editor [(ngModel)]="text" [style]="{ height: '320px' }" formControlName="description"></p-editor>
+              <p-editor #editor formControlName="description" [(ngModel)]="text" [style]="{ height: '320px' }"
+                (ngModelChange)="cleanString()"></p-editor>
             </div>
           </div>
         </div>
@@ -98,14 +99,16 @@
           <h2 class="text-center">Assesment</h2>
         </div>
         <div class="col-12 md:col-12">
-          <p-inputSwitch [ngModel]="visibleTest" (click)="setQuestion(!visibleTest)" formControlName="checked"></p-inputSwitch>
+          <p-inputSwitch [ngModel]="visibleTest" (click)="setQuestion(!visibleTest)"
+            formControlName="checked"></p-inputSwitch>
         </div>
         <div class="col-12 md:col-2">
-          <label for="companyName" *ngIf="isVisible()" class="form-label">Test Name<span style="color: red;">*</span></label>
+          <label for="companyName" *ngIf="isVisible()" class="form-label">Test Name<span
+              style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <input *ngIf="isVisible()" pInputText type="text" class="form-control col-12" id="companyName" aria-describedby="companyNameHelp"
-            required formControlName="testName">
+          <input *ngIf="isVisible()" pInputText type="text" class="form-control col-12" id="companyName"
+            aria-describedby="companyNameHelp" required formControlName="testName">
         </div>
         <div class="col-12">
           <button *ngIf="isVisible()" pButton pRipple label="Add" type="button" (click)="onAdd()"></button>
@@ -121,7 +124,6 @@
             </div>
           </div>
         </div>
-
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
           <button type="button" routerLink="/job-vacancies" pButton pRipple class="p-button-secondary mr-3"
             icon="pi pi-angle-double-left">. Back to previous menu</button>

@@ -1,12 +1,13 @@
 <div class="container">
     <form>
         <div class="card-container flex flex-wrap justify-content-start align-items-center" style="min-height: 700px">
+            <button pRipple pButton label="Back" class="p-button-secondary" routerLink="/job-vacancies"></button>
             <div class="flex col-12">
                 <h2 class="text-center text-3xl font-bold mb-6">Vacancy Information</h2>
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
                 <label class="text-sm font-medium">Vacancy Title</label>
-                <p class="text-lg">{{ job.jobCode }}</p>
+                <p class="text-lg">{{ job.jobTitle }}</p>
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
                 <label class="text-sm font-medium">Position</label>
@@ -72,8 +73,11 @@
                                 <td>{{row.jobName}}</td>
                                 <td>{{row.statusName}}</td>
                                 <td>
-                                    <p-dropdown styleClass="w-full" [options]="status" appendTo="body"
-                                        optionValue="progressCode" optionLabel="progressName" [ngModel]="row.statusCode"
+                                    <button pButton pRipple style="margin-right: 0.3rem;" icon="pi pi-pencil"
+                                        pTooltip="Insert Notes" tooltipPosition="top"
+                                        *ngIf="isInterview(row.statusCode)"></button>
+                                    <p-dropdown [options]="status" appendTo="body" optionValue="progressCode"
+                                        optionLabel="progressName" [ngModel]="row.statusCode"
                                         [ngModelOptions]="{standalone: true}"
                                         (onChange)="changeStatus($event.value, row.candidateId, row.candidateProgressId)"></p-dropdown>
                                 </td>
@@ -109,7 +113,7 @@
             </p-tabPanel>
             <p-tabPanel header="Result Test">
                 <div class=" grid justify-content-center col-12">
-                    <h3 class="text-center">All Candidate Progress</h3>
+                    <h3 class="text-center">All Candidates Result Test</h3>
                 </div>
                 <div class="card">
                     <p-table [value]="results" [paginator]="true" [rows]="10">

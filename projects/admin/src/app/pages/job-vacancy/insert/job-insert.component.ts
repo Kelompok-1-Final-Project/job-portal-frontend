@@ -1,4 +1,4 @@
-import { AfterViewChecked, ChangeDetectorRef, Component } from "@angular/core";
+import { AfterViewChecked, ChangeDetectorRef, Component, ViewChild } from "@angular/core";
 import { FormArray, NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
@@ -7,9 +7,7 @@ import { CompanyGetResDto } from "@dto/company/company.get.res.dto";
 import { EmploymentTypeGetResDto } from "@dto/job/employment-type.get.res.dto";
 import { JobPositionGetResDto } from "@dto/job/job-position.get.res.dto";
 import { JobStatusGetResDto } from "@dto/job/job-status.get.res.dto";
-import { QuestionOptionReqDto } from "@dto/question/question-option.req.dto";
 import { QuestionGetResDto } from "@dto/question/question.get.res.dto";
-import { QuestionInsertReqDto } from "@dto/question/question.insert.req.dto";
 import { UserGetResDto } from "@dto/user/user.get.res.dto";
 import { BenefitService } from "@serviceAdmin/benefit.service";
 import { CompanyService } from "@serviceAdmin/company.service";
@@ -49,23 +47,26 @@ export class JobInsertComponent implements AfterViewChecked {
   questions!: QuestionGetResDto[]
   questionId: string[] = []
   listBenefit: any[] = []
+  cleanText!: string
 
   jobInsertReqDto = this.fb.group({
-    jobTitle: [''],
-    salaryStart: [0],
-    salaryEnd: [0],
-    description: [''],
-    endDate: [''],
-    companyCode: [''],
-    jobPositionCode: [''],
-    jobStatusCode: [''],
-    employmentCode: [''],
-    hrId: [''],
-    interviewerId: [''],
+    jobTitle: ['', [Validators.required]],
+    salaryStart: [0, [Validators.required]],
+    salaryEnd: [0, [Validators.required]],
+    description: ['', [Validators.required]],
+    endDate: ['', [Validators.required]],
+    companyCode: ['', [Validators.required]],
+    jobPositionCode: ['', [Validators.required]],
+    jobStatusCode: ['', [Validators.required]],
+    employmentCode: ['', [Validators.required]],
+    hrId: ['', [Validators.required]],
+    interviewerId: ['', [Validators.required]],
     benefitCode: this.fb.array(this.code),
-    testName: [''],
+    testName: ['', [Validators.required]],
     questionId: this.fb.array(this.questionId)
   })
+
+  @ViewChild('editor', {static:false}) editor: any
 
   constructor(
     private fb: NonNullableFormBuilder,
@@ -148,11 +149,12 @@ export class JobInsertComponent implements AfterViewChecked {
       if (benefit.benefitName.toLowerCase().indexOf(query.toLowerCase()) == 0) {
         filtered.push(benefit);
       }
-    }
+    } 
     this.filteredBenefit = filtered;
   }
 
   insertAll() {
+    this.jobInsertReqDto.get('description')?.setValue(this.cleanText)
     const data = this.jobInsertReqDto.getRawValue()
     this.jobService.insertJob(data).subscribe(result => {
       this.router.navigateByUrl('/job-vacancies')
@@ -202,5 +204,9 @@ export class JobInsertComponent implements AfterViewChecked {
 
   setQuestion(value : any){
     return this.visibleTest = value
+  }
+
+  cleanString(){
+    this.cleanText = this.editor.el.nativeElement.innerText
   }
 }

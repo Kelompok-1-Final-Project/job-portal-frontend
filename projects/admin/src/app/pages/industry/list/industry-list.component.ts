@@ -2,24 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { IndustryGetResDto } from '@dto/industry/industry.get.res.dto';
 import { IndustryService } from '@serviceAdmin/industry.service';
 import { Title } from '@angular/platform-browser';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-interface Industries {
-  industryCode: string;
-  industryName: string;
-}
 
 @Component({
   selector: 'industry-list',
   templateUrl: './industry-list.component.html'
 })
 export class IndustryListComponent implements OnInit {
+
   visibleAdd: boolean = false;
   visibleDelete: boolean = false;
+  visibleUpdate: boolean = false
+  code!: string
 
   industryInsertReqDto = this.fb.group({
-    industryName: ['']
+    industryName: ['', [Validators.required]]
+  })
+
+  industryUpdateReqDto = this.fb.group({
+    industryCode: ['', [Validators.required]],
+    industryName: ['', [Validators.required]]
   })
 
   constructor(
@@ -34,7 +37,6 @@ export class IndustryListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllIndustry();
-    console.log(this.industries)
   }
 
   getAllIndustry() {
@@ -51,12 +53,25 @@ export class IndustryListComponent implements OnInit {
     })
   }
 
+  updateIndustry() {
+    const data = this.industryUpdateReqDto.getRawValue()
+    this.industryService.update(data).subscribe(result => {
+      this.visibleUpdate = false
+    })
+  }
+
   add() {
-    this.visibleAdd = true;
+    this.visibleAdd = true
   }
 
   deleteModal(id: number) {
-    this.visibleDelete = true;
+    this.visibleDelete = true
+  }
+
+  update(code: string) {
+    this.visibleUpdate = true
+    this.code = code
+    this.industryUpdateReqDto.get('industryCode')?.setValue(code)
   }
 
   confirmDelete() {

@@ -11,7 +11,7 @@ import { CityService } from "@serviceAdmin/city.service";
 export class CityInsertComponent implements OnInit {
 
     cityInsertReqDto = this.fb.group({
-        cityName : ['']
+        cityName : ['', [Validators.required]]
     })
 
     constructor(

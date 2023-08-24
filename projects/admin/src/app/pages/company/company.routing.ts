@@ -15,7 +15,7 @@ const routes : Routes = [
         component : CompanyListComponent
     },
     {
-        path : 'detail/:id',
+        path : 'update/:id',
         component : CompanyUpdateComponent
     },
     {
@@ -37,10 +37,8 @@ const routes : Routes = [
         ButtonComponent,
         AutoCompleteModule,
         SharedModuleComponent
-
     ],
     exports :[
-        CompanyInsertComponent,
         RouterModule
     ]
 })

@@ -128,6 +128,12 @@ const routes: Routes = [
             .then(c => c.BlacklistModule)
     },
     {
+        component: BaseComponent,
+        path: 'employees',
+        loadChildren: () => import('./pages/employee/employee.module')
+            .then(c => c.EmployeeModule)
+    },
+    {
         component: LoginComponent,
         path: 'login',
         // canMatch : [ authValidation ]
