@@ -8,9 +8,9 @@ import { CommonModule } from "@angular/common";
 import { authValidation } from "projects/base/src/app/validation/auth.validation";
 import { BaseModule } from "@component/base/base.module";
 import { ButtonComponent } from "@component/button/button.component";
-import { UrlPipe } from "@pipes/url.pipe";
 import { SharedModuleComponent } from "@shared/shared.module";
 import { BaseComponent } from "@component/base/base.component";
+import { UrlPipeAdmin } from "@pipes/url.pipe";
 
 const routes: Routes = [
     {
@@ -162,8 +162,8 @@ const routes: Routes = [
         CommonModule,
         ButtonComponent,
         ReactiveFormsModule,
-        UrlPipe,
-        SharedModuleComponent
+        SharedModuleComponent,
+        UrlPipeAdmin
     ],
     exports: [
         RouterModule,

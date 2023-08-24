@@ -25,14 +25,14 @@
         <td>{{option.labels}}</td>
         <td>{{option.isAnswer}}</td>
         <td>
-          <button pButton (click)="editOption(i)" icon="pi pi-pencil" label="Edit"></button>
+          <button pButton (click)="editOption(option.questionOptionId)" icon="pi pi-pencil" label="Edit"></button>
         </td>
       </tr>
     </ng-template>
   </p-table>
 </div>
 
-<!-- Modal Update-->
+<!-- Modal Update Question -->
 <p-dialog header="Update Question" [modal]="true" [(visible)]="visibleUpdateQuestion" [style]="{ width: '30vw' }">
   <pre>{{questionUpdateReqDto.value | json}}</pre>
   <form [formGroup]="questionUpdateReqDto" (ngSubmit)="updateQuestion()">
@@ -41,11 +41,36 @@
         <label for="inputName">Question</label>
       </div>
       <div class="col-12 md:col-9">
-        <input pInputText type="text" class="col-12 " id="inputName" required formControlName="question">
+        <textarea pInputTextarea type="text" class="col-12 " id="inputName" required formControlName="question"></textarea>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <button type="submit" pButton pRipple class="p-button-primary"
           [disabled]="questionUpdateReqDto.invalid">Submit</button>
+      </div>
+    </div>
+  </form>
+</p-dialog>
+
+<!-- Modal Update Option-->
+<p-dialog header="Update Option" [modal]="true" [(visible)]="visibleOption" [style]="{ width: '30vw' }">
+  <pre>{{optionUpdateReqDto.value | json}}</pre>
+  <form [formGroup]="optionUpdateReqDto" (ngSubmit)="updateOption()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Label</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12 " id="inputName" required formControlName="labels">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">Answer</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-dropdown [options]="keyAnswer" optionLabel="name" optionValue="value" formControlName="isAnswer"></p-dropdown>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <button type="submit" pButton pRipple class="p-button-primary"
+          [disabled]="optionUpdateReqDto.invalid">Submit</button>
       </div>
     </div>
   </form>

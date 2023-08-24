@@ -6,7 +6,9 @@
     <div class="grid justify-content-end mb-3">
       <button routerLink="new" pButton pRipple class="p-button-primary" label="Add City"></button>
     </div>
-    <p-table [value]="cities" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [value]="cities" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>
@@ -21,9 +23,9 @@
           <td>{{ p.cityCode }}</td>
           <td>{{ p.cityName }}</td>
           <td>
-              <button routerLink="/cities/update/{{ p.cityCode }}" pButton pRipple class="p-button-secondary"
-                icon="pi pi-pencil" style="margin-right: 0.3rem;" pTooltip="Edit" tooltipPosition="top"></button>
-              <button routerLink="/products" pButton pRipple class="p-button-danger" icon="pi pi-trash"></button>
+            <button routerLink="/cities/update/{{ p.cityCode }}" pButton pRipple class="p-button-secondary"
+              icon="pi pi-pencil" style="margin-right: 0.3rem;" pTooltip="Edit" tooltipPosition="top"></button>
+            <button routerLink="/products" pButton pRipple class="p-button-danger" icon="pi pi-trash"></button>
           </td>
         </tr>
       </ng-template>
@@ -36,7 +38,8 @@
         <label for="inputName">Benefit Code</label>
       </div>
       <div class="col-12 md:col-9">
-        <input pInputText type="text" class="col-12 p-disabled" id="inputName" required formControlName="productName" value="JKAHS">
+        <input pInputText type="text" class="col-12 p-disabled" id="inputName" required formControlName="productName"
+          value="JKAHS">
       </div>
       <div class="col-12 md:col-3">
         <label for="inputName">Benefit Name</label>
@@ -44,10 +47,10 @@
       <div class="col-12 md:col-9">
         <input pInputText type="text" class="col-12 " id="inputName" required formControlName="productName">
       </div>
-        <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
-        </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
       </div>
+    </div>
   </p-dialog>
 
   <!-- Modal -->

@@ -7,6 +7,7 @@ import { InsertResDto } from "@dto/insert.res.dto";
 import { QuestionInsertReqDto } from "@dto/question/question.insert.req.dto";
 import { QuestionUpdateReqDto } from "@dto/question/question.update.req.dto";
 import { UpdateResDto } from "@dto/update.res.dto";
+import { QuestionOptionReqDto } from "@dto/question/question-option.req.dto";
 
 @Injectable({
     providedIn: 'root'
@@ -33,5 +34,9 @@ export class QuestionService {
 
     update(data: QuestionUpdateReqDto): Observable<UpdateResDto>{
         return this.base.patch<UpdateResDto>(`${BASE_URL}/questions`, data, true)
+    }
+
+    updateOption(data: QuestionOptionReqDto): Observable<UpdateResDto>{
+        return this.base.patch<UpdateResDto>(`${BASE_URL}/questions/option`, data, true)
     }
 }

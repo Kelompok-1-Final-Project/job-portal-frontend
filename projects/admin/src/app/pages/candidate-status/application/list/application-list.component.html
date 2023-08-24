@@ -3,7 +3,9 @@
     <h3 class="text-center">All Application Progress</h3>
   </div>
   <div class="card col-9">
-    <p-table [value]="application" [paginator]="true" [rows]="10">
+    <p-table [value]="application" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
       <ng-template pTemplate="header">
         <tr>
           <th>No</th>

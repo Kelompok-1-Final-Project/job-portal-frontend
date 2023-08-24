@@ -6,7 +6,9 @@
     <div class="grid justify-content-end mb-3">
       <button routerLink="create" pButton pRipple class="p-button-primary" label="Add Company"></button>
     </div>
-    <p-table [value]="companies" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [value]="companies" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>
@@ -29,8 +31,8 @@
           <td>{{ c.cityName }}</td>
           <td>{{ c.description }}</td>
           <td>
-            <button routerLink="/companies/update/{{ c.companyCode }}" icon="pi pi-pencil" pButton pRipple class="p-button-secondary"
-              pTooltip="Edit" tooltipPosition="top" style="margin-right: 0.3rem;"></button>
+            <button routerLink="/companies/update/{{ c.companyCode }}" icon="pi pi-pencil" pButton pRipple
+              class="p-button-secondary" pTooltip="Edit" tooltipPosition="top" style="margin-right: 0.3rem;"></button>
             <button routerLink="/users/profile" icon="pi pi-trash" pButton pRipple class="p-button-danger"></button>
           </td>
         </tr>
