@@ -11,11 +11,14 @@ p-card:hover {
     text-decoration: underline;
 }
 
-p-card a .pi-heart {
-  font-size: 1em;
+p-card .pi-heart,
+p-card .pi-heart {
+  font-size: 1.2em;
   transition: font-size 0.3s;
 }
 
-p-card a:hover .pi-heart {
-  font-size: 1.2em;
+p-card .pi-heart:hover,
+p-card .pi-heart-fill:hover {
+  font-size: 1.4em;
+  transition: font-size 0.3s;
 }

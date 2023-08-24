@@ -9,7 +9,7 @@
     </ng-template>
     <ng-template let-image pTemplate="item">
       <img
-        src="https://media.istockphoto.com/id/1335234186/photo/social-media-profile-page-in-smartphone-screen-at-work-woman-looking-at-feed-status-update-or.webp?b=1&s=170667a&w=0&k=20&c=lyb5R1OJ53p22m-by_ECCKJOoB_akfdk64nu8A1kdPw="
+        src="../../../../assets/images/carousel-1.jpg"
         alt="Carousel Image">
     </ng-template>
   </p-carousel>
@@ -17,38 +17,42 @@
   <!-- Search Options -->
   <div class="container mt-5 grid justify-content-center align-content-center">
     <div class="sub-container col-7 grid justify-content-between">
-      <h4 class="text-dark col-12 -mb-3 ml-3">
+      <h4 class="text-dark col-12 -mb-3">
         Search Vacancy
       </h4>
-      <form [formGroup]="searchJobReqDto" (ngSubmit)="searchJobs()">
-        <div class="search-options grid col-12 justify-content-evenly mt-3">
-          <div class="col-12 md:col-3">
-            <input pInputText type="text" placeholder="Search Job" formControlName="jobName">
+      <div class="search-options col-12 mt-3">
+        <form [formGroup]="searchJobReqDto" (ngSubmit)="searchJobs()">
+          <div class="grid justify-content-between ">
+            <div class="col-12 md:col-3">
+              <input pInputText type="text" placeholder="Search Job" formControlName="jobName" [style]="{'width':'100%'}">
+            </div>
+            <div class="col-12 md:col-3">
+              <p-dropdown placeholder="Location" [options]="locations" [filter]="true" optionValue="cityId"
+                optionLabel="cityName" formControlName="location" [showClear]="true" autoWidth="false"
+                styleClass="w-full">
+              </p-dropdown>
+            </div>
+            <div class="col-12 md:col-3">
+              <p-dropdown placeholder="Position" [options]="positions" [filter]="true" optionValue="id"
+                optionLabel="positionName" formControlName="position" [showClear]="true" autoWidth="false"
+                styleClass="w-full">
+              </p-dropdown>
+            </div>
+            <div class="col-12 md:col-3">
+              <button type="submit" pButton pRipple class="p-button-success col-12">
+                <i class="pi pi-search m-1"></i> Cari
+              </button>
+            </div>
           </div>
-          <div class="col-12 md:col-3">
-            <p-dropdown placeholder="Location" [options]="locations" [filter]="true" optionValue="cityId"
-              optionLabel="cityName" formControlName="location" [editable]="true" [showClear]="true" styleClass="w-full">
-            </p-dropdown>
-          </div>
-          <div class="col-12 md:col-3">
-            <p-dropdown placeholder="Position" [options]="positions" [filter]="true" optionValue="id"
-              optionLabel="positionName" formControlName="position" [editable]="true" styleClass="w-full">
-            </p-dropdown>
-          </div>
-          <div class="col-12 md:col-3">
-            <button type="submit" pButton pRipple class="p-button-success col-12">
-              <i class="pi pi-search m-1"></i> Cari
-            </button>
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 
   <!-- Company Industries -->
   <div class="container mt-5 grid justify-content-center align-content-center">
     <div class="sub-container col-7 grid justify-content-between">
-      <h4 class="text-dark col-12 -mb-3 ml-3">
+      <h4 class="text-dark col-12 -mb-3">
         Company Industry
       </h4>
       <div class="industry-box" *ngFor="let industry of industries">

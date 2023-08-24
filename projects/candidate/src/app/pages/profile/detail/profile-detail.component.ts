@@ -90,7 +90,7 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     fullName: ['', [Validators.required]],
     email: ['',[Validators.required]],
     birthdate: ['', [Validators.required]],
-    phone: ['', [Validators.required]],
+    mobileNumber: ['', [Validators.required]],
     photoExt: ['', [Validators.required]],
     photoFiles: ['', [Validators.required]],
     expectedSalary: [0, [Validators.required]],
@@ -211,8 +211,10 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     this.candidateUpdateReqDto.get('fullName')?.setValue(this.userData.fullName);
     this.candidateUpdateReqDto.get('email')?.setValue(this.userData.email);
     this.candidateUpdateReqDto.get('birthdate')?.setValue(this.userData.birthdate);
-    this.candidateUpdateReqDto.get('phone')?.setValue(this.userData.phone);
+    this.candidateUpdateReqDto.get('mobileNumber')?.setValue(this.userData.phone);
     this.candidateUpdateReqDto.get('idNumber')?.setValue(this.userData.idNumber);
+    this.candidateUpdateReqDto.get('expectedSalary')?.setValue(this.userData.expectedSalary);
+    this.candidateUpdateReqDto.get('birthdate')?.setValue(this.userData.birthdate);
     this.candidateUpdateReqDto.get('genderCode')?.setValue(this.userData.genderCode);
     this.candidateUpdateReqDto.get('maritalStatusCode')?.setValue(this.userData.maritalStatusCode);
   }
@@ -239,7 +241,7 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     const data = this.candidateUpdateReqDto.getRawValue();
     data.candidateId = this.authService.getUserId();
     this.profileService.updateProfile(data).subscribe(result => {
-      console.log(this.candidateUpdateReqDto);
+      console.log(data);
       this.visibleEditUser = false;
       this.getCandidateData();
     })
