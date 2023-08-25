@@ -1,17 +1,16 @@
 <pre>{{ job|json }}</pre>
 <pre>{{ idJob|json }}</pre>
 <!-- <pre>{{ company|json }}</pre> -->
-<div class="home-container">
-  <div class="container grid justify-content-center">
-    <div class="sub-container col-6 mt-3 grid">
-      <div class="col-4 justify-content-center align-content-center">
-        <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image" width="200"
-          [preview]="true"></p-image>
+<div class="home-container grid justify-content-center">
+  <div class="container">
+    <div class="sub-container grid col-12 md:col-6 mt-3">
+      <div class="col-10 md:col-3 text-center">
+        <img src="{{ job.companyPhoto|urlCandidate }}" alt="Image" class="w-8">
       </div>
-      <div class="title col-8 grid">
+      <div class="title col-10 md:col-7">
         <!-- <span class="col-12">{{ job.jobTitle }}</span> -->
         <a routerLink="" class="col-12 text-primary" style="text-decoration: none;">
-          {{ job.jobTitle }}
+          {{ job.companyName }}
         </a>
         <div class="city col-12">
           <i class="pi pi-map-marker"></i>
@@ -37,102 +36,108 @@
           </small>
         </div>
         <div class="button grid col-12 gap-3 text-center">
-          <button *ngIf="!job.isApply" type="submit" pButton pRipple class="p-button-primary col-3 text-center " (click)="assignJob(job.id)">
+          <button *ngIf="!job.isApply" type="submit" pButton pRipple
+            class="p-button-primary col-12 md:col-3 text-center " (click)="assignJob(job.id)">
             <span class="col-12">
-             <i class="pi pi-envelope"></i> Apply Now</span>
+              <i class="pi pi-envelope"></i> Apply Now</span>
           </button>
-          <button *ngIf="job.isApply" type="submit" pButton pRipple class="p-button-primary col-3 text-center" disabled>
+          <button *ngIf="job.isApply" type="submit" pButton pRipple class="p-button-primary col-12 md:col-3 text-center"
+            disabled>
             <span class="col-12">
-             <i class="pi pi-envelope"></i> Apply Now</span>
+              <i class="pi pi-envelope"></i> Apply Now</span>
           </button>
-          <button *ngIf="!job.isBookmark" type="submit" pButton pRipple class="p-button-primary col-3 text-center" (click)="changeSaveJob(job.id,job.isBookmark,job.saveJobId)">
+          <button *ngIf="!job.isBookmark" type="submit" pButton pRipple
+            class="p-button-primary col-12 md:col-3 text-center"
+            (click)="changeSaveJob(job.id,job.isBookmark,job.saveJobId)">
             <span class="col-12">
               <i class="pi pi-heart m-1"></i> Save Jobs
             </span>
           </button>
-          <button *ngIf="job.isBookmark" type="submit" pButton pRipple class="p-button-primary col-3 text-center" (click)="changeSaveJob(job.id,job.isBookmark,job.saveJobId)">
+          <button *ngIf="job.isBookmark" type="submit" pButton pRipple
+            class="p-button-primary col-12 md:col-3 text-center"
+            (click)="changeSaveJob(job.id,job.isBookmark,job.saveJobId)">
             <span class="col-12">
               <i class="pi pi-heart-fill m-1" style="color: lightblue;"></i> Save Jobs
             </span>
           </button>
-          <button type="submit" pButton pRipple class="p-button-primary col-3 text-center">
+          <button type="submit" pButton pRipple class="p-button-primary col-12 md:col-3 text-center">
             <span class="col-12">
               <i class="pi pi-share-alt m-1"></i> Share
             </span>
           </button>
         </div>
       </div>
-      <div class="description">
+    </div>
+    <div class="description col-10 md:col-8 grid justify-content-center">
+      <h3>
+        Job Description
+      </h3>
+      <span>
+        {{ job.description }}
+      </span>
+      <div class="benefit">
         <h3>
-          Job Description
+          Benefit
         </h3>
-        <span>
-          {{ job.description }}
-        </span>
-        <div class="benefit">
-          <h3>
-            Benefit
-          </h3>
-          <span *ngIf="!benefits[0]"> - </span>
-          <div *ngFor="let benefit of benefits; let i = index">
-            <input type="checkbox" class="p-disabled">
-            <label>{{ benefit.benefitName }}</label>
-          </div>
+        <span *ngIf="!benefits[0]"> - </span>
+        <div *ngFor="let benefit of benefits; let i = index">
+          <input type="checkbox" class="p-disabled">
+          <label>{{ benefit.benefitName }}</label>
         </div>
-        <div class="summary grid gap-1">
-          <h3>
-            Job Summary
-          </h3>
-          <div class="job-position col-3 mt-3">
-            <h4>Job Position</h4>
-            <span>
-              {{ job.positionName }}
-            </span>
-          </div>
-          <div class="employment-type col-3 mt-3">
-            <h4>Employment Type</h4>
-            <span>
-              {{ job.employmentName }}
-            </span>
-          </div>
-          <div class="address col-3 mt-3">
-            <h4>Address</h4>
-            <span>
-              {{ company.address?company.address:'-' }}
-            </span>
-          </div>
+      </div>
+      <div class="summary grid gap-1">
+        <h3>
+          Job Summary
+        </h3>
+        <div class="job-position col-3 mt-3">
+          <h4>Job Position</h4>
+          <span>
+            {{ job.positionName }}
+          </span>
         </div>
-        <div class="company mt-4">
-          <div class="container grid justify-content-center">
-            <div class="sub-container grid col-12 shadow-1 surface-card border-round-sm">
-              <h3 class="col-12 col-offset-1">About Company</h3>
-              <div class="sub-container col-12 grid">
-                <div class="col-4 justify-content-center align-content-center">
-                  <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image"
-                    width="150" [preview]="true"></p-image>
-                </div>
-                <div class="title col-8">
-                  <a routerLink="/companies/detail/{{ company.companyId }}" class="col-12 text-primary" style="text-decoration: none;">
-                    {{ company.companyName }}
-                  </a>
-                  <div class="city col-12">
-                    <i class="pi pi-map-marker"></i>
-                    <span>
-                      {{ company.cityName }}
-                    </span>
-                  </div>
-                </div>
-                <div class="description grid justify-content-center">
-                  <span class="col-10">
-                    <h4>Description</h4>
-                    {{ company.description?company.description:'-' }}
+        <div class="employment-type col-3 mt-3">
+          <h4>Employment Type</h4>
+          <span>
+            {{ job.employmentName }}
+          </span>
+        </div>
+        <div class="address col-3 mt-3">
+          <h4>Address</h4>
+          <span>
+            {{ company.address?company.address:'-' }}
+          </span>
+        </div>
+      </div>
+      <div class="company mt-4">
+        <div class="container grid justify-content-center">
+          <div class="sub-container grid col-12 shadow-1 surface-card border-round-sm">
+            <h3 class="col-12 col-offset-1">About Company</h3>
+            <div class="sub-container col-12 grid">
+              <div class="col-12 md:col-4 justify-content-center align-content-center">
+                <img src="{{ job.companyPhoto|urlCandidate }}" alt="Image" class="w-full">
+              </div>
+              <div class="title col-12">
+                <a routerLink="/companies/detail/{{ company.companyId }}" class="col-12 text-primary"
+                  style="text-decoration: none;">
+                  {{ company.companyName }}
+                </a>
+                <div class="city col-12">
+                  <i class="pi pi-map-marker"></i>
+                  <span>
+                    {{ company.cityName }}
                   </span>
-                  <div class="col-10">
-                    <h4>Address</h4>
-                    <span class="-mt-3">
-                      {{ company.address?company.address:'-' }}
-                    </span>
-                  </div>
+                </div>
+              </div>
+              <div class="description grid justify-content-center">
+                <span class="col-10">
+                  <h4>Description</h4>
+                  {{ company.description?company.description:'-' }}
+                </span>
+                <div class="col-10">
+                  <h4>Address</h4>
+                  <span class="-mt-3">
+                    {{ company.address?company.address:'-' }}
+                  </span>
                 </div>
               </div>
             </div>
@@ -140,24 +145,22 @@
         </div>
       </div>
     </div>
-    
-    <p-dialog header="Upload Resume" [modal]="true" [(visible)]="visibleAssignJob" [style]="{ width: '30vw' }">
-      <div class="grid surface-card border-round-sm border-400">
-        <div class="col-12 md:col-3">
-          <label for="resumeUpload">Assign Job</label>
-        </div>
-        <div class="col-12 md:col-9">
-          <p-fileUpload mode="basic" accept=".pdf"></p-fileUpload>
-          <p class="text-muted mt-1">Upload file in PDF</p>
-        </div>
-        <div class="col-12 mt-2">
-          <span>Previous File: previous file</span>
-        </div>
-        <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <button type="submit" pButton pRipple class="p-button-primary mr-2" (click)="submitAssignJob()">Submit</button>
-        </div>
-      </div>
-    </p-dialog>
-    
-
-    
+  </div>
+</div>
+<p-dialog header="Upload Resume" [modal]="true" [(visible)]="visibleAssignJob" [style]="{ width: '30vw' }">
+  <div class="grid surface-card border-round-sm border-400">
+    <div class="col-12 md:col-3">
+      <label for="resumeUpload">Assign Job</label>
+    </div>
+    <div class="col-12 md:col-9">
+      <p-fileUpload mode="basic" accept=".pdf"></p-fileUpload>
+      <p class="text-muted mt-1">Upload file in PDF</p>
+    </div>
+    <div class="col-12 mt-2">
+      <span>Previous File: previous file</span>
+    </div>
+    <div class="flex flex-wrap justify-content-end mt-2 col-12">
+      <button type="submit" pButton pRipple class="p-button-primary mr-2" (click)="submitAssignJob()">Submit</button>
+    </div>
+  </div>
+</p-dialog>
