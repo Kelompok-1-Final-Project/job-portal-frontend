@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { EmployeeGetResDto } from "@dto/employee/employee.get.res.dto";
 import { BlacklistService } from "@serviceAdmin/blacklist.service";
 import { EmployeeService } from "@serviceAdmin/employee.service";
+import { firstValueFrom } from "rxjs";
 
 @Component({
     selector: 'list-employee',
@@ -35,7 +36,7 @@ export class ListEmployeeComponent implements OnInit {
     }
 
     getEmployee() {
-        this.employeeService.getAll().subscribe(result =>{
+        firstValueFrom(this.employeeService.getAll()).then(result =>{
             this.employees = result
         })
     }
@@ -48,7 +49,7 @@ export class ListEmployeeComponent implements OnInit {
 
     insertBlacklist(){
         const data = this.blacklistInsertReqDto.getRawValue()
-        this.blacklistService.insert(data).subscribe(result => {
+        firstValueFrom(this.blacklistService.insert(data)).then(result => {
             this.visibleBlacklist = false 
         })
     }

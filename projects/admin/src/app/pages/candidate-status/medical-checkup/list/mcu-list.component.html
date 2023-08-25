@@ -3,12 +3,15 @@
     <h3 class="text-center">All Medical Checkup Progress</h3>
   </div>
   <div class="card col-9">
-    <p-table [value]="mcus" [paginator]="true" [rows]="10">
+    <p-table [value]="mcus" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
       <ng-template pTemplate="header">
         <tr>
           <th>No</th>
           <th>Candidate Name</th>
           <th>File</th>
+          <th>Action</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-row let-i="rowIndex">
@@ -19,6 +22,9 @@
             <a href="path_to_mcu_file/{{ row.mcuFile }}" download>
               <button pButton icon="pi pi-download mr-2"> mcu.pdf</button>
             </a>
+          </td>
+          <td>
+            <button pButton pRipple icon="pi pi-pencil" pTooltip="Upload File"></button>
           </td>
         </tr>
       </ng-template>

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionOptionResDto } from '@dto/question/question-option.res.dto';
 import { QuestionGetResDto } from '@dto/question/question.get.res.dto';
 import { QuestionService } from '@serviceAdmin/question.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'question-detail',
@@ -16,10 +17,21 @@ export class QuestionDetailComponent implements OnInit {
   questions!: QuestionGetResDto
   listOption!: QuestionOptionResDto[]
   visibleUpdateQuestion: boolean = false
+  visibleOption: boolean = false
+  keyAnswer = [
+    { name: 'False', value: false },
+    { name: 'True', value: true }
+]
 
   questionUpdateReqDto = this.fb.group({
     questionId: ['', [Validators.required]],
     question: ['', [Validators.required]]
+  })
+
+  optionUpdateReqDto = this.fb.group({
+    optionId: ['', [Validators.required]],
+	  labels: ['', [Validators.required]],
+    isAnswer: [false, [Validators.required]]
   })
 
   constructor(
@@ -52,11 +64,21 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   updateQuestion() {
-    // this.questionService.
+    const data = this.questionUpdateReqDto.getRawValue()
+    firstValueFrom(this.questionService.update(data)).then(result => {
+      this.router.navigateByUrl('/questions')
+    })
   }
 
-  editOption(index: number) {
-
+  editOption(id: string) {
+    this.optionUpdateReqDto.get('optionId')?.setValue(id)
+    this.visibleOption = true
   }
 
+  updateOption(){
+    const data = this.optionUpdateReqDto.getRawValue()
+    firstValueFrom(this.questionService.updateOption(data)).then(result => {
+      this.visibleOption = false
+    })
+  }
 }

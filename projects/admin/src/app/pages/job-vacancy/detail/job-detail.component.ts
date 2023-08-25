@@ -11,6 +11,7 @@ import { ResultGetResDto } from "@dto/result/result.get.res.dto";
 import { JobService } from "@serviceAdmin/job.service";
 import { SkillTestService } from "@serviceAdmin/skilltest.service";
 import { StatusProgressService } from "@serviceAdmin/statusprogress.service";
+import { firstValueFrom } from "rxjs";
 
 @Component({
     selector: 'job-detail',
@@ -30,6 +31,9 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     visibleOffering: boolean = false
     visibleHired: boolean = false
     visibleRejected: boolean = false
+    visibleDeleteQuestion: boolean = false
+    testCode!: string
+    questionCode!: string
 
     assessmentInsertReqDto = this.fb.group({
         candidateId: ['', [Validators.required]],
@@ -80,7 +84,7 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     }
 
     ngOnInit(): void {
-        this.route.params.subscribe(params => {
+        firstValueFrom(this.route.params).then(params => {
             this.id = params['id']
             this.getJobById()
             this.getStatus()
@@ -212,7 +216,17 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         this.visibleRejected = false
     }
 
-    isInterview(code: string) {
-        return code == ProgressStatus.INTERVIEW
+    questionModal(){
+        this.visibleDeleteQuestion = true
+    }
+
+    cancelDeleteQuestion(){
+        this.visibleDeleteQuestion = false
+    }
+
+    deleteQuestionJob(){
+        firstValueFrom(this.jobService.deleteQuestion(this.testCode, this.questionCode)).then(result => {
+            this.visibleDeleteQuestion = false
+        })
     }
 }

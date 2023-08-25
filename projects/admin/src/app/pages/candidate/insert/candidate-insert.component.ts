@@ -8,6 +8,7 @@ import { PersonTypeGetResDto } from "@dto/profile/person-type.get.res.dto";
 import { CandidateService } from "@serviceAdmin/candidate.service";
 import { ProfileService } from "@serviceAdmin/profile.service";
 import { FileUpload } from "primeng/fileupload";
+import { firstValueFrom } from "rxjs";
 
 @Component({
   selector: 'candidate-insert',
@@ -58,26 +59,26 @@ export class CandidateInsertComponent implements OnInit, AfterViewChecked {
   }
 
   getMaritalStatus() {
-    this.profileService.getMaritalStatus().subscribe(result => {
+    firstValueFrom(this.profileService.getMaritalStatus()).then(result => {
       this.marital = result
     })
   }
 
   getGender() {
-    this.profileService.getGender().subscribe(result => {
+    firstValueFrom(this.profileService.getGender()).then(result => {
       this.gender = result
     })
   }
 
   getPersonType() {
-    this.profileService.getPersonType().subscribe(result => {
+    firstValueFrom(this.profileService.getPersonType()).then(result => {
       this.personType = result
     })
   }
 
   insertCandidate() {
     const data = this.candidateInsertReqDto.getRawValue()
-    this.candidateService.insert(data).subscribe(result => {
+    firstValueFrom(this.candidateService.insert(data)).then(result => {
       this.router.navigateByUrl('/candidates')
     })
   }

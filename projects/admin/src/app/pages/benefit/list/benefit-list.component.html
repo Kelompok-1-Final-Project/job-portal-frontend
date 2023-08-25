@@ -6,7 +6,9 @@
     <div class="grid justify-content-end mb-3">
       <button pButton pRipple class="p-button-primary" (click)="add()" label="Add benefit"></button>
     </div>
-    <p-table [value]="benefits" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [value]="benefits" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>
@@ -21,8 +23,8 @@
           <td>{{ p.benefitCode }}</td>
           <td>{{ p.benefitName }}</td>
           <td>
-            <button pButton pRipple class="p-button-secondary" pTooltip="Edit" tooltipPosition="top" icon="pi pi-pencil" (click)="update(p.benefitCode)"
-              style="margin-right: 0.3rem;"></button>
+            <button pButton pRipple class="p-button-secondary" pTooltip="Edit" tooltipPosition="top" icon="pi pi-pencil"
+              (click)="update(p.benefitCode)" style="margin-right: 0.3rem;"></button>
             <button (click)="deleteModal(3)" icon="pi pi-trash" pButton pRipple class="p-button-danger"></button>
           </td>
         </tr>
@@ -67,7 +69,8 @@
           <input pInputText type="text" class="col-12 " id="inputName" required formControlName="benefitName">
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <button type="submit" pButton pRipple class="p-button-primary" [disabled]="benefitUpdateReqDto.invalid">Submit</button>
+          <button type="submit" pButton pRipple class="p-button-primary"
+            [disabled]="benefitUpdateReqDto.invalid">Submit</button>
         </div>
       </div>
     </form>

@@ -8,6 +8,9 @@ import { JobPositionGetResDto } from "@dto/job/job-position.get.res.dto";
 import { JobInsertReqDto } from "@dto/job/job.insert.req.dto";
 import { InsertResDto } from "@dto/insert.res.dto";
 import { JobAdminGetResDto } from "@dto/job/job-admin.get.res.dto";
+import { JobUpdateReqDto } from "@dto/job/job.update.req.dto";
+import { UpdateResDto } from "@dto/update.res.dto";
+import { DeleteResDto } from "@dto/delete.res.dto";
 
 @Injectable({
     providedIn: 'root'
@@ -37,5 +40,13 @@ export class JobService {
 
     insertJob(data: JobInsertReqDto): Observable<InsertResDto> {
         return this.base.post<InsertResDto>(`${BASE_URL}/jobs`, data, true)
+    }
+
+    update(data: JobUpdateReqDto): Observable<UpdateResDto>{
+        return this.base.patch<UpdateResDto>(`${BASE_URL}/jobs`, data, true)
+    }
+
+    deleteQuestion(skillTest:string, question:string):Observable<DeleteResDto>{
+        return this.base.delete<DeleteResDto>(`${BASE_URL}/jobs?st=${skillTest}&q=${question}`, true)
     }
 }

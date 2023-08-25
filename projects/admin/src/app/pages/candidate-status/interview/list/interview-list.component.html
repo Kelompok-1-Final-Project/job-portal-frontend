@@ -3,7 +3,9 @@
     <h3 class="text-center">All Interview Progress</h3>
   </div>
   <div class="card col-9">
-    <p-table [value]="interviews" [paginator]="true" [rows]="10">
+    <p-table [value]="interviews" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>
@@ -12,6 +14,7 @@
           <th scope="col">Interviewer Name</th>
           <th scope="col">Schedule</th>
           <th scope="col">Notes</th>
+          <th scope="col">Action</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-row let-i="rowIndex">
@@ -22,8 +25,30 @@
           <td>{{ row.interviewerName }}</td>
           <td>{{ row.schedule }}</td>
           <td>{{ row.notes }}</td>
+          <td>
+            <button pButton pRipple class="p-button-primary" icon="pi pi-pencil" pTooltip="Insert Notes"
+              tooltipPosition="top" (click)="insertNotes(row.interviewId)"></button>
+          </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
 </div>
+
+<!-- Modal Insert Interview Notes-->
+<p-dialog header="Add Interview Notes" [modal]="true" [(visible)]="visibleUpdateNotes" [style]="{ width: '30vw' }">
+  <pre>{{interviewUpdateReqDto.value | json}}</pre>
+  <form [formGroup]="interviewUpdateReqDto" (ngSubmit)="updateNotes()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Notes</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <textarea pInputTextarea type="text" class="col-12 " id="inputName" required formControlName="notes"></textarea>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</p-dialog>

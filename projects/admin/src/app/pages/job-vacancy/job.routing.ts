@@ -18,7 +18,7 @@ const routes: Routes = [
         component: JobListComponent
     },
     {
-        path: 'update/:code',
+        path: 'update/:id',
         component: JobUpdateComponent
     },
     {

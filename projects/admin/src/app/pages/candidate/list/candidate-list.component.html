@@ -7,8 +7,9 @@
       <button (click)="assign(3)" pButton pRipple class="p-button-primary mr-3" label="Assign Vacancy"></button>
       <button routerLink="create" pButton pRipple class="p-button-primary" label="Add Candidate"></button>
     </div>
-    <p-table [value]="candidates" [paginator]="true" [rows]="10" [(selection)]="selectedCandidates" dataKey="email"
-      [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [value]="candidates" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
       <ng-template pTemplate="header">
         <tr>
           <th style="width: 4rem">
@@ -35,7 +36,7 @@
           <td>{{ c.typeName }}</td>
           <td>{{ c.genderName }}</td>
           <td>
-              <button pButton pRipple class="p-button-secondary" label="Detail"></button>
+            <button pButton pRipple class="p-button-secondary" label="Detail"></button>
           </td>
         </tr>
       </ng-template>
@@ -43,7 +44,7 @@
   </div>
 
   <!-- Modal Update-->
-  <p-dialog header="Assign Vacancy" [(visible)]="visibleAssign" [style]="{ width: '50vw' }">
+  <p-dialog header="Assign Vacancy" [modal]="true" [(visible)]="visibleAssign" [style]="{ width: '50vw' }">
     <div class="grid surface-card border-round-sm border-600">
       <div class="container grid justify-content-center p-3">
         <div class=" grid justify-content-center col-12">

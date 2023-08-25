@@ -5,6 +5,7 @@ import {
 import { Title } from '@angular/platform-browser';
 import { OfferingGetResDto } from '@dto/offering/offering.get.res.dto';
 import { StatusProgressService } from '@serviceAdmin/statusprogress.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'offering-list',
@@ -27,7 +28,7 @@ export class OfferingListComponent implements OnInit {
   }
 
   getOffering() {
-    this.statusProgressService.getOffering().subscribe(result => {
+    firstValueFrom(this.statusProgressService.getOffering()).then(result => {
       this.offering = result
     })
   }

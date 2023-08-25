@@ -16,6 +16,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { PanelModule } from 'primeng/panel';
 import { TooltipModule } from 'primeng/tooltip';
 import { ImageModule } from 'primeng/image';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
     imports: [
@@ -34,7 +35,8 @@ import { ImageModule } from 'primeng/image';
         CheckboxModule,
         PanelModule,
         InputNumberModule,
-        ImageModule
+        ImageModule,
+        AccordionModule
     ],
     exports: [
         InputTextModule,
@@ -53,7 +55,8 @@ import { ImageModule } from 'primeng/image';
         PanelModule,
         InputNumberModule,
         TooltipModule,
-        ImageModule
+        ImageModule,
+        AccordionModule
     ]
 })
 export class SharedModuleComponent {

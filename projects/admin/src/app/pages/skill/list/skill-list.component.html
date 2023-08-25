@@ -6,7 +6,9 @@
     <div class="grid justify-content-end mb-3">
       <button pButton pRipple class="p-button-primary" (click)="add()" label="Add Skill"></button>
     </div>
-    <p-table [value]="skills" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [value]="skills" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>
@@ -59,7 +61,7 @@
         </div>
         <div class="col-12 md:col-9">
           <input pInputText type="text" class="col-12 p-disabled" id="inputName" value={{code}}>
-        </div>
+        </div>  
         <div class="col-12 md:col-3">
           <label for="inputName">Skill Name</label>
         </div>
