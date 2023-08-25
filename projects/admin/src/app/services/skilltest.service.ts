@@ -24,4 +24,5 @@ export class SkillTestService{
         return this.base.get<ResultGetResDto[]>(`${BASE_URL}/results/job/${param}`, true)
     }
 
+    
 }

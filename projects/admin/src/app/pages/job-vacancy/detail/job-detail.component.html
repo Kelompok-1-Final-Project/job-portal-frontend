@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="margin-bottom: 5rem;">
     <form>
         <div class="card-container flex flex-wrap justify-content-start align-items-center" style="min-height: 700px">
             <div class="flex col-12">
@@ -60,13 +60,13 @@
         <p-tabView>
             <p-tabPanel header="Job Benefit">
                 <div class="container">
-                    <h3>Job Benefit</h3>
+                    <h3>List Benefit:</h3>
                     <div class="question-details">
-                        <h4 class="detail-heading">List:</h4>
                         <ul>
-                            <li *ngFor="let o of test.questionGetResDtos[0].optionGetResDtos">
-                                <span>{{o.label}} </span>
-                                <span class="option-answer">({{o.isAnswer}})</span>
+                            <li *ngFor="let b of benefits">
+                                <span>{{b.benefitName}} </span>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-danger"
+                                    style="margin-bottom: 0.3rem;" (click)="deleteBenefit(job.jobCode, b.benefitCode)"></button>
                             </li>
                         </ul>
                     </div>
@@ -116,6 +116,8 @@
 
                         <div class="question">
                             <h4 class="detail-heading">Questions:</h4>
+                            <button pButton pRipple label="Add Question" style="margin-bottom: 0.5rem;"
+                                routerLink="/job-vacancies/question/{{test.testCode}}"></button>
                             <div *ngFor="let q of test.questionGetResDtos; let i = index">
                                 <p-accordion [multiple]="true" [activeIndex]="[0]">
                                     <p-accordionTab header="Question {{i+1}}">
@@ -127,7 +129,8 @@
                                             </li>
                                         </ul>
                                         <button pButton pRipple class="p-button-danger" icon="pi pi-trash"
-                                            pTooltip="Delete Question" tooltipPosition="top" (click)="questionModal()"></button>
+                                            pTooltip="Delete Question" tooltipPosition="top"
+                                            (click)="questionModal(test.testCode, q.questionCode)"></button>
                                     </p-accordionTab>
                                 </p-accordion>
                             </div>
@@ -265,12 +268,12 @@
     </form>
 </p-dialog>
 
-<!-- Modal Delete Question-->
-<p-dialog header="Delete Question" [modal]="true" [(visible)]="visibleDeleteQuestion" [style]="{ width: '30vw' }">
-    <form (ngSubmit)="deleteQuestionJob()">
+<!-- Modal Delete Benefit-->
+<p-dialog header="Delete Benefit" [modal]="true" [(visible)]="visibleBenefit" [style]="{ width: '30vw' }">
+    <form (ngSubmit)="deleteJobBenefit()">
         <div class="grid surface-card border-round-sm border-400">
             <div class="col-12">
-                <h3 for="inputName">Apakah anda ingin menghapus question dari job?</h3>
+                <h3 for="inputName">Apakah anda ingin menghapus Benefit dari job?</h3>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
                 <button type="submit" pButton pRipple class="p-button-primary"

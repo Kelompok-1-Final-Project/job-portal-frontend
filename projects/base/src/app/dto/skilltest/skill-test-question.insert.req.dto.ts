@@ -1,4 +1,4 @@
-export interface SkillTestQuestionInsertReqDto{
-    questionId : string
-	skillTestId : string
+export interface SkillTestQuestionInsertReqDto {
+    questionCode: string[]
+    skillTestCode: string
 }

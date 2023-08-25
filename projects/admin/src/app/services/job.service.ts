@@ -11,6 +11,9 @@ import { JobAdminGetResDto } from "@dto/job/job-admin.get.res.dto";
 import { JobUpdateReqDto } from "@dto/job/job.update.req.dto";
 import { UpdateResDto } from "@dto/update.res.dto";
 import { DeleteResDto } from "@dto/delete.res.dto";
+import { SkillTestInsertReqDto } from "@dto/skilltest/skill-test.insert.req.dto";
+import { SkillTestQuestionInsertReqDto } from "@dto/skilltest/skill-test-question.insert.req.dto";
+import { JobBenefitGetResDto } from "@dto/job-benefit/job-benefit.get.res.dto";
 
 @Injectable({
     providedIn: 'root'
@@ -42,11 +45,23 @@ export class JobService {
         return this.base.post<InsertResDto>(`${BASE_URL}/jobs`, data, true)
     }
 
-    update(data: JobUpdateReqDto): Observable<UpdateResDto>{
+    update(data: JobUpdateReqDto): Observable<UpdateResDto> {
         return this.base.patch<UpdateResDto>(`${BASE_URL}/jobs`, data, true)
     }
 
-    deleteQuestion(skillTest:string, question:string):Observable<DeleteResDto>{
-        return this.base.delete<DeleteResDto>(`${BASE_URL}/jobs?st=${skillTest}&q=${question}`, true)
+    deleteQuestion(skillTest: string, question: string): Observable<DeleteResDto> {
+        return this.base.delete<DeleteResDto>(`${BASE_URL}/skilltests/${skillTest}/${question}`, true)
+    }
+
+    insertJobQuestion(data: SkillTestQuestionInsertReqDto): Observable<InsertResDto> {
+        return this.base.post<InsertResDto>(`${BASE_URL}/skilltests/question`, data, true)
+    }
+
+    getJobBenefit(param: string): Observable<JobBenefitGetResDto[]> {
+        return this.base.get<JobBenefitGetResDto[]>(`${BASE_URL}/jobs/job-benefit?job=${param}`, true)
+    }
+
+    deleteJobBenefit(job: string, benefit: string): Observable<DeleteResDto>{
+        return this.base.delete<DeleteResDto>(`${BASE_URL}/jobs/${job}/${benefit}`, true)
     }
 }
