@@ -20,6 +20,8 @@ import { ProfileGetResDto } from "@dto/profile/profile.get.res.dto";
 import { ProfileUpdateReqDto } from "@dto/profile/profile.update.req.dto";
 import { MaritalGetResDto } from "@dto/profile/marital.get.res.dto";
 import { GenderGetResDto } from "@dto/profile/gender.get.res.dto";
+import { UpdateCvReqDto } from "@dto/profile/update.cv.req.dto";
+import { UpdateSummaryReqDto } from "@dto/profile/update.cv.req.dto copy";
 
 @Injectable({
     providedIn: 'root'
@@ -82,9 +84,17 @@ export class ProfileService{
     getFamily(userId:string): Observable<FamilyGetResDto[]>{
         return this.base.get<FamilyGetResDto[]>(`${BASE_URL_CAN}/families/candidate?id=${userId}`, true)
     }
-
+    
     updateProfile(data : ProfileUpdateReqDto): Observable<UpdateResDto>{
         return this.base.patch<UpdateResDto>(`${BASE_URL_CAN}/profiles`, data, true)
+    }
+
+    updateCv(data : UpdateCvReqDto): Observable<UpdateResDto>{
+        return this.base.patch<UpdateResDto>(`${BASE_URL_CAN}/profiles/cvUpdate`, data, true)
+    }
+
+    updateSummary(data : UpdateSummaryReqDto): Observable<UpdateResDto>{
+        return this.base.patch<UpdateResDto>(`${BASE_URL_CAN}/profiles/summaryUpdate`, data, true)
     }
 
     getAllMarital(): Observable<MaritalGetResDto[]>{

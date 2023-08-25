@@ -64,6 +64,8 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
   visibleAddFamily: boolean = false;
   visibleUpdateFamily: boolean = false;
   visibleDeleteFamily: boolean = false;
+  visibleUpdateCv:boolean = false;
+  visibleUpdateSummary:boolean = false;
 
   userId!: string;
   patchId!:string;
@@ -169,7 +171,18 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
 	  familyName:['', [Validators.required]],
 	  relationshipCode:['', [Validators.required]],
 	  degreeCode:['', [Validators.required]],
-	  birthdate:['', [Validators.required]],
+	  birthdate:['', [Validators.required]]
+  })
+
+  cvUpdateReqDto = this.fb.group({
+    candidateId:['', [Validators.required]],
+    file:['', [Validators.required]],
+    ext:['', [Validators.required]]
+  })
+
+  summaryUpdateReqDto = this.fb.group({
+    candidateId:['', [Validators.required]],
+    summary:['', [Validators.required]]
   })
 
   today: Date = new Date();
@@ -451,6 +464,13 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
 
   }
 
+  //Resume
+  getCandidateResume(){
+    this.profileService.getOrganizations(this.userId).subscribe(result => {
+      this.organization= result
+    })
+  }
+
   // Family
   getCandidateFamily(){
     this.profileService.getFamily(this.userId).subscribe(result => {
@@ -511,6 +531,34 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     this.visibleDeleteFamily = true;
   }
 
+  updateSummary(){
+    this.visibleUpdateSummary=true;
+    this.summaryUpdateReqDto.get('summary')?.setValue(this.userData.summary);
+  }
+
+  submitUpdateSummary(){
+    const data = this.summaryUpdateReqDto.getRawValue();
+    data.candidateId = this.userId;
+    this.profileService.updateSummary(data).subscribe(result => {
+      this.visibleUpdateSummary = false;
+      this.getCandidateData();
+    })
+  }
+
+  updateCv(){
+    this.visibleUpdateCv=true;
+  }
+
+  submitUpdateCv(){
+    const data = this.cvUpdateReqDto.getRawValue();
+    data.candidateId = this.userId;
+    this.profileService.updateCv(data).subscribe(result => {
+      this.visibleUpdateCv = false;
+      console.log(data);
+      this.getCandidateData();
+    })
+  }
+
   fileUpload(event: any) {
     const toBase64 = (file: File) => new Promise < string > ((resolve, reject) => {
       const reader = new FileReader();
@@ -528,6 +576,28 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
         this.candidateUpdateReqDto.patchValue({
           photoExt: resultExtension,
           photoFiles: resultBase64
+        })
+      })
+    }
+  }
+
+  cvUpload(event: any) {
+    const toBase64 = (file: File) => new Promise < string > ((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        if (typeof reader.result === "string") resolve(reader.result)
+      };
+      reader.onerror = error => reject(error);
+    });
+
+    for (let file of event.files) {
+      toBase64(file).then(result => {
+        const resultBase64 = result.substring(result.indexOf(",") + 1, result.length)
+        const resultExtension = file.name.substring(file.name.lastIndexOf(".") + 1, file.name.length)
+        this.cvUpdateReqDto.patchValue({
+          ext: resultExtension,
+          file: resultBase64
         })
       })
     }
