@@ -25,7 +25,8 @@ import { JobService } from '@serviceCandidate/job.service';
 
 @Component({
   selector: 'home-index',
-  templateUrl: './index.component.html'
+  templateUrl: './index.component.html',
+  styleUrls:['./index.component.css']
 })
 export class HomeComponent implements OnInit {
 
