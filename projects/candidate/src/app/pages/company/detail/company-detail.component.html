@@ -7,8 +7,7 @@
         <h3 class="col-12 col-offset-1">About Company</h3>
         <div class="sub-container grid">
           <div class="col-3 col-offset-1 justify-content-center align-content-center">
-            <img [src]="companyData.fileId" alt="Image"
-              width="150">
+            <img src="{{ companyData.fileId|urlCandidate }}" alt="Image" class="w-5rem md:w-full">
           </div>
           <div class="title col-8">
             <span class="col-12 text-primary">
