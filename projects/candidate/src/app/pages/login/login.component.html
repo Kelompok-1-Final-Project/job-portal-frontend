@@ -1,36 +1,35 @@
 <!-- <div class="h-screen flex align-items-center justify-content-center"> -->
-<div class="grid">
-    <div class="col-12 md:col-6">
-        <p-image src="../../../assets/images/18.-Login.svg" alt="Login Image" width="100%"></p-image>
+<div class="grid grid-nogutter h-screen">
+    <div class="col-12 md:col-7 h-full">
+        <h3 class="image-login">Test</h3>
+        <!-- <p-image src="../../../assets/images/olena-sergienko-dIMJWLx1YbE-unsplash.jpg" alt="Login Image" height="100%" width="100%"></p-image> -->
     </div>
-    <div class="col-12 md:col-6">
-        <div class="h-screen flex align-items-center justify-content-center">
-            <form [formGroup]="userLoginReqDto" (ngSubmit)="onLogin()" class="grid gy-md-3">
-                <div class="col-12 text-center">
-                    <h1>Login</h1>
-                </div>
-                <div class="col-12">
-                    <label for="email">Email</label>
-                </div>
-                <div class="col-12">
-                    <input class="w-full" type="email" pInputText id="email" formControlName="userEmail">
-                </div>
-                <div class="col-12">
-                    <label for="password">Password</label>
-                </div>
-                <div class="col-12">
-                    <p-password styleClass="w-full" [inputStyle]="{'width':'100%'}" [toggleMask]="true" id="password"
-                        [feedback]="false" formControlName="userPassword"></p-password>
-                </div>
-                <div class="col-12 mt-2 text-center">
-                    <app-button classBtn="w-4" label="Login" [loading]="loading" btnType="submit"></app-button>
-                </div>
-                <div class="col-12 mt-2 text-center">
-                    <span>Don't have account? </span>
-                    <a routerLink="/register">Sign Up</a>
-                </div>
-            </form>
-        </div>
+    <div class="col-12 md:col-5">
+        <form [formGroup]="userLoginReqDto" (ngSubmit)="onLogin()" class=" flex flex-column align-items-center justify-content-center">
+            <div>
+                <h1>Login</h1>
+            </div>
+            <div>
+                <label for="email">Email</label>
+            </div>
+            <div>
+                <input class="w-full" type="email" pInputText id="email" formControlName="userEmail">
+            </div>
+            <div>
+                <label for="password">Password</label>
+            </div>
+            <div>
+                <p-password styleClass="w-full" [inputStyle]="{'width':'100%'}" [toggleMask]="true" id="password"
+                    [feedback]="false" formControlName="userPassword"></p-password>
+            </div>
+            <div class="text-center">
+                <app-button classBtn="w-4" label="Login" [loading]="loading" btnType="submit"></app-button>
+            </div>
+            <div class="text-center">
+                <span>Don't have account? </span>
+                <a routerLink="/register">Sign Up</a>
+            </div>
+        </form>
     </div>
 </div>
 
