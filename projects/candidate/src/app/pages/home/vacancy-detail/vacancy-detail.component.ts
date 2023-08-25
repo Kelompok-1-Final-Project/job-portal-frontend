@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BenefitGetResDto } from '@dto/benefit/benefit.get.res.dto';
+import { AssignJobReqDto } from '@dto/candidateprogress/candidate-assign.get.res.dto';
 import { CompanyGetResDto } from '@dto/company/company.get.res.dto';
 import { JobGetResDto } from '@dto/job/job.get.res.dto';
 import { AuthService } from '@serviceCandidate/auth.service';
@@ -18,11 +19,22 @@ import { JobService } from '@serviceCandidate/job.service';
 export class VacancyDetailComponent implements OnInit {
   visibleAssignJob:boolean=false;
   userId!:string;
+  userEmail!:string;
   idJob!:string;
   idCompany!:string;
   job!:JobGetResDto;
   company!:CompanyGetResDto;
   benefits!:BenefitGetResDto[];
+
+  assignJobReqDto= {
+    candidateEmail:'',
+    jobId:'',
+  };
+
+  saveJobReqDto = {
+    candidateId:'',
+    jobId:''
+  }
 
   constructor(
     private activatedRoute : ActivatedRoute,
@@ -42,6 +54,7 @@ export class VacancyDetailComponent implements OnInit {
 
   ngOnInit(){
     this.userId = this.authService.getUserId();
+    this.userEmail = this.authService.getUserEmail();
     this.init();
     this.getJob();
     this.getJobBenefit();
@@ -63,7 +76,33 @@ export class VacancyDetailComponent implements OnInit {
   }
 
   assignJob(id:string){
+    this.idJob = id;
     this.visibleAssignJob=true;
+  }
+
+  changeSaveJob(jobId:string,isBookMark:boolean,saveJobId:string){
+    const data = this.saveJobReqDto;
+    this.saveJobReqDto.candidateId = this.userId;
+    this.saveJobReqDto.jobId = jobId;
+    if(isBookMark){
+      this.jobService.deleteSaveJob(saveJobId).subscribe(result => {
+        this.getJob();
+      })
+    }else{
+      this.jobService.insertSaveJob(data).subscribe(result => {
+        this.getJob();
+      })
+    }
+  }
+
+  submitAssignJob(){
+    const data = this.assignJobReqDto;
+    data.candidateEmail = this.userEmail;
+    data.jobId = this.idJob;
+    this.jobService.assignJobCandidate(data).subscribe(result => {
+      this.getJob();
+      this.visibleAssignJob=false;
+    })
   }
 
 }

@@ -9,9 +9,6 @@ import {
   StageProgressGetResDto
 } from '@dto/progress/status-progress-user.get.res.dto';
 import {
-  UserEmailResDto
-} from '@dto/user/user-email-res.dto';
-import {
   AuthService
 } from '@serviceCandidate/auth.service';
 import {
@@ -30,12 +27,14 @@ export class ApplicationComponent implements OnInit {
 
   userId: string = '';
   userEmail: string = '';
-  userEmailDto!: UserEmailResDto;
   applications!: StageProgressGetResDto[];
   assesments!: StageProgressGetResDto[];
   interview!: StageProgressGetResDto[];
   hired!: StageProgressGetResDto[];
   offering!: StageProgressGetResDto[];
+  userReqDto = {
+    email : ''
+  }
 
   constructor(
     private authService: AuthService,
@@ -59,47 +58,45 @@ export class ApplicationComponent implements OnInit {
 
   ngOnInit(): void {
     this.userId = this.authService.getUserId();
-
-    this.getUserEmail();
-  }
-
-  getUserEmail() {
-    this.profileService.getEmailUser(this.userId).subscribe(result => {
-      this.userEmailDto = result
-      this.userEmail = result.email
-      this.getAllApplication();
-      this.getAllAssesment();
-      this.getAllHired();
-      this.getAllInterview();
-      this.getAllOffering();
-    })
+    this.userEmail = this.authService.getUserEmail();
+    this.userReqDto.email = this.userEmail; 
+    this.getAllApplication();
+    this.getAllAssesment();
+    this.getAllHired();
+    this.getAllInterview();
+    this.getAllOffering();
   }
 
   getAllApplication() {
-    this.statusService.getApplication(this.userEmail).subscribe(result => {
+    const data = this.userReqDto;
+    this.statusService.getApplication(data).subscribe(result => {
       this.applications = result
     })
   }
 
   getAllAssesment() {
-    this.statusService.getAssessment(this.userEmail).subscribe(result => {
+    const data = this.userReqDto;
+    this.statusService.getAssessment(data).subscribe(result => {
       this.assesments = result
     })
   }
 
   getAllInterview() {
-    this.statusService.getInterview(this.userEmail).subscribe(result => {
+    const data = this.userReqDto;
+    this.statusService.getInterview(data).subscribe(result => {
       this.interview = result
     })
   }
 
   getAllHired() {
-    this.statusService.getHired(this.userEmail).subscribe(result => {
+    const data = this.userReqDto;
+    this.statusService.getHired(data).subscribe(result => {
       this.interview = result
     })
   }
   getAllOffering() {
-    this.statusService.getOffering(this.userEmail).subscribe(result => {
+    const data = this.userReqDto;
+    this.statusService.getOffering(data).subscribe(result => {
       this.interview = result
     })
   }

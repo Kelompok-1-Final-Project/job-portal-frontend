@@ -6,6 +6,8 @@ import { CompanyDetailComponent } from "./detail/company-detail.component";
 import { CardModule } from 'primeng/card';
 import { CompanyListComponent } from "./list/company.component";
 import { ImageModule } from 'primeng/image';
+import { UrlPipeCandidate } from "@pipes/url.pipe";
+
 
 const routes : Routes = [
     {
@@ -29,6 +31,7 @@ const routes : Routes = [
         CardModule,
         ImageModule,
         ReactiveFormsModule,
+        UrlPipeCandidate
     ],
     exports : [
         RouterModule

@@ -1,3 +1,3 @@
-export interface UserEmailResDto{
+export interface UserEmailReqDto{
     email : string
 }

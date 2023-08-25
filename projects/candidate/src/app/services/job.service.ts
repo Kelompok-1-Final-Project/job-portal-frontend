@@ -11,6 +11,9 @@ import { SaveJobGetResDto } from "@dto/savejob/save-job.get.res.dto";
 import { SearchJobReqDto } from "@dto/job/searchJobReqDto";
 import { JobPositionGetResDto } from "@dto/job/job-position.get.res.dto";
 import { BenefitGetResDto } from "@dto/benefit/benefit.get.res.dto";
+import { CandidateInsertReqDto } from "@dto/candidate/candidate.insert.req.dto";
+import { CandidateProgressInsertReqDto } from "@dto/candidateprogress/candidate-progress.insert.req.dto";
+import { AssignJobReqDto } from "@dto/candidateprogress/candidate-assign.get.res.dto";
 
 @Injectable({
     providedIn: 'root'
@@ -20,7 +23,9 @@ export class JobService{
     constructor(private base: BaseService){}
 
     getAll(data : SearchJobReqDto): Observable<JobGetResDto[]>{
-        return this.base.get<JobGetResDto[]>(`${BASE_URL_CAN}/jobs/filter/?n=${data.jobName}&c=${data.location}&p=${data.position}&e=${data.employmentType}&ss=${data.salaryStart}&se=${data.salaryEnd}&u=${data.userId}`
+        console.log('testing');
+        console.log(data);
+        return this.base.get<JobGetResDto[]>(`${BASE_URL_CAN}/jobs/filter/?n=${data.jobName}&c=${data.location}&p=${data.position}&e=${data.employmentType.join()}&ss=${data.salaryStart}&se=${data.salaryEnd}&u=${data.userId}`
         , true)
     }
 
@@ -47,6 +52,10 @@ export class JobService{
 
     getAllPosition(): Observable<JobPositionGetResDto[]>{
         return this.base.get<JobPositionGetResDto[]>(`${BASE_URL_CAN}/jobs/job-position`, true)
+    }
+
+    assignJobCandidate(data : AssignJobReqDto): Observable<InsertResDto>{
+        return this.base.post<InsertResDto>(`${BASE_URL_CAN}/status-progress/candidate`, data, true)
     }
 
     insertSaveJob(data : SaveJobInsertReqDto): Observable<InsertResDto>{

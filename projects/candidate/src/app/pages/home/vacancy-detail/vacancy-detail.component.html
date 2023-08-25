@@ -37,17 +37,27 @@
           </small>
         </div>
         <div class="button grid col-12 gap-3 text-center">
-          <button type="submit" pButton pRipple class="p-button-primary col-3 text-center" (click)="assignJob(job.id)">
-            <span class="col-12">Lamar</span>
-          </button>
-          <button type="submit" pButton pRipple class="p-button-primary col-3 text-center">
+          <button *ngIf="!job.isApply" type="submit" pButton pRipple class="p-button-primary col-3 text-center " (click)="assignJob(job.id)">
             <span class="col-12">
-              <i class="pi pi-star m-1"></i> Tandai
+             <i class="pi pi-envelope"></i> Apply Now</span>
+          </button>
+          <button *ngIf="job.isApply" type="submit" pButton pRipple class="p-button-primary col-3 text-center" disabled>
+            <span class="col-12">
+             <i class="pi pi-envelope"></i> Apply Now</span>
+          </button>
+          <button *ngIf="!job.isBookmark" type="submit" pButton pRipple class="p-button-primary col-3 text-center" (click)="changeSaveJob(job.id,job.isBookmark,job.saveJobId)">
+            <span class="col-12">
+              <i class="pi pi-heart m-1"></i> Save Jobs
+            </span>
+          </button>
+          <button *ngIf="job.isBookmark" type="submit" pButton pRipple class="p-button-primary col-3 text-center" (click)="changeSaveJob(job.id,job.isBookmark,job.saveJobId)">
+            <span class="col-12">
+              <i class="pi pi-heart-fill m-1" style="color: lightblue;"></i> Save Jobs
             </span>
           </button>
           <button type="submit" pButton pRipple class="p-button-primary col-3 text-center">
             <span class="col-12">
-              <i class="pi pi-share-alt m-1"></i> Bagikan
+              <i class="pi pi-share-alt m-1"></i> Share
             </span>
           </button>
         </div>
@@ -144,7 +154,7 @@
           <span>Previous File: previous file</span>
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <button type="submit" pButton pRipple class="p-button-primary mr-2">Submit</button>
+          <button type="submit" pButton pRipple class="p-button-primary mr-2" (click)="submitAssignJob()">Submit</button>
         </div>
       </div>
     </p-dialog>

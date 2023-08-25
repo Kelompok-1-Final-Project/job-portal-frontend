@@ -20,7 +20,6 @@ import { ProfileGetResDto } from "@dto/profile/profile.get.res.dto";
 import { ProfileUpdateReqDto } from "@dto/profile/profile.update.req.dto";
 import { MaritalGetResDto } from "@dto/profile/marital.get.res.dto";
 import { GenderGetResDto } from "@dto/profile/gender.get.res.dto";
-import { UserEmailResDto } from "@dto/user/user-email-res.dto";
 
 @Injectable({
     providedIn: 'root'
@@ -86,10 +85,6 @@ export class ProfileService{
 
     updateProfile(data : ProfileUpdateReqDto): Observable<UpdateResDto>{
         return this.base.patch<UpdateResDto>(`${BASE_URL_CAN}/profiles`, data, true)
-    }
-
-    getEmailUser(id:string):Observable<UserEmailResDto>{
-        return this.base.get<UserEmailResDto>(`${BASE_URL_CAN}/users/get/?email=${id}`, true)
     }
 
     getAllMarital(): Observable<MaritalGetResDto[]>{
