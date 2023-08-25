@@ -25,7 +25,7 @@
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-c let-i="rowIndex">
-        <tr>
+        <tr pSelectableRow="c" routerLink="detail/{{c.id}}">
           <td>
             <p-tableCheckbox [value]="c" binary="true"></p-tableCheckbox>
           </td>
