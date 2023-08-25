@@ -70,6 +70,14 @@
     </p-accordionTab>
   </p-accordion>
 
+  <p-accordion class="col-10 md:col-8">
+    <p-accordionTab header="Summary" [selected]="true">
+      <div class="grid justify-content-end">
+        <button pButton type="button" icon="pi pi-pencil" class="p-button-success" (click)="updateSummary()">Edit</button>
+      </div>
+      <div class="content">{{ userData.summary ? userData.summary:'-' }}</div>
+    </p-accordionTab>
+  </p-accordion>
 
   <p-accordion class="col-10 md:col-8">
     <p-accordionTab header="Education" [selected]="true">
@@ -193,6 +201,18 @@
       </div>
     </p-accordionTab>
   </p-accordion>
+
+  <p-accordion class="col-10 md:col-8">
+    <p-accordionTab header="Resume" [selected]="true">
+      <div class="grid justify-content-end">
+        <button pButton type="button" icon="pi pi-pencil" class="p-button-primary mb-2" label="Update"
+                (click)="updateCv()">
+        </button>
+      </div>
+      <div class="content">{{ userData.cvId ? userData.cvId:'-' }}</div>
+    </p-accordionTab>
+  </p-accordion>
+
 </div>
 
 <!-- Modal Edit User-->
@@ -673,3 +693,54 @@
     </div>
   </div>
 </p-dialog>
+
+<!-- Modal Update Summary-->
+<p-dialog header="Edit Summary" [modal]="true" [(visible)]="visibleUpdateSummary" [style]="{ width: '30vw' }">
+  <pre>{{ summaryUpdateReqDto.value|json }}</pre>
+  <form [formGroup]="summaryUpdateReqDto" (ngSubmit)="submitUpdateSummary()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="summary">Summary<span class="text-red-500">*</span></label>
+      </div>
+      <div class="col-12 md:col-9">
+        <textarea pInputText rows="5" type="text" class="w-full" id="summary" required formControlName="summary">
+        </textarea>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</p-dialog>
+
+<!-- Modal Update CV-->
+<p-dialog header="Update Resume" [modal]="true" [(visible)]="visibleUpdateCv" [style]="{ width: '30vw' }">
+  <pre>{{ cvUpdateReqDto.value|json }}</pre>
+  <form [formGroup]="cvUpdateReqDto" (ngSubmit)="submitUpdateCv()">
+  <div class="grid surface-card border-round-sm border-400">
+    <div class="col-12">
+      <label for="inputName">Note: Your profile is the first thing recruiters see and not your uploaded resume</label>
+    </div>
+    <div class="col-8">
+      <span>
+        <a *ngIf="userData.cvId" href="{{ userData.cvId|json }}">
+          {{ userData.cvId }}
+        </a>
+        <p *ngIf="!userData.cvId">
+          You haven't uploaded a cv
+        </p>
+      </span>
+    </div>
+    <div class="col-4">
+      <p-fileUpload mode="basic" class="col-12 md:col-9" chooseLabel="Upload"
+            (onSelect)="cvUpload($event)">
+      </p-fileUpload>
+    </div>
+    <div class="col-12">
+      <div class="grid grid-nogutter justify-content-end">
+        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</form>
+</p-dialog> 

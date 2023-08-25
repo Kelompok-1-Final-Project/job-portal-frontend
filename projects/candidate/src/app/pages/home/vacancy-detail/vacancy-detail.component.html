@@ -1,11 +1,11 @@
 <pre>{{ job|json }}</pre>
 <pre>{{ idJob|json }}</pre>
 <!-- <pre>{{ company|json }}</pre> -->
-<div class="home-container grid justify-content-center">
-  <div class="container">
-    <div class="sub-container grid col-12 md:col-6 mt-3">
+<div class="home-container">
+  <div class="container grid justify-content-center">
+    <div class="sub-container grid col-12 md:col-10 mt-3 justify-content-center">
       <div class="col-10 md:col-3 text-center">
-        <img src="{{ job.companyPhoto|urlCandidate }}" alt="Image" class="w-8">
+        <img src="{{ job.companyPhoto|urlCandidate }}" alt="Image" class="w-full">
       </div>
       <div class="title col-10 md:col-7">
         <!-- <span class="col-12">{{ job.jobTitle }}</span> -->
@@ -69,13 +69,17 @@
       </div>
     </div>
     <div class="description col-10 md:col-8 grid justify-content-center">
-      <h3>
-        Job Description
-      </h3>
-      <span>
-        {{ job.description }}
-      </span>
-      <div class="benefit">
+      <div class="col-12">
+        <h3>
+          Job Description
+        </h3>
+      </div>
+      <div class="col-12">
+        <span>
+          {{ job.description }}
+        </span>
+      </div>
+      <div class="col-12 benefit">
         <h3>
           Benefit
         </h3>
@@ -85,38 +89,42 @@
           <label>{{ benefit.benefitName }}</label>
         </div>
       </div>
-      <div class="summary grid gap-1">
+      <div class="col-12">
         <h3>
           Job Summary
         </h3>
-        <div class="job-position col-3 mt-3">
-          <h4>Job Position</h4>
-          <span>
-            {{ job.positionName }}
-          </span>
-        </div>
-        <div class="employment-type col-3 mt-3">
-          <h4>Employment Type</h4>
-          <span>
-            {{ job.employmentName }}
-          </span>
-        </div>
-        <div class="address col-3 mt-3">
-          <h4>Address</h4>
-          <span>
-            {{ company.address?company.address:'-' }}
-          </span>
+        <div class="grid justify-content-between">
+          <div class="job-position col-3 mt-3">
+            <h4>Job Position</h4>
+            <span>
+              {{ job.positionName }}
+            </span>
+          </div>
+          <div class="employment-type col-3 mt-3">
+            <h4>Employment Type</h4>
+            <span>
+              {{ job.employmentName }}
+            </span>
+          </div>
+          <div class="address col-3 mt-3">
+            <h4>Address</h4>
+            <span>
+              {{ company.address?company.address:'-' }}
+            </span>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="description col-10 md:col-8 grid justify-content-center">
       <div class="company mt-4">
         <div class="container grid justify-content-center">
           <div class="sub-container grid col-12 shadow-1 surface-card border-round-sm">
             <h3 class="col-12 col-offset-1">About Company</h3>
-            <div class="sub-container col-12 grid">
+            <div class="sub-container col-12 grid justify-content-center">
               <div class="col-12 md:col-4 justify-content-center align-content-center">
                 <img src="{{ job.companyPhoto|urlCandidate }}" alt="Image" class="w-full">
               </div>
-              <div class="title col-12">
+              <div class="title col-10 md:col-6">
                 <a routerLink="/companies/detail/{{ company.companyId }}" class="col-12 text-primary"
                   style="text-decoration: none;">
                   {{ company.companyName }}
@@ -147,6 +155,8 @@
     </div>
   </div>
 </div>
+
+
 <p-dialog header="Upload Resume" [modal]="true" [(visible)]="visibleAssignJob" [style]="{ width: '30vw' }">
   <div class="grid surface-card border-round-sm border-400">
     <div class="col-12 md:col-3">

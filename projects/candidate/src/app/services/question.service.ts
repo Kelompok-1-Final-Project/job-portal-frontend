@@ -16,8 +16,4 @@ export class QuestionService{
     getAll(): Observable<TestGetResDto>{
         return this.base.get<TestGetResDto>(`${BASE_URL_CAN}/answers/3859e18b-74bf-4cc2-95b7-c5106df4ba39`, true)
     }
-    
-    getOption(idQuestion : number) : Observable<QuestionOptionResDto[]>{
-        return this.base.get<QuestionOptionResDto[]>(`${BASE_URL}/questions/option/${idQuestion}`)
-    }
 }
