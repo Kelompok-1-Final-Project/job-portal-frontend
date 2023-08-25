@@ -6,8 +6,8 @@
     <p-accordionTab header="Basic Information" [selected]="true">
       <div class="p-2 md:p-1">
         <div class="grid">
-          <div class="">
-            <img src="{{ userData.photoId|urlCandidate}}" alt="Foto Profil">
+          <div class="col-4">
+            <img src="{{ userData.photoId|urlCandidate}}" alt="Foto Profil" class="w-full">
           </div>
           <div class="col-8">
             <div class="info grid">
@@ -17,7 +17,7 @@
               <div class="button col-6">
                 <button pButton type="button" icon="pi pi-pencil mr-3" class="p-button-success mb-2"
                   (click)="editUser()">
-                  Edit rofile
+                  Edit Profile
                 </button>
               </div>
               <div class="left-info col-6 p-3">
@@ -397,13 +397,13 @@
         <label for="inputName">From </label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+        <p-calendar [showIcon]="true" formControlName="startDate" [readonlyInput]="true"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputName">To </label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+        <p-calendar [showIcon]="true" formControlName="endDate" [readonlyInput]="true"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <button type="submit" pButton pRipple class="p-button-primary">Submit</button>

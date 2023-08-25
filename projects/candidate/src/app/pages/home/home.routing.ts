@@ -22,6 +22,8 @@ import { ContextMenuModule } from 'primeng/contextmenu';
 import { SaveJobsComponent } from "./save-jobs/save-jobs.component";
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { AutoCompleteModule } from 'primeng/autocomplete';
+import { UrlPipeCandidate } from "@pipes/url.pipe";
+
 
 
 const routes : Routes = [
@@ -69,6 +71,7 @@ const routes : Routes = [
         ContextMenuModule,
         RadioButtonModule,
         AutoCompleteModule,
+        UrlPipeCandidate,
         FileUploadModule
     ],
     exports : [

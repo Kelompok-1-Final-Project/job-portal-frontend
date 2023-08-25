@@ -8,7 +8,7 @@
       Don't forget these jobs that you have bookmarked before. Apply early and increase your chances to be hired!
     </span>
     <div class="content grid">
-      <p-card class="col-12 md:col-6 mt-4" *ngFor="let j of jobs">
+      <p-card class="col-12 md:col-6 mt-4" *ngFor="let j of jobs" routerLink="/home/detail/{{j.id}}">
         <div class="thumbnail grid">
           <div class="col-4 justify-content-center align-content-center">
             <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image" width="100"
@@ -17,7 +17,7 @@
           <div class="title col-8 grid">
             <span class="col-10">{{ j.jobTitle }}</span>
             <i class="pi pi-heart-fill col-2 flex justify-content-end" style="color: deeppink" (click)="deleteSaveJob(j.id,$event)"></i>
-            <a routerLink="/companies/detail/{{ j.id }}" class="col-12 text-primary" style="text-decoration: none;">{{ j.companyName }}</a>
+            <a routerLink="/companies/detail/{{ j.id }}" class="col-12 text-primary">{{ j.companyName }}</a>
           </div>
         </div>
         <div class="city">

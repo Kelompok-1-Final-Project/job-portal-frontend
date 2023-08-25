@@ -44,12 +44,13 @@ export class HomeComponent implements OnInit {
   locations!:CityGetResDto[];
   positions!:JobPositionGetResDto[];
 
+  employmentTypeSelected: string[] = [];
 
   searchJobReqDto = this.fb.group({
     jobName :[''],
     location :[''],
     position :[''],
-    employmentType :[''],
+    employmentType :this.fb.array(this.employmentTypeSelected),
     salaryStart :[0],
     salaryEnd :[0],
     userId : ['']

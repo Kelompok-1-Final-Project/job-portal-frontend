@@ -1,5 +1,5 @@
 export interface JobAdminGetResDto{
-    id : string
+	id : string
 	jobTitle: string
 	jobCode : string
 	hrId: string 
@@ -13,5 +13,5 @@ export interface JobAdminGetResDto{
 	statusName: string
 	description: string
 	hrName: string
-	interviewerName: string
+	interviewerName: string
 }

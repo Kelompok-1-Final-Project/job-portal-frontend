@@ -172,6 +172,9 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
 	  birthdate:['', [Validators.required]],
   })
 
+  today: Date = new Date();
+  minDate: Date;
+  maxDate: Date;
   constructor(
     private candidateService: CandidateService,
     private authService: AuthService,
@@ -181,7 +184,10 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     private fb: NonNullableFormBuilder,
     private cd:ChangeDetectorRef,
     private router: Router
-  ) {}
+  ) {
+    this.minDate = new Date(2000, 0, 1);
+    this.maxDate = this.today;
+  }
   ngAfterViewChecked(): void {
     this.cd.detectChanges();
   }

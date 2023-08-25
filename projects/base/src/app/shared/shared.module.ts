@@ -18,7 +18,6 @@ import { TooltipModule } from 'primeng/tooltip';
 import { ImageModule } from 'primeng/image';
 import { AccordionModule } from 'primeng/accordion';
 
-
 @NgModule({
     imports: [
         InputTextModule,
