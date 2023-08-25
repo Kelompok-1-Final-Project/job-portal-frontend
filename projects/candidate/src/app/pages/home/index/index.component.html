@@ -29,13 +29,13 @@
             <div class="col-12 md:col-3">
               <p-dropdown placeholder="Location" [options]="locations" [filter]="true" optionValue="cityId"
                 optionLabel="cityName" formControlName="location" [showClear]="true" autoWidth="false"
-                styleClass="w-full">
+                styleClass="w-full" (onClear)="onLocationClear()">
               </p-dropdown>
             </div>
             <div class="col-12 md:col-3">
               <p-dropdown placeholder="Position" [options]="positions" [filter]="true" optionValue="id"
                 optionLabel="positionName" formControlName="position" [showClear]="true" autoWidth="false"
-                styleClass="w-full">
+                styleClass="w-full" (onClear)="onPositionClear()">
               </p-dropdown>
             </div>
             <div class="col-12 md:col-3">
@@ -55,9 +55,9 @@
       <h4 class="text-dark col-12 -mb-3">
         Company Industry
       </h4>
-      <div class="industry-box" *ngFor="let industry of industries">
+      <div class="industry-box cursor-pointer " *ngFor="let industry of industries">
         <div routerLink="job/industry/{{ industry.id }}"
-          class="col-12 shadow-2 m-4 surface-card border-round-sm border-400 w-12rem text-center">
+          class="col-12 hover:shadow-6 shadow-2 m-4 surface-card border-round-sm border-400 w-12rem text-center">
           <p class="text-primary">
             {{industry.industryName}}
           </p>

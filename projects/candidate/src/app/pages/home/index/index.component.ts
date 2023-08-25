@@ -62,6 +62,12 @@ export class HomeComponent implements OnInit {
     'carousel-3.jpg',
   ];
 
+  ngOnInit(): void {
+    this.getAllIndustry();
+    this.getAllLocations();
+    this.getAllPosition();
+  }
+
   getAllIndustry() {
     this.industryService.getAll().subscribe(result => {
       this.industries = result
@@ -85,10 +91,11 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-    this.getAllIndustry();
-    this.getAllLocations();
-    this.getAllPosition();
+  onLocationClear(){
+    this.searchJobReqDto.get('location')?.setValue('');
+  }
+  onPositionClear(){
+    this.searchJobReqDto.get('position')?.setValue('');
   }
 
 }

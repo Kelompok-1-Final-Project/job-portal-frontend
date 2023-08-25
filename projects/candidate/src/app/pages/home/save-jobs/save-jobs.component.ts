@@ -16,6 +16,7 @@ import { JobService } from '@serviceCandidate/job.service';
 export class SaveJobsComponent implements OnInit {
 
   userId!:string;
+  lengthSaveJobs:number=0;
   constructor(
     private jobService: JobService,
     private authService : AuthService,
@@ -40,6 +41,7 @@ export class SaveJobsComponent implements OnInit {
   getAllJobs() {
     this.jobService.getAllSaveJobs(this.userId).subscribe(result => {
       this.jobs = result
+      this.lengthSaveJobs = result.length;
     })
   }
 

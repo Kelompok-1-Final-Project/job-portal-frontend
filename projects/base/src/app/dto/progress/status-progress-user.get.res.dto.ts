@@ -5,6 +5,8 @@ export interface StageProgressGetResDto{
 	statusName:string;
 	companyId:string
 	companyName:string;
+	photoId:string;
 	createdAt:string;
 	totalStage:number;
+
 }
