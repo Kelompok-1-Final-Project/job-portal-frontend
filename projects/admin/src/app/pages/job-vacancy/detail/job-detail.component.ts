@@ -15,7 +15,7 @@ import { firstValueFrom } from "rxjs";
 
 @Component({
     selector: 'job-detail',
-    templateUrl: 'job-detail.component.html'
+    templateUrl: './job-detail.component.html'
 })
 export class JobDetailComponent implements OnInit, AfterViewChecked {
 

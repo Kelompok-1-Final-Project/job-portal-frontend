@@ -10,29 +10,35 @@ import { CandidateUpdateComponent } from "./update/candidate-update.component";
 import { PanelModule } from 'primeng/panel';
 import { TableModule } from 'primeng/table';
 import { CandidateListComponent } from "./list/candidate-list.component";
+import { CandidateDetailComponent } from "./detail/candidate-detail.component";
 
-const routes : Routes = [
+const routes: Routes = [
     {
-        path : '',
-        component : CandidateListComponent
+        path: '',
+        component: CandidateListComponent
     },
     {
-        path : 'detail/:id',
-        component : CandidateUpdateComponent
+        path: 'update/:id',
+        component: CandidateUpdateComponent
     },
     {
-        path : 'create',
-        component : CandidateInsertComponent
+        path: 'create',
+        component: CandidateInsertComponent
+    },
+    {
+        path: 'detail/:id',
+        component: CandidateDetailComponent
     }
 ]
 
 @NgModule({
-    declarations : [
+    declarations: [
         CandidateInsertComponent,
         CandidateUpdateComponent,
-        CandidateListComponent
+        CandidateListComponent,
+        CandidateDetailComponent
     ],
-    imports :[
+    imports: [
         RouterModule.forChild(routes),
         CommonModule,
         ReactiveFormsModule,
@@ -41,13 +47,12 @@ const routes : Routes = [
         PanelModule,
         TableModule,
         SharedModuleComponent
-
     ],
-    exports :[
+    exports: [
         CandidateInsertComponent,
         RouterModule
     ]
 })
-export class CandidateRouting{
+export class CandidateRouting {
 
 }

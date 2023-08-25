@@ -80,7 +80,7 @@
           <div class="card">
             <div class="card">
               <p-editor #editor formControlName="description" [(ngModel)]="text" [style]="{ height: '320px' }"
-                (ngModelChange)="cleanString()" ></p-editor>
+                (ngModelChange)="cleanString()"></p-editor>
             </div>
           </div>
         </div>
@@ -99,7 +99,8 @@
           <h2 class="text-center">Assesment</h2>
         </div>
         <div class="col-12 md:col-12">
-          <p-inputSwitch [ngModel]="visibleTest" (click)="setQuestion(!visibleTest)" [ngModelOptions]="{standalone: true}"></p-inputSwitch>
+          <p-inputSwitch [ngModel]="visibleTest" (click)="setQuestion(!visibleTest)"
+            [ngModelOptions]="{standalone: true}"></p-inputSwitch>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" *ngIf="isVisible()" class="form-label">Test Name<span

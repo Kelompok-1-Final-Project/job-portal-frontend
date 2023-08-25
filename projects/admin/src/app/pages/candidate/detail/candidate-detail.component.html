@@ -1,0 +1,128 @@
+<div class="card">
+    <h2>Candidate Detail</h2>
+    <p-tabView>
+        <p-tabPanel header="Family">
+            <button pButton pRipple class="p-button-secondary" label="Back" icon="pi pi-arrow-left"
+                style="margin-bottom: 0.5rem;margin-right: 0.3rem;" routerLink="/candidates"></button>
+            <button pButton pRipple label="Add Family" icon="pi pi-plus" style="margin-bottom: 0.5rem;"></button>
+            <p-table [value]="families" [tableStyle]="{'min-width': '50rem'}">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th scope="row">No</th>
+                        <th>Name</th>
+                        <th>Relationship</th>
+                        <th>Degree</th>
+                        <th>Birthdate</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-f let-i="rowIndex">
+                    <tr>
+                        <td scope="row">{{i+1}}</td>
+                        <td>{{f.familyName}}</td>
+                        <td>{{f.relationshipName}}</td>
+                        <td>{{f.degreeName}}</td>
+                        <td>{{f.birthdate}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-tabPanel>
+        <p-tabPanel header="Work Experience">
+            <button pButton pRipple class="p-button-secondary" label="Back" icon="pi pi-arrow-left"
+                style="margin-bottom: 0.5rem;margin-right: 0.3rem;" routerLink="/candidates"></button>
+            <button pButton pRipple label="Add Experience" icon="pi pi-plus" style="margin-bottom: 0.5rem;"
+                (click)="addExperience()"></button>
+            <p-table [value]="experiences" [tableStyle]="{'min-width': '50rem'}">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th scope="row">No</th>
+                        <th>Position</th>
+                        <th>Company</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-f let-i="rowIndex">
+                    <tr>
+                        <td scope="row">{{i+1}}</td>
+                        <td>{{f.positionName}}</td>
+                        <td>{{f.companyName}}</td>
+                        <td>{{f.startDate}}</td>
+                        <td>{{f.endDate}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-tabPanel>
+    </p-tabView>
+</div>
+
+<!-- Modal Experience-->
+<p-dialog header="Add Candidate Experience" [modal]="true" [(visible)]="visibleExperience" [style]="{ width: '30vw' }">
+    <pre>{{experienceInsertReqDto.value | json}}</pre>
+    <form [formGroup]="experienceInsertReqDto" (ngSubmit)="insertExperience()">
+        <div class="grid surface-card border-round-sm border-400">
+            <div class="col-12 md:col-3">
+                <label for="inputName">Position Name</label>
+            </div>
+            <div class="col-12 md:col-9">
+                <input pInputText type="text" class="col-12" required formControlName="positionName">
+            </div>
+            <div class="col-12 md:col-3">
+                <label for="inputName">Company Name</label>
+            </div>
+            <div class="col-12 md:col-9">
+                <input pInputText type="text" class="col-12" required formControlName="companyName">
+            </div>
+            <div class="col-12 md:col-3">
+                <label for="inputName">Start Date</label>
+            </div>
+            <div class="col-12 md:col-9">
+                <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+            </div>
+            <div class="col-12 md:col-3">
+                <label for="inputName">End Date</label>
+            </div>
+            <div class="col-12 md:col-9">
+                <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+            </div>
+            <div class="flex flex-wrap justify-content-end mt-2 col-12">
+                <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</p-dialog>
+
+<!-- Modal Family-->
+<p-dialog header="Add Candidate Family" [modal]="true" [(visible)]="visibleFamily" [style]="{ width: '30vw' }">
+    <pre>{{experienceInsertReqDto.value | json}}</pre>
+    <form [formGroup]="experienceInsertReqDto" (ngSubmit)="insertFamily()">
+        <div class="grid surface-card border-round-sm border-400">
+            <div class="col-12 md:col-3">
+                <label for="inputName">Position Name</label>
+            </div>
+            <div class="col-12 md:col-9">
+                <input pInputText type="text" class="col-12" required formControlName="positionName">
+            </div>
+            <div class="col-12 md:col-3">
+                <label for="inputName">Company Name</label>
+            </div>
+            <div class="col-12 md:col-9">
+                <input pInputText type="text" class="col-12" required formControlName="companyName">
+            </div>
+            <div class="col-12 md:col-3">
+                <label for="inputName">Start Date</label>
+            </div>
+            <div class="col-12 md:col-9">
+                <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+            </div>
+            <div class="col-12 md:col-3">
+                <label for="inputName">End Date</label>
+            </div>
+            <div class="col-12 md:col-9">
+                <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+            </div>
+            <div class="flex flex-wrap justify-content-end mt-2 col-12">
+                <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</p-dialog>

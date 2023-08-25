@@ -2,8 +2,6 @@
 
 <div class="container">
   <form [formGroup]="companyInsertReqDto" (ngSubmit)="insertCompany()">
-    <button pButton pRipple label="Back"></button>
-    <button pButton pRipple label="Back"></button>
     <div class="card-container flex flex-wrap justify-content-center align-items-center" style="min-height: 700px">
       <div class="grid shadow-8 m-4 surface-card border-round-sm border-400 p-3 md:col-8 text">
         <div class="flex text-center justify-content-center col-12">
@@ -50,9 +48,8 @@
           (onSelect)="photosUpload($event, photos)">
         </p-fileUpload>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <!-- <app-button btnType="button">. Back to previous menu</app-button> -->
           <app-button classBtn = "w-12" label="Back" btnType = "button" link="/companies"></app-button>
-          <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+          <button type="submit" pButton pRipple class="p-button-primary" style="margin-left: 0.3rem;">Submit</button>
         </div>
       </div>
     </div>

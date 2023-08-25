@@ -1,4 +1,5 @@
 export interface CandidateGetResDto {
+  id: string
   fullName: string;
   idNumber: string;
   phone: string;
