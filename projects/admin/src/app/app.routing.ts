@@ -11,7 +11,6 @@ import { ButtonComponent } from "@component/button/button.component";
 import { UrlPipeAdmin } from "@pipes/url.pipe";
 import { SharedModuleComponent } from "@shared/shared.module";
 import { BaseComponent } from "@component/base/base.component";
-import { UrlPipeAdmin } from "@pipes/url.pipe";
 
 const routes: Routes = [
     {

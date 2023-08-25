@@ -19,6 +19,7 @@ import { HiredInsertReqDto } from "@dto/hired/hired.insert.req.dto";
 import { CandidateRejectReqDto } from "@dto/candidateprogress/candidate-reject.req.dto";
 import { UpdateResDto } from "@dto/update.res.dto";
 import { InterviewUpdateReqDto } from "@dto/interview/interview.update.req.dto";
+import { MedicalCheckupUpdateReqDto } from "@dto/medicalcheckup/medical-checkup.update.req.dto";
 
 @Injectable({
     providedIn: 'root'
@@ -88,5 +89,9 @@ export class StatusProgressService{
 
     updateNotes(data: InterviewUpdateReqDto): Observable<UpdateResDto>{
         return this.base.patch<UpdateResDto>(`${BASE_URL}/status-progress/interview`, data, true)
+    }
+
+    updateMcuFile(data: MedicalCheckupUpdateReqDto): Observable<UpdateResDto>{
+        return this.base.patch<UpdateResDto>(`${BASE_URL}/status-progress/medical`, data, true)
     }
 }
