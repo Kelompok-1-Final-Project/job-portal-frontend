@@ -6,7 +6,7 @@ import { SharedModuleComponent } from "@shared/shared.module";
 @Component({
     selector: 'app-button',
     template: `
-        <button pButton icon="{{ iconBtn }}" label="{{ label }}" *ngIf="show" [loading]="loading" type="{{ btnType }}" style="{{ classBtn }}" routerLink="{{link}}" (click)= "clickBtn()"></button>
+        <button pButton pRipple icon="{{ iconBtn }}" label="{{ label }}" *ngIf="show" [loading]="loading" type="{{ btnType }}" style="{{ styleBtn }}" class="{{ classBtn }}" routerLink="{{link}}" (click)= "clickBtn()"></button>
     `,
     imports: [
         CommonModule,
@@ -17,6 +17,7 @@ import { SharedModuleComponent } from "@shared/shared.module";
 })
 export class ButtonComponent {
     @Input() label = ''
+    @Input() styleBtn = ''
     @Input() classBtn = ''
     @Input() btnType = ''
     @Input() iconBtn = ''

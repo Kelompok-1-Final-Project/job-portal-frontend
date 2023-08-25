@@ -4,15 +4,17 @@
   <p>Info Loker</p>
 
   <!-- Carousel -->
-  <p-carousel [value]="carouselImages">
-    <ng-template pTemplate="header">
-    </ng-template>
-    <ng-template let-image pTemplate="item">
-      <img
-        src="../../../../assets/images/carousel-1.jpg"
-        alt="Carousel Image">
-    </ng-template>
-  </p-carousel>
+  <div class="carousel-container w-5">
+    <p-carousel [value]="carouselImages" [circular]="true">
+      <ng-template pTemplate="header">
+      </ng-template>
+      <ng-template let-image pTemplate="item">
+        <img
+          src="../../../../assets/images/carousel-1.jpg"
+          alt="Carousel Image">
+      </ng-template>
+    </p-carousel>
+  </div>
 
   <!-- Search Options -->
   <div class="container mt-5 grid justify-content-center align-content-center">

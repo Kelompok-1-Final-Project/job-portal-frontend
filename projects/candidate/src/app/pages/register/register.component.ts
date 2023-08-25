@@ -18,7 +18,8 @@ import { UserService } from "@serviceCandidate/user.service";
 
 @Component({
   selector: 'register.component.html',
-  templateUrl: './register.component.html'
+  templateUrl: './register.component.html',
+  styleUrls:['./register.component.css']
 })
 export class RegisterComponent {
   loading = false;

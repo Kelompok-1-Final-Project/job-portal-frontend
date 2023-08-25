@@ -1,11 +1,13 @@
-<!-- <div class="h-screen flex align-items-center justify-content-center"> -->
 <div class="grid grid-nogutter h-screen">
-    <div class="col-12 md:col-7 h-full">
-        <h3 class="image-login">Test</h3>
-        <!-- <p-image src="../../../assets/images/olena-sergienko-dIMJWLx1YbE-unsplash.jpg" alt="Login Image" height="100%" width="100%"></p-image> -->
+    <div class="col-12 md:col-7">
+        <h3 class="image-login flex text-100 text-6xl text-center align-items-center justify-content-center">
+            <q>
+                P for Punten, P is not for Greetings
+            </q>
+        </h3>
     </div>
-    <div class="col-12 md:col-5">
-        <form [formGroup]="userLoginReqDto" (ngSubmit)="onLogin()" class=" flex flex-column align-items-center justify-content-center">
+    <div class="col-12 md:col-5 text-center p-5 form-login">
+        <form [formGroup]="userLoginReqDto" (ngSubmit)="onLogin()" class="flex flex-column align-content-center justify-content-center h-full gap-3">
             <div>
                 <h1>Login</h1>
             </div>
@@ -23,7 +25,7 @@
                     [feedback]="false" formControlName="userPassword"></p-password>
             </div>
             <div class="text-center">
-                <app-button classBtn="w-4" label="Login" [loading]="loading" btnType="submit"></app-button>
+                <app-button classBtn="w-4 surface-900 text-100" label="Login" [loading]="loading" btnType="submit"></app-button>
             </div>
             <div class="text-center">
                 <span>Don't have account? </span>
@@ -32,5 +34,3 @@
         </form>
     </div>
 </div>
-
-<!-- </div> -->

@@ -1,12 +1,12 @@
-.image-login {
+.image-register {
     /* background-image: url(../../../assets/images/olena-sergienko-dIMJWLx1YbE-unsplash.jpg); */
     height: 100vh;
-    background: linear-gradient(180deg, rgba(251, 254, 255, 0.537) 0%, rgba(255, 250, 150, 0.367) 68.23%), url(../../../assets/images/olena-sergienko-dIMJWLx1YbE-unsplash.jpg) no-repeat;
+    background: linear-gradient(180deg, rgba(251, 254, 255, 0.537) 0%, rgba(255, 250, 150, 0.367) 68.23%), url(../../../assets/images/laptops-593296.jpg) no-repeat;
     background-size: auto, auto;
     background-size: cover;
     margin: 0;
 }
 
-.form-login{
+.form-register{
     background-color: #F8F7F3;
 }
