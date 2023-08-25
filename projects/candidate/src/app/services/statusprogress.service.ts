@@ -20,7 +20,7 @@ export class StatusProgressService{
     }
 
     getMedicalCheckup(data:UserEmailReqDto):Observable<StageProgressGetResDto[]>{
-        return this.base.post<StageProgressGetResDto[]>(`${BASE_URL}/status-progress/medical-checkup-id`, data, true);
+        return this.base.post<StageProgressGetResDto[]>(`${BASE_URL}/status-progress/medical-id`, data, true);
     }
 
     getInterview(data:UserEmailReqDto):Observable<StageProgressGetResDto[]>{
@@ -33,5 +33,8 @@ export class StatusProgressService{
 
     getOffering(data:UserEmailReqDto):Observable<StageProgressGetResDto[]>{
         return this.base.post<StageProgressGetResDto[]>(`${BASE_URL}/status-progress/offering-id`, data, true);
+    }
+    getReject(data:UserEmailReqDto):Observable<StageProgressGetResDto[]>{
+        return this.base.post<StageProgressGetResDto[]>(`${BASE_URL}/status-progress/reject-id`, data, true);
     }
 }

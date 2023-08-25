@@ -20,6 +20,7 @@ import { ApplicationComponent } from "./list/list-app.component";
 import { TabViewModule } from 'primeng/tabview'; 
 import { TabMenuModule } from 'primeng/tabmenu';
 import { ChipModule } from "primeng/chip";
+import { UrlPipeAdmin, UrlPipeCandidate } from "@pipes/url.pipe";
 
 
 const routes : Routes = [
@@ -53,6 +54,8 @@ const routes : Routes = [
         TabViewModule,
         TabMenuModule,
         ChipModule,
+        UrlPipeAdmin,
+        UrlPipeCandidate,
         FileUploadModule
     ],
     exports : [
