@@ -4,6 +4,7 @@ import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 import { ProgressStatus } from "@constant/progress.enum";
 import { CandidateProgressGetResDto } from "@dto/candidateprogress/candidate-progress.get.res.dto";
+import { JobBenefitGetResDto } from "@dto/job-benefit/job-benefit.get.res.dto";
 import { JobAdminGetResDto } from "@dto/job/job-admin.get.res.dto";
 import { StatusProgressGetResDto } from "@dto/progress/status-progress.get.res.dto";
 import { TestGetResDto } from "@dto/question/test.get.res.dto";
@@ -34,6 +35,10 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     visibleDeleteQuestion: boolean = false
     testCode!: string
     questionCode!: string
+    benefits!: JobBenefitGetResDto[]
+    visibleBenefit: boolean = false
+    benefitCode!: string
+    jobCode!: string
 
     assessmentInsertReqDto = this.fb.group({
         candidateId: ['', [Validators.required]],
@@ -90,6 +95,7 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
             this.getStatus()
             this.getSkillTest()
             this.getResult()
+            this.getJobBenefit()
         })
     }
 
@@ -216,17 +222,41 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         this.visibleRejected = false
     }
 
-    questionModal(){
+    questionModal(skillTest: string, question: string) {
         this.visibleDeleteQuestion = true
+        this.testCode = skillTest
+        this.questionCode = question
     }
 
-    cancelDeleteQuestion(){
+    cancelDeleteQuestion() {
         this.visibleDeleteQuestion = false
     }
 
-    deleteQuestionJob(){
+    deleteQuestionJob() {
         firstValueFrom(this.jobService.deleteQuestion(this.testCode, this.questionCode)).then(result => {
             this.visibleDeleteQuestion = false
+        })
+    }
+
+    getJobBenefit() {
+        firstValueFrom(this.jobService.getJobBenefit(this.id)).then(result => {
+            this.benefits = result
+        })
+    }
+
+    deleteBenefit(job: string, benefit:string) {
+        this.visibleBenefit = true
+        this.jobCode = job
+        this.benefitCode = benefit
+    }
+
+    cancelDeleteBenefit(){
+        this.visibleBenefit = false
+    }
+
+    deleteJobBenefit(){
+        firstValueFrom(this.jobService.deleteJobBenefit(this.jobCode,this.benefitCode)).then(result => {
+            this.visibleBenefit = false
         })
     }
 }
