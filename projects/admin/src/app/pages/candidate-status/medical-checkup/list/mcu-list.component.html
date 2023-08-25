@@ -24,10 +24,29 @@
             </a>
           </td>
           <td>
-            <button pButton pRipple icon="pi pi-pencil" pTooltip="Upload File"></button>
+            <button pButton pRipple icon="pi pi-pencil" pTooltip="Upload File" (click)="addFile(row.mcuId)"></button>
           </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
 </div>
+
+<!-- Modal Add-->
+<p-dialog header="Upload Medical Check Up File" [modal]="true" [(visible)]="visibleMcu" [style]="{ width: '40vw' }">
+  <pre>{{medicalUpdateReqDto.value | json}}</pre>
+  <form [formGroup]="medicalUpdateReqDto" (ngSubmit)="updateMcu()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-4">
+        <label for="inputName">Medical Check Up File</label>
+      </div>
+      <div class="col-12 md:col-8">
+        <p-fileUpload mode="basic" chooseLabel="Upload" #cv accept="image/*" (onSelect)="fileUpload($event, cv)">
+        </p-fileUpload>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</p-dialog>
