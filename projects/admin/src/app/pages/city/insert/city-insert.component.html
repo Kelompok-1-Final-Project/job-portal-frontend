@@ -16,9 +16,9 @@
             required formControlName="cityName">
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <button type="button" routerLink="/cities" pButton pRipple class="p-button-secondary mr-3"
-            icon="pi pi-angle-double-left">. Back to previous menu</button>
-          <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+          <app-button classBtn="p-button-secondary" link="/cities" styleBtn="margin-right:0.5rem;" btnType="button" iconBtn="pi pi-angle-double-left"
+            label="Back to Previous Menu"></app-button>
+          <app-button btnType="submit" (clickChange)="insertCity()" link="/cities" label="Submit"></app-button>
         </div>
       </div>
     </div>

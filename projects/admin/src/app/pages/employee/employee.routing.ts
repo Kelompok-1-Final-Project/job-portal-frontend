@@ -5,6 +5,7 @@ import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from "@angular/forms";
 import { AutoCompleteModule } from "primeng/autocomplete";
 import { SharedModuleComponent } from "@shared/shared.module";
+import { ButtonComponent } from "@component/button/button.component";
 
 const routes: Routes=[
     {   
@@ -21,7 +22,8 @@ const routes: Routes=[
         CommonModule,
         ReactiveFormsModule,
         AutoCompleteModule,
-        SharedModuleComponent
+        SharedModuleComponent,
+        ButtonComponent
     ],
     exports:[
         RouterModule,

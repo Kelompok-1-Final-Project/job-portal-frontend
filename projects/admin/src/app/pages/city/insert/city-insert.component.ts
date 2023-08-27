@@ -12,7 +12,7 @@ import { firstValueFrom } from "rxjs";
 export class CityInsertComponent implements OnInit {
 
     cityInsertReqDto = this.fb.group({
-        cityName : ['', [Validators.required]]
+        cityName: ['', [Validators.required]]
     })
 
     constructor(

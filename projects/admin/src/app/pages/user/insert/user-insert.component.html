@@ -1,7 +1,7 @@
 <pre>{{userInsertReqDto.value | json}}</pre>
 
 <div class="container">
-  <form [formGroup]="userInsertReqDto" (ngSubmit)="insertUser()">
+  <form [formGroup]="userInsertReqDto">
     <div class="row">
       <div class="card-container flex flex-wrap justify-content-center align-items-center" style="min-height: 700px">
         <div class="grid shadow-8 m-4 surface-card border-round-sm border-400 p-3 md:col-9 text">
@@ -27,27 +27,29 @@
               <label for="companyName">Role</label>
             </div>
             <div class="col-12 md:col-9">
-              <p-dropdown [options]="roles" optionValue="roleCode" optionLabel="roleName" formControlName="roleCode"></p-dropdown>
+              <p-dropdown [options]="roles" optionValue="roleCode" optionLabel="roleName"
+                formControlName="roleCode"></p-dropdown>
             </div>
             <div class="col-12 md:col-3">
               <label for="companyName">Mobile Phone</label>
             </div>
             <div class="col-12 md:col-9">
-              <input pInputText type="text" class="form-control col-12"
-                aria-describedby="companyNameHelp" required formControlName="userPhone">
+              <input pInputText type="text" class="form-control col-12" aria-describedby="companyNameHelp" required
+                formControlName="userPhone">
             </div>
             <div class="col-12 md:col-3">
               <label for="companyName">Gender</label>
             </div>
             <div class="col-12 md:col-9">
-              <p-dropdown [options]="genders" optionValue="genderCode" optionLabel="genderName" formControlName="genderCode"></p-dropdown>
+              <p-dropdown [options]="genders" optionValue="genderCode" optionLabel="genderName"
+                formControlName="genderCode"></p-dropdown>
             </div>
           </div>
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <button type="button" routerLink="/users" pButton pRipple class="p-button-secondary mr-3"
-            icon="pi pi-angle-double-left">. Back to previous menu</button>
-          <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+          <app-button classBtn="p-button-secondary" styleBtn="margin-right:0.5rem;" iconBtn="pi pi-angle-double-left"
+            label="Back to Previous Menu" btnType="button" link="/users"></app-button>
+          <app-button btnType="submit" classBtn="w-12" link="/users" label="Submit" (clickChange)="insertUser()"></app-button>
         </div>
       </div>
     </div>

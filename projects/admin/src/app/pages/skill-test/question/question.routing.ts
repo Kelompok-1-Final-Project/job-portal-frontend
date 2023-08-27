@@ -12,6 +12,7 @@ import { QuestionListComponent } from "./list/question-list.component";
 import { QuestionInsertComponent } from "./insert/question-insert.component";
 import { SharedModuleComponent } from "@shared/shared.module";
 import { QuestionDetailComponent } from "./detail/question-detail.component";
+import { ButtonComponent } from "@component/button/button.component";
 
 
 const routes : Routes = [
@@ -41,6 +42,7 @@ const routes : Routes = [
         ReactiveFormsModule,
         ButtonModule,
         DropdownModule,
+        ButtonComponent,
         SharedModuleComponent
     ],
     exports : [

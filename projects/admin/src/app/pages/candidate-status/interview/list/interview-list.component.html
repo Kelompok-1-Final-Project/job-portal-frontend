@@ -26,8 +26,8 @@
           <td>{{ row.schedule }}</td>
           <td>{{ row.notes }}</td>
           <td>
-            <button pButton pRipple class="p-button-primary" icon="pi pi-pencil" pTooltip="Insert Notes"
-              tooltipPosition="top" (click)="insertNotes(row.interviewId)"></button>
+            <app-button iconBtn="pi pi-pencil" tooltipBtn="Insert Notes" tooltipPstn="top"
+              (clickChange)="insertNotes(row.interviewId)" link="/candidate-statuses/interview"></app-button>
           </td>
         </tr>
       </ng-template>
@@ -47,7 +47,7 @@
         <textarea pInputTextarea type="text" class="col-12 " id="inputName" required formControlName="notes"></textarea>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        <app-button btnType="submit" label="Submit" link="/candidate-statuses/interview"></app-button>
       </div>
     </div>
   </form>

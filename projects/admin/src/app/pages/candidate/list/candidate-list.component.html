@@ -5,7 +5,7 @@
   <div>
     <div class="grid justify-content-end mb-3">
       <button (click)="assign(3)" pButton pRipple class="p-button-primary mr-3" label="Assign Vacancy"></button>
-      <button routerLink="create" pButton pRipple class="p-button-primary" label="Add Candidate"></button>
+      <app-button label="Add Candidate" classBtn="p-button-primary" link="create"></app-button>
     </div>
     <p-table [value]="candidates" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
       [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"

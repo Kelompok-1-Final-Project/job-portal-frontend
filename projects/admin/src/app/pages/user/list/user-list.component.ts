@@ -15,7 +15,7 @@ export class UserListComponent implements OnInit{
       private userService: UserService,
       private title: Title
     ){
-      this.title.setTitle('Login | Job Portal Admin')
+      this.title.setTitle('List User | Job Portal Admin')
     }
 
     ngOnInit() : void{

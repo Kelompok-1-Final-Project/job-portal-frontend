@@ -19,7 +19,7 @@ export class BenefitListComponent implements OnInit {
   code!: string
 
   benefitInsertReqDto = this.fb.group({
-    benefitName : ['', [Validators.required]]
+    benefitName: ['', [Validators.required]]
   })
 
   benefitUpdateReqDto = this.fb.group({
@@ -46,16 +46,16 @@ export class BenefitListComponent implements OnInit {
     })
   }
 
-  insertBenefit(){
+  insertBenefit() {
     const data = this.benefitInsertReqDto.getRawValue()
     firstValueFrom(this.benefitService.insert(data)).then(result => {
       this.visibleAdd = false
     })
   }
 
-  updateBenefit(){
+  updateBenefit() {
     const data = this.benefitUpdateReqDto.getRawValue()
-    firstValueFrom(this.benefitService.update(data)).then(result =>{
+    firstValueFrom(this.benefitService.update(data)).then(result => {
       this.visibleUpdate = false
       this.router.navigateByUrl('/benefits')
     })
