@@ -1,32 +1,26 @@
 <!-- home.component.html -->
 <div class="home-container">
-  <h1>Welcome to InLook!</h1>
-  <p>Info Loker</p>
-
   <!-- Carousel -->
-  <div class="carousel-container w-5">
-    <p-carousel [value]="carouselImages" [circular]="true">
-      <ng-template pTemplate="header">
-      </ng-template>
-      <ng-template let-image pTemplate="item">
-        <img
-          src="../../../../assets/images/carousel-1.jpg"
-          alt="Carousel Image">
-      </ng-template>
-    </p-carousel>
+  <div class="jumbotron grid grid-nogutter h-screen overflow-hidden">
+    <div class="container text-white-alpha-70 text-2xl md:text-4xl text-center flex flex-column align-content-center justify-content-center">
+      <h2 class="text-bold">Find The <span class="text-white-alpha-90">Perfect</span> Job That You <span class="text-white-alpha-90">Deserved</span></h2>
+      <q>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, neque laborum deserunt dolor amet beatae
+        quas praesentium unde atque hic a natus numquam ex ipsam odit asperiores rerum quis non.</q>
+    </div>
   </div>
 
   <!-- Search Options -->
-  <div class="container mt-5 grid justify-content-center align-content-center">
+  <div class="container mt-5 grid grid-nogutter justify-content-center align-content-center">
     <div class="sub-container col-7 grid justify-content-between">
       <h4 class="text-dark col-12 -mb-3">
         Search Vacancy
       </h4>
       <div class="search-options col-12 mt-3">
         <form [formGroup]="searchJobReqDto" (ngSubmit)="searchJobs()">
-          <div class="grid justify-content-between ">
+          <div class="grid grid-nogutterjustify-content-between ">
             <div class="col-12 md:col-3">
-              <input pInputText type="text" placeholder="Search Job" formControlName="jobName" [style]="{'width':'100%'}">
+              <input pInputText type="text" placeholder="Search Job" formControlName="jobName"
+                [style]="{'width':'100%'}">
             </div>
             <div class="col-12 md:col-3">
               <p-dropdown placeholder="Location" [options]="locations" [filter]="true" optionValue="cityId"
@@ -52,8 +46,8 @@
   </div>
 
   <!-- Company Industries -->
-  <div class="container mt-5 grid justify-content-center align-content-center">
-    <div class="sub-container col-7 grid justify-content-between">
+  <div class="container mt-5 grid grid-nogutter justify-content-center align-content-center">
+    <div class="sub-container col-7 grid grid-nogutter justify-content-between">
       <h4 class="text-dark col-12 -mb-3">
         Company Industry
       </h4>

@@ -57,11 +57,28 @@ export class HomeComponent implements OnInit {
     userId : ['']
   })
 
-  carouselImages = [
-    'carousel-1.jpg',
-    'carousel-2.jpg',
-    'carousel-3.jpg',
-  ];
+// Dummy data for carousel images
+carouselImages = [
+  {
+    image: '../../../assets/images/carousel-1.jpg', // Ubah sesuai path yang benar
+    alt: 'Image 1'
+  },
+  {
+    image: '../../../assets/images/carousel-2.jpg', // Ubah sesuai path yang benar
+    alt: 'Image 2'
+  },
+  {
+    image: '../../../assets/images/carousel-3.jpg', // Ubah sesuai path yang benar
+    alt: 'Image 3'
+  }
+];
+
+
+  // carouselImages = [
+  //   'carousel-1.jpg',
+  //   'carousel-2.jpg',
+  //   'carousel-3.jpg',
+  // ];
 
   ngOnInit(): void {
     this.getAllIndustry();
