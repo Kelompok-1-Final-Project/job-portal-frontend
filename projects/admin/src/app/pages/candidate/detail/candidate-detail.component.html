@@ -2,9 +2,10 @@
     <h2>Candidate Detail</h2>
     <p-tabView>
         <p-tabPanel header="Family">
-            <button pButton pRipple class="p-button-secondary" label="Back" icon="pi pi-arrow-left"
-                style="margin-bottom: 0.5rem;margin-right: 0.3rem;" routerLink="/candidates"></button>
-            <button pButton pRipple label="Add Family" icon="pi pi-plus" style="margin-bottom: 0.5rem;"></button>
+            <app-button classBtn="p-button-secondary" label="Back" iconBtn="pi pi-arrow-left"
+                styleBtn="margin-bottom:0.5rem; margin-right:0.5rem" link="/candidates/detail/{{candidateId}}"></app-button>
+            <app-button label="Add Family" iconBtn="pi pi-plus" styleBtn="margin-bottom:0.5rem;"
+                link="/candidates/detail/{{candidateId}}"></app-button>
             <p-table [value]="families" [tableStyle]="{'min-width': '50rem'}">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
@@ -27,10 +28,10 @@
             </p-table>
         </p-tabPanel>
         <p-tabPanel header="Work Experience">
-            <button pButton pRipple class="p-button-secondary" label="Back" icon="pi pi-arrow-left"
-                style="margin-bottom: 0.5rem;margin-right: 0.3rem;" routerLink="/candidates"></button>
-            <button pButton pRipple label="Add Experience" icon="pi pi-plus" style="margin-bottom: 0.5rem;"
-                (click)="addExperience()"></button>
+            <app-button classBtn="p-button-secondary" label="Back" iconBtn="pi pi-arrow-left"
+                styleBtn="margin-bottom:0.5rem; margin-right:0.5rem;" link="/candidates"></app-button>
+            <app-button label="Add Experience" icon="pi pi-plus" styleBtn="margin-bottom:0.5rem;"
+                link="/candidates/detail/{{candidateId}}" (clickChange)="addExperience()"></app-button>
             <p-table [value]="experiences" [tableStyle]="{'min-width': '50rem'}">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
@@ -85,7 +86,7 @@
                 <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+                <app-button btnType="submit" label="Submit" link="/candidates/detail/{{candidateId}}"></app-button>
             </div>
         </div>
     </form>
@@ -121,7 +122,7 @@
                 <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+                <app-button btnType="submit" label="Submit" link="candidates"></app-button>
             </div>
         </div>
     </form>

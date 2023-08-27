@@ -12,6 +12,7 @@ import { CityListComponent } from "./list/city-list.component";
 import { CityInsertComponent } from "./insert/city-insert.component";
 import { DialogModule } from "primeng/dialog";
 import { SharedModuleComponent } from "@shared/shared.module";
+import { ButtonComponent } from "@component/button/button.component";
 
 const routes : Routes = [
     {
@@ -37,6 +38,7 @@ const routes : Routes = [
         RouterModule.forChild(routes),
         CommonModule,
         ReactiveFormsModule,
+        ButtonComponent,
         TableModule,
         ButtonModule,
         DropdownModule,

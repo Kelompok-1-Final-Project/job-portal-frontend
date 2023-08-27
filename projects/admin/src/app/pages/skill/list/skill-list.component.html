@@ -4,7 +4,7 @@
   </div>
   <div class="card col-9">
     <div class="grid justify-content-end mb-3">
-      <button pButton pRipple class="p-button-primary" (click)="add()" label="Add Skill"></button>
+      <app-button label="Add Skill" link="/skills" classBtn="p-button-primary" (clickChange)="add()"></app-button>
     </div>
     <p-table [value]="skills" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
       [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -23,10 +23,10 @@
           <td>{{ p.skillCode }}</td>
           <td>{{ p.skillName }}</td>
           <td>
-            <button pButton pRipple class="p-button-secondary" pTooltip="Edit" tooltipPosition="top" icon="pi pi-pencil"
-              (click)="update(p.skillCode)" style="margin-right: 0.3rem;"></button>
-            <button (click)="deleteModal(3)" icon="pi pi-trash" pTooltip="Delete" pButton pRipple
-              class="p-button-danger"></button>
+            <app-button classBtn="p-button-secondary" tooltipBtn="Edit" tooltipPstn="top" iconBtn="pi pi-pencil"
+              (clickChange)="update(p.skillCode)" link="/skills" styleBtn="margin-right:0.5rem;"></app-button>
+            <app-button iconBtn="pi pi-trash" classBtn="p-button-danger" tooltipBtn="Delete"
+              tooltipPstn="top"></app-button>
           </td>
         </tr>
       </ng-template>
@@ -45,7 +45,7 @@
           <input pInputText type="text" class="col-12 " id="inputName" required formControlName="skillName">
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+          <app-button btnType="submit" label="Submit" link="/skills"></app-button>
         </div>
       </div>
     </form>
@@ -61,7 +61,7 @@
         </div>
         <div class="col-12 md:col-9">
           <input pInputText type="text" class="col-12 p-disabled" id="inputName" value={{code}}>
-        </div>  
+        </div>
         <div class="col-12 md:col-3">
           <label for="inputName">Skill Name</label>
         </div>
@@ -69,7 +69,7 @@
           <input pInputText type="text" class="col-12 " id="inputName" required formControlName="skillName">
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+          <app-button btnType="submit" label="Submit" link="/skills"></app-button>
         </div>
       </div>
     </form>

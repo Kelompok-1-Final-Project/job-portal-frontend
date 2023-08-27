@@ -20,11 +20,11 @@
           <td>{{row.candidateName}}</td>
           <td>
             <a href="path_to_mcu_file/{{ row.mcuFile }}" download>
-              <button pButton icon="pi pi-download mr-2"> mcu.pdf</button>
+              <app-button iconBtn="pi pi-download" label="Mcu.pdf"></app-button>
             </a>
           </td>
           <td>
-            <button pButton pRipple icon="pi pi-pencil" pTooltip="Upload File" (click)="addFile(row.mcuId)"></button>
+            <app-button iconBtn="pi pi-pencil" tooltipBtn="Upload File" tooltipPstn="top" link="/candidate-statuses/mcu" (clickChange)="addFile(row.mcuId)"></app-button>
           </td>
         </tr>
       </ng-template>
@@ -45,7 +45,7 @@
         </p-fileUpload>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        <app-button btnType="submit" label="Submit" link="/candidate-statuses/mcu"></app-button>
       </div>
     </div>
   </form>

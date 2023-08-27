@@ -6,10 +6,10 @@
             </div>
             <div class="col-12">
                 <div class="grid justify-content-start">
-                    <button pRipple pButton icon="pi pi-arrow-left" style="margin-right: 0.3rem;" label="Back"
-                        class="p-button-secondary" routerLink="/job-vacancies"></button>
-                    <button pRipple pButton icon="pi pi-pencil" label="Update" class="p-button-primary"
-                        routerLink="/job-vacancies/update/{{job.id}}"></button>
+                    <app-button classBtn="p-button-secondary" link="/job-vacancies" styleBtn="margin-right:0.5rem"
+                        iconBtn="pi pi-arrow-left" label="Back"></app-button>
+                    <app-button classBtn="p-button-primary" iconBtn="pi pi-pencil" label="Update"
+                        link="/job-vacancies/update/{{job.id}}"></app-button>
                 </div>
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
@@ -64,9 +64,17 @@
                     <div class="question-details">
                         <ul>
                             <li *ngFor="let b of benefits">
-                                <span>{{b.benefitName}} </span>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-danger"
-                                    style="margin-bottom: 0.3rem;" (click)="deleteBenefit(job.jobCode, b.benefitCode)"></button>
+                                <div class="grid">
+                                    <div class="col-1">
+                                        <span>{{b.benefitName}} </span>
+                                    </div>
+                                    <div class="col-11">
+                                        <app-button classBtn="p-button-danger" styleBtn="margin-bottom:0.3rem"
+                                            (clickChange)="deleteBenefit(job.jobCode, b.benefitCode)"
+                                            iconBtn="pi pi-trash" tooltipBtn="Delete" tooltipPstn="top"
+                                            link="/job-vacancies/details/{{id}}"></app-button>
+                                    </div>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -116,8 +124,8 @@
 
                         <div class="question">
                             <h4 class="detail-heading">Questions:</h4>
-                            <button pButton pRipple label="Add Question" style="margin-bottom: 0.5rem;"
-                                routerLink="/job-vacancies/question/{{test.testCode}}"></button>
+                            <app-button label="Add Question" styleBtn="margin-bottom:0.5rem"
+                                link="/job-vacancies/question/{{test.testCode}}"></app-button>
                             <div *ngFor="let q of test.questionGetResDtos; let i = index">
                                 <p-accordion [multiple]="true" [activeIndex]="[0]">
                                     <p-accordionTab header="Question {{i+1}}">
@@ -128,9 +136,10 @@
                                                 <span class="option-answer">({{o.isAnswer}})</span>
                                             </li>
                                         </ul>
-                                        <button pButton pRipple class="p-button-danger" icon="pi pi-trash"
-                                            pTooltip="Delete Question" tooltipPosition="top"
-                                            (click)="questionModal(test.testCode, q.questionCode)"></button>
+                                        <app-button classBtn="p-button-danger" iconBtn="pi pi-trash"
+                                            tooltipBtn="Delete Question" tooltipPstn="top"
+                                            (clickChange)="questionModal(test.testCode, q.questionCode)"
+                                            link="/job-vacancies/details/{{job.id}}"></app-button>
                                     </p-accordionTab>
                                 </p-accordion>
                             </div>
@@ -180,7 +189,8 @@
                 <p-calendar [showIcon]="true" formControlName="schedule"></p-calendar>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+                <app-button btnType="submit" classBtn="p-button-primary" label="Submit"
+                    link="/job-vacancies/details/{{job.id}}"></app-button>
             </div>
         </div>
     </form>

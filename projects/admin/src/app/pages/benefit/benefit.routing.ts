@@ -10,6 +10,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { BenefitListComponent } from "./list/benefit-list.component";
 import { DialogModule } from 'primeng/dialog';
 import { SharedModuleComponent } from "@shared/shared.module";
+import { ButtonComponent } from "@component/button/button.component";
 
 const routes : Routes = [
     {
@@ -28,6 +29,7 @@ const routes : Routes = [
         ReactiveFormsModule,
         TableModule,
         ButtonModule,
+        ButtonComponent,
         DropdownModule,
         InputTextModule,
         DialogModule,

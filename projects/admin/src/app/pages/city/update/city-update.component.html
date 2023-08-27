@@ -1,6 +1,6 @@
 <pre>{{cityUpdateReqDto.value | json}}</pre>
 
-<form [formGroup]="cityUpdateReqDto" (ngSubmit)="updateCity()">
+<form [formGroup]="cityUpdateReqDto">
   <div class="container">
     <div class="card-container w-screen flex flex-wrap justify-content-center align-items-center"
       style="min-height: 700px">
@@ -24,9 +24,9 @@
             required formControlName="cityName">
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <button type="button" routerLink="/cities" pButton pRipple class="p-button-secondary mr-3"
-            icon="pi pi-angle-double-left">. Back to previous menu</button>
-          <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+          <app-button link="/cities" classBtn="p-button-secondary" btnType="button" iconBtn="pi pi-angle-double-left"
+            label="Back to Previous Menu" styleBtn="margin-right:0.5rem;"></app-button>
+            <app-button btnType="submit" label="Submit" link="/cities" (clickChange)="updateCity()"></app-button>
         </div>
       </div>
     </div>

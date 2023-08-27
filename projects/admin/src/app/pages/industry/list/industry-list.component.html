@@ -4,7 +4,7 @@
   </div>
   <div class="card col-9">
     <div class="grid justify-content-end mb-3">
-      <button pButton pRipple class="p-button-primary" (click)="add()" label="Add Industry"></button>
+      <app-button link="/industries" (clickChange)="add()" label="Add Industry"></app-button>
     </div>
     <p-table [value]="industries" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
       [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -23,10 +23,10 @@
           <td>{{ p.industryCode }}</td>
           <td>{{ p.industryName }}</td>
           <td>
-            <button pButton pRipple class="p-button-secondary" (click)="update(p.industryCode)" icon="pi pi-pencil"
-              pTooltip="Edit" style="margin-right: 0.3rem;" tooltipPosition="top"></button>
-            <button (click)="deleteModal(3)" icon="pi pi-times" pButton pRipple class="p-button-danger"
-              icon="pi pi-trash" pTooltip="Delete"></button>
+            <app-button classBtn="p-button-secondary" (clickChange)="update(p.industryCode)" iconBtn="pi pi-pencil"
+              tooltipBtn="Edit" styleBtn="margin-right:0.5rem;" tooltipPstn="top" link="/industries"></app-button>
+            <app-button classBtn="p-button-danger" iconBtn="pi pi-trash" tooltipBtn="Delete"
+              tooltipPstn="top"></app-button>
           </td>
         </tr>
       </ng-template>
@@ -46,7 +46,7 @@
           <input pInputText type="text" class="col-12 " id="inputName" required formControlName="industryName">
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+          <app-button btnType="submit" label="Submit" link="/industries"></app-button>
         </div>
       </div>
     </form>
@@ -70,8 +70,7 @@
           <input pInputText type="text" class="col-12 " id="inputName" required formControlName="industryName">
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <button type="submit" pButton pRipple class="p-button-primary"
-            [disabled]="industryUpdateReqDto.invalid">Submit</button>
+          <app-button btnType="submit" label="Submit" link="/industries" [disabled]="industryUpdateReqDto.invalid"></app-button>
         </div>
       </div>
     </form>

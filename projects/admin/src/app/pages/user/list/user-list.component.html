@@ -4,7 +4,7 @@
   </div>
   <div>
     <div class="grid justify-content-end mb-3">
-      <button routerLink="create" pButton pRipple class="p-button-primary" label="Add User"></button>
+      <app-button classBtn="w-12" label="Add User" btnType="button" link="create"></app-button>
     </div>
     <p-table [value]="users" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
       [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -38,7 +38,7 @@
             <!-- <p-tag>[value]="c.isActive" [severity]="getSev(c.isActive)"</p-tag> -->
           </td>
           <td>
-            <button pButton pRipple class="p-button-secondary" label="Edit"></button>
+            <app-button classBtn="w-12" classBtn="p-button-secondary" label="Edit"  btnType="button" link="/companies"></app-button>
           </td>
         </tr>
       </ng-template>

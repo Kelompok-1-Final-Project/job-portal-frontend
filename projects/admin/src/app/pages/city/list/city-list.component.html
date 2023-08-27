@@ -4,7 +4,7 @@
   </div>
   <div class="card col-9">
     <div class="grid justify-content-end mb-3">
-      <button routerLink="new" pButton pRipple class="p-button-primary" label="Add City"></button>
+      <app-button link="new" label="Add City"></app-button>
     </div>
     <p-table [value]="cities" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
       [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -23,16 +23,18 @@
           <td>{{ p.cityCode }}</td>
           <td>{{ p.cityName }}</td>
           <td>
-            <button routerLink="/cities/update/{{ p.cityCode }}" pButton pRipple class="p-button-secondary"
-              icon="pi pi-pencil" style="margin-right: 0.3rem;" pTooltip="Edit" tooltipPosition="top"></button>
-            <button routerLink="/products" pButton pRipple class="p-button-danger" icon="pi pi-trash"></button>
+            <app-button link="/cities/update/{{p.cityCode}}" classBtn="p-button-secondary" iconBtn="pi pi-pencil"
+              styleBtn="margin-right:0.5rem;" tooltipBtn="Edit" tooltipPstn="top"></app-button>
+            <app-button classBtn="p-button-danger" iconBtn="pi pi-trash" tooltipBtn="Delete"
+              tooltipPstn="top"></app-button>
           </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
 
-  <p-dialog header="Add Data benefit" [modal]="true" [style]="{ width: '30vw' }">
+  <!-- modal  -->
+  <!-- <p-dialog header="Add Data benefit" [modal]="true" [style]="{ width: '30vw' }">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
         <label for="inputName">Benefit Code</label>
@@ -51,7 +53,7 @@
         <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
       </div>
     </div>
-  </p-dialog>
+  </p-dialog> -->
 
   <!-- Modal -->
   <!-- <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="changeStatusModalLabel" aria-hidden="true">

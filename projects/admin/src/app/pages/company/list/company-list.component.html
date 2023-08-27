@@ -4,7 +4,7 @@
   </div>
   <div>
     <div class="grid justify-content-end mb-3">
-      <button routerLink="create" pButton pRipple class="p-button-primary" label="Add Company"></button>
+      <app-button classBtn="p-button-primary" label="Add Company" link="create"></app-button>
     </div>
     <p-table [value]="companies" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
       [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -31,9 +31,10 @@
           <td>{{ c.cityName }}</td>
           <td>{{ c.description }}</td>
           <td>
-            <button routerLink="/companies/update/{{ c.companyCode }}" icon="pi pi-pencil" pButton pRipple
-              class="p-button-secondary" pTooltip="Edit" tooltipPosition="top" style="margin-right: 0.3rem;"></button>
-            <button routerLink="/users/profile" icon="pi pi-trash" pButton pRipple class="p-button-danger"></button>
+            <app-button classBtn="p-button-secondary" styleBtn="margin-right:0.5rem;" iconBtn="pi pi-pencil"
+              link="/companies/update/{{c.companyCode}}" tooltipBtn="Edit" tooltipPstn="top"></app-button>
+            <app-button classBtn="p-button-danger" iconBtn="pi pi-trash" tooltipBtn="Delete"
+              tooltipPstn="top"></app-button>
           </td>
         </tr>
       </ng-template>

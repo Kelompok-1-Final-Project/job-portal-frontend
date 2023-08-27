@@ -8,7 +8,7 @@
         <h2 class="text-center">Create Question</h2>
       </div>
       <div class="flex justify-content-center col-12">
-        <button pButton pRipple label="Add Form" type="button" (click)="onAdd()"></button>
+        <app-button label="Add Form" btnType="button" link="/questions/create" (clickChange)="onAdd()"></app-button>
       </div>
       <div class="flex justify-content-center">
         <form [formGroup]="questionsInsertReqDto" class="grid align-items-center w-8 gy-md-3" (ngSubmit)="onSubmit()">
@@ -16,8 +16,7 @@
             <div class="mt-2" *ngFor="let qf of forms.controls; let i = index;" formArrayName="data">
               <div [formGroupName]="i">
                 <div class="col-12 my-2">
-                  <button pButton pRipple label="Delete Form" class="p-button-danger" type="button"
-                    (click)="remove(i)"></button>
+                    <app-button label="Delete Form" classBtn="p-button-danger" btnType="button" link="/questions/create" (clickChange)="remove(i)"></app-button>
                 </div>
                 <div class="col-12 md:col-2">
                   <label for="question">Question <span class="text-red-500">*</span></label>
@@ -29,7 +28,7 @@
                   <label for="option">Option</label>
                 </div>
                 <div class="col-12">
-                  <button pButton pRipple label="Add Option" type="button" (click)="onAddOption(i)"></button>
+                  <app-button label="Add Option" btnType="button" (clickChange)="onAddOption(i)" link="/questions/create"></app-button>
                 </div>
                 <div class="col-12 md:col-10 my-2" *ngFor="let q of questionOption(i).controls; let j = index;"
                   formArrayName="listQuestionOption">
@@ -42,17 +41,15 @@
                         optionLabel="name" placeholder="Choose Key"></p-dropdown>
                     </div>
                     <div class="col-12 my-2">
-                      <button pButton pRipple label="Delete Option" class="p-button-danger" type="submit"
-                        (click)="removeOption(i, j)" [loading]="loading"></button>
+                        <app-button label="Delete Option" classBtn="p-button-danger" link="/questions/create" (clickChange)="removeOption(i,j)"></app-button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-12 md:col-10 mt-2 text-center md:text-left">
-              <button pButton pRipple label="Back" type="button" class="p-button-secondary"
-                routerLink="/questions"></button>
-              <button pButton pRipple label="Submit" type="submit"></button>
+              <app-button btnType="button" classBtn="p-button-secondary" label="Back" link="/questions"></app-button>
+              <app-button label="Submit" btnType="submit" link="/questions" (clickChange)="onSubmit()"></app-button>
             </div>
           </div>
         </form>

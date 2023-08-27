@@ -20,8 +20,8 @@
           <td>{{e.candidateName}}</td>
           <td>{{e.companyName}}</td>
           <td>
-            <button pButton pRipple class="p-button-danger" (click)="add(e.candidateId, e.companyId)"
-              icon="pi pi-pencil" label="Blacklist"></button>
+            <app-button classBtn="p-button-danger" (clickChange)="add(e.candidateId, e.companyId)"
+              iconBtn="pi pi-pencil" label="Blacklist" link="/employees"></app-button>
           </td>
         </tr>
       </ng-template>
@@ -38,7 +38,7 @@
         <label for="inputName">Apakah kamu ingin memasukkan candidate ke dalam blacklist?</label>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        <app-button btnType="submit" label="Submit" link="/employees"></app-button>
       </div>
     </div>
   </form>
