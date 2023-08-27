@@ -2,13 +2,13 @@
 <pre>{{ idJob|json }}</pre>
 <!-- <pre>{{ company|json }}</pre> -->
 <div class="home-container">
-  <div class="container grid justify-content-center">
+  <div class="container grid grid-nogutter justify-content-center">
     <div class="sub-container grid col-12 md:col-10 mt-3 justify-content-center">
       <div class="col-10 md:col-3 text-center">
         <img src="{{ job.companyPhoto|urlCandidate }}" alt="Image" class="w-full">
       </div>
-      <div class="title col-10 md:col-7">
-        <!-- <span class="col-12">{{ job.jobTitle }}</span> -->
+      <div class="title col-10 md:col-7 grid">
+        <span class="col-12 text-3xl">{{ job.jobTitle }}</span>
         <a routerLink="" class="col-12 text-primary" style="text-decoration: none;">
           {{ job.companyName }}
         </a>

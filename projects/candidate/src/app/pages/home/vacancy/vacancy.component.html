@@ -1,7 +1,7 @@
 <!-- home.component.html -->
-<pre>{{ industryId|json }}</pre>
+<!-- <pre>{{ industryId|json }}</pre>
 <pre>{{ jobs | json }}</pre>
-<pre>{{ locations | json }}</pre>
+<pre>{{ locations | json }}</pre> -->
 <pre>{{ searchJobReqDto.value|json }}</pre>
 <div class="home-container">
   <!-- Search Options -->
@@ -28,7 +28,7 @@
             </p-dropdown>
           </div>
           <div class="col-12 text-center md:col-1">
-            <button type="submit" pButton pRipple class="p-button-success">
+            <button type="submit" pButton pRipple class="p-button-primary">
               <i class="pi pi-search m-1"></i> Cari
             </button>
           </div>
@@ -44,7 +44,7 @@
             <p-accordionTab header="Employment Type">
               <div class="flex flex-column gap-2">
                 <div *ngFor="let type of types" class="field-checkbox">
-                  <p-checkbox name="group" (onChange)="employmentTypeChange($event,type.id)" [value]="type.id"[inputId]="type.typeCode">
+                  <p-checkbox name="group" (onChange)="employmentTypeChange($event,type.id)" [value]="type.id"[inputId]="type.typeCode" (click)="getAllJobsByEmploymentType">
                   </p-checkbox>
                   <label [for]="type.typeCode">{{ type.typeName }}</label>
                 </div>
@@ -52,20 +52,20 @@
             </p-accordionTab>
             <p-accordionTab header="Salary">
               <div class="grid">
-                <div class="col-3 md:col-12">
-                  <span>Start </span>
+                <div class="col-3">
+                  <span for="start">Start </span>
                 </div>
                 <div class="col-9">
-                  <p-inputNumber id="idNumber" inputId="withoutgrouping" [useGrouping]="false"
-                    formControlName="salaryStart">
+                  <p-inputNumber id="start" inputId="withoutgrouping"
+                    formControlName="salaryStart" class="w-full" styleClass="w-full">
                   </p-inputNumber>
                 </div>
                 <div class="col-3">
-                  <span>End </span>
+                  <span for="end" >End </span>
                 </div>
                 <div class="col-9">
-                  <p-inputNumber id="idNumber" inputId="withoutgrouping" [useGrouping]="false"
-                    formControlName="salaryEnd">
+                  <p-inputNumber id="end" inputId="withoutgrouping"
+                    formControlName="salaryEnd" class="w-full" styleClass="w-full">
                   </p-inputNumber>
                 </div>
                 <button type="button" pButton pRipple class="p-button-success col-12 text-center"
@@ -79,12 +79,10 @@
       </div>
 
       <div class="content col-12 md:col-8 md:col-offset-1 grid ">
-        <p-card class="col-12 md:col-6 mt-4" *ngFor="let job of jobs" routerLink="/home/detail/{{job.id}}">
+        <p-card class="col-12 md:col-6 mt-4" *ngFor="let job of jobs" routerLink="/home/detail/{{job.id}}" >
           <div class="thumbnail grid justify-content-center">
             <div class="col-4 justify-content-center align-content-center">
-              <p-image src="{{ job.companyPhoto|urlCandidate }}" alt="Image" width="100"
-                [preview]="true">
-              </p-image>
+              <img src="{{ job.companyPhoto|urlCandidate }}" alt="Image" class="w-full">
             </div>
             <div class="title col-8 grid">
               <span class="col-10">{{ job.jobTitle }}</span>

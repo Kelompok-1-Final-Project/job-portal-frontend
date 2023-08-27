@@ -1,3 +1,12 @@
+::ng-deep .p-menubar .p-menuitem:hover > .p-menuitem-content .p-menuitem-link {
+    background-color:#F8F7F3 ;
+    border-bottom: 2px solid #224674; 
+  }
+  ::ng-deep
+  .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-icon {
+      background-color: #F8F7F3;
+    color: #224674;
+  }
 ::ng-deep
   .p-menubar
   .p-menubar-root-list
@@ -5,12 +14,23 @@
   > .p-menuitem-content
   .p-menuitem-link
   .p-menuitem-text {
-  color: black;
+  color: #224674;
+}
+
+
+::ng-deep
+.p-menubar .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-icon {
+  color: #224674;
+}
+
+::ng-deep
+.p-menubar .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-text {
+  color: #224674;
 }
 
 ::ng-deep .p-menubar {
   border-radius: 0;
-  background-color: antiquewhite;
+  background-color: #F8F7F3;
   border: none;
   /* position: fixed; */
   width: 100%;
