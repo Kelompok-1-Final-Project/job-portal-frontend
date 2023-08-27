@@ -5,7 +5,9 @@ export interface SaveJobGetResDto {
 	salaryEnd : number
 	description : string
 	endDate : string
+	companyId : string
 	companyName : string
+	companyPhoto : string
 	positionName : string
 	statusName : string
 	employmentName : string

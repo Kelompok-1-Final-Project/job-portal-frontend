@@ -2,65 +2,63 @@
 <pre>{{ userData|json }}</pre>
 
 <div class="profile-container grid justify-content-center m-3">
-  <p-accordion class="col-10 md:col-8">
+  <p-accordion class="col-11 md:col-8">
     <p-accordionTab header="Basic Information" [selected]="true">
       <div class="p-2 md:p-1">
-        <div class="grid">
-          <div class="col-4">
-            <img src="{{ userData.photoId|urlCandidate}}" alt="Foto Profil" class="w-full">
+        <div class="grid grid-nogutter">
+          <div class="col-12 md:col-3">
+            <div class="grid justify-content-center p-3">
+              <img src="{{ userData.photoId|urlCandidate}}" alt="Foto Profil" class="w-5 md:w-full">
+            </div>
           </div>
-          <div class="col-8">
+          <div class="col-12 md:col-9">
             <div class="info grid">
-              <div class="name col-6 p-3">
-                <h3>{{ userData.fullName }}</h3>
+              <div class="col-12 md:col-6">
+                <div class="grid justify-content-center md:justify-content-start">
+                  <span class="p-3 text-3xl text-bold" >{{ userData.fullName }}</span>
+                </div>
               </div>
-              <div class="button col-6">
-                <button pButton type="button" icon="pi pi-pencil mr-3" class="p-button-success mb-2"
+              <div class="col-12 md:col-6">
+                <div class="grid justify-content-center md:justify-content-start">
+                <button pButton type="button" icon="pi pi-pencil mr-3" class="p-button-success mt-2"
                   (click)="editUser()">
                   Edit Profile
                 </button>
+                </div>
               </div>
               <div class="left-info col-6 p-3">
-                <div class="nik">
-                  <div class="font-semibold text-gray-500">NIK</div>
-                  <div class="mb-3">{{ userData.idNumber ? userData.idNumber:'-' }}</div>
+                <div class="nik grid">
+                  <div class="col-12 font-semibold text-gray-500">NIK</div>
+                  <div class="col-12 mb-3">{{ userData.idNumber ? userData.idNumber:'-' }}</div>
                 </div>
-                <div class="email">
-                  <div class="font-semibold text-gray-500">Email</div>
-                  <div class="mb-3">{{ userData.email}}</div>
-                </div>
-                <div class="gender">
-                  <div class="font-semibold text-gray-500">Gender</div>
-                  <div class="mb-3">{{ userData.gender ? userData.gender:'-' }}</div>
-                </div>
-                <div class="years-old">
-                  <div class="font-semibold text-gray-500">Years Old</div>
-                  <div class="mb-3">{{ userData.age ? userData.age:'-' }}</div>
-                </div>
-              </div>
-              <div class="right-info col-6 p-3">
-                <div class="phone">
-                  <div class="font-semibold text-gray-500">Phone</div>
-                  <div class="mb-3">{{ userData.phone ? userData.phone:'-' }}</div>
-                </div>
-                <div class="marital-status">
-                  <div class="font-semibold text-gray-500">Marital Status</div>
-                  <div class="mb-3">{{ userData.maritalStatus ? userData.maritalStatus:'-' }}</div>
-                </div>
-                <div class="expected-salary">
-                  <div class="font-semibold text-gray-500">Expected Salary</div>
-                  <div class="mb-3">{{ userData.expectedSalary ? 'Rp'+userData.expectedSalary:'-' }}</div>
-                </div>
-                <div class="cv-file">
-                  <div class="font-semibold text-gray-500">CV File</div>
-                  <div class="mb-3"><a href="#">{{ userData.cvId ? userData.cvId:'' }}</a>{{ !userData.cvId ? '-':'' }}
+                <div class="grid email">
+                  <div class="col-12 font-semibold text-gray-500">Email</div>
+                  <div class="col-12 mb-3">
+                    {{ userData.email}}
                   </div>
                 </div>
+                <div class="grid gender">
+                  <div class="col-12 font-semibold text-gray-500">Gender</div>
+                  <div class="col-12 mb-3">{{ userData.gender ? userData.gender:'-' }}</div>
+                </div>
+               
               </div>
-              <div class="summary p-3">
-                <div class="summary">
-                  <div class="font-semibold text-gray-500">Summary</div>
-                  <div class="">{{ userData.summary ? userData.summary:'-' }}</div>
+              <div class="right-info col-6 p-3">
+                <div class=" grid phone">
+                  <div class="col-12 font-semibold text-gray-500">Phone</div>
+                  <div class="col-12 mb-3">{{ userData.phone ? userData.phone:'-' }}</div>
+                </div>
+                <div class="grid marital-status">
+                  <div class="col-12 font-semibold text-gray-500">Marital Status</div>
+                  <div class="col-12 mb-3">{{ userData.maritalStatus ? userData.maritalStatus:'-' }}</div>
+                </div>
+                <div class="grid expected-salary">
+                  <div class="col-12 font-semibold text-gray-500">Expected Salary</div>
+                  <div class="col-12 mb-3">{{ userData.expectedSalary ? 'Rp'+userData.expectedSalary:'-' }}</div>
+                </div>
+                <div class="grid years-old">
+                  <div class="col-12 font-semibold text-gray-500">Years Old</div>
+                  <div class="col-12 mb-3">{{ userData.age ? userData.age:'-' }}</div>
                 </div>
               </div>
             </div>
@@ -270,7 +268,7 @@
             <label for="companyAddress">Birthdate</label>
           </div>
           <div class="col-12 md:col-9">
-            <p-calendar [showIcon]="true" formControlName="birthdate" styleClass="w-full"></p-calendar>
+            <p-calendar appendTo="body" [showIcon]="true" formControlName="birthdate" styleClass="w-full"></p-calendar>
           </div>
           <div class="col-12 md:col-3">
             <label for="companyName">Marital Status</label>
@@ -290,7 +288,8 @@
 </p-dialog>
 
 <!-- Modal Add Education -->
-<p-dialog header="Add Education" [modal]="true" [(visible)]="visibleAddEducation" [style]="{ width: '30vw' }">
+<p-dialog header="Add Education" [modal]="true" [(visible)]="visibleAddEducation" [breakpoints]="{'768px': '90vw'}"
+[style]="{width: '45vw' }" [draggable]="false">
   <form [formGroup]="educationInsertReqDto" (ngSubmit)="insertEducation()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
@@ -303,13 +302,13 @@
         <label for="inputName">From </label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate" styleClass="w-full"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputName">To </label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate" styleClass="w-full"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
@@ -319,7 +318,10 @@
 </p-dialog>
 
 <!-- Modal Update Education-->
-<p-dialog header="Edit Education" [modal]="true" [(visible)]="visibleUpdateEducation" [style]="{ width: '30vw' }">
+<p-dialog header="Edit Education" [modal]="true" [(visible)]="visibleUpdateEducation"
+[breakpoints]="{'768px': '90vw'}"
+[style]="{width: '30vw' }" [draggable]="false"
+>
   <pre>{{ educationUpdateReqDto.value|json }}</pre>
   <form [formGroup]="educationUpdateReqDto" (ngSubmit)="submitUpdateEducation()">
     <div class="grid surface-card border-round-sm border-400">
@@ -334,13 +336,13 @@
         <label for="inputName">From<span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate" styleClass="w-full"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputName">To<span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate" styleClass="w-full"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
@@ -382,13 +384,13 @@
         <label for="inputName">From </label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputName">To </label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
@@ -417,13 +419,13 @@
         <label for="inputName">From </label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar [showIcon]="true" formControlName="startDate" [readonlyInput]="true"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate" [readonlyInput]="true"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputName">To </label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar [showIcon]="true" formControlName="endDate" [readonlyInput]="true"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate" [readonlyInput]="true"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
@@ -525,13 +527,13 @@
         <label for="inputName">From </label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputName">To </label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputJobPosition">Description</label>
@@ -566,13 +568,13 @@
         <label for="inputName">From </label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputName">To </label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputJobPosition">Description</label>
@@ -632,7 +634,7 @@
         <label for="inputName">Birthdate</label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar [showIcon]="true" formControlName="birthdate"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="birthdate"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
@@ -672,7 +674,7 @@
         <label for="inputName">Birthdate</label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar [showIcon]="true" formControlName="birthdate"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="birthdate"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <button type="submit" pButton pRipple class="p-button-primary">Submit</button>

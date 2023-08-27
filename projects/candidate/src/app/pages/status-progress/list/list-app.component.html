@@ -1,7 +1,7 @@
-<pre>{{ applications|json }}</pre>
-<pre>{{ this.userEmail|json }}</pre>
+<!-- <pre>{{ applications|json }}</pre>
+<pre>{{ this.userEmail|json }}</pre> -->
 
-<div class="app-container grid justify-content-center mt-5">
+<div class="app-container grid grid-nogutter justify-content-center mt-5">
   <div class="container col-9">
     <p-tabView orientation="left">
       <p-tabPanel header="Application">
@@ -16,7 +16,7 @@
             </span>
           </div>
           <div class="content col-12">
-            <div *ngFor="let a of applications" class="box-content cursor-pointer hover:shadow-4 grid bg-primary-50 h-15rem p-3 md:p-2 mb-3 md:mb-5"
+            <div *ngFor="let a of applications" class="box-content cursor-pointer hover:shadow-4 grid shadow-2 h-15rem p-3 md:p-2 mb-3 md:mb-5"
             routerLink="/home/detail/{{ a.jobId }}">
               <div class="company-photo col-3 md:col-2 text-center">
                 <img src="{{ a.photoId|urlAdmin}}" alt="Image"
@@ -56,7 +56,7 @@
             </span>
           </div>
           <div class="content col-12">
-            <div *ngFor="let a of assesments" class="box-content grid bg-primary-50 h-15rem p-3 md:p-2 mb-3 md:mb-5">
+            <div *ngFor="let a of assesments" class="box-content grid shadow-2 h-15rem p-3 md:p-2 mb-3 md:mb-5">
               <div class="company-photo col-3 md:col-2 text-center">
                 <img src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image"
                   class="mt-3 w-4rem md:w-6rem lg:8rem">
@@ -76,7 +76,7 @@
                 <div class="m-2">
                   <p-chip class="col-12 text-center bg-success col-6 md:col-12" label="Application"></p-chip>
                   <i class="pi pi-circle-fill"></i>
-                  <span class="ml-2">Job Closed</span>
+                  <span class="ml-2">Job {{ a.statusName }}</span>
                 </div>
               </div>
             </div>
@@ -95,7 +95,7 @@
             </span>
           </div>
           <div class="content col-12">
-            <div *ngFor="let a of interview" class="box-content grid bg-primary-50 h-15rem p-3 md:p-2 mb-3 md:mb-5">
+            <div *ngFor="let a of interview" class="box-content grid shadow-2 h-15rem p-3 md:p-2 mb-3 md:mb-5">
               <div class="company-photo col-3 md:col-2 text-center">
                 <img src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image"
                   class="mt-3 w-4rem md:w-6rem lg:8rem">
@@ -113,7 +113,7 @@
                 <div class="m-2">
                   <p-chip class="col-12 text-center bg-success col-6 md:col-12" label="Application"></p-chip>
                   <i class="pi pi-circle-fill"></i>
-                  <span class="ml-2">Job Closed</span>
+                  <span class="ml-2">Job {{ a.statusName }}</span>
                 </div>
               </div>
             </div>
@@ -132,7 +132,7 @@
             </span>
           </div>
           <div class="content col-12">
-            <div *ngFor="let a of offering" class="box-content grid bg-primary-50 h-15rem p-3 md:p-2 mb-3 md:mb-5">
+            <div *ngFor="let a of offering" class="box-content grid shadow-2 h-15rem p-3 md:p-2 mb-3 md:mb-5">
               <div class="company-photo col-3 md:col-2 text-center">
                 <img src="{{ a.photoId|urlAdmin}}" alt="Image"
                   class="mt-3 w-4rem md:w-6rem lg:8rem">
@@ -150,7 +150,7 @@
                 <div class="m-2">
                   <p-chip class="col-12 text-center bg-success col-6 md:col-12" label="Application"></p-chip>
                   <i class="pi pi-circle-fill"></i>
-                  <span class="ml-2">Job Closed</span>
+                  <span class="ml-2">Job {{ a.statusName }}</span>
                 </div>
               </div>
             </div>
@@ -169,7 +169,7 @@
             </span>
           </div>
           <div class="content col-12">
-            <div *ngFor="let a of offering" class="box-content grid bg-primary-50 h-15rem p-3 md:p-2 mb-3 md:mb-5">
+            <div *ngFor="let a of offering" class="box-content grid shadow-2 h-15rem p-3 md:p-2 mb-3 md:mb-5">
               <div class="company-photo col-3 md:col-2 text-center">
                 <img src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image"
                   class="mt-3 w-4rem md:w-6rem lg:8rem">
@@ -187,7 +187,7 @@
                 <div class="m-2">
                   <p-chip class="col-12 text-center bg-success col-6 md:col-12" label="Application"></p-chip>
                   <i class="pi pi-circle-fill"></i>
-                  <span class="ml-2">Job Closed</span>
+                  <span class="ml-2">Job {{ a.statusName }}</span>
                 </div>
               </div>
             </div>
@@ -206,7 +206,7 @@
             </span>
           </div>
           <div class="content col-12">
-            <div *ngFor="let a of hired" class="box-content grid bg-primary-50 h-15rem p-3 md:p-2 mb-3 md:mb-5">
+            <div *ngFor="let a of hired" class="box-content grid shadow-2 h-15rem p-3 md:p-2 mb-3 md:mb-5">
               <div class="company-photo col-3 md:col-2 text-center">
                 <img src="https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg" alt="Image"
                   class="mt-3 w-4rem md:w-6rem lg:8rem">
@@ -224,7 +224,7 @@
                 <div class="m-2">
                   <p-chip class="col-12 text-center bg-success col-6 md:col-12" label="Application"></p-chip>
                   <i class="pi pi-circle-fill"></i>
-                  <span class="ml-2">Job Closed</span>
+                  <span class="ml-2">Job {{ a.statusName }}</span>
                 </div>
               </div>
             </div>
@@ -232,7 +232,41 @@
         </div>
       </p-tabPanel>
       <p-tabPanel header="Reject">
-        <!-- Konten Tab -->
+        <div class="application grid">
+          <div class="view-by col-4">
+            <h3 class="mb-6">
+              {{ lengthReject!=0 ?lengthReject+" Applications" : "0 Applications" }}
+            </h3>
+            <span class="p-float-label">
+              <p-dropdown [options]="options" optionLabel="name" inputId="float-label" styleClass="w-full"></p-dropdown>
+              <label for="float-label">View By</label>
+            </span>
+          </div>
+          <div class="content col-12">
+            <div *ngFor="let a of reject" class="box-content grid shadow-2 h-15rem p-3 md:p-2 mb-3 md:mb-5">
+              <div class="company-photo col-3 md:col-2 text-center">
+                <img src="{{ a.photoId|urlAdmin}}" alt="Image"
+                  class="mt-3 w-4rem md:w-6rem lg:8rem">
+              </div>
+              <div class="content-app col-9 md:col-10">
+                <div class="m-2">
+                  <span class="text-bold text-2xl">{{ a.jobName }}</span>
+                </div>
+                <div class="m-2">
+                  <span>{{ a.companyName }}</span>
+                </div>
+                <div class="m-2">
+                  <span><i class="pi pi-calendar">Submitted on {{ a.createdAt }}</i></span>
+                </div>
+                <div class="m-2">
+                  <p-chip class="col-12 text-center bg-success col-6 md:col-12" label="Application"></p-chip>
+                  <i class="pi pi-circle-fill"></i>
+                  <span class="ml-2">Job {{ a.statusName }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </p-tabPanel>
     </p-tabView>
   </div>
