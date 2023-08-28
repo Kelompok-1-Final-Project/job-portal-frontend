@@ -18,6 +18,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { ImageModule } from 'primeng/image';
 import { AccordionModule } from 'primeng/accordion';
 import { TabViewModule } from 'primeng/tabview';
+import { CardModule } from 'primeng/card';
 
 @NgModule({
     imports: [
@@ -38,7 +39,8 @@ import { TabViewModule } from 'primeng/tabview';
         InputNumberModule,
         ImageModule,
         AccordionModule,
-        TabViewModule
+        TabViewModule,
+        CardModule
     ],
     exports: [
         InputTextModule,
@@ -59,7 +61,8 @@ import { TabViewModule } from 'primeng/tabview';
         TooltipModule,
         ImageModule,
         AccordionModule,
-        TabViewModule
+        TabViewModule,
+        CardModule
     ]
 })
 export class SharedModuleComponent {

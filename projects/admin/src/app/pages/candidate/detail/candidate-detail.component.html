@@ -1,9 +1,94 @@
 <div class="card">
     <h2>Candidate Detail</h2>
+    <p-card>
+        <div class="fluid">
+            <div class="grid mb-2">
+                <div class="col-2 md-6">
+                    <label for="fullName">Full Name</label>
+                </div>
+                <div class="col-4">
+                    <input pInputText [disabled]="true" placeholder="{{candidateProfile.fullName}}" type="text">
+                </div>
+                <div class="col-2 md-6">
+                    <label for="phoneNumber">ID Number</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" pInputText [disabled]="true" placeholder="{{candidateProfile.idNumber}}">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-2 md-6">
+                    <label for="phoneNumber">Phone Number</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" pInputText [disabled]="true" placeholder="{{candidateProfile.phone}}">
+                </div>
+                <div class="col-2 md-6">
+                    <label for="phoneNumber">Email</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" pInputText [disabled]="true" placeholder="{{candidateProfile.email}}">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-2 md-6">
+                    <label for="phoneNumber">Marital Status</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" pInputText [disabled]="true" placeholder="{{candidateProfile.maritalStatus}}">
+                </div>
+                <div class="col-2 md-6">
+                    <label for="phoneNumber">Phone Number</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" pInputText [disabled]="true" placeholder="{{candidateProfile.gender}}">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-2 md-6">
+                    <label for="phoneNumber">Expeceted Salary</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" pInputText [disabled]="true" placeholder="{{candidateProfile.expectedSalary}}">
+                </div>
+                <div class="col-2 md-6">
+                    <label for="phoneNumber">Age</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" pInputText [disabled]="true" placeholder="{{candidateProfile.age}}">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-2 md-6">
+                    <label for="phoneNumber">CV </label>
+                </div>
+                <div class="col-4">
+                    <input type="text" pInputText [disabled]="true" placeholder="{{candidateProfile.cvId}}">
+                </div>
+                <div class="col-2 md-6">
+                    <label for="phoneNumber">Photo</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" pInputText [disabled]="true" placeholder="{{candidateProfile.photoId}}">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-2 md-6">
+                    <label for="phoneNumber">Summary</label>
+                </div>
+                <div class="col-4">
+                    <label>{{candidateProfile.summary}}</label>
+                </div>
+            </div>
+
+        </div>
+    </p-card>
+
     <p-tabView>
         <p-tabPanel header="Family">
             <app-button classBtn="p-button-secondary" label="Back" iconBtn="pi pi-arrow-left"
-                styleBtn="margin-bottom:0.5rem; margin-right:0.5rem" link="/candidates/detail/{{candidateId}}"></app-button>
+                styleBtn="margin-bottom:0.5rem; margin-right:0.5rem"
+                link="/candidates/detail/{{candidateId}}"></app-button>
             <app-button label="Add Family" iconBtn="pi pi-plus" styleBtn="margin-bottom:0.5rem;"
                 link="/candidates/detail/{{candidateId}}"></app-button>
             <p-table [value]="families" [tableStyle]="{'min-width': '50rem'}">

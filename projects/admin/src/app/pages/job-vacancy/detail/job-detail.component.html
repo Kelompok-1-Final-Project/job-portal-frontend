@@ -60,8 +60,10 @@
         <p-tabView>
             <p-tabPanel header="Job Benefit">
                 <div class="container">
+                    <app-button label="Add Benefit" link="/job-vacancies/details/{{job.id}}"
+                        (clickChange)="addJobBenefit()"></app-button>
                     <h3>List Benefit:</h3>
-                    <div class="question-details">
+                    <div class="list-benefit">
                         <ul>
                             <li *ngFor="let b of benefits">
                                 <div class="grid">
@@ -290,6 +292,25 @@
                     style="margin-right: 0.3rem;">Yes</button>
                 <button type="button" pButton pRipple class="p-button-secondary"
                     (click)="cancelDeleteQuestion()">No</button>
+            </div>
+        </div>
+    </form>
+</p-dialog>
+
+<!-- Modal Add-->
+<p-dialog header="Add benefit" [modal]="true" [(visible)]="visibleAddBenefit" [style]="{ width: '30vw' }">
+    <pre>{{jobBenefitInsertReqDto.value | json}}</pre>
+    <form [formGroup]="jobBenefitInsertReqDto" (ngSubmit)="insertJobBenefit()">
+        <div class="grid surface-card border-round-sm border-400">
+            <div class="col-12 md:col-3">
+                <label for="inputName">Choose Benefit</label>
+            </div>
+            <div class="col-12 md:col-9">
+                <p-dropdown [options]="listBenefits" optionValue="id" optionLabel="benefitName"
+                    formControlName="benefitId" placeholder="Choose"></p-dropdown>
+            </div>
+            <div class="flex flex-wrap justify-content-end mt-2 col-12">
+                <app-button btnType="submit" link="/job-vacancies/details/{{job.id}}" label="Submit"></app-button>
             </div>
         </div>
     </form>
