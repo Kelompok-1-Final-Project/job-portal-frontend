@@ -22,8 +22,8 @@ import { JobBenefitReqDto } from "@dto/job-benefit/job-benefit.req.dto";
 export class JobService {
     constructor(private base: BaseService) { }
 
-    getAll(): Observable<JobAdminGetResDto[]> {
-        return this.base.get<JobAdminGetResDto[]>(`${BASE_URL}/jobs`, true)
+    getAll(param: string): Observable<JobAdminGetResDto[]> {
+        return this.base.get<JobAdminGetResDto[]>(`${BASE_URL}/jobs?user=${param}`, true)
     }
 
     getStatus(): Observable<JobStatusGetResDto[]> {
@@ -62,11 +62,11 @@ export class JobService {
         return this.base.get<JobBenefitGetResDto[]>(`${BASE_URL}/jobs/job-benefit?job=${param}`, true)
     }
 
-    deleteJobBenefit(job: string, benefit: string): Observable<DeleteResDto>{
+    deleteJobBenefit(job: string, benefit: string): Observable<DeleteResDto> {
         return this.base.delete<DeleteResDto>(`${BASE_URL}/jobs/${job}/${benefit}`, true)
     }
 
-    insertJobBenefit(data: JobBenefitReqDto): Observable<InsertResDto>{
+    insertJobBenefit(data: JobBenefitReqDto): Observable<InsertResDto> {
         return this.base.post<InsertResDto>(`${BASE_URL}/jobs/job-benefit`, data, true)
     }
 }

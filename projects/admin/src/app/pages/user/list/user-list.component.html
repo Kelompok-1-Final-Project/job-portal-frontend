@@ -4,7 +4,7 @@
   </div>
   <div>
     <div class="grid justify-content-end mb-3">
-      <app-button classBtn="w-12" label="Add User" btnType="button" link="create"></app-button>
+      <app-button classBtn="mr-3" label="Add User" btnType="button" link="create"></app-button>
     </div>
     <p-table [value]="users" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
       [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -34,13 +34,27 @@
           <td>{{ c.roleName }}</td>
           <td>{{ c.userPhone }}</td>
           <td>
-            {{c.isActive}}
-            <!-- <p-tag>[value]="c.isActive" [severity]="getSev(c.isActive)"</p-tag> -->
+            <p-tag [severity]="c.isActive?'primary':'danger'" [value]="c.isActive"></p-tag>
           </td>
           <td>
-            <app-button classBtn="w-12" classBtn="p-button-secondary" label="Edit"  btnType="button" link="/companies"></app-button>
+            <p-inputSwitch [ngModel]="c.isActive" (click)="setActive(c.userId, !c.isActive)"> </p-inputSwitch>
           </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
+
+  <!-- Modal Add-->
+  <p-dialog header="Add Data benefit" [modal]="true" [(visible)]="visibleIsActive" [style]="{ width: '30vw' }">
+    <pre>{{userIsActiveReqDto.value | json}}</pre>
+    <form [formGroup]="userIsActiveReqDto" (ngSubmit)="insertIsActive()">
+      <div class="grid surface-card border-round-sm border-400">
+        <div class="col-12">
+          <label for="inputName">Apakah anda ingin mengubah status User?</label>
+        </div>
+        <div class="flex flex-wrap justify-content-end mt-2 col-12">
+          <app-button btnType="submit" link="/users" label="Submit"></app-button>
+        </div>
+      </div>
+    </form>
+  </p-dialog>
