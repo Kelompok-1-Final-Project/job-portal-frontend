@@ -27,6 +27,7 @@ import { BASE_URL_CAN } from "@constant/api.constant";
 export class NavbarComponent implements OnInit {
 
   imgUrl!: string;
+  logoWeb!:string;
   roleCode!: string;
 
   constructor(
@@ -50,8 +51,9 @@ export class NavbarComponent implements OnInit {
           if (profilePhoto!='') {
             this.imgUrl = `${BASE_URL_CAN}/files/${profilePhoto}`;
           } else {
-            this.imgUrl = '/assets/avatar.png';
+            this.imgUrl = '../../../assets/images.avatar.png';
           }
+    this.logoWeb = '/assets/logo.png';
 
     this.items = [{
       label: 'Ticketing - Torangto',
@@ -305,30 +307,6 @@ export class NavbarComponent implements OnInit {
         command: () => {
           this.logout()
         }
-      }
-      ]
-    },
-    {
-      label: 'About',
-      items: [{
-        label: 'Edit',
-        icon: 'pi pi-fw pi-pencil',
-        items: [{
-          label: 'Save',
-          icon: 'pi pi-fw pi-calendar-plus'
-        },
-        {
-          label: 'Delete',
-          icon: 'pi pi-fw pi-calendar-minus'
-        }
-        ]
-      },
-      {
-        label: 'Contact',
-        items: [{
-          label: 'Remove',
-          icon: 'pi pi-fw pi-calendar-minus'
-        }]
       }
       ]
     },

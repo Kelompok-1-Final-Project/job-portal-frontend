@@ -233,7 +233,7 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     this.candidateUpdateReqDto.get('mobileNumber')?.setValue(this.userData.phone);
     this.candidateUpdateReqDto.get('idNumber')?.setValue(this.userData.idNumber);
     this.candidateUpdateReqDto.get('expectedSalary')?.setValue(this.userData.expectedSalary);
-    this.candidateUpdateReqDto.get('birthdate')?.setValue(this.userData.birthdate+'T:00:00');
+    this.candidateUpdateReqDto.get('birthdate')?.setValue(this.userData.birthdate);
     this.candidateUpdateReqDto.get('genderCode')?.setValue(this.userData.genderCode);
     this.candidateUpdateReqDto.get('maritalStatusCode')?.setValue(this.userData.maritalStatusCode);
   }

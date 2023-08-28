@@ -1,18 +1,17 @@
 <!-- home.component.html -->
-<pre>{{ companyData|json }}</pre>
-<div class="home-container">
-  <div class="content col-12 md:col-9 grid">
-    <p-card class="col-12 md:col-6 mt-4" *ngFor="let c of companyData">
+<!-- <pre>{{ companyData|json }}</pre> -->
+<div class="home-container grid justify-content-center">
+  <h2 class="col-12 md:col-10 text-center">All Company</h2>
+  <div class="content col-12 md:col-10 grid justify-content-center">
+    <p-card class="col-11 md:col-6 lg:col-4 mt-4 hover:shadow-4" *ngFor="let c of companyData">
       <a routerLink="/companies/detail/{{ c.companyId }}" style="text-decoration: none;">
         <div class="thumbnail grid">
           <div class="col-4 justify-content-center align-content-center">
-            <p-image src="{{ c.fileId|urlCandidate }}" alt="Image" width="100"
-              [preview]="true">
-            </p-image>
+            <img src="{{ c.fileId|urlCandidate }}" alt="Image" class="w-full">
           </div>
           <div class="title col-8 grid">
             <span class="col-12">{{ c.companyName }}</span>
-            <span class="col-12">{{ c.cityName }}</span>
+            <span class="col-12">{{ c.cityName }},{{ c.address }}</span>
           </div>
         </div>
         <div class="Industry">

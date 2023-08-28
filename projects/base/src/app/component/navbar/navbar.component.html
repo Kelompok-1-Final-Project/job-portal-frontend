@@ -2,6 +2,12 @@
   <p-menubar [model]="items">
     <!-- <p-menubar [model]="itemsCandidate"> -->
     <ng-template pTemplate="start">
+      <img
+      src="../../../assets/images/logo.png"
+      height="30"
+      class="mx-2 cursor-pointer logo"
+      routerLink="/home"
+    />
     </ng-template>
     <ng-template pTemplate="end">
       <img [src]="imgUrl" height="40" class="bg-center w-3rem h-3rem border-round" />

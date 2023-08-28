@@ -101,13 +101,12 @@ export class VacancyComponent implements OnInit {
     })
   }
 
-  // getAllJobsByEmploymentType(emType:string){
-  //   const data = this.searchJobReqDto.getRawValue();
-  //   data.employmentType = emType;
-  //   this.jobService.getAll(data).subscribe(result => {
-  //     this.jobs = result
-  //   })
-  // }
+  getAllJobsByEmploymentType(){
+    const data = this.searchJobReqDto.getRawValue();
+    this.jobService.getAll(data).subscribe(result => {
+      this.jobs = result
+    })
+  }
 
   getAllJobsBySalary(){
     const data = this.searchJobReqDto.getRawValue();
@@ -163,29 +162,7 @@ export class VacancyComponent implements OnInit {
     return this.searchJobReqDto.get('employmentType') as FormArray
   }
 
-  addEmploymentType(typeId: string) {
-
-    let indexFound:number = -1;
-
-    for (let i = 0; i < this.employmentTypeSelected.length; i++) {
-      if (this.employmentTypeSelected[i] === typeId) {
-        indexFound =i;
-      }
-    }
-
-    if(indexFound!=-1){
-      this.employmentTypeSelected.splice(indexFound,1)
-    }else{
-      this.employmentTypeSelected.push(typeId);
-    }
-    // this.searchJobReqDto.patchValue({
-    //   employmentType: this.employmentTypeSelected
-    // });
-    console.log(this.employmentTypeSelected);
-  }
-
  employmentTypeChange(event: any, idString: string) {
-   console.log(event.checked, idString)
    const data = this.employmentType.getRawValue();
    let isFound: boolean = false;
 
@@ -197,6 +174,7 @@ export class VacancyComponent implements OnInit {
      }
      if (!isFound) {
        this.employmentType.push(this.fb.control(idString))
+       this.getAllJobsByEmploymentType();
      }
    } else {
      let indexFound = -1
@@ -207,7 +185,8 @@ export class VacancyComponent implements OnInit {
        }
      }
      if (isFound) {
-       this.employmentType.removeAt(indexFound)
+       this.employmentType.removeAt(indexFound);
+       this.getAllJobsByEmploymentType();
      }
    }
  }
