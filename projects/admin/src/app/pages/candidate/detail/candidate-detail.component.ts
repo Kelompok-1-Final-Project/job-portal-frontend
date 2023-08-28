@@ -80,7 +80,7 @@ export class CandidateDetailComponent implements OnInit {
     }
 
     insertFamily() {
-
+        
     }
 
     getDetailCandidate() {

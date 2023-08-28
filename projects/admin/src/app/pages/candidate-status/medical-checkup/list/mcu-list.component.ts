@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { MedicalCheckupGetResDto } from '@dto/medicalcheckup/medical-checkup.get.res.dto';
+import { AuthService } from '@serviceAdmin/auth.service';
 import { StatusProgressService } from '@serviceAdmin/statusprogress.service';
 import { FileUpload } from 'primeng/fileupload';
 import { firstValueFrom } from 'rxjs';
@@ -15,6 +16,7 @@ export class McuListComponent implements OnInit {
   visibleUpdateStatus: boolean = false;
   mcus!: MedicalCheckupGetResDto[]
   visibleMcu: boolean = false
+  userId!: string
 
   medicalUpdateReqDto = this.fb.group({
     medicalId: ['', [Validators.required]],
@@ -25,17 +27,19 @@ export class McuListComponent implements OnInit {
   constructor(
     private title: Title,
     private statusProgressService: StatusProgressService,
-    private fb: NonNullableFormBuilder
+    private fb: NonNullableFormBuilder,
+    private authService: AuthService
   ) {
     this.title.setTitle('Medical Checkup | Job Portal Admin')
   }
 
   ngOnInit(): void {
+    this.getProfile()
     this.getMedicalCheckup()
   }
 
   getMedicalCheckup() {
-    firstValueFrom(this.statusProgressService.getMedicalCheckup()).then(result => {
+    firstValueFrom(this.statusProgressService.getMedicalCheckup(this.userId)).then(result => {
       this.mcus = result
     })
   }
@@ -50,6 +54,13 @@ export class McuListComponent implements OnInit {
     firstValueFrom(this.statusProgressService.updateMcuFile(data)).then(result =>{
       this.visibleMcu = false
     })
+  }
+
+  getProfile(){
+    const profile = this.authService.getProfile()
+    if(profile){
+      this.userId = profile.userId
+    }
   }
 
   fileUpload(event: any, fileUpload: FileUpload) {

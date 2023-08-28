@@ -12,6 +12,7 @@ import { JobUpdateComponent } from "./update/job-update.component";
 import { JobDetailComponent } from "./detail/job-detail.component";
 import { TabViewModule } from 'primeng/tabview';
 import { JobQuestionComponent } from "./question/job-question.component";
+import { JobPreviewComponent } from "./preview/job-preview.component";
 
 const routes: Routes = [
     {
@@ -33,6 +34,10 @@ const routes: Routes = [
     {
         path: 'question/:id',
         component: JobQuestionComponent
+    },
+    {
+        path: 'preview/:id',
+        component: JobPreviewComponent
     }
 ]
 
@@ -42,7 +47,8 @@ const routes: Routes = [
         JobListComponent,
         JobUpdateComponent,
         JobDetailComponent,
-        JobQuestionComponent
+        JobQuestionComponent,
+        JobPreviewComponent
     ],
     imports: [
         RouterModule.forChild(routes),

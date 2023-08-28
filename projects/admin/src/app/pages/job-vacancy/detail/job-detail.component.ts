@@ -43,6 +43,8 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     jobCode!: string
     visibleAddBenefit: boolean = false
     listBenefits!: BenefitGetResDto[]
+    visibleUpdateNotes: boolean = false
+    visibleButtonNotes: boolean = false
 
     assessmentInsertReqDto = this.fb.group({
         candidateId: ['', [Validators.required]],
@@ -83,6 +85,11 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     jobBenefitInsertReqDto = this.fb.group({
         jobId: ['', [Validators.required]],
         benefitId: ['', [Validators.required]]
+    })
+
+    interviewUpdateReqDto = this.fb.group({
+        interviewId: ['', [Validators.required]],
+        notes: ['', [Validators.required]]
     })
 
     constructor(

@@ -9,6 +9,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DialogModule } from 'primeng/dialog';
 import { AssesmentListComponent } from "./list/assesment-list.component";
+import { SharedModuleComponent } from "@shared/shared.module";
+import { ButtonComponent } from "@component/button/button.component";
 
 const routes : Routes = [
     {
@@ -30,7 +32,9 @@ const routes : Routes = [
         DropdownModule,
         InputTextModule,
         DialogModule,
-        FileUploadModule
+        FileUploadModule,
+        SharedModuleComponent,
+        ButtonComponent
     ],
     exports : [
         RouterModule

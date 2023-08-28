@@ -8,7 +8,9 @@
                 <div class="grid justify-content-start">
                     <app-button classBtn="p-button-secondary" link="/job-vacancies" styleBtn="margin-right:0.5rem"
                         iconBtn="pi pi-arrow-left" label="Back"></app-button>
-                    <app-button classBtn="p-button-primary" iconBtn="pi pi-pencil" label="Update"
+                    <app-button classBtn="p-button-primary" link="/job-vacancies/preview/{{job.id}}" iconBtn="pi pi-eye"
+                        label="Preview" styleBtn="margin-right:0.5rem"></app-button>
+                    <app-button classBtn="p-button-secondary" iconBtn="pi pi-pencil" label="Update"
                         link="/job-vacancies/update/{{job.id}}"></app-button>
                 </div>
             </div>

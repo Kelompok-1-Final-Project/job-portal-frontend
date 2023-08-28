@@ -5,6 +5,7 @@ import {
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { InterviewGetResDto } from '@dto/interview/interview.get.res.dto';
+import { AuthService } from '@serviceAdmin/auth.service';
 import { StatusProgressService } from '@serviceAdmin/statusprogress.service';
 import { firstValueFrom } from 'rxjs';
 
@@ -14,7 +15,8 @@ import { firstValueFrom } from 'rxjs';
 })
 export class InterviewListComponent implements OnInit {
 
-  visibleUpdateNotes:boolean=false;
+  visibleUpdateNotes: boolean = false;
+  userId!:string
 
   interviewUpdateReqDto = this.fb.group({
     interviewId: ['', [Validators.required]],
@@ -22,32 +24,41 @@ export class InterviewListComponent implements OnInit {
   })
 
   constructor(
-    private statusProgressService : StatusProgressService,
+    private statusProgressService: StatusProgressService,
     private title: Title,
-    private fb: NonNullableFormBuilder
+    private fb: NonNullableFormBuilder,
+    private authService: AuthService
   ) {
     this.title.setTitle('Interview | Job Portal Admin')
   }
   interviews!: InterviewGetResDto[]
 
   ngOnInit(): void {
+    this.getProfile()
     this.getInterview()
   }
 
-  getInterview(){
-    firstValueFrom(this.statusProgressService.getInterview()).then(result => {
+  getInterview() {
+    firstValueFrom(this.statusProgressService.getInterview(this.userId)).then(result => {
       this.interviews = result
     })
   }
 
-  insertNotes(id: string){
+  insertNotes(id: string) {
     this.visibleUpdateNotes = true
     this.interviewUpdateReqDto.get('interviewId')?.setValue(id)
   }
 
-  updateNotes(){
+  getProfile(){
+    const profile = this.authService.getProfile()
+    if(profile){
+      this.userId = profile.userId
+    }
+  }
+
+  updateNotes() {
     const data = this.interviewUpdateReqDto.getRawValue()
-    firstValueFrom(this.statusProgressService.updateNotes(data)).then(result =>{
+    firstValueFrom(this.statusProgressService.updateInterviewNotes(data)).then(result => {
       this.visibleUpdateNotes = false
     })
   }
