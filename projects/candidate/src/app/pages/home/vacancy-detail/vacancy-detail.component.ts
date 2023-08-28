@@ -21,6 +21,8 @@ export class VacancyDetailComponent implements OnInit {
   userId!:string;
   userEmail!:string;
   idJob!:string;
+  codeJob!:string;
+  param!:string;
   idCompany!:string;
   job!:JobGetResDto;
   company!:CompanyGetResDto;
@@ -47,8 +49,15 @@ export class VacancyDetailComponent implements OnInit {
   }
   
   init() {
-    this.activatedRoute.params.subscribe(id => {
-      this.idJob = String(Object.values(id));
+    this.activatedRoute.params.subscribe(param => {
+      this.param = String(Object.values(param));
+      if(this.param.length==5){
+        this.codeJob = this.param;
+        this.getJobByCode();
+      }else if(this.param.length==36){
+        this.idJob = this.param;
+        this.getJobById();
+      }
     })
   }
 
@@ -56,13 +65,23 @@ export class VacancyDetailComponent implements OnInit {
     this.userId = this.authService.getUserId();
     this.userEmail = this.authService.getUserEmail();
     this.init();
-    this.getJob();
     this.getJobBenefit();
   }
 
-  getJob() {
+  getJobById() {
     this.jobService.getById(this.idJob,this.userId).subscribe(result => {
       this.job = result;
+      this.idJob = result.id;
+      this.companyService.getById(result.companyId).subscribe(result => {
+        this.company = result;
+      })
+    })
+  }
+
+  getJobByCode() {
+    this.jobService.getByCode(this.codeJob,this.userId).subscribe(result => {
+      this.job = result;
+      this.idJob = result.id;
       this.companyService.getById(result.companyId).subscribe(result => {
         this.company = result;
       })
@@ -86,11 +105,11 @@ export class VacancyDetailComponent implements OnInit {
     this.saveJobReqDto.jobId = jobId;
     if(isBookMark){
       this.jobService.deleteSaveJob(saveJobId).subscribe(result => {
-        this.getJob();
+        this.getJobById();
       })
     }else{
       this.jobService.insertSaveJob(data).subscribe(result => {
-        this.getJob();
+        this.getJobById();
       })
     }
   }
@@ -100,7 +119,7 @@ export class VacancyDetailComponent implements OnInit {
     data.candidateEmail = this.userEmail;
     data.jobId = this.idJob;
     this.jobService.assignJobCandidate(data).subscribe(result => {
-      this.getJob();
+      this.getJobById();
       this.visibleAssignJob=false;
     })
   }
