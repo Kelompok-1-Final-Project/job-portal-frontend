@@ -15,7 +15,7 @@
           </div>
           <div class="title col-8 grid">
             <span class="col-10">{{ j.jobTitle }}</span>
-            <i class="pi pi-heart-fill col-2 flex justify-content-end" style="color: red" (click)="deleteSaveJob(j.id,$event)"></i>
+            <p-button icon="pi pi-heart-fill" styleClass="p-button-rounded p-button-danger p-button-text" (click)="deleteSaveJob(j.id,$event)"></p-button>
             <a routerLink="/companies/detail/{{ j.companyId }}" class="col-12 text-primary">{{ j.companyName }}</a>
           </div>
         </div>

@@ -46,6 +46,10 @@ export class JobService{
         return this.base.get<JobGetResDto>(`${BASE_URL_CAN}/jobs/filter/id?id=${id}&can=${canId}`,true)
     }
 
+    getByCode(code:string,canId:string):Observable<JobGetResDto>{
+        return this.base.get<JobGetResDto>(`${BASE_URL_CAN}/jobs/filter/code?code=${code}&can=${canId}`,true)
+    }
+
     getAllEmploymentType(): Observable<EmploymentTypeGetResDto[]>{
         return this.base.get<EmploymentTypeGetResDto[]>(`${BASE_URL_CAN}/jobs/employment-type`, true)
     }

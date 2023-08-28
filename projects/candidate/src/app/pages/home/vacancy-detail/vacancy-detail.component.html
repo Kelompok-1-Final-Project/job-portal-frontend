@@ -157,18 +157,12 @@
 </div>
 
 
-<p-dialog header="Upload Resume" [modal]="true" [(visible)]="visibleAssignJob" [style]="{ width: '30vw' }">
+<p-dialog header="Assign Job" [modal]="true" [(visible)]="visibleAssignJob" 
+[breakpoints]="{'768px': '90vw'}"
+  [style]="{width: '35vw' }" [draggable]="false"
+>
+<pre>{{ assignJobReqDto|json }}</pre>
   <div class="grid surface-card border-round-sm border-400">
-    <div class="col-12 md:col-3">
-      <label for="resumeUpload">Assign Job</label>
-    </div>
-    <div class="col-12 md:col-9">
-      <p-fileUpload mode="basic" accept=".pdf"></p-fileUpload>
-      <p class="text-muted mt-1">Upload file in PDF</p>
-    </div>
-    <div class="col-12 mt-2">
-      <span>Previous File: previous file</span>
-    </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
       <button type="submit" pButton pRipple class="p-button-primary mr-2" (click)="submitAssignJob()">Submit</button>
     </div>

@@ -23,7 +23,7 @@ import {
 })
 export class LoginComponent {
   userLoginReqDto = this.fb.group({
-    userEmail: ['', [Validators.required]],
+    userEmail: ['', [Validators.email]],
     userPassword: ['', [Validators.required]]
   })
 

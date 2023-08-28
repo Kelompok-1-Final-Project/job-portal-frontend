@@ -6,7 +6,7 @@
             </q>
         </h3>
     </div>
-    <div class="col-12 md:col-5 text-center p-5 form-login">
+    <div class="col-12 md:col-5 p-5 form-login">
         <form [formGroup]="userLoginReqDto" (ngSubmit)="onLogin()" class="flex flex-column align-content-center justify-content-center h-full gap-3">
             <div>
                 <h1>Login</h1>
@@ -16,6 +16,7 @@
             </div>
             <div>
                 <input class="w-full" type="email" pInputText id="email" formControlName="userEmail">
+                <small class="p-error block mt-1" *ngIf="userLoginReqDto.get('userEmail')?.invalid&&userLoginReqDto.get('userEmail')?.touched">Email Invalid</small>
             </div>
             <div>
                 <label for="password">Password</label>
@@ -23,6 +24,7 @@
             <div>
                 <p-password styleClass="w-full" [inputStyle]="{'width':'100%'}" [toggleMask]="true" id="password"
                     [feedback]="false" formControlName="userPassword"></p-password>
+                    <small class="p-error block mt-1" *ngIf="userLoginReqDto.get('userPassword')?.invalid&&userLoginReqDto.get('userPassword')?.touched">Password Required</small>
             </div>
             <div class="text-center">
                 <app-button classBtn="w-4 surface-900 text-100" label="Login" [loading]="loading" btnType="submit"></app-button>

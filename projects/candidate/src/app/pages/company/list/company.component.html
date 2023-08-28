@@ -4,7 +4,7 @@
   <h2 class="col-12 md:col-10 text-center">All Company</h2>
   <div class="content col-12 md:col-10 grid justify-content-center">
     <p-card class="col-11 md:col-6 lg:col-4 mt-4 hover:shadow-4" *ngFor="let c of companyData">
-      <a routerLink="/companies/detail/{{ c.companyId }}" style="text-decoration: none;">
+      <a routerLink="/companies/detail/{{ c.companyId }}" style="text-decoration: none;" class="text-black-alpha-90">
         <div class="thumbnail grid">
           <div class="col-4 justify-content-center align-content-center">
             <img src="{{ c.fileId|urlCandidate }}" alt="Image" class="w-full">
