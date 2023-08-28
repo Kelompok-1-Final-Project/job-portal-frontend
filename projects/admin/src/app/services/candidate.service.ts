@@ -8,6 +8,7 @@ import { InsertResDto } from "@dto/insert.res.dto";
 import { FamilyAdminGetResDto } from "@dto/family/family-admin.get.res.dto";
 import { WorkExperienceGetResDto } from "@dto/workexperience/work-experience.get.res.dto";
 import { ExperienceAdminInsertReqDto } from "@dto/workexperience/experience-admin.insert.req.dto";
+import { CandidateProfileGetResDto } from "@dto/candidate/candidate-profile.get.res.dto";
 
 @Injectable({
     providedIn: 'root'
@@ -27,11 +28,15 @@ export class CandidateService {
         return this.base.get<FamilyAdminGetResDto[]>(`${BASE_URL}/families/candidate?candidateId=${param}`, true)
     }
 
-    getExperience(param: string): Observable<WorkExperienceGetResDto[]>{
+    getExperience(param: string): Observable<WorkExperienceGetResDto[]> {
         return this.base.get<WorkExperienceGetResDto[]>(`${BASE_URL}/work-experience?candidateId=${param}`, true)
     }
 
-    insertExperience(data: ExperienceAdminInsertReqDto): Observable<InsertResDto>{
+    insertExperience(data: ExperienceAdminInsertReqDto): Observable<InsertResDto> {
         return this.base.post<InsertResDto>(`${BASE_URL}/work-experience`, data, true)
+    }
+
+    getCandidateDetail(param: string): Observable<CandidateProfileGetResDto> {
+        return this.base.get<CandidateProfileGetResDto>(`${BASE_URL}/candidates/${param}`, true)
     }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
+import { CandidateProfileGetResDto } from "@dto/candidate/candidate-profile.get.res.dto";
 import { FamilyAdminGetResDto } from "@dto/family/family-admin.get.res.dto";
 import { WorkExperienceGetResDto } from "@dto/workexperience/work-experience.get.res.dto";
 import { CandidateService } from "@serviceAdmin/candidate.service";
@@ -18,9 +19,10 @@ export class CandidateDetailComponent implements OnInit {
     candidateId!: string
     visibleExperience: boolean = false
     visibleFamily: boolean = false
+    candidateProfile!: CandidateProfileGetResDto
 
     experienceInsertReqDto = this.fb.group({
-        candidateEmail : ['', [Validators.required]],
+        candidateEmail: ['', [Validators.required]],
         positionName: ['', [Validators.required]],
         companyName: ['', [Validators.required]],
         startDate: ['', [Validators.required]],
@@ -28,7 +30,7 @@ export class CandidateDetailComponent implements OnInit {
     })
 
     familyInsertReqDto = this.fb.group({
-        candidateId : ['', [Validators.required]],
+        candidateId: ['', [Validators.required]],
         userEmail: ['', [Validators.required]]
     })
 
@@ -44,6 +46,7 @@ export class CandidateDetailComponent implements OnInit {
     ngOnInit(): void {
         firstValueFrom(this.route.params).then(param => {
             this.candidateId = param['id']
+            this.getDetailCandidate()
             this.getFamily()
             this.getExperience()
         })
@@ -55,28 +58,34 @@ export class CandidateDetailComponent implements OnInit {
         })
     }
 
-    getExperience(){
+    getExperience() {
         firstValueFrom(this.candidateService.getExperience(this.candidateId)).then(result => {
             this.experiences = result
         })
     }
 
-    addExperience(){
+    addExperience() {
         this.visibleExperience = true
     }
 
-    addFamily(){
+    addFamily() {
         this.visibleFamily = true
     }
 
-    insertExperience(){
+    insertExperience() {
         const data = this.experienceInsertReqDto.getRawValue()
         firstValueFrom(this.candidateService.insertExperience(data)).then(result => {
             this.visibleExperience = false
         })
     }
 
-    insertFamily(){
-        
+    insertFamily() {
+
+    }
+
+    getDetailCandidate() {
+        firstValueFrom(this.candidateService.getCandidateDetail(this.candidateId)).then(result => {
+            this.candidateProfile = result
+        })
     }
 }

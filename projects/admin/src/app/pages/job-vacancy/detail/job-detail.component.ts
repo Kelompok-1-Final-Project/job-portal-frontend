@@ -3,12 +3,14 @@ import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 import { ProgressStatus } from "@constant/progress.enum";
+import { BenefitGetResDto } from "@dto/benefit/benefit.get.res.dto";
 import { CandidateProgressGetResDto } from "@dto/candidateprogress/candidate-progress.get.res.dto";
 import { JobBenefitGetResDto } from "@dto/job-benefit/job-benefit.get.res.dto";
 import { JobAdminGetResDto } from "@dto/job/job-admin.get.res.dto";
 import { StatusProgressGetResDto } from "@dto/progress/status-progress.get.res.dto";
 import { TestGetResDto } from "@dto/question/test.get.res.dto";
 import { ResultGetResDto } from "@dto/result/result.get.res.dto";
+import { BenefitService } from "@serviceAdmin/benefit.service";
 import { JobService } from "@serviceAdmin/job.service";
 import { SkillTestService } from "@serviceAdmin/skilltest.service";
 import { StatusProgressService } from "@serviceAdmin/statusprogress.service";
@@ -39,6 +41,8 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     visibleBenefit: boolean = false
     benefitCode!: string
     jobCode!: string
+    visibleAddBenefit: boolean = false
+    listBenefits!: BenefitGetResDto[]
 
     assessmentInsertReqDto = this.fb.group({
         candidateId: ['', [Validators.required]],
@@ -76,6 +80,11 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         statusProcessCode: ['', [Validators.required]]
     })
 
+    jobBenefitInsertReqDto = this.fb.group({
+        jobId: ['', [Validators.required]],
+        benefitId: ['', [Validators.required]]
+    })
+
     constructor(
         private title: Title,
         private route: ActivatedRoute,
@@ -83,7 +92,8 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         private statusProgressService: StatusProgressService,
         private skillTestService: SkillTestService,
         private fb: NonNullableFormBuilder,
-        private cd: ChangeDetectorRef
+        private cd: ChangeDetectorRef,
+        private benefitService: BenefitService
     ) {
         this.title.setTitle('Job Detail | Job Portal Admin')
     }
@@ -96,6 +106,7 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
             this.getSkillTest()
             this.getResult()
             this.getJobBenefit()
+            this.getAllBenefit()
         })
     }
 
@@ -244,19 +255,37 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         })
     }
 
-    deleteBenefit(job: string, benefit:string) {
+    deleteBenefit(job: string, benefit: string) {
         this.visibleBenefit = true
         this.jobCode = job
         this.benefitCode = benefit
     }
 
-    cancelDeleteBenefit(){
+    cancelDeleteBenefit() {
         this.visibleBenefit = false
     }
 
-    deleteJobBenefit(){
-        firstValueFrom(this.jobService.deleteJobBenefit(this.jobCode,this.benefitCode)).then(result => {
+    deleteJobBenefit() {
+        firstValueFrom(this.jobService.deleteJobBenefit(this.jobCode, this.benefitCode)).then(result => {
             this.visibleBenefit = false
+        })
+    }
+
+    getAllBenefit() {
+        firstValueFrom(this.benefitService.getAll()).then(result => {
+            this.listBenefits = result
+        })
+    }
+
+    addJobBenefit() {
+        this.visibleAddBenefit = true
+        this.jobBenefitInsertReqDto.get('jobId')?.setValue(this.id)
+    }
+
+    insertJobBenefit() {
+        const data = this.jobBenefitInsertReqDto.getRawValue()
+        firstValueFrom(this.jobService.insertJobBenefit(data)).then(result => {
+            this.visibleAddBenefit = false
         })
     }
 }
