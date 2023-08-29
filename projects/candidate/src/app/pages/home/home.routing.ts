@@ -23,6 +23,7 @@ import { SaveJobsComponent } from "./save-jobs/save-jobs.component";
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { UrlPipeCandidate } from "@pipes/url.pipe";
+import { PaginatorModule } from "primeng/paginator";
 
 
 
@@ -72,6 +73,7 @@ const routes : Routes = [
         RadioButtonModule,
         AutoCompleteModule,
         UrlPipeCandidate,
+        PaginatorModule,
         FileUploadModule
     ],
     exports : [

@@ -1,280 +1,294 @@
  <pre>{{ applications|json }}</pre>
-<!-- <pre>{{ this.userEmail|json }}</pre>  -->
+ <!-- <pre>{{ this.userEmail|json }}</pre>  -->
 
-<div class="app-container grid grid-nogutter justify-content-center mt-5">
-  <div class="container col-11 md:col-9">
-    <p-tabView orientation="left">
-      <p-tabPanel header="Application">
-        <div class="application grid">
-          <div class="view-by col-4">
-            <h3 class="mb-6">
-              {{ lengthApplicantions!=0 ?lengthApplicantions+" Applications" : "0 Applications" }}
-            </h3>
-            <span class="p-float-label col-12">
-              <p-dropdown [options]="options" optionLabel="name" inputId="float-label" styleClass="w-full"></p-dropdown>
-              <label for="float-label">View By</label>
-            </span>
-          </div>
-          <div class="content col-12 grid grid-nogutter justify-content-evenly">
-            <div *ngFor="let a of applications" class="box-content cursor-pointer hover:shadow-4 grid shadow-2 min-h-20rem md:min-h-15rem p-3 md:p-2 mb-3 md:mb-5
-            col-12 md:col-5"
-            routerLink="/home/detail/{{ a.jobCode }}">
-              <div class="company-photo col-4 text-center">
-                <img src="{{ a.photoId|urlAdmin}}" alt="Image"
-                  class="w-full">
-              </div>
-              <div class="content-app col-8">
-                <div class="m-2">
-                  <span class="text-bold text-2xl">{{ a.jobName }}</span>
-                </div>
-                <div class="m-2">
-                    <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
-                </div>
-                <div class="m-2">
-                  <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
-                </div>
-                <div class="m-2 grid">
-                  <p-chip class="col-12 md:col-5 bg-success" label="Application"></p-chip>
-                  <span class="col-12 lg:col-5 mt-2">Job {{ a.statusName }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </p-tabPanel>
-      <p-tabPanel header="Assesment">
-        <div class="Assesment grid">
-          <div class="view-by col-4">
-            <h3 class="mb-6">
-              {{  lengthAssesments!=0 ?lengthAssesments+" Applications" : "0 Applications" }}
-            </h3>
-            <span class="p-float-label col-12">
-              <p-dropdown [options]="options" optionLabel="name" inputId="float-label" styleClass="w-full"></p-dropdown>
-              <label for="float-label">View By</label>
-            </span>
-          </div>
-          <div class="content col-12 grid grid-nogutter justify-content-evenly">
-            <div *ngFor="let a of assesments" class="box-content cursor-pointer hover:shadow-4 grid shadow-2 min-h-20rem md:min-h-15rem p-3 md:p-2 mb-3 md:mb-5
-            col-12 md:col-5"
-            routerLink="/home/detail/{{ a.jobCode }}">
-              <div class="company-photo col-4 text-center">
-                <img src="{{ a.photoId|urlAdmin}}" alt="Image"
-                  class="w-full">
-              </div>
-              <div class="content-app col-8">
-                <div class="m-2">
-                  <span class="text-bold text-2xl">{{ a.jobName }}</span>
-                </div>
-                <div class="m-2">
-                    <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
-                </div>
-                <div class="m-2">
-                  <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
-                </div>
-                <div class="m-2 grid">
-                  <p-chip class="col-12 md:col-5 bg-success" label="Application"></p-chip>
-                  <span class="col-12 lg:col-5 ml-2">Job {{ a.statusName }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </p-tabPanel>
+ <div class="app-container grid grid-nogutter justify-content-center mt-5">
+   <div class="container col-11 md:col-9">
+     <p-tabView orientation="left">
+       <p-tabPanel header="Application">
+         <div class="application grid">
+           <div class="view-by col-4">
+             <h3 class="mb-6">
+               {{ lengthApplicantions!=0 ?lengthApplicantions+" Applications" : "0 Applications" }}
+             </h3>
+             <span class="p-float-label col-12">
+               <p-dropdown [options]="options" optionLabel="name" inputId="float-label" styleClass="w-full">
+               </p-dropdown>
+               <label for="float-label">View By</label>
+             </span>
+           </div>
+           <div class="content col-12 grid grid-nogutter justify-content-evenly">
+             <div *ngFor="let a of applications" class="box-content cursor-pointer hover:shadow-4 grid shadow-2 min-h-20rem md:min-h-15rem p-3 md:p-2 mb-3 md:mb-5
+            col-12 md:col-5" routerLink="/home/detail/{{ a.jobCode }}">
+               <div class="company-photo col-4 text-center">
+                 <img src="{{ a.photoId|urlAdmin}}" alt="Image" class="w-full">
+               </div>
+               <div class="content-app col-8">
+                 <div class="m-2">
+                   <span class="text-bold text-2xl">{{ a.jobName }}</span>
+                 </div>
+                 <div class="m-2">
+                   <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
+                 </div>
+                 <div class="m-2">
+                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
+                 </div>
+                 <div class="m-2 grid">
+                   <p-chip class="col-12 md:col-5 bg-success" label="Application"></p-chip>
+                   <span class="col-12 lg:col-5 mt-2">Job {{ a.statusName }}</span>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         <p-paginator (onPageChange)="renderPageApplication($event)" [first]="firstData" [rows]="dataPerRow"
+           [totalRecords]="lengthApplicantions">
+         </p-paginator>
+       </p-tabPanel>
+       <p-tabPanel header="Assesment">
+         <div class="Assesment grid">
+           <div class="view-by col-4">
+             <h3 class="mb-6">
+               {{  lengthAssesments!=0 ?lengthAssesments+" Applications" : "0 Applications" }}
+             </h3>
+             <span class="p-float-label col-12">
+               <p-dropdown [options]="options" optionLabel="name" inputId="float-label" styleClass="w-full">
+               </p-dropdown>
+               <label for="float-label">View By</label>
+             </span>
+           </div>
+           <div class="content col-12 grid grid-nogutter justify-content-evenly">
+             <div *ngFor="let a of assesments" class="box-content cursor-pointer hover:shadow-4 grid shadow-2 min-h-20rem md:min-h-15rem p-3 md:p-2 mb-3 md:mb-5
+            col-12 md:col-5" routerLink="/home/detail/{{ a.jobCode }}">
+               <div class="company-photo col-4 text-center">
+                 <img src="{{ a.photoId|urlAdmin}}" alt="Image" class="w-full">
+               </div>
+               <div class="content-app col-8">
+                 <div class="m-2">
+                   <span class="text-bold text-2xl">{{ a.jobName }}</span>
+                 </div>
+                 <div class="m-2">
+                   <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
+                 </div>
+                 <div class="m-2">
+                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
+                 </div>
+                 <div class="m-2 grid">
+                   <p-chip class="col-12 md:col-5 bg-success" label="Application"></p-chip>
+                   <span class="col-12 lg:col-5 ml-2">Job {{ a.statusName }}</span>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         <p-paginator (onPageChange)="renderPageAssesment($event)" [first]="firstData" [rows]="dataPerRow"
+           [totalRecords]="lengthAssesments">
+         </p-paginator>
+       </p-tabPanel>
 
-      <p-tabPanel header="Interview">
-        <div class="Interview grid">
-          <div class="view-by col-4">
-            <h3 class="mb-6">
-              {{  lengthInterview!=0 ?lengthInterview+" Applications" : "0 Applications" }}
-            </h3>
-            <span class="p-float-label col-12">
-              <p-dropdown [options]="options" optionLabel="name" inputId="float-label" styleClass="w-full"></p-dropdown>
-              <label for="float-label">View By</label>
-            </span>
-          </div>
-          <div class="content col-12 grid grid-nogutter justify-content-evenly">
-            <div *ngFor="let a of interview" class="box-content cursor-pointer hover:shadow-4 grid shadow-2 min-h-20rem md:min-h-15rem p-3 md:p-2 mb-3 md:mb-5
-            col-12 md:col-5"
-            routerLink="/home/detail/{{ a.jobCode }}">
-              <div class="company-photo col-4 text-center">
-                <img src="{{ a.photoId|urlAdmin}}" alt="Image"
-                  class="w-full">
-              </div>
-              <div class="content-app col-8">
-                <div class="m-2">
-                  <span class="text-bold text-2xl">{{ a.jobName }}</span>
-                </div>
-                <div class="m-2">
-                    <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
-                </div>
-                <div class="m-2">
-                  <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
-                </div>
-                <div class="m-2 grid">
-                  <p-chip class="col-12 md:col-5 bg-success" label="Application"></p-chip>
-                  <span class="col-12 lg:col-5 ml-2">Job {{ a.statusName }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </p-tabPanel>
+       <p-tabPanel header="Interview">
+         <div class="Interview grid">
+           <div class="view-by col-4">
+             <h3 class="mb-6">
+               {{  lengthInterview!=0 ?lengthInterview+" Applications" : "0 Applications" }}
+             </h3>
+             <span class="p-float-label col-12">
+               <p-dropdown [options]="options" optionLabel="name" inputId="float-label" styleClass="w-full">
+               </p-dropdown>
+               <label for="float-label">View By</label>
+             </span>
+           </div>
+           <div class="content col-12 grid grid-nogutter justify-content-evenly">
+             <div *ngFor="let a of interview" class="box-content cursor-pointer hover:shadow-4 grid shadow-2 min-h-20rem md:min-h-15rem p-3 md:p-2 mb-3 md:mb-5
+            col-12 md:col-5" routerLink="/home/detail/{{ a.jobCode }}">
+               <div class="company-photo col-4 text-center">
+                 <img src="{{ a.photoId|urlAdmin}}" alt="Image" class="w-full">
+               </div>
+               <div class="content-app col-8">
+                 <div class="m-2">
+                   <span class="text-bold text-2xl">{{ a.jobName }}</span>
+                 </div>
+                 <div class="m-2">
+                   <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
+                 </div>
+                 <div class="m-2">
+                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
+                 </div>
+                 <div class="m-2 grid">
+                   <p-chip class="col-12 md:col-5 bg-success" label="Application"></p-chip>
+                   <span class="col-12 lg:col-5 ml-2">Job {{ a.statusName }}</span>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         <p-paginator (onPageChange)="renderPageAssesment($event)" [first]="firstData" [rows]="dataPerRow"
+           [totalRecords]="lengthAssesments">
+         </p-paginator>
+       </p-tabPanel>
 
-      <p-tabPanel header="MCU">
-        <div class="MCU grid">
-          <div class="view-by col-4">
-            <h3 class="mb-6">
-              {{   lengthMcu!=0 ?lengthMcu+" Applications" : "0 Applications" }}
-            </h3>
-            <span class="p-float-label col-12">
-              <p-dropdown [options]="options" optionLabel="name" inputId="float-label" styleClass="w-full"></p-dropdown>
-              <label for="float-label">View By</label>
-            </span>
-          </div>
-          <div class="content col-12 grid grid-nogutter justify-content-evenly">
-            <div *ngFor="let a of listMcu" class="box-content cursor-pointer hover:shadow-4 grid shadow-2 min-h-20rem md:min-h-15rem p-3 md:p-2 mb-3 md:mb-5
-            col-12 md:col-5"
-            routerLink="/home/detail/{{ a.jobCode }}">
-              <div class="company-photo col-4 text-center">
-                <img src="{{ a.photoId|urlAdmin}}" alt="Image"
-                  class="w-full">
-              </div>
-              <div class="content-app col-8">
-                <div class="m-2">
-                  <span class="text-bold text-2xl">{{ a.jobName }}</span>
-                </div>
-                <div class="m-2">
-                    <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
-                </div>
-                <div class="m-2">
-                  <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
-                </div>
-                <div class="m-2 grid">
-                  <p-chip class="col-12 md:col-5 bg-success" label="Application"></p-chip>
-                  <span class="col-12 lg:col-5 ml-2">Job {{ a.statusName }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </p-tabPanel>
+       <p-tabPanel header="MCU">
+         <div class="MCU grid">
+           <div class="view-by col-4">
+             <h3 class="mb-6">
+               {{   lengthMcu!=0 ?lengthMcu+" Applications" : "0 Applications" }}
+             </h3>
+             <span class="p-float-label col-12">
+               <p-dropdown [options]="options" optionLabel="name" inputId="float-label" styleClass="w-full">
+               </p-dropdown>
+               <label for="float-label">View By</label>
+             </span>
+           </div>
+           <div class="content col-12 grid grid-nogutter justify-content-evenly">
+             <div *ngFor="let a of listMcu" class="box-content cursor-pointer hover:shadow-4 grid shadow-2 min-h-20rem md:min-h-15rem p-3 md:p-2 mb-3 md:mb-5
+            col-12 md:col-5" routerLink="/home/detail/{{ a.jobCode }}">
+               <div class="company-photo col-4 text-center">
+                 <img src="{{ a.photoId|urlAdmin}}" alt="Image" class="w-full">
+               </div>
+               <div class="content-app col-8">
+                 <div class="m-2">
+                   <span class="text-bold text-2xl">{{ a.jobName }}</span>
+                 </div>
+                 <div class="m-2">
+                   <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
+                 </div>
+                 <div class="m-2">
+                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
+                 </div>
+                 <div class="m-2 grid">
+                   <p-chip class="col-12 md:col-5 bg-success" label="Application"></p-chip>
+                   <span class="col-12 lg:col-5 ml-2">Job {{ a.statusName }}</span>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         <p-paginator (onPageChange)="renderPageMcu($event)" [first]="firstData" [rows]="dataPerRow"
+           [totalRecords]="lengthMcu">
+         </p-paginator>
+       </p-tabPanel>
 
-      <p-tabPanel header="Offering">
-        <div class="Offering grid">
-          <div class="view-by col-4">
-            <h3 class="mb-6">
-              {{    lengthOffering!=0 ?lengthOffering+" Applications" : "0 Applications" }}
-            </h3>
-            <span class="p-float-label col-12">
-              <p-dropdown [options]="options" optionLabel="name" inputId="float-label" styleClass="w-full"></p-dropdown>
-              <label for="float-label">View By</label>
-            </span>
-          </div>
-          <div class="content col-12 grid grid-nogutter justify-content-evenly">
-            <div *ngFor="let a of offering" class="box-content cursor-pointer hover:shadow-4 grid shadow-2 min-h-20rem md:min-h-15rem p-3 md:p-2 mb-3 md:mb-5
-            col-12 md:col-5"
-            routerLink="/home/detail/{{ a.jobCode }}">
-              <div class="company-photo col-4 text-center">
-                <img src="{{ a.photoId|urlAdmin}}" alt="Image"
-                  class="w-full">
-              </div>
-              <div class="content-app col-8">
-                <div class="m-2">
-                  <span class="text-bold text-2xl">{{ a.jobName }}</span>
-                </div>
-                <div class="m-2">
-                    <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
-                </div>
-                <div class="m-2">
-                  <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
-                </div>
-                <div class="m-2 grid">
-                  <p-chip class="col-12 md:col-5 bg-success" label="Application"></p-chip>
-                  <span class="col-12 lg:col-5 ml-2">Job {{ a.statusName }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </p-tabPanel>
+       <p-tabPanel header="Offering">
+         <div class="Offering grid">
+           <div class="view-by col-4">
+             <h3 class="mb-6">
+               {{    lengthOffering!=0 ?lengthOffering+" Applications" : "0 Applications" }}
+             </h3>
+             <span class="p-float-label col-12">
+               <p-dropdown [options]="options" optionLabel="name" inputId="float-label" styleClass="w-full">
+               </p-dropdown>
+               <label for="float-label">View By</label>
+             </span>
+           </div>
+           <div class="content col-12 grid grid-nogutter justify-content-evenly">
+             <div *ngFor="let a of offering" class="box-content cursor-pointer hover:shadow-4 grid shadow-2 min-h-20rem md:min-h-15rem p-3 md:p-2 mb-3 md:mb-5
+            col-12 md:col-5" routerLink="/home/detail/{{ a.jobCode }}">
+               <div class="company-photo col-4 text-center">
+                 <img src="{{ a.photoId|urlAdmin}}" alt="Image" class="w-full">
+               </div>
+               <div class="content-app col-8">
+                 <div class="m-2">
+                   <span class="text-bold text-2xl">{{ a.jobName }}</span>
+                 </div>
+                 <div class="m-2">
+                   <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
+                 </div>
+                 <div class="m-2">
+                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
+                 </div>
+                 <div class="m-2 grid">
+                   <p-chip class="col-12 md:col-5 bg-success" label="Application"></p-chip>
+                   <span class="col-12 lg:col-5 ml-2">Job {{ a.statusName }}</span>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         <p-paginator (onPageChange)="renderPageOffering($event)" [first]="firstData" [rows]="dataPerRow"
+           [totalRecords]="lengthOffering">
+         </p-paginator>
+       </p-tabPanel>
 
-      <p-tabPanel header="Hired">
-        <div class="Hired grid">
-          <div class="view-by col-4">
-            <h3 class="mb-6">
-              {{    lengthHireds!=0 ?lengthHireds+" Applications" : "0 Applications" }}
-            </h3>
-            <span class="p-float-label col-12">
-              <p-dropdown [options]="options" optionLabel="name" inputId="float-label" styleClass="w-full"></p-dropdown>
-              <label for="float-label">View By</label>
-            </span>
-          </div>
-          <div class="content col-12 grid grid-nogutter justify-content-evenly">
-            <div *ngFor="let a of hired" class="box-content cursor-pointer hover:shadow-4 grid shadow-2 min-h-20rem md:min-h-15rem p-3 md:p-2 mb-3 md:mb-5
-            col-12 md:col-5"
-            routerLink="/home/detail/{{ a.jobCode }}">
-              <div class="company-photo col-4 text-center">
-                <img src="{{ a.photoId|urlAdmin}}" alt="Image"
-                  class="w-full">
-              </div>
-              <div class="content-app col-8">
-                <div class="m-2">
-                  <span class="text-bold text-2xl">{{ a.jobName }}</span>
-                </div>
-                <div class="m-2">
-                    <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
-                </div>
-                <div class="m-2">
-                  <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
-                </div>
-                <div class="m-2 grid">
-                  <p-chip class="col-12 md:col-5 bg-success" label="Application"></p-chip>
-                  <span class="col-12 lg:col-5 ml-2">Job {{ a.statusName }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </p-tabPanel>
+       <p-tabPanel header="Hired">
+         <div class="Hired grid">
+           <div class="view-by col-4">
+             <h3 class="mb-6">
+               {{    lengthHireds!=0 ?lengthHireds+" Applications" : "0 Applications" }}
+             </h3>
+             <span class="p-float-label col-12">
+               <p-dropdown [options]="options" optionLabel="name" inputId="float-label" styleClass="w-full">
+               </p-dropdown>
+               <label for="float-label">View By</label>
+             </span>
+           </div>
+           <div class="content col-12 grid grid-nogutter justify-content-evenly">
+             <div *ngFor="let a of hired" class="box-content cursor-pointer hover:shadow-4 grid shadow-2 min-h-20rem md:min-h-15rem p-3 md:p-2 mb-3 md:mb-5
+            col-12 md:col-5" routerLink="/home/detail/{{ a.jobCode }}">
+               <div class="company-photo col-4 text-center">
+                 <img src="{{ a.photoId|urlAdmin}}" alt="Image" class="w-full">
+               </div>
+               <div class="content-app col-8">
+                 <div class="m-2">
+                   <span class="text-bold text-2xl">{{ a.jobName }}</span>
+                 </div>
+                 <div class="m-2">
+                   <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
+                 </div>
+                 <div class="m-2">
+                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
+                 </div>
+                 <div class="m-2 grid">
+                   <p-chip class="col-12 md:col-5 bg-success" label="Application"></p-chip>
+                   <span class="col-12 lg:col-5 ml-2">Job {{ a.statusName }}</span>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         <p-paginator (onPageChange)="renderPageHired($event)" [first]="firstData" [rows]="dataPerRow"
+           [totalRecords]="lengthHireds">
+         </p-paginator>
+       </p-tabPanel>
 
-      <p-tabPanel header="Reject">
-        <div class="Reject grid">
-          <div class="view-by col-4">
-            <h3 class="mb-6">
-              {{    lengthReject!=0 ?lengthReject+" Applications" : "0 Applications" }}
-            </h3>
-            <span class="p-float-label col-12">
-              <p-dropdown [options]="options" optionLabel="name" inputId="float-label" styleClass="w-full"></p-dropdown>
-              <label for="float-label">View By</label>
-            </span>
-          </div>
-          <div class="content col-12 grid grid-nogutter justify-content-evenly">
-            <div *ngFor="let a of reject" class="box-content cursor-pointer hover:shadow-4 grid shadow-2 min-h-20rem md:min-h-15rem p-3 md:p-2 mb-3 md:mb-5
-            col-12 md:col-5"
-            routerLink="/home/detail/{{ a.jobCode }}">
-              <div class="company-photo col-4 text-center">
-                <img src="{{ a.photoId|urlAdmin}}" alt="Image"
-                  class="w-full">
-              </div>
-              <div class="content-app col-8">
-                <div class="m-2">
-                  <span class="text-bold text-2xl">{{ a.jobName }}</span>
-                </div>
-                <div class="m-2">
-                    <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
-                </div>
-                <div class="m-2">
-                  <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
-                </div>
-                <div class="m-2 grid">
-                  <p-chip class="col-12 md:col-5 bg-success" label="Application"></p-chip>
-                  <span class="col-12 lg:col-5 ml-2">Job {{ a.statusName }}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </p-tabPanel>
-    </p-tabView>
-  </div>
-</div>
+       <p-tabPanel header="Reject">
+         <div class="Reject grid">
+           <div class="view-by col-4">
+             <h3 class="mb-6">
+               {{    lengthReject!=0 ?lengthReject+" Applications" : "0 Applications" }}
+             </h3>
+             <span class="p-float-label col-12">
+               <p-dropdown [options]="options" optionLabel="name" inputId="float-label" styleClass="w-full">
+               </p-dropdown>
+               <label for="float-label">View By</label>
+             </span>
+           </div>
+           <div class="content col-12 grid grid-nogutter justify-content-evenly">
+             <div *ngFor="let a of reject" class="box-content cursor-pointer hover:shadow-4 grid shadow-2 min-h-20rem md:min-h-15rem p-3 md:p-2 mb-3 md:mb-5
+            col-12 md:col-5" routerLink="/home/detail/{{ a.jobCode }}">
+               <div class="company-photo col-4 text-center">
+                 <img src="{{ a.photoId|urlAdmin}}" alt="Image" class="w-full">
+               </div>
+               <div class="content-app col-8">
+                 <div class="m-2">
+                   <span class="text-bold text-2xl">{{ a.jobName }}</span>
+                 </div>
+                 <div class="m-2">
+                   <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
+                 </div>
+                 <div class="m-2">
+                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
+                 </div>
+                 <div class="m-2 grid">
+                   <p-chip class="col-12 md:col-5 bg-success" label="Application"></p-chip>
+                   <span class="col-12 lg:col-5 ml-2">Job {{ a.statusName }}</span>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         <p-paginator (onPageChange)="renderPageReject($event)" [first]="firstData" [rows]="dataPerRow"
+           [totalRecords]="lengthReject">
+         </p-paginator>
+       </p-tabPanel>
+     </p-tabView>
+   </div>
+ </div>

@@ -8,40 +8,49 @@
       Don't forget these jobs that you have bookmarked before. Apply early and increase your chances to be hired!
     </span>
     <div class="content grid">
-      <p-card class="col-12 md:col-4 lg:col-6 mt-4 hover:shadow-4" *ngFor="let j of jobs" routerLink="/home/detail/{{j.id}}">
-        <div class="thumbnail grid">
-          <div class="col-4 justify-content-center align-content-center">
-            <img src="{{ j.companyPhoto|urlCandidate }}" alt="Image" class="w-5rem md:w-full">
+      <p-card class="col-12 md:col-6 lg:col-4 mt-4 hover:shadow-4" *ngFor="let j of jobs" routerLink="/home/detail/{{j.jobId}}">
+        <div>
+          <div class="thumbnail grid">
+            <div class="col-4 justify-content-center align-content-center">
+              <img src="{{ j.companyPhoto|urlCandidate }}" alt="Image" class="w-5rem md:w-full">
+            </div>
+            <div class="title col-8 grid">
+              <span class="col-10">{{ j.jobTitle }}</span>
+              <p-button icon="pi pi-heart-fill" class="col-2" styleClass="p-button-rounded p-button-danger p-button-text" (click)="deleteSaveJob(j.id,$event)"></p-button>
+              <a routerLink="/companies/detail/{{ j.companyId }}" class="col-12 text-primary">{{ j.companyName }}</a>
+            </div>
           </div>
-          <div class="title col-8 grid">
-            <span class="col-10">{{ j.jobTitle }}</span>
-            <p-button icon="pi pi-heart-fill" styleClass="p-button-rounded p-button-danger p-button-text" (click)="deleteSaveJob(j.id,$event)"></p-button>
-            <a routerLink="/companies/detail/{{ j.companyId }}" class="col-12 text-primary">{{ j.companyName }}</a>
+          <div class="city">
+            <i class="pi pi-map-marker"></i>
+            <span>
+              {{ j.cityName }}
+            </span>
           </div>
+          <div class="Salary">
+            <i class="pi pi-dollar"></i>
+            <span> {{ j.salaryStart }}</span>
+            <span>{{ " - " }}</span>
+            <span> {{ j.salaryEnd }}</span>
+          </div>
+          <div class="Industry">
+            <i class="pi pi-building"></i>
+            <span>{{ j.industryName }}</span>
+          </div>
+          <ng-template pTemplate="footer">
+            <small>
+              <i class="pi pi-clock"></i>
+              <span> Diperbaharui {{ j.updatedAt }} hari yang lalu</span>
+            </small>
+          </ng-template>
         </div>
-        <div class="city">
-          <i class="pi pi-map-marker"></i>
-          <span>
-            {{ j.cityName }}
-          </span>
-        </div>
-        <div class="Salary">
-          <i class="pi pi-dollar"></i>
-          <span> {{ j.salaryStart }}</span>
-          <span>{{ " - " }}</span>
-          <span> {{ j.salaryEnd }}</span>
-        </div>
-        <div class="Industry">
-          <i class="pi pi-building"></i>
-          <span>{{ j.industryName }}</span>
-        </div>
-        <ng-template pTemplate="footer">
-          <small>
-            <i class="pi pi-clock"></i>
-            <span> Diperbaharui {{ j.updatedAt }} hari yang lalu</span>
-          </small>
-        </ng-template>
       </p-card>
     </div>
+    <p-paginator
+    (onPageChange)="renderPage($event)"
+    [first]="firstData"
+    [rows]="dataPerRow"
+    [totalRecords]="lengthSaveJobs"
+    >
+    </p-paginator>
   </div>
 </div>

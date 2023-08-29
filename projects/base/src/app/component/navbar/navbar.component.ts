@@ -243,45 +243,30 @@ export class NavbarComponent implements OnInit {
       label: 'InLook - Home',
       icon: 'pi pi-fw pi-ticket',
       routerLink: "/home",
-    }, {
-      label: 'Home',
-      icon: 'pi pi-spin pi-box',
-      routerLink: "/home",
-    },
-    {
-      label: 'Master Data',
-      icon: "pi pi-fw pi-server",
-      items: [{
-        label: 'jobs',
-        routerLink: "/home/job",
-        icon: 'pi pi-fw pi-building',
-        // visible : this.isAdmin
-      },
-      {
-        label: 'Company',
-        routerLink: "/companies",
-        icon: 'pi pi-fw pi-building',
-        // visible : this.isAdmin
-      },
-      {
-        label: 'Save Jobs',
-        routerLink: "/home/save-jobs",
-        icon: 'pi pi-fw pi-heart',
-        // visible : this.isAdmin
-      }
-      ]
-    },
-    {
-      label: 'Test Skill',
-      icon: 'pi pi-fw pi-ticket',
-      routerLink: "/tests",
-      // visible : this.isDeveloper
     },
     {
       label: 'Job vacancy',
       routerLink: "/home/job",
       icon: 'pi pi-fw pi-ticket',
       // visible : this.isCustomer
+    },
+    {
+      label: 'Company',
+      routerLink: "/companies",
+      icon: 'pi pi-fw pi-building',
+      // visible : this.isAdmin
+    },
+    {
+      label: 'Save Jobs',
+      routerLink: "/home/save-jobs",
+      icon: 'pi pi-fw pi-heart',
+      // visible : this.isAdmin
+    },
+    {
+      label: 'Test Skill',
+      icon: 'pi pi-fw pi-ticket',
+      routerLink: "/tests",
+      // visible : this.isDeveloper
     },
     {
       label: 'Users',
@@ -300,15 +285,8 @@ export class NavbarComponent implements OnInit {
         label: 'Change Password',
         icon: 'pi pi-fw pi-cog',
         routerLink: "/users/change-password",
-      },
-      {
-        label: 'Logout',
-        icon: 'pi pi-fw pi-power-off',
-        command: () => {
-          this.logout()
-        }
       }
-      ]
+    ]
     },
     {
       label: 'Quit',
