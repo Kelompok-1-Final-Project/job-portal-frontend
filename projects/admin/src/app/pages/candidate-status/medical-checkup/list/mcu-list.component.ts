@@ -63,6 +63,14 @@ export class McuListComponent implements OnInit {
     }
   }
 
+  isFile(i: number):any{
+    if(this.mcus[i].fileId){
+      return true
+    } else {
+      return false
+    }
+  }
+
   fileUpload(event: any, fileUpload: FileUpload) {
     const toBase64 = (file: File) => new Promise<string>((resolve, reject) => {
       const reader = new FileReader();

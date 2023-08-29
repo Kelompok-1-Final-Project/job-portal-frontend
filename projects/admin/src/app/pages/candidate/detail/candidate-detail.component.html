@@ -66,16 +66,24 @@
             </div>
             <div class="grid">
                 <div class="col-2 md-6">
-                    <label for="phoneNumber">CV </label>
-                </div>
-                <div class="col-4">
-                    <input type="text" pInputText readonly placeholder="{{candidateProfile.cvId}}">
-                </div>
-                <div class="col-2 md-6">
                     <label for="phoneNumber">Photo</label>
                 </div>
                 <div class="col-4">
-                    <input type="text" pInputText readonly placeholder="{{candidateProfile.photoId}}">
+                    <!-- <a href="path_to_mcu_file" download>
+                        <app-button iconBtn="pi pi-download" label="{{candidateProfile.photoId}}.pdf"></app-button>
+                    </a> -->
+                    <div class="col-4">
+                        <img src="{{candidateProfile.photoId | urlAdmin}}" class="w-5rem md:w-full">
+                    </div>
+                </div>
+                <div class="col-2 md-6">
+                    <label for="phoneNumber">CV</label>
+                </div>
+                <div class="col-4">
+                    <a href="{{candidateProfile.cvId | urlAdmin}}" download>
+                        <app-button iconBtn="pi pi-download" label="{{candidateProfile.cvId}}.pdf"
+                            link="/candidates/detail/{{candidateId}}"></app-button>
+                    </a>
                 </div>
             </div>
             <div class="grid">
@@ -91,8 +99,6 @@
 
     <p-tabView>
         <p-tabPanel header="Family">
-            <!-- <app-button label="Add Family" iconBtn="pi pi-plus" styleBtn="margin-bottom:0.5rem;"
-                link="/candidates/detail/{{candidateId}}"></app-button> -->
             <p-table [value]="families" [tableStyle]="{'min-width': '50rem'}">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
@@ -115,8 +121,6 @@
             </p-table>
         </p-tabPanel>
         <p-tabPanel header="Work Experience">
-            <!-- <app-button label="Add Experience" icon="pi pi-plus" styleBtn="margin-bottom:0.5rem;"
-                link="/candidates/detail/{{candidateId}}" (clickChange)="addExperience()"></app-button> -->
             <p-table [value]="experiences" [tableStyle]="{'min-width': '50rem'}">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
@@ -139,38 +143,35 @@
             </p-table>
         </p-tabPanel>
         <p-tabPanel header="Organization">
-            <!-- <app-button label="Add Experience" icon="pi pi-plus" styleBtn="margin-bottom:0.5rem;"
-                link="/candidates/detail/{{candidateId}}" (clickChange)="addExperience()"></app-button> -->
-            <p-table [value]="experiences" [tableStyle]="{'min-width': '50rem'}">
+            <p-table [value]="organizations" [tableStyle]="{'min-width': '50rem'}">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th scope="row">No</th>
+                        <th>Name</th>
                         <th>Position</th>
-                        <th>Company</th>
                         <th>Start Date</th>
                         <th>End Date</th>
+                        <th>Description</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-f let-i="rowIndex">
                     <tr>
                         <td scope="row">{{i+1}}</td>
+                        <td>{{f.organizationName}}</td>
                         <td>{{f.positionName}}</td>
-                        <td>{{f.companyName}}</td>
                         <td>{{f.startDate}}</td>
                         <td>{{f.endDate}}</td>
+                        <td>{{f.description}}</td>
                     </tr>
                 </ng-template>
             </p-table>
         </p-tabPanel>
         <p-tabPanel header="Education">
-            <!-- <app-button label="Add Experience" icon="pi pi-plus" styleBtn="margin-bottom:0.5rem;"
-                link="/candidates/detail/{{candidateId}}" (clickChange)="addExperience()"></app-button> -->
-            <p-table [value]="experiences" [tableStyle]="{'min-width': '50rem'}">
+            <p-table [value]="educations" [tableStyle]="{'min-width': '50rem'}">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th scope="row">No</th>
-                        <th>Position</th>
-                        <th>Company</th>
+                        <th>Name</th>
                         <th>Start Date</th>
                         <th>End Date</th>
                     </tr>
@@ -178,8 +179,7 @@
                 <ng-template pTemplate="body" let-f let-i="rowIndex">
                     <tr>
                         <td scope="row">{{i+1}}</td>
-                        <td>{{f.positionName}}</td>
-                        <td>{{f.companyName}}</td>
+                        <td>{{f.educationName}}</td>
                         <td>{{f.startDate}}</td>
                         <td>{{f.endDate}}</td>
                     </tr>
@@ -187,25 +187,19 @@
             </p-table>
         </p-tabPanel>
         <p-tabPanel header="Skill">
-            <!-- <app-button label="Add Experience" icon="pi pi-plus" styleBtn="margin-bottom:0.5rem;"
-                link="/candidates/detail/{{candidateId}}" (clickChange)="addExperience()"></app-button> -->
-            <p-table [value]="experiences" [tableStyle]="{'min-width': '50rem'}">
+            <p-table [value]="skills" [tableStyle]="{'min-width': '50rem'}">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th scope="row">No</th>
-                        <th>Position</th>
-                        <th>Company</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
+                        <th>Name</th>
+                        <th>Level</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-f let-i="rowIndex">
                     <tr>
                         <td scope="row">{{i+1}}</td>
-                        <td>{{f.positionName}}</td>
-                        <td>{{f.companyName}}</td>
-                        <td>{{f.startDate}}</td>
-                        <td>{{f.endDate}}</td>
+                        <td>{{f.skillName}}</td>
+                        <td>{{f.levelName}}</td>
                     </tr>
                 </ng-template>
             </p-table>

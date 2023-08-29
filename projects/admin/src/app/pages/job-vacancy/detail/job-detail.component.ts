@@ -114,6 +114,7 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
             this.getResult()
             this.getJobBenefit()
             this.getAllBenefit()
+            this.isQuestion()
         })
     }
 
@@ -294,5 +295,9 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         firstValueFrom(this.jobService.insertJobBenefit(data)).then(result => {
             this.visibleAddBenefit = false
         })
+    }
+
+    isQuestion(){
+        return this.test!=null       
     }
 }

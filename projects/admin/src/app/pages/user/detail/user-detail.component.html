@@ -1,0 +1,53 @@
+<div class="card">
+    <h2>Candidate Detail</h2>
+    <app-button classBtn="p-button-secondary" label="Back" iconBtn="pi pi-arrow-left"
+        styleBtn="margin-bottom:0.5rem; margin-right:0.5rem" link="/users"></app-button>
+    <app-button classBtn="p-button-primary" label="Update" iconBtn="pi pi-pencil" styleBtn="margin-bottom:0.5rem"
+        link="/users/update/{{jobId}}"></app-button>
+    <p-card>
+        <div class="fluid">
+            <div class="grid mb-2">
+                <div class="col-2 md-6">
+                    <label for="fullName">Full Name</label>
+                </div>
+                <div class="col-4">
+                    <input class="w-full" pInputText readonly placeholder="Full Name" type="text">
+                </div>
+                <div class="col-2 md-6">
+                    <label for="phoneNumber">Email</label>
+                </div>
+                <div class="col-4">
+                    <input class="w-full" type="text" pInputText readonly placeholder="Email">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-2 md-6">
+                    <label for="phoneNumber">Mobile Number</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" class="w-full" pInputText readonly placeholder="Mobile Number">
+                </div>
+                <div class="col-2 md-6">
+                    <label for="phoneNumber">Gender</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" class="w-full" pInputText readonly placeholder="Gender">
+                </div>
+            </div>
+            <div class="grid">
+                <div class="col-2 md-6">
+                    <label for="phoneNumber">Photos</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" class="w-full" pInputText readonly placeholder="Photos">
+                </div>
+                <div class="col-2 md-6">
+                    <label for="phoneNumber">Role</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" class="w-full" pInputText readonly placeholder="Role">
+                </div>
+            </div>
+        </div>
+    </p-card>
+</div>

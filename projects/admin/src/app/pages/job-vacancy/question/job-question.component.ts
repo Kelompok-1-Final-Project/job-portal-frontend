@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { FormArray, NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { QuestionGetResDto } from "@dto/question/question.get.res.dto";
 import { JobService } from "@serviceAdmin/job.service";
 import { QuestionService } from "@serviceAdmin/question.service";
-import { firstValueFrom } from "rxjs";
+import { Observable, firstValueFrom } from "rxjs";
 
 @Component({
     selector: 'job-question',
@@ -16,6 +16,7 @@ export class JobQuestionComponent implements OnInit {
     testCode!: string
     listQuestionCode: string[] = []
     listQuestion!: QuestionGetResDto[]
+    jobId!: string
 
     insertQuestionReqDto = this.fb.group({
         skillTestCode: ['', [Validators.required]],
@@ -35,9 +36,12 @@ export class JobQuestionComponent implements OnInit {
 
     ngOnInit(): void {
         firstValueFrom(this.route.params).then(param => {
-            this.testCode = param['id']
+            this.testCode = param['code']
             this.insertQuestionReqDto.get('skillTestCode')?.setValue(this.testCode)
             this.getQuestion()
+        })
+        firstValueFrom(getParams(this.route, 0)).then(params =>{
+            this.jobId = params['id']
         })
     }
 
@@ -65,4 +69,16 @@ export class JobQuestionComponent implements OnInit {
             this.router.navigateByUrl('/job-vacancies')
         })
     }
+}
+
+function getParams(activatedRoute: ActivatedRoute, parentLevel?: number): Observable<Params> {
+    let route = activatedRoute
+    if (parentLevel) {
+        for (let i = 0; i < parentLevel; i++) {
+            if (route.parent) {
+                route = route.parent
+            }
+        }
+    }
+    return route.params
 }

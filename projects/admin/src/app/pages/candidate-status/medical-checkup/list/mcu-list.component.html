@@ -19,12 +19,14 @@
           <td>{{ i+1 }}</td>
           <td>{{row.candidateName}}</td>
           <td>
-            <a href="path_to_mcu_file/{{ row.mcuFile }}" download>
-              <app-button iconBtn="pi pi-download" label="Mcu.pdf"></app-button>
+            <a *ngIf="isFile(i)" href="{{row.fileId  | urlAdmin}}" download>
+              <app-button link="/candidate-statuses/mcu" iconBtn="pi pi-download"
+                label="MCU {{row.candidateName}}.pdf"></app-button>
             </a>
           </td>
           <td>
-            <app-button iconBtn="pi pi-pencil" tooltipBtn="Upload File" tooltipPstn="top" link="/candidate-statuses/mcu" (clickChange)="addFile(row.mcuId)"></app-button>
+            <app-button iconBtn="pi pi-pencil" tooltipBtn="Upload File" tooltipPstn="top" link="/candidate-statuses/mcu"
+              (clickChange)="addFile(row.mcuId)"></app-button>
           </td>
         </tr>
       </ng-template>

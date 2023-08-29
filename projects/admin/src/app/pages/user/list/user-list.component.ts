@@ -41,7 +41,7 @@ export class UserListComponent implements OnInit {
 
   insertIsActive() {
     const data = this.userIsActiveReqDto.getRawValue()
-    firstValueFrom(this.userService.setIsActive(data)).then(result =>{
+    firstValueFrom(this.userService.setIsActive(data)).then(result => {
       this.visibleIsActive = false
     })
   }

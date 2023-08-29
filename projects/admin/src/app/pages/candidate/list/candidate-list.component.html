@@ -21,7 +21,6 @@
           <th scope="col">Phone Number</th>
           <th scope="col">Type</th>
           <th scope="col">Gender</th>
-          <th scope="col">Action</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-c let-i="rowIndex">
@@ -35,9 +34,6 @@
           <td>{{ c.mobileNumber }}</td>
           <td>{{ c.typeName }}</td>
           <td>{{ c.genderName }}</td>
-          <td>
-            <button pButton pRipple class="p-button-secondary" label="Detail"></button>
-          </td>
         </tr>
       </ng-template>
     </p-table>
