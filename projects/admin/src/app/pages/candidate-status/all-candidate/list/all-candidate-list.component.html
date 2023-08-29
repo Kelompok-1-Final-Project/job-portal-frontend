@@ -4,6 +4,7 @@
   </div>
   <div class="card col-9">
     <button routerLink="/job-vacancies" pButton pRipple class="p-button-secondary" label="Back"></button>
+    <app-button link="/job-vacancies" classBtn="p-button-secondary" label="Back"></app-button>
     <p-table [value]="candidates" [paginator]="true" [rows]="10">
       <ng-template pTemplate="header">
         <tr>

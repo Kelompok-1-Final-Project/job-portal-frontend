@@ -32,7 +32,7 @@ const routes: Routes = [
         component: JobDetailComponent
     },
     {
-        path: 'question/:id',
+        path: ':id/question/:code',
         component: JobQuestionComponent
     },
     {

@@ -7,22 +7,27 @@ import { SkillInsertReqDto } from "@dto/skill/skill.insert.req.dto";
 import { InsertResDto } from "@dto/insert.res.dto";
 import { SkillUpdateReqDto } from "@dto/skill/skill.update.req.dto";
 import { UpdateResDto } from "@dto/update.res.dto";
+import { UserSkillAdminGetResDto } from "@dto/userskill/user-skill-admin.get.res.dto";
 
 @Injectable({
     providedIn: 'root'
 })
-export class SkillService{
-    constructor(private base:BaseService){}
+export class SkillService {
+    constructor(private base: BaseService) { }
 
-    getAll(): Observable<SkillGetResDto[]>{
+    getAll(): Observable<SkillGetResDto[]> {
         return this.base.get<SkillGetResDto[]>(`${BASE_URL}/skills`, true)
     }
 
-    insert(data: SkillInsertReqDto): Observable<InsertResDto>{
+    insert(data: SkillInsertReqDto): Observable<InsertResDto> {
         return this.base.post<InsertResDto>(`${BASE_URL}/skills`, data, true)
     }
 
-    update(data: SkillUpdateReqDto): Observable<UpdateResDto>{
+    update(data: SkillUpdateReqDto): Observable<UpdateResDto> {
         return this.base.patch<UpdateResDto>(`${BASE_URL}/skills`, data, true)
+    }
+
+    getCandidateSkill(param: string): Observable<UserSkillAdminGetResDto[]> {
+        return this.base.get<UserSkillAdminGetResDto[]>(`${BASE_URL}/skills/user?candidateId=${param}`, true)
     }
 }

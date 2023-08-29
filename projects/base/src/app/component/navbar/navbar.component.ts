@@ -56,7 +56,7 @@ export class NavbarComponent implements OnInit {
     this.logoWeb = '/assets/logo.png';
 
     this.items = [{
-      label: 'Ticketing - Torangto',
+      label: 'InLook - Job Portal',
       icon: 'pi pi-fw pi-ticket',
       routerLink: "/dashboard",
     }, {
@@ -119,6 +119,12 @@ export class NavbarComponent implements OnInit {
         label: 'Employee',
         icon: 'pi pi-fw pi-user',
         routerLink: "/employees"
+      },
+      {
+        label: 'Question',
+        icon: 'pi pi-fw pi-ticket',
+        routerLink: "/questions",
+        // visible : this.isDeveloper
       }
       ]
     },
@@ -171,12 +177,6 @@ export class NavbarComponent implements OnInit {
       ]
     },
     {
-      label: 'Question',
-      icon: 'pi pi-fw pi-ticket',
-      routerLink: "/questions",
-      // visible : this.isDeveloper
-    },
-    {
       label: 'Job vacancy',
       routerLink: "/job-vacancies",
       icon: 'pi pi-fw pi-ticket',
@@ -201,30 +201,6 @@ export class NavbarComponent implements OnInit {
         command: () => {
           this.logout()
         }
-      }
-      ]
-    },
-    {
-      label: 'About',
-      items: [{
-        label: 'Edit',
-        icon: 'pi pi-fw pi-pencil',
-        items: [{
-          label: 'Save',
-          icon: 'pi pi-fw pi-calendar-plus'
-        },
-        {
-          label: 'Delete',
-          icon: 'pi pi-fw pi-calendar-minus'
-        }
-        ]
-      },
-      {
-        label: 'Contact',
-        items: [{
-          label: 'Remove',
-          icon: 'pi pi-fw pi-calendar-minus'
-        }]
       }
       ]
     },

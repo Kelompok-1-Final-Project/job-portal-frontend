@@ -1,40 +1,42 @@
-import { AfterViewChecked, ChangeDetectorRef, Component } from "@angular/core";
+import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { FormArray, NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { firstValueFrom } from "rxjs";
 
 interface Country {
-    name: string;
-  }
+  name: string;
+}
 
 @Component({
-    selector: 'user-update',
-    templateUrl: './user-update.component.html'
+  selector: 'user-update',
+  templateUrl: './user-update.component.html'
 })
-export class UserUpdateComponent implements AfterViewChecked {
-    selectedCountry: Country | undefined;
-    countries: Country[] = [
-      { name: 'Indonesia' },
-      { name: 'Malaysia' },
-      { name: 'Singapore' },
-      { name: 'Thailand' },
-      { name: 'Vietnam' },
-      // Add more countries as needed
-    ];
-    filteredCountries: Country[];
+export class UserUpdateComponent implements OnInit, AfterViewChecked {
 
-    constructor(private fb: NonNullableFormBuilder,
-        private cd : ChangeDetectorRef,
-        private router: Router,
-        private title: Title,
-        ) {
-            this.filteredCountries = this.countries;
-    }
+  jobId!: string
 
-    ngOnInit(): void {
-    }
+  userUpdateReqDto = this.fb.group({
 
-    ngAfterViewChecked(): void {
-       
-    }
+  })
+
+  constructor(
+    private fb: NonNullableFormBuilder,
+    private cd: ChangeDetectorRef,
+    private router: Router,
+    private title: Title,
+    private route: ActivatedRoute
+  ) {
+
+  }
+
+  ngOnInit(): void {
+    firstValueFrom(this.route.params).then(param =>{
+      this.jobId = param['id']
+    })
+  }
+
+  ngAfterViewChecked(): void {
+
+  }
 }

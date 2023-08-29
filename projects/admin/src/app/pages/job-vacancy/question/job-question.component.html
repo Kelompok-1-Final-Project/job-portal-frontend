@@ -2,7 +2,7 @@
 
 <div class="container mt-5 mb-5">
     <h2>Insert Question</h2>
-    <app-button icon="pi pi-arrow-left" link="/job-vacancies" classBtn="p-button-secondary" label="Back"></app-button>
+    <app-button icon="pi pi-arrow-left" link="/job-vacancies/details/{{jobId}}" classBtn="p-button-secondary" label="Back"></app-button>
     <hr />
     <form [formGroup]="insertQuestionReqDto" (ngSubmit)="insertQuestion()">
         <div class="row">

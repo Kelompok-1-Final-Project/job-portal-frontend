@@ -4,37 +4,39 @@ import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 
 interface Country {
-    name: string;
-  }
+  name: string;
+}
 
 @Component({
-    selector: 'candidate-update',
-    templateUrl: './candidate-update.component.html'
+  selector: 'candidate-update',
+  templateUrl: './candidate-update.component.html'
 })
 export class CandidateUpdateComponent implements AfterViewChecked {
-    selectedCountry: Country | undefined;
-    countries: Country[] = [
-      { name: 'Indonesia' },
-      { name: 'Malaysia' },
-      { name: 'Singapore' },
-      { name: 'Thailand' },
-      { name: 'Vietnam' },
-      // Add more countries as needed
-    ];
-    filteredCountries: Country[];
+  selectedCountry: Country | undefined;
+  countries: Country[] = [
+    { name: 'Indonesia' },
+    { name: 'Malaysia' },
+    { name: 'Singapore' },
+    { name: 'Thailand' },
+    { name: 'Vietnam' },
+    // Add more countries as needed
+  ];
+  filteredCountries: Country[];
 
-    constructor(private fb: NonNullableFormBuilder,
-        private cd : ChangeDetectorRef,
-        private router: Router,
-        private title: Title,
-        ) {
-            this.filteredCountries = this.countries;
-    }
+  constructor(
+    private fb: NonNullableFormBuilder,
+    private cd: ChangeDetectorRef,
+    private router: Router,
+    private title: Title,
+  ) {
+    this.filteredCountries = this.countries;
+  }
 
-    ngOnInit(): void {
-    }
+  ngOnInit(): void {
 
-    ngAfterViewChecked(): void {
-       
-    }
+  }
+
+  ngAfterViewChecked(): void {
+
+  }
 }
