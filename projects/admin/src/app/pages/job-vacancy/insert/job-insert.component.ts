@@ -14,6 +14,7 @@ import { CompanyService } from "@serviceAdmin/company.service";
 import { JobService } from "@serviceAdmin/job.service";
 import { QuestionService } from "@serviceAdmin/question.service";
 import { UserService } from "@serviceAdmin/user.service";
+import { firstValueFrom } from "rxjs";
 
 interface AutoCompleteCompleteEvent {
   originalEvent: Event;
@@ -99,43 +100,43 @@ export class JobInsertComponent implements AfterViewChecked {
   }
 
   getStatus() {
-    this.jobService.getStatus().subscribe(result => {
+    firstValueFrom(this.jobService.getStatus()).then(result => {
       this.status = result
     })
   }
 
-  getCompany() {
-    this.companyService.getAll().subscribe(result => {
+  getCompany() { 
+    firstValueFrom(this.companyService.getAll()).then(result => {
       this.companies = result
     })
   }
 
   getEmploymentType() {
-    this.jobService.getEmploymentType().subscribe(result => {
+    firstValueFrom(this.jobService.getEmploymentType()).then(result => {
       this.employment = result
     })
   }
 
   getBenefit() {
-    this.benefitService.getAll().subscribe(result => {
+    firstValueFrom(this.benefitService.getAll()).then(result => {
       this.benefits = result
     })
   }
 
   getHr() {
-    this.userService.getHr().subscribe(result => {
+    firstValueFrom(this.userService.getHr()).then(result => {
       this.hr = result
     })
   }
 
   getInterviewer() {
-    this.userService.getInterviewer().subscribe(result => {
+    firstValueFrom(this.userService.getInterviewer()).then(result => {
       this.interviewer = result
     })
   }
 
   getPosition() {
-    this.jobService.getJobPosition().subscribe(result => {
+    firstValueFrom(this.jobService.getJobPosition()).then(result => {
       this.position = result
     })
   }
@@ -156,7 +157,7 @@ export class JobInsertComponent implements AfterViewChecked {
   insertAll() {
     this.jobInsertReqDto.get('description')?.setValue(this.cleanText)
     const data = this.jobInsertReqDto.getRawValue()
-    this.jobService.insertJob(data).subscribe(result => {
+    firstValueFrom(this.jobService.insertJob(data)).then(result => {
       this.router.navigateByUrl('/job-vacancies')
     })
   }
@@ -166,7 +167,7 @@ export class JobInsertComponent implements AfterViewChecked {
   }
 
   getQuestion() {
-    this.questionService.getAll().subscribe(result => {
+    firstValueFrom(this.questionService.getAll()).then(result => {
       this.questions = result
     })
   }

@@ -34,7 +34,7 @@ export class UserListComponent implements OnInit {
   }
 
   getAllUser() {
-    this.userService.getAll().subscribe(result => {
+    firstValueFrom(this.userService.getAll()).then(result => {
       this.users = result
     })
   }

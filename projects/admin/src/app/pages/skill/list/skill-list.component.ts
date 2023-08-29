@@ -41,14 +41,14 @@ export class SkillListComponent implements OnInit {
   }
   
   getAllSkill() {
-    this.skillService.getAll().subscribe(result => {
+    firstValueFrom(this.skillService.getAll()).then(result => {
       this.skills = result
     })
   }
 
   insertSkill(){
     const data = this.skillInsertReqDto.getRawValue()
-    this.skillService.insert(data).subscribe(result => {
+    firstValueFrom(this.skillService.insert(data)).then(result => {
       this.visibleAdd = false
       this.router.navigateByUrl('/skills')
     })

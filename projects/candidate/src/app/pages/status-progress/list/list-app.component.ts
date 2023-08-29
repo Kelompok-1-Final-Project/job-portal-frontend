@@ -17,6 +17,7 @@ import {
 import {
   StatusProgressService
 } from '@serviceCandidate/statusprogress.service';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -81,7 +82,7 @@ export class ApplicationComponent implements OnInit {
 
   getAllApplication() {
     const data = this.userReqDto;
-    this.statusService.getApplication(data).subscribe(result => {
+    firstValueFrom(this.statusService.getApplication(data)).then(result => {
       this.applications = result
       this.lengthApplicantions=result.length;
     })
@@ -89,7 +90,7 @@ export class ApplicationComponent implements OnInit {
 
   getAllAssesment() {
     const data = this.userReqDto;
-    this.statusService.getAssessment(data).subscribe(result => {
+    firstValueFrom(this.statusService.getAssessment(data)).then(result => {
       this.assesments = result
       this.lengthAssesments=result.length;
     })
@@ -97,7 +98,7 @@ export class ApplicationComponent implements OnInit {
 
   getAllInterview() {
     const data = this.userReqDto;
-    this.statusService.getInterview(data).subscribe(result => {
+    firstValueFrom(this.statusService.getInterview(data)).then(result => {
       this.interview = result
       this.lengthMcu=result.length;
     })
@@ -105,14 +106,14 @@ export class ApplicationComponent implements OnInit {
 
   getAllHired() {
     const data = this.userReqDto;
-    this.statusService.getHired(data).subscribe(result => {
+    firstValueFrom(this.statusService.getHired(data)).then(result => {
       this.hired = result
       this.lengthHireds=result.length;
     })
   }
   getAllOffering() {
     const data = this.userReqDto;
-    this.statusService.getOffering(data).subscribe(result => {
+    firstValueFrom(this.statusService.getOffering(data)).then(result => {
       this.offering = result
       this.lengthOffering = result.length
     })
@@ -120,7 +121,7 @@ export class ApplicationComponent implements OnInit {
 
   getAllMcu() {
     const data = this.userReqDto;
-    this.statusService.getMedicalCheckup(data).subscribe(result => {
+    firstValueFrom(this.statusService.getMedicalCheckup(data)).then(result => {
       this.listMcu = result
       this.lengthMcu=result.length;
     })
@@ -128,7 +129,7 @@ export class ApplicationComponent implements OnInit {
 
   getAllReject() {
     const data = this.userReqDto;
-    this.statusService.getReject(data).subscribe(result => {
+    firstValueFrom(this.statusService.getReject(data)).then(result => {
       this.reject = result;
       this.lengthReject=result.length;
     })

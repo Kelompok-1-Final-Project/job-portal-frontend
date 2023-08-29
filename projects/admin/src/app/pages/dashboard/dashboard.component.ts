@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { RoleCode } from "@constant/role.enum";
 import { Router } from "@angular/router";
 
 @Component({

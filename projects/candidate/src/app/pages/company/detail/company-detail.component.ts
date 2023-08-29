@@ -14,6 +14,7 @@ import {
 } from '@angular/router';
 import { CompanyDataGetResDto } from '@dto/company/company-data.get.res.dto';
 import { CompanyService } from '@serviceCandidate/company.service';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -34,13 +35,13 @@ export class CompanyDetailComponent implements OnInit {
   ) {}
 
   init() {
-    this.activatedRoute.params.subscribe(id => {
+    firstValueFrom(this.activatedRoute.params).then(id => {
       this.idCompany = String(Object.values(id));
     })
   }
 
   getCompany() {
-    this.companyService.getById(this.idCompany).subscribe(result => {
+    firstValueFrom(this.companyService.getById(this.idCompany)).then(result => {
         this.companyData = result;
         console.log('test:'+result);
     })

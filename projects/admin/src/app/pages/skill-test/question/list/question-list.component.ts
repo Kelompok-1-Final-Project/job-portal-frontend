@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { QuestionGetResDto } from '@dto/question/question.get.res.dto';
 import { QuestionService } from '@serviceAdmin/question.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'question-list',
@@ -25,7 +26,7 @@ export class QuestionListComponent implements OnInit {
   }
 
   getAllQuestion() {
-    this.questionService.getAll().subscribe(result => {
+    firstValueFrom(this.questionService.getAll()).then(result => {
       this.questions = result
     })
   }
