@@ -1,12 +1,12 @@
 <!-- home.component.html -->
-<!-- <pre>{{ industryId|json }}</pre>
+<!-- <pre>{{ industryId|json }}</pre> -->
 <pre>{{ jobs | json }}</pre>
-<pre>{{ locations | json }}</pre> -->
+<!-- <pre>{{ locations | json }}</pre> -->
 <pre>{{ searchJobReqDto.value|json }}</pre>
 <div class="home-container">
   <!-- Search Options -->
-  <form [formGroup]="searchJobReqDto" (ngSubmit)="getAllJobs()">
-    <div class="container mt-5 grid justify-content-center align-content-center">
+  <form [formGroup]="searchJobReqDto" (ngSubmit)="getAllJobWithPagination()">
+    <div class="container mt-5 grid grid-nogutter justify-content-center align-content-center">
       <div class="sub-container col-10 grid justify-content-between">
         <h4 class="text-dark col-10 -mb-3">
           Search Vacancy
@@ -44,7 +44,8 @@
             <p-accordionTab header="Employment Type">
               <div class="flex flex-column gap-2">
                 <div *ngFor="let type of types" class="field-checkbox">
-                  <p-checkbox name="group" (onChange)="employmentTypeChange($event,type.id)" [value]="type.id"[inputId]="type.typeCode" (click)="getAllJobsByEmploymentType">
+                  <p-checkbox name="group" (onChange)="employmentTypeChange($event,type.id)" [value]="type.id"
+                    [inputId]="type.typeCode" (click)="getAllJobsByEmploymentType">
                   </p-checkbox>
                   <label [for]="type.typeCode">{{ type.typeName }}</label>
                 </div>
@@ -56,16 +57,16 @@
                   <span for="start">Start </span>
                 </div>
                 <div class="col-9">
-                  <p-inputNumber id="start" inputId="withoutgrouping"
-                    formControlName="salaryStart" class="w-full" styleClass="w-full">
+                  <p-inputNumber id="start" inputId="withoutgrouping" formControlName="salaryStart" class="w-full"
+                    styleClass="w-full">
                   </p-inputNumber>
                 </div>
                 <div class="col-3">
-                  <span for="end" >End </span>
+                  <span for="end">End </span>
                 </div>
                 <div class="col-9">
-                  <p-inputNumber id="end" inputId="withoutgrouping"
-                    formControlName="salaryEnd" class="w-full" styleClass="w-full">
+                  <p-inputNumber id="end" inputId="withoutgrouping" formControlName="salaryEnd" class="w-full"
+                    styleClass="w-full">
                   </p-inputNumber>
                 </div>
                 <button type="button" pButton pRipple class="p-button-success col-12 text-center"
@@ -79,7 +80,8 @@
       </div>
 
       <div class="content col-12 md:col-8 md:col-offset-1 grid ">
-        <p-card class="col-12 md:col-6 mt-4" *ngFor="let job of jobs" routerLink="/home/detail/{{job.id}}" >
+        <p-card class="col-12 md:col-6 mt-4 min-h-20rem md:min-h-15rem" *ngFor="let job of jobs"
+          routerLink="/home/detail/{{job.id}}">
           <div class="thumbnail grid justify-content-center">
             <div class="col-4 justify-content-center align-content-center">
               <img src="{{ job.companyPhoto|urlCandidate }}" alt="Image" class="w-full">
@@ -121,4 +123,13 @@
       </div>
     </div>
   </div>
+
+  
+<p-paginator
+  (onPageChange)="renderPage($event)"
+  [first]="firstData"
+  [rows]="dataPerRow"
+  [totalRecords]="lengthData"
+  >
+</p-paginator>
 </div>

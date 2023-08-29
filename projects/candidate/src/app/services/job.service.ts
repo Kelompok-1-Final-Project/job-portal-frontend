@@ -23,9 +23,12 @@ export class JobService{
     constructor(private base: BaseService){}
 
     getAll(data : SearchJobReqDto): Observable<JobGetResDto[]>{
-        console.log('testing');
-        console.log(data);
-        return this.base.get<JobGetResDto[]>(`${BASE_URL_CAN}/jobs/filter/?n=${data.jobName}&c=${data.location}&p=${data.position}&e=${data.employmentType.join()}&ss=${data.salaryStart}&se=${data.salaryEnd}&u=${data.userId}`
+        return this.base.get<JobGetResDto[]>(`${BASE_URL_CAN}/jobs/filternonpagination/?n=${data.jobName}&c=${data.location}&p=${data.position}&e=${data.employmentType.join()}&ss=${data.salaryStart}&se=${data.salaryEnd}&u=${data.userId}`
+        , true)
+    }
+
+    getAllWithPagination(startIndex:number,lastIndex:number,data:SearchJobReqDto): Observable<JobGetResDto[]>{
+        return this.base.get<JobGetResDto[]>(`${BASE_URL_CAN}/jobs/filter/?n=${data.jobName}&c=${data.location}&p=${data.position}&e=${data.employmentType.join()}&ss=${data.salaryStart}&se=${data.salaryEnd}&u=${data.userId}&start=${startIndex}&end=${lastIndex}`
         , true)
     }
 
@@ -35,11 +38,19 @@ export class JobService{
     }
 
     getAllByIndustry(industryId:string): Observable<JobGetResDto[]>{
-        return this.base.get<JobGetResDto[]>(`${BASE_URL_CAN}/jobs/filter/industry?ind=${industryId}`, true)
+        return this.base.get<JobGetResDto[]>(`${BASE_URL_CAN}/jobs/filternonpagination/industry?ind=${industryId}`, true)
+    }
+
+    getAllByIndustryWithPagination(startIndex:number,lastIndex:number,industryId:string): Observable<JobGetResDto[]>{
+        return this.base.get<JobGetResDto[]>(`${BASE_URL_CAN}/jobs/filter/industry?ind=${industryId}&start=${startIndex}&end=${lastIndex}`, true)
     }
 
     getAllSaveJobs(id:string): Observable<SaveJobGetResDto[]>{
         return this.base.get<SaveJobGetResDto[]>(`${BASE_URL_CAN}/save-jobs/${id}`, true)
+    }
+
+    getAllSaveJobsWithPagination(startIndex:number,endIndex:number,id:string): Observable<SaveJobGetResDto[]>{
+        return this.base.get<SaveJobGetResDto[]>(`${BASE_URL_CAN}/save-jobs/${id}/${startIndex}/${endIndex}`, true)
     }
 
     getById(id:string,canId:string):Observable<JobGetResDto>{

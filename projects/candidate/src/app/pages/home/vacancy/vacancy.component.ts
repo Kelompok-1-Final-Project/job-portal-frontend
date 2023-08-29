@@ -24,6 +24,10 @@ export class VacancyComponent implements OnInit {
   
   userId:string='';
   industryId:string='';
+  firstData:number=0;
+  dataPerRow:number=10;
+  lengthData!:number;
+
   jobs!: JobGetResDto[];
   types! : EmploymentTypeGetResDto[];
   locations!:CityGetResDto[];
@@ -64,6 +68,7 @@ export class VacancyComponent implements OnInit {
     this.userId = this.authService.getUserId();
     if(this.industryId!=''){
       this.getAllJobsIndustry();
+      this.getAllJobIndustryWithPagination();
       this.industryId='';
     }else{
       if(this.jobService.searchJobs!=null){
@@ -74,12 +79,12 @@ export class VacancyComponent implements OnInit {
         })
       }
       this.getAllJobs();
+      this.getAllJobWithPagination();
     }
     this.getAllTypes();
     this.getAllLocations();
     this.getAllPosition();
   }
-  
 
 
   init(){
@@ -88,32 +93,61 @@ export class VacancyComponent implements OnInit {
     })
   }
 
+  getPagination(start:number,end:number){
+    const data = this.searchJobReqDto.getRawValue();
+    this.firstData = start;
+    data.userId=this.userId;
+    this.jobService.getAllWithPagination(start,end,data).subscribe(result => {
+      this.jobs = result;
+    })
+  }
+
   getAllJobs() {
     const data = this.searchJobReqDto.getRawValue();
     data.userId=this.userId;
-    firstValueFrom(this.jobService.getAll(data)).then(result => {
-      this.jobs = result
+    this.lengthData=0;
+    this.jobService.getAll(data).subscribe(result => {
+      this.jobs = result;
+      this.lengthData=result.length;
+    })
+  }
+
+  getAllJobWithPagination(){
+    const data = this.searchJobReqDto.getRawValue();
+    data.userId=this.userId;
+    this.jobService.getAllWithPagination(this.firstData,this.dataPerRow,data).subscribe(result => {
+      this.jobs = result;
+    })
+  }
+
+  getAllJobIndustryWithPagination(){
+    const data = this.searchJobReqDto.getRawValue();
+    data.userId=this.userId;
+    this.jobService.getAllByIndustryWithPagination(this.firstData,this.dataPerRow,this.industryId).subscribe(result => {
+      this.jobs = result;
     })
   }
 
   getAllJobsIndustry() {
-    firstValueFrom(this.jobService.getAllByIndustry(this.industryId)).then(result => {
-      this.jobs = result
+    this.jobService.getAllByIndustry(this.industryId).subscribe(result => {
+      this.jobs = result;
+      this.lengthData=result.length;
     })
   }
 
   getAllJobsByEmploymentType(){
     const data = this.searchJobReqDto.getRawValue();
-    firstValueFrom(this.jobService.getAll(data)).then(result => {
-      this.jobs = result
+    this.jobService.getAll(data).subscribe(result => {
+      this.lengthData=result.length;
+     this.getAllJobWithPagination();
     })
   }
 
   getAllJobsBySalary(){
     const data = this.searchJobReqDto.getRawValue();
-    console.log(data);
-    firstValueFrom(this.jobService.getAll(data)).then(result => {
-      this.jobs = result
+    this.jobService.getAll(data).subscribe(result => {
+      this.lengthData=result.length;
+     this.getAllJobWithPagination();
     })
   }
 
@@ -139,6 +173,10 @@ export class VacancyComponent implements OnInit {
     })
   }
 
+  renderPage(event: any) {
+    this.getPagination(event.first, this.dataPerRow);
+  }
+
   onPositionClear() {
     this.searchJobReqDto.get('position')?.setValue('');
   }
@@ -149,12 +187,12 @@ export class VacancyComponent implements OnInit {
     this.saveJobReqDto.jobId = jobId;
     event.stopPropagation();
     if(isBookMark){
-      firstValueFrom(this.jobService.deleteSaveJob(saveJobId)).then(result => {
-        this.getAllJobs();
+      this.jobService.deleteSaveJob(saveJobId).subscribe(result => {
+        this.getAllJobWithPagination();
       })
     }else{
-      firstValueFrom(this.jobService.insertSaveJob(data)).then(result => {
-        this.getAllJobs();
+      this.jobService.insertSaveJob(data).subscribe(result => {
+        this.getAllJobWithPagination();
       })
     }
   }
@@ -176,6 +214,7 @@ export class VacancyComponent implements OnInit {
      if (!isFound) {
        this.employmentType.push(this.fb.control(idString))
        this.getAllJobsByEmploymentType();
+       
      }
    } else {
      let indexFound = -1
@@ -191,7 +230,4 @@ export class VacancyComponent implements OnInit {
      }
    }
  }
-
- 
-
 }

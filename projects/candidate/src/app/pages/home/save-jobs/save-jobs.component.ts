@@ -18,6 +18,9 @@ export class SaveJobsComponent implements OnInit {
 
   userId!:string;
   lengthSaveJobs:number=0;
+  firstData:number=0;
+  dataPerRow:number=9;
+
   constructor(
     private jobService: JobService,
     private authService : AuthService,
@@ -30,12 +33,14 @@ export class SaveJobsComponent implements OnInit {
   ngOnInit(){
     this.userId  = this.authService.getUserId();
     this.getAllJobs();
+    this.getAllJobsWithPagination();
   }
 
   deleteSaveJob(saveJobId:string,event:any){
     event.stopPropagation();
-      firstValueFrom(this.jobService.deleteSaveJob(saveJobId)).then(result => {
-        this.getAllJobs();
+      this.jobService.deleteSaveJob(saveJobId).subscribe(result => {
+        this.lengthSaveJobs=this.lengthSaveJobs-1;
+        this.getAllJobsWithPagination();
       })
   }
 
@@ -46,4 +51,20 @@ export class SaveJobsComponent implements OnInit {
     })
   }
 
+  getAllJobsWithPagination(){
+    this.jobService.getAllSaveJobsWithPagination(this.firstData,this.dataPerRow,this.userId).subscribe(result => {
+      this.jobs = result
+    })
+  }
+
+  getPagination(start:number,end:number){
+    this.firstData = start;
+    this.jobService.getAllSaveJobsWithPagination(start,end,this.userId).subscribe(result => {
+      this.jobs = result;
+    })
+  }
+
+  renderPage(event: any) {
+    this.getPagination(event.first,this.dataPerRow);
+  }
 }
