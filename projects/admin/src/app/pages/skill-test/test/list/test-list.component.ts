@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { SkillTestGetResDto } from '@dto/skilltest/skill-test.get.res.dto';
 import { SkillTestService } from '@serviceAdmin/skilltest.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'test-list',
@@ -25,7 +26,7 @@ export class TestListComponent implements OnInit {
   }
 
   getAlltSkillTest(){
-    this.skillTestService.getAll().subscribe(result => {
+    firstValueFrom(this.skillTestService.getAll()).then(result => {
       this.skilltests = result
     })
   }

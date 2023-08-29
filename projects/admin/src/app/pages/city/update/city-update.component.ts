@@ -28,12 +28,6 @@ export class CityUpdateComponent implements OnInit {
         this.title.setTitle('Update City | Job Portal Admin')
     }
 
-    // init() {
-    //     this.activatedRoute.params.subscribe(id => {
-    //         this.idParam = Number(Object.values(id));
-    //     })
-    // }
-
     ngOnInit(): void {
         // this.init();
         firstValueFrom(this.activatedRoute.params).then(param => {

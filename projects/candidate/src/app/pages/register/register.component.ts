@@ -15,6 +15,7 @@ import {
   Router
 } from "@angular/router";
 import { UserService } from "@serviceCandidate/user.service";
+import { firstValueFrom } from "rxjs";
 
 @Component({
   selector: 'register.component.html',
@@ -44,7 +45,7 @@ export class RegisterComponent {
   insert() {
     const data = this.userInsertReqDto.getRawValue()
     if (this.userInsertReqDto.valid) {
-      this.userService.insert(data).subscribe(result => {
+      firstValueFrom(this.userService.insert(data)).then(result => {
         console.log(result);
         this.router.navigateByUrl('/login')
       })

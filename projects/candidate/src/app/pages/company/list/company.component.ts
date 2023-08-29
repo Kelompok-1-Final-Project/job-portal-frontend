@@ -14,6 +14,7 @@ import {
 } from '@angular/router';
 import { CompanyDataGetResDto } from '@dto/company/company-data.get.res.dto';
 import { CompanyService } from '@serviceCandidate/company.service';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class CompanyListComponent implements OnInit {
   ) {}
 
   getCompany() {
-    this.companyService.getAll().subscribe(result => {
+    firstValueFrom(this.companyService.getAll()).then(result => {
         this.companyData = result;
     })
   }

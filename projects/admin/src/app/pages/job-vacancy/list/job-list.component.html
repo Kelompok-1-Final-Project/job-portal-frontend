@@ -20,8 +20,8 @@
           <th scope="col">End Date</th>
           <th scope="col">Company</th>
           <th scope="col">Position</th>
-          <th scope="col">Status</th>
           <th scope="col">Employment</th>
+          <th scope="col">Status</th>
           <th scope="col">Action</th>
         </tr>
       </ng-template>
@@ -38,8 +38,10 @@
           <td>{{ c.endDate }}</td>
           <td>{{ c.companyName }}</td>
           <td>{{ c.positionName }}</td>
-          <td>{{ c.statusName }}</td>
           <td>{{ c.employmentName }}</td>
+          <td>
+            <p-tag severity="{{statusColor(c.statusName)}}" value="{{c.statusName}}"></p-tag>
+          </td>
           <td>
             <app-button iconBtn="pi pi-trash" tooltipBtn="Delete" tooltipPstn="top"
               classBtn="p-button-danger"></app-button>

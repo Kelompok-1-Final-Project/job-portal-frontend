@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { QuestionOptionReqDto } from "@dto/question/question-option.req.dto";
 import { QuestionInsertReqDto } from "@dto/question/question.insert.req.dto";
 import { QuestionService } from "@serviceAdmin/question.service";
+import { firstValueFrom } from "rxjs";
 
 @Component({
     selector: 'question-insert',
@@ -81,7 +82,7 @@ export class QuestionInsertComponent implements OnInit {
         if (this.questionsInsertReqDto.valid) {
             this.loading = true
             const data = this.questionsInsertReqDto.getRawValue().data
-            this.questionService.insert(data).subscribe(result => {
+            firstValueFrom(this.questionService.insert(data)).then(result => {
                 this.router.navigateByUrl('/questions')
             })
         }

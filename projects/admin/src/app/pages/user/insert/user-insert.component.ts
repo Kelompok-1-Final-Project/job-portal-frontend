@@ -6,6 +6,7 @@ import { GenderGetResDto } from "@dto/profile/gender.get.res.dto";
 import { RoleGetResDto } from "@dto/profile/role.get.res.dto";
 import { ProfileService } from "@serviceAdmin/profile.service";
 import { UserService } from "@serviceAdmin/user.service";
+import { firstValueFrom } from "rxjs";
 
 @Component({
   selector: 'user-insert',
@@ -46,20 +47,20 @@ export class UserInsertComponent implements AfterViewChecked {
   }
 
   getRole() {
-    this.profileService.getRole().subscribe(result => {
+    firstValueFrom(this.profileService.getRole()).then(result => {
       this.roles = result
     })
   }
 
   getGender() {
-    this.profileService.getGender().subscribe(result => {
+    firstValueFrom(this.profileService.getGender()).then(result => {
       this.genders = result
     })
   }
 
   insertUser(){
     const data = this.userInsertReqDto.getRawValue()
-    this.userService.insert(data).subscribe(result => {
+    firstValueFrom(this.userService.insert(data)).then(result => {
       this.router.navigateByUrl('/users')
     })
   }

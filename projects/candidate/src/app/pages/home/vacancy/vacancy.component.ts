@@ -12,6 +12,7 @@ import { JobGetResDto } from '@dto/job/job.get.res.dto';
 import { AuthService } from '@serviceCandidate/auth.service';
 import { CityService } from '@serviceCandidate/city.service';
 import { JobService } from '@serviceCandidate/job.service';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -87,7 +88,7 @@ export class VacancyComponent implements OnInit {
 
 
   init(){
-    this.activatedRoute.params.subscribe(id => {
+    firstValueFrom(this.activatedRoute.params).then(id => {
       this.industryId = String(Object.values(id));
     })
   }
@@ -151,13 +152,13 @@ export class VacancyComponent implements OnInit {
   }
 
   getAllTypes() {
-    this.jobService.getAllEmploymentType().subscribe(result => {
+    firstValueFrom(this.jobService.getAllEmploymentType()).then(result => {
       this.types = result
     })
   }
 
   getAllLocations(){
-    this.cityService.getAll().subscribe(result => {
+    firstValueFrom(this.cityService.getAll()).then(result => {
       this.locations = result;
     })
   }
@@ -167,7 +168,7 @@ export class VacancyComponent implements OnInit {
   }
 
   getAllPosition(){
-    this.jobService.getAllPosition().subscribe(result => {
+    firstValueFrom(this.jobService.getAllPosition()).then(result => {
       this.positions = result;
     })
   }

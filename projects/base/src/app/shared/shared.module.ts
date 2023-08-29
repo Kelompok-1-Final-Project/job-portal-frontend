@@ -19,6 +19,8 @@ import { ImageModule } from 'primeng/image';
 import { AccordionModule } from 'primeng/accordion';
 import { TabViewModule } from 'primeng/tabview';
 import { CardModule } from 'primeng/card';
+import { UrlPipeAdmin } from '@pipes/url.pipe';
+import { TagModule } from 'primeng/tag';
 
 @NgModule({
     imports: [
@@ -40,7 +42,9 @@ import { CardModule } from 'primeng/card';
         ImageModule,
         AccordionModule,
         TabViewModule,
-        CardModule
+        CardModule,
+        UrlPipeAdmin,
+        TagModule
     ],
     exports: [
         InputTextModule,
@@ -62,7 +66,9 @@ import { CardModule } from 'primeng/card';
         ImageModule,
         AccordionModule,
         TabViewModule,
-        CardModule
+        CardModule,
+        UrlPipeAdmin,
+        TagModule
     ]
 })
 export class SharedModuleComponent {

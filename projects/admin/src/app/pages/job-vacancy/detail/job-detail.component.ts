@@ -43,6 +43,8 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     jobCode!: string
     visibleAddBenefit: boolean = false
     listBenefits!: BenefitGetResDto[]
+    visibleUpdateNotes: boolean = false
+    visibleButtonNotes: boolean = false
 
     assessmentInsertReqDto = this.fb.group({
         candidateId: ['', [Validators.required]],
@@ -85,6 +87,11 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         benefitId: ['', [Validators.required]]
     })
 
+    interviewUpdateReqDto = this.fb.group({
+        interviewId: ['', [Validators.required]],
+        notes: ['', [Validators.required]]
+    })
+
     constructor(
         private title: Title,
         private route: ActivatedRoute,
@@ -115,32 +122,32 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     }
 
     getSkillTest() {
-        this.skillTestService.getTest(this.id).subscribe(result => {
+        firstValueFrom(this.skillTestService.getTest(this.id)).then(result => {
             this.test = result
         })
     }
 
     getJobById() {
-        this.jobService.getById(this.id).subscribe(result => {
+        firstValueFrom(this.jobService.getById(this.id)).then(result => {
             this.job = result
             this.getCandidateStatus()
         })
     }
 
     getCandidateStatus() {
-        this.statusProgressService.getCandidateByJob(this.job.jobCode).subscribe(result => {
+        firstValueFrom(this.statusProgressService.getCandidateByJob(this.job.jobCode)).then(result => {
             this.candidates = result
         })
     }
 
     getStatus() {
-        this.statusProgressService.getStatus().subscribe(result => {
+        firstValueFrom(this.statusProgressService.getStatus()).then(result => {
             this.status = result
         })
     }
 
     getResult() {
-        this.skillTestService.getResult(this.id).subscribe(result => {
+        firstValueFrom(this.skillTestService.getResult(this.id)).then(result => {
             this.results = result
         })
     }
@@ -177,42 +184,42 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
 
     insertAssessment() {
         const data = this.assessmentInsertReqDto.getRawValue()
-        this.statusProgressService.insertAssessment(data).subscribe(result => {
+        firstValueFrom(this.statusProgressService.insertAssessment(data)).then(result => {
             this.visibleAssessment = false
         })
     }
 
     insertInterview() {
         const data = this.interviewInsertReqDto.getRawValue()
-        this.statusProgressService.insertInterview(data).subscribe(result => {
+        firstValueFrom(this.statusProgressService.insertInterview(data)).then(result => {
             this.visibleInterview = false
         })
     }
 
     insertMcu() {
         const data = this.medicalcheckupInsertReqDto.getRawValue()
-        this.statusProgressService.insertMedicalCheckup(data).subscribe(result => {
+        firstValueFrom(this.statusProgressService.insertMedicalCheckup(data)).then(result => {
             this.visibleMcu = false
         })
     }
 
     insertOffering() {
         const data = this.offeringInsertReqDto.getRawValue()
-        this.statusProgressService.insertOffering(data).subscribe(result => {
+        firstValueFrom(this.statusProgressService.insertOffering(data)).then(result => {
             this.visibleOffering = false
         })
     }
 
     insertHired() {
         const data = this.hiredInsertReqDto.getRawValue()
-        this.statusProgressService.insertHired(data).subscribe(result => {
+        firstValueFrom(this.statusProgressService.insertHired(data)).then(result => {
             this.visibleHired = false
         })
     }
 
     insertRejected() {
         const data = this.rejectedInsertReqDto.getRawValue()
-        this.statusProgressService.updateReject(data).subscribe(result => {
+        firstValueFrom(this.statusProgressService.updateReject(data)).then(result => {
             this.visibleRejected = false
         })
     }

@@ -7,6 +7,7 @@ import { JobGetResDto } from '@dto/job/job.get.res.dto';
 import { SaveJobGetResDto } from '@dto/savejob/save-job.get.res.dto';
 import { AuthService } from '@serviceCandidate/auth.service';
 import { JobService } from '@serviceCandidate/job.service';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -44,7 +45,7 @@ export class SaveJobsComponent implements OnInit {
   }
 
   getAllJobs() {
-    this.jobService.getAllSaveJobs(this.userId).subscribe(result => {
+    firstValueFrom(this.jobService.getAllSaveJobs(this.userId)).then(result => {
       this.jobs = result
       this.lengthSaveJobs = result.length;
     })

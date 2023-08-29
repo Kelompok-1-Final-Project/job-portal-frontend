@@ -10,6 +10,7 @@ import { QuestionOptionResDto } from "@dto/question/question-option.res.dto";
 import { AnswerService } from "@serviceCandidate/answer.service";
 import { AuthService } from "@serviceCandidate/auth.service";
 import { QuestionService } from "@serviceCandidate/question.service";
+import { firstValueFrom } from "rxjs";
 
 @Component({
     selector : 'test.component.html',
@@ -71,7 +72,7 @@ export class TestComponent{
     }
 
     getData(){
-        this.questionService.getAll().subscribe(result => {
+        firstValueFrom(this.questionService.getAll()).then(result => {
             this.test = result
             this.candidateId=this.authService.getUserId();            
             this.answerCandidateReqDto.get('skillTestId')?.setValue(result.testId);
@@ -102,7 +103,7 @@ export class TestComponent{
         if (this.answerCandidateReqDto.valid){
             this.loading = true
             const data = this.answerCandidateReqDto.getRawValue()
-            this.answerService.insert(data).subscribe(result => {
+            firstValueFrom(this.answerService.insert(data)).then(result => {
                 localStorage.clear()
                 this.router.navigateByUrl('/login')
             })
