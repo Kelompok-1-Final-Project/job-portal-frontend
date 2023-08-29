@@ -12,6 +12,7 @@ import { JobGetResDto } from '@dto/job/job.get.res.dto';
 import { AuthService } from '@serviceCandidate/auth.service';
 import { CityService } from '@serviceCandidate/city.service';
 import { JobService } from '@serviceCandidate/job.service';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -82,7 +83,7 @@ export class VacancyComponent implements OnInit {
 
 
   init(){
-    this.activatedRoute.params.subscribe(id => {
+    firstValueFrom(this.activatedRoute.params).then(id => {
       this.industryId = String(Object.values(id));
     })
   }
@@ -90,20 +91,20 @@ export class VacancyComponent implements OnInit {
   getAllJobs() {
     const data = this.searchJobReqDto.getRawValue();
     data.userId=this.userId;
-    this.jobService.getAll(data).subscribe(result => {
+    firstValueFrom(this.jobService.getAll(data)).then(result => {
       this.jobs = result
     })
   }
 
   getAllJobsIndustry() {
-    this.jobService.getAllByIndustry(this.industryId).subscribe(result => {
+    firstValueFrom(this.jobService.getAllByIndustry(this.industryId)).then(result => {
       this.jobs = result
     })
   }
 
   getAllJobsByEmploymentType(){
     const data = this.searchJobReqDto.getRawValue();
-    this.jobService.getAll(data).subscribe(result => {
+    firstValueFrom(this.jobService.getAll(data)).then(result => {
       this.jobs = result
     })
   }
@@ -111,19 +112,19 @@ export class VacancyComponent implements OnInit {
   getAllJobsBySalary(){
     const data = this.searchJobReqDto.getRawValue();
     console.log(data);
-    this.jobService.getAll(data).subscribe(result => {
+    firstValueFrom(this.jobService.getAll(data)).then(result => {
       this.jobs = result
     })
   }
 
   getAllTypes() {
-    this.jobService.getAllEmploymentType().subscribe(result => {
+    firstValueFrom(this.jobService.getAllEmploymentType()).then(result => {
       this.types = result
     })
   }
 
   getAllLocations(){
-    this.cityService.getAll().subscribe(result => {
+    firstValueFrom(this.cityService.getAll()).then(result => {
       this.locations = result;
     })
   }
@@ -133,7 +134,7 @@ export class VacancyComponent implements OnInit {
   }
 
   getAllPosition(){
-    this.jobService.getAllPosition().subscribe(result => {
+    firstValueFrom(this.jobService.getAllPosition()).then(result => {
       this.positions = result;
     })
   }
@@ -148,11 +149,11 @@ export class VacancyComponent implements OnInit {
     this.saveJobReqDto.jobId = jobId;
     event.stopPropagation();
     if(isBookMark){
-      this.jobService.deleteSaveJob(saveJobId).subscribe(result => {
+      firstValueFrom(this.jobService.deleteSaveJob(saveJobId)).then(result => {
         this.getAllJobs();
       })
     }else{
-      this.jobService.insertSaveJob(data).subscribe(result => {
+      firstValueFrom(this.jobService.insertSaveJob(data)).then(result => {
         this.getAllJobs();
       })
     }

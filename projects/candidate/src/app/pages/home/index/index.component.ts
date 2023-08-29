@@ -21,6 +21,7 @@ import {
   IndustryService
 } from '@serviceCandidate/industry.service';
 import { JobService } from '@serviceCandidate/job.service';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -87,7 +88,7 @@ carouselImages = [
   }
 
   getAllIndustry() {
-    this.industryService.getAll().subscribe(result => {
+    firstValueFrom(this.industryService.getAll()).then(result => {
       this.industries = result
     })
   }
@@ -98,13 +99,13 @@ carouselImages = [
   }
 
   getAllLocations(){
-    this.cityService.getAll().subscribe(result => {
+    firstValueFrom(this.cityService.getAll()).then(result => {
       this.locations = result;
     })
   }
 
   getAllPosition(){
-    this.jobService.getAllPosition().subscribe(result => {
+    firstValueFrom(this.jobService.getAllPosition()).then(result => {
       this.positions = result;
     })
   }

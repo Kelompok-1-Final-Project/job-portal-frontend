@@ -4,6 +4,7 @@ import { JobStatus } from "@constant/job-status.constant";
 import { JobAdminGetResDto } from "@dto/job/job-admin.get.res.dto";
 import { AuthService } from "@serviceAdmin/auth.service";
 import { JobService } from "@serviceAdmin/job.service";
+import { firstValueFrom } from "rxjs";
 
 @Component({
   selector: 'job-list',
@@ -29,7 +30,7 @@ export class JobListComponent implements OnInit {
   }
 
   getJob() {
-    this.jobService.getAll(this.userId).subscribe(result => {
+    firstValueFrom(this.jobService.getAll(this.userId)).then(result => {
       this.vacancies = result
     })
   }

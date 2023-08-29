@@ -45,14 +45,14 @@ export class QuestionDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    firstValueFrom(this.route.params).then(params => {
       this.id = params['id']
       this.getQuestionById()
     })
   }
 
   getQuestionById() {
-    this.questionService.getDetailQuestionById(this.id).subscribe(result => {
+    firstValueFrom(this.questionService.getDetailQuestionById(this.id)).then(result => {
       console.log(result)
       this.questions = result
     })

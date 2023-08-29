@@ -1,13 +1,9 @@
 enum RoleName {
-    CANDIDATE = "Candidate", 
-    REVIEWER = "Reviewer", 
-    HR = "Human Resource", 
-    SUPERADMIN = "Super Admin"
+    ADMIN = "RL001",
+    HR = "RL002",
+    INTERVIEWER = "RL003",
+    SYSTEM = "RL004"
 }
 
-enum RoleCode {
-    CANDIDATE = "CAN", REVIEWER = "REV", HR = "HR", SUPERADMIN = "SPA"
-}
-
-export { RoleName, RoleCode }
+export { RoleName }
 
