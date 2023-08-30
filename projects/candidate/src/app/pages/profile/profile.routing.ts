@@ -66,7 +66,7 @@ const routes : Routes = [
         UrlPipeCandidate,
         FileUploadModule,
         ButtonComponent,
-        PasswordModule
+        PasswordModule,
         DateFormatPipe,
         DateDifference
     ],
