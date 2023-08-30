@@ -116,7 +116,7 @@
           <div class="footer">
             <small>
               <i class="pi pi-clock"></i>
-              <span> Dibuat {{ job.createdAt }} hari yang lalu</span>
+              <span> {{ job.createdAt | timeAgo }} </span>
             </small>
           </div>
         </p-card>

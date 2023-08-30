@@ -24,8 +24,8 @@ import { UrlPipeCandidate } from "@pipes/url.pipe";
 import { ChangePasswordComponent } from "./change-password/change-password.component";
 import { PasswordModule } from 'primeng/password';
 import { ButtonComponent } from "@component/button/button.component";
-
-
+import { DateFormatPipe } from "@pipes/time-convert";
+import { DateDifference } from "@pipes/date-difference";
 
 const routes : Routes = [
     {
@@ -67,6 +67,8 @@ const routes : Routes = [
         FileUploadModule,
         ButtonComponent,
         PasswordModule
+        DateFormatPipe,
+        DateDifference
     ],
     exports : [
         RouterModule
