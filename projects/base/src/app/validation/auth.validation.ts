@@ -1,30 +1,26 @@
 import { inject } from "@angular/core";
-import { Route, Router, UrlSegment } from "@angular/router";
+import { Route, Router, UrlSegment } from "@angular/router"
+import { AuthService } from "@serviceCandidate/auth.service"
 
 export const authValidation = (route: Route, segments: UrlSegment[]) => {
-    // const auth = inject(AuthService)
+    const auth = inject(AuthService)
     const router = inject(Router)
-    // const profile = auth.getProfile()
+    const profile = auth.getProfile()
 
-    // if (profile) {
-    //     if (profile.roleCode != RoleCode.CANDIDATE){
-    //         router.navigateByUrl('/dashboard')
-    //     }
-    //     else{
-    //         router.navigateByUrl('/test')
-    //     }
-    // } 
-    // return true
+    if (profile) {
+        router.navigateByUrl('/home')
+    }
+    return true;
 }
 
 export const authValidationNonLogin = (route: Route, segments: UrlSegment[]) => {
-    // const auth = inject(AuthService)
-    // const router = inject(Router)
-    // const profile = auth.getProfile()
+    const auth = inject (AuthService);
+    const profile = auth.getProfile();
+    const router = inject(Router);
 
-    // if (!profile) {
-    //     router.navigateByUrl('/login')
-    // } 
-    
-    // return true
+
+    if(!profile){
+        router.navigateByUrl('/login');
+    }
+    return true;
 }

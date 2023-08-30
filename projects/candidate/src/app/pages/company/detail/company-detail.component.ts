@@ -37,19 +37,18 @@ export class CompanyDetailComponent implements OnInit {
   init() {
     firstValueFrom(this.activatedRoute.params).then(id => {
       this.idCompany = String(Object.values(id));
+      this.getCompany();
     })
   }
 
   getCompany() {
     firstValueFrom(this.companyService.getById(this.idCompany)).then(result => {
         this.companyData = result;
-        console.log('test:'+result);
     })
   }
 
   ngOnInit() {
     this.init();
-    this.getCompany();
   }
 
 }

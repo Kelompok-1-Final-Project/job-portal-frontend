@@ -1,5 +1,4 @@
-<!-- <pre>{{ job|json }}</pre>
-<pre>{{ idJob|json }}</pre> -->
+<pre>{{ job|json }}</pre>
 <!-- <pre>{{ company|json }}</pre> -->
 <div class="home-container">
   <div class="container grid grid-nogutter justify-content-center">
@@ -15,7 +14,7 @@
       </div>
       <div class="title col-10 md:col-7 grid">
         <span class="col-12 text-3xl">{{ job.jobTitle }}</span>
-        <a routerLink="" class="col-12 text-primary" style="text-decoration: none;">
+        <a routerLink="/companies/detail/{{ job.companyId }}" class="col-12 text-primary" style="text-decoration: none;">
           {{ job.companyName }}
         </a>
         <div class="city col-12">
@@ -36,9 +35,9 @@
         <div class="footer col-12 mt-3">
           <small>
             <i class="pi pi-clock"></i>
-            <span>{{ job.createdAt }} Tayang 14 Hari Yang Lalu</span>
+            <span>Created {{ job.createdAt | timeAgo }}</span>
             <span> * </span>
-            <span>{{ job.updatedAt }} Diperbaharui 3 hari yang lalu</span>
+            <span>Updated {{ updatedAt | timeAgo }}</span>
           </small>
         </div>
         <div class="button grid col-12 gap-3 justify-content-evenly">
@@ -68,9 +67,8 @@
         </h3>
       </div>
       <div class="col-12">
-        <span>
-          {{ job.description }}
-        </span>
+        <div [innerHTML]="jobDesc">
+        </div>
       </div>
       <div class="col-12 benefit">
         <h3>
@@ -129,7 +127,7 @@
                   </span>
                 </div>
               </div>
-              <div class="description grid justify-content-center">
+              <div class="description col-12 grid justify-content-center">
                 <span class="col-10">
                   <h4>Description</h4>
                   {{ company.description?company.description:'-' }}

@@ -5,4 +5,5 @@ export interface OrganizationGetResDto{
 	startDate : string
 	endDate : string
 	description : string
+	duration : string
 }

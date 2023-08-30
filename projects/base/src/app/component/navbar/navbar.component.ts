@@ -29,6 +29,8 @@ export class NavbarComponent implements OnInit {
   imgUrl!: string;
   logoWeb!:string;
   roleCode!: string;
+  isAdmin!:boolean;
+  isCandidate!:boolean;
 
   constructor(
     private authService: AuthService,
@@ -48,11 +50,20 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
 
     const profilePhoto = this.authService.getUserPhoto();
+    const profile = this.authService.getProfile();
           if (profilePhoto!='') {
             this.imgUrl = `${BASE_URL_CAN}/files/${profilePhoto}`;
           } else {
             this.imgUrl = '../../../assets/images.avatar.png';
           }
+    
+    if(profile?.roleCode!=undefined){
+      this.isAdmin=true;
+      this.isCandidate=false;
+    }else{
+      this.isCandidate=true;
+      this.isAdmin=false;
+    }
     this.logoWeb = '/assets/logo.png';
 
     this.items = [{
@@ -260,7 +271,7 @@ export class NavbarComponent implements OnInit {
       {
         label: 'Change Password',
         icon: 'pi pi-fw pi-cog',
-        routerLink: "/users/change-password",
+        routerLink: "/profile/change-password",
       }
     ]
     },

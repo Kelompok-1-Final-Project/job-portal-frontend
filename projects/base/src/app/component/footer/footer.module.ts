@@ -1,24 +1,22 @@
 import { NgModule } from "@angular/core";
-import { NavbarCandidateComponent} from "./navbar-candidate.component";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { MenubarModule } from 'primeng/menubar';
-import { UrlPipe } from "@pipes/url.pipe";
+import { FooterComponent } from "./footer.component";
 
 @NgModule({
     declarations : [
-        NavbarCandidateComponent
+        FooterComponent
     ],imports :[
         RouterModule,
         CommonModule,
-        MenubarModule,
-        UrlPipe
+        MenubarModule
     ], 
     exports : [
-        NavbarCandidateComponent
+        FooterComponent
     ]
 })
 
-export class NavbarCandidateModule{
+export class FooterModule{
 
 }
