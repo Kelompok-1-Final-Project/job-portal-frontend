@@ -14,7 +14,8 @@ import { JobService } from '@serviceCandidate/job.service';
 
 @Component({
   selector: 'vacancy-detail',
-  templateUrl: './vacancy-detail.component.html'
+  templateUrl: './vacancy-detail.component.html',
+  styleUrls: ['./vacancy-detail.component.css',]
 })
 export class VacancyDetailComponent implements OnInit {
   visibleAssignJob:boolean=false;
