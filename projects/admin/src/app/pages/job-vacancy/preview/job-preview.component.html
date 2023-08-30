@@ -1,9 +1,8 @@
-<!-- <pre>{{ company|json }}</pre> -->
 <div class="home-container">
     <div class="container grid grid-nogutter justify-content-center">
         <div class="sub-container grid col-12 md:col-10 mt-3 justify-content-center">
             <div class="col-10 md:col-3 text-center">
-                <!-- <img src="{{ job.companyPhoto|urlCandidate }}" alt="Image" class="w-full"> -->
+                <img src="{{ job.companyPhoto|urlAdmin }}" alt="Image" class="w-full">
             </div>
             <div class="title col-10 md:col-7 grid">
                 <span class="col-12 text-3xl">{{ job.jobTitle }}</span>
@@ -13,7 +12,7 @@
                 <div class="city col-12">
                     <i class="pi pi-map-marker"></i>
                     <span>
-                        <!-- {{ job.cityName }} -->
+                        {{ job.cityName }}
                     </span>
                 </div>
                 <div class="Salary col-12">
@@ -23,14 +22,14 @@
                 </div>
                 <div class="Industry col-12">
                     <i class="pi pi-building"></i>
-                    <!-- <span> {{ job.industryName }}</span> -->
+                    <span> {{ job.industryName }}</span>
                 </div>
                 <div class="footer col-12 mt-3">
                     <small>
                         <i class="pi pi-clock"></i>
-                        <!-- <span>{{ job.createdAt }} Tayang 14 Hari Yang Lalu</span> -->
+                        <span>{{ job.createdAt }} Tayang 14 Hari Yang Lalu</span>
                         <span> * </span>
-                        <!-- <span>{{ job.updatedAt }} Diperbaharui 3 hari yang lalu</span> -->
+                        <span>{{ job.updatedAt }} Diperbaharui 3 hari yang lalu</span>
                     </small>
                 </div>
                 <div class="button grid col-12 gap-3 text-center">
@@ -118,24 +117,24 @@
                         <h3 class="col-12 col-offset-1">About Company</h3>
                         <div class="sub-container col-12 grid justify-content-center">
                             <div class="col-12 md:col-4 justify-content-center align-content-center">
-                                <!-- <img src="{{ job.companyPhoto|urlCandidate }}" alt="Image" class="w-full"> -->
+                                <img src="{{ job.companyPhoto|urlAdmin }}" alt="Image" class="w-full">
                             </div>
                             <div class="title col-10 md:col-6">
-                                <!-- <a routerLink="/companies/detail/{{ company.companyId }}" class="col-12 text-primary"
+                                <a routerLink="/companies/detail/{{ job.companyId }}" class="col-12 text-primary"
                                     style="text-decoration: none;">
-                                    {{ company.companyName }}
-                                </a> -->
+                                    {{ job.companyName }}
+                                </a>
                                 <div class="city col-12">
                                     <i class="pi pi-map-marker"></i>
                                     <span>
-                                        <!-- {{ company.cityName }} -->
+                                        {{ job.cityName }}
                                     </span>
                                 </div>
                             </div>
                             <div class="description grid justify-content-center">
                                 <span class="col-10">
                                     <h4>Description</h4>
-                                    <!-- {{ company.description?company.description:'-' }} -->
+                                    {{ job.description?job.description:'-' }}
                                 </span>
                                 <div class="col-10">
                                     <h4>Address</h4>

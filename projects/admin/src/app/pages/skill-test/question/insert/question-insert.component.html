@@ -16,19 +16,22 @@
             <div class="mt-2" *ngFor="let qf of forms.controls; let i = index;" formArrayName="data">
               <div [formGroupName]="i">
                 <div class="col-12 my-2">
-                    <app-button label="Delete Form" classBtn="p-button-danger" btnType="button" link="/questions/create" (clickChange)="remove(i)"></app-button>
+                  <app-button label="Delete Form" classBtn="p-button-danger" btnType="button" link="/questions/create"
+                    (clickChange)="remove(i)"></app-button>
                 </div>
                 <div class="col-12 md:col-2">
                   <label for="question">Question <span class="text-red-500">*</span></label>
                 </div>
                 <div class="col-12 md:col-10">
-                  <textarea rows="5" cols="40" type="text" pInputTextarea id="question" required formControlName="question"></textarea>
+                  <textarea rows="5" cols="40" type="text" pInputTextarea id="question" required
+                    formControlName="question"></textarea>
                 </div>
                 <div class="col-12">
                   <label for="option">Option</label>
                 </div>
                 <div class="col-12">
-                  <app-button label="Add Option" btnType="button" (clickChange)="onAddOption(i)" link="/questions/create"></app-button>
+                  <app-button label="Add Option" btnType="button" (clickChange)="onAddOption(i)"
+                    link="/questions/create"></app-button>
                 </div>
                 <div class="col-12 md:col-10 my-2" *ngFor="let q of questionOption(i).controls; let j = index;"
                   formArrayName="listQuestionOption">
@@ -41,7 +44,8 @@
                         optionLabel="name" placeholder="Choose Key"></p-dropdown>
                     </div>
                     <div class="col-12 my-2">
-                        <app-button label="Delete Option" classBtn="p-button-danger" link="/questions/create" (clickChange)="removeOption(i,j)"></app-button>
+                      <app-button label="Delete Option" classBtn="p-button-danger" link="/questions/create"
+                        (clickChange)="removeOption(i,j)"></app-button>
                     </div>
                   </div>
                 </div>
@@ -49,7 +53,8 @@
             </div>
             <div class="col-12 md:col-10 mt-2 text-center md:text-left">
               <app-button btnType="button" classBtn="p-button-secondary" label="Back" link="/questions"></app-button>
-              <app-button label="Submit" btnType="submit" link="/questions" (clickChange)="onSubmit()"></app-button>
+              <app-button label="Submit" btnType="submit" [disabled]="questionsInsertReqDto.invalid" link="/questions"
+                (clickChange)="onSubmit()"></app-button>
             </div>
           </div>
         </form>

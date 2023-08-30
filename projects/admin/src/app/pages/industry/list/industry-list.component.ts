@@ -51,6 +51,7 @@ export class IndustryListComponent implements OnInit {
     firstValueFrom(this.industryService.insert(data)).then(result => {
       this.router.navigateByUrl('/industries')
       this.visibleAdd = false
+      this.getAllIndustry()
     })
   }
 

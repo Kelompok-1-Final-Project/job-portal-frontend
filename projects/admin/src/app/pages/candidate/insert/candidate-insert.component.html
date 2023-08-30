@@ -95,7 +95,8 @@
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
           <app-button classBtn="p-button-secondary" styleBtn="margin-right:0.5rem;" btnType="button" link="/candidates"
             iconBtn="pi pi-angle-double-left" label="Back to Previous Menu"></app-button>
-          <app-button btnType="submit" label="Submit" link="/candidates" (clickChange)="insertCandidate()"></app-button>
+          <app-button btnType="submit" label="Submit" [disabled]="candidateInsertReqDto.invalid" link="/candidates"
+            (clickChange)="insertCandidate()"></app-button>
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
+import { ActivatedRoute } from "@angular/router";
 import { JobAdminGetResDto } from "@dto/job/job-admin.get.res.dto";
+import { JobPreviewGetResDto } from "@dto/job/job-preview.get.res.dto";
 import { JobService } from "@serviceAdmin/job.service";
 import { firstValueFrom } from "rxjs";
 
@@ -11,18 +13,27 @@ import { firstValueFrom } from "rxjs";
 export class JobPreviewComponent implements OnInit{   
 
     jobId!: string
-    job!: JobAdminGetResDto
+    job!: JobPreviewGetResDto
 
     constructor(
         private title: Title,
-        private jobService: JobService
+        private jobService: JobService,
+        private route: ActivatedRoute
     ){
         this.title.setTitle('Job Preview | Job Portal Admin')
     }
 
     ngOnInit(): void {
-        firstValueFrom(this.jobService.getById(this.jobId)).then(result => {
+        firstValueFrom(this.route.params).then(param => {
+            this.jobId = param['id']
+            this.getPreview()
+        })
+    }
+
+    getPreview(){
+        firstValueFrom(this.jobService.getPreview(this.jobId)).then(result => {
             this.job = result
         })
     }
+
 }

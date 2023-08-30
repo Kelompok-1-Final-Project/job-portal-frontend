@@ -51,6 +51,7 @@ export class SkillListComponent implements OnInit {
     firstValueFrom(this.skillService.insert(data)).then(result => {
       this.visibleAdd = false
       this.router.navigateByUrl('/skills')
+      this.getAllSkill()
     })
   }
 

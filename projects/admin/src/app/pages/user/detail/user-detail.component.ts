@@ -11,8 +11,8 @@ import { firstValueFrom } from "rxjs";
 })
 export class UserDetailComponent implements OnInit{
 
-    detailUser!: UserGetResDto
-    jobId!: string
+    detailUser?: UserGetResDto
+    userId!: string
 
     constructor(
         private title: Title,
@@ -24,12 +24,15 @@ export class UserDetailComponent implements OnInit{
 
     ngOnInit(): void {
         firstValueFrom(this.route.params).then(param => {
-            this.jobId = param['id']
+            this.userId = param['id']
+            this.getDetailUser()
         })
     }
 
     getDetailUser(){
-        // firstValueFrom(this.userService.getuser)
+        firstValueFrom(this.userService.getDetail(this.userId)).then(result => {
+            this.detailUser = result
+        })
     }
 
 }

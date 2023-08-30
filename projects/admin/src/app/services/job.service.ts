@@ -15,6 +15,8 @@ import { SkillTestInsertReqDto } from "@dto/skilltest/skill-test.insert.req.dto"
 import { SkillTestQuestionInsertReqDto } from "@dto/skilltest/skill-test-question.insert.req.dto";
 import { JobBenefitGetResDto } from "@dto/job-benefit/job-benefit.get.res.dto";
 import { JobBenefitReqDto } from "@dto/job-benefit/job-benefit.req.dto";
+import { JobPreviewGetResDto } from "@dto/job/job-preview.get.res.dto";
+import { JobGetResDto } from "@dto/job/job.get.res.dto";
 
 @Injectable({
     providedIn: 'root'
@@ -68,5 +70,9 @@ export class JobService {
 
     insertJobBenefit(data: JobBenefitReqDto): Observable<InsertResDto> {
         return this.base.post<InsertResDto>(`${BASE_URL}/jobs/job-benefit`, data, true)
+    }
+
+    getPreview(param: string): Observable<JobPreviewGetResDto> {
+        return this.base.get<JobPreviewGetResDto>(`${BASE_URL}/jobs/preview?jobId=${param}`, true)
     }
 }

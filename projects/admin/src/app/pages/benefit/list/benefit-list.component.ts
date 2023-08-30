@@ -50,7 +50,7 @@ export class BenefitListComponent implements OnInit {
     const data = this.benefitInsertReqDto.getRawValue()
     firstValueFrom(this.benefitService.insert(data)).then(result => {
       this.visibleAdd = false
-      this.getAllBenefit();
+      this.getAllBenefit()
     })
   }
 
