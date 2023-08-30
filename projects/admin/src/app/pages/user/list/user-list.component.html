@@ -37,7 +37,7 @@
             <p-tag [severity]="c.isActive?'primary':'danger'" [value]="c.isActive"></p-tag>
           </td>
           <td>
-            <p-inputSwitch [ngModel]="c.isActive" (click)="setActive(c.userId, !c.isActive)"> </p-inputSwitch>
+            <p-inputSwitch [ngModel]="c.isActive" (click)="switchIsActive($event,c)"> </p-inputSwitch>
           </td>
         </tr>
       </ng-template>

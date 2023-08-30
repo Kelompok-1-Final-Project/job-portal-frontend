@@ -10,6 +10,7 @@ import { JobGetResDto } from '@dto/job/job.get.res.dto';
 import { AuthService } from '@serviceCandidate/auth.service';
 import { CompanyService } from '@serviceCandidate/company.service';
 import { JobService } from '@serviceCandidate/job.service';
+import { firstValueFrom } from 'rxjs';
 
 
 @Component({
@@ -50,7 +51,7 @@ export class VacancyDetailComponent implements OnInit {
   }
   
   init() {
-    this.activatedRoute.params.subscribe(param => {
+    firstValueFrom(this.activatedRoute.params).then(param => {
       this.param = String(Object.values(param));
       if(this.param.length==5){
         this.codeJob = this.param;
@@ -70,27 +71,27 @@ export class VacancyDetailComponent implements OnInit {
   }
 
   getJobById() {
-    this.jobService.getById(this.idJob,this.userId).subscribe(result => {
+    firstValueFrom(this.jobService.getById(this.idJob,this.userId)).then(result => {
       this.job = result;
       this.idJob = result.id;
-      this.companyService.getById(result.companyId).subscribe(result => {
+      firstValueFrom(this.companyService.getById(result.companyId)).then(result => {
         this.company = result;
       })
     })
   }
 
   getJobByCode() {
-    this.jobService.getByCode(this.codeJob,this.userId).subscribe(result => {
+    firstValueFrom(this.jobService.getByCode(this.codeJob,this.userId)).then(result => {
       this.job = result;
       this.idJob = result.id;
-      this.companyService.getById(result.companyId).subscribe(result => {
+      firstValueFrom(this.companyService.getById(result.companyId)).then(result => {
         this.company = result;
       })
     })
   }
 
   getJobBenefit(){
-    this.jobService.getAllBenefitJob(this.idJob).subscribe(result => {
+    firstValueFrom(this.jobService.getAllBenefitJob(this.idJob)).then(result => {
       this.benefits = result;
     })
   }
@@ -105,11 +106,11 @@ export class VacancyDetailComponent implements OnInit {
     this.saveJobReqDto.candidateId = this.userId;
     this.saveJobReqDto.jobId = jobId;
     if(isBookMark){
-      this.jobService.deleteSaveJob(saveJobId).subscribe(result => {
+      firstValueFrom(this.jobService.deleteSaveJob(saveJobId)).then(result => {
         this.getJobById();
       })
     }else{
-      this.jobService.insertSaveJob(data).subscribe(result => {
+      firstValueFrom(this.jobService.insertSaveJob(data)).then(result => {
         this.getJobById();
       })
     }
@@ -119,7 +120,7 @@ export class VacancyDetailComponent implements OnInit {
     const data = this.assignJobReqDto;
     data.candidateEmail = this.userEmail;
     data.jobId = this.idJob;
-    this.jobService.assignJobCandidate(data).subscribe(result => {
+    firstValueFrom(this.jobService.assignJobCandidate(data)).then(result => {
       this.getJobById();
       this.visibleAssignJob=false;
     })
