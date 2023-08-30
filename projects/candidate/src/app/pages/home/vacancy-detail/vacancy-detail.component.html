@@ -1,11 +1,17 @@
-<pre>{{ job|json }}</pre>
-<pre>{{ idJob|json }}</pre>
+<!-- <pre>{{ job|json }}</pre>
+<pre>{{ idJob|json }}</pre> -->
 <!-- <pre>{{ company|json }}</pre> -->
 <div class="home-container">
   <div class="container grid grid-nogutter justify-content-center">
     <div class="sub-container grid col-12 md:col-10 mt-3 justify-content-center">
-      <div class="col-10 md:col-3 text-center">
-        <img src="{{ job.companyPhoto|urlCandidate }}" alt="Image" class="w-full">
+      <div class="banner col-12">
+      </div>
+      <!-- <div class="company-profile grid grid-nogutter jsut">
+      </div> -->
+      <div class="company-profile grid grid-nogutter col-10 md:col-3 justify-content-center align-items-center">
+        <div class="col-12">
+          <img src="{{ job.companyPhoto|urlCandidate }}" alt="Image" class="w-10rem border-orange-300 surface-overlay border-3 border-round">
+        </div>
       </div>
       <div class="title col-10 md:col-7 grid">
         <span class="col-12 text-3xl">{{ job.jobTitle }}</span>
@@ -35,20 +41,20 @@
             <span>{{ job.updatedAt }} Diperbaharui 3 hari yang lalu</span>
           </small>
         </div>
-        <div class="button grid col-12 gap-3 text-center">
-          <p-button *ngIf="!job.isApply" styleClass="p-button-raised p-button-text" class="col-12 md:col-3 text-center" (click)="assignJob(job.id)">
+        <div class="button grid col-12 gap-3 justify-content-evenly">
+          <p-button *ngIf="!job.isApply" styleClass="p-button-raised p-button-text" class="col-5 md:col-3 text-center" (click)="assignJob(job.id)">
             <span class="col-12">
             <i class="pi pi-envelope"></i> Apply Now</span>
           </p-button>
-          <p-button *ngIf="job.isApply" styleClass="p-button-raised p-button-text" class="col-12 md:col-3 text-center p-disabled">
+          <p-button *ngIf="job.isApply" styleClass="p-button-raised p-button-text" class="col-5 md:col-3 text-center p-disabled">
             <span class="col-12">
             <i class="pi pi-envelope"></i> Apply Now</span>
           </p-button>
-          <p-button *ngIf="!job.isBookmark"  styleClass="p-button-raised p-button-text" class="col-12 md:col-3 text-center" (click)="changeSaveJob(job.id,job.isBookmark,job.saveJobId)">
+          <p-button *ngIf="!job.isBookmark"  styleClass="p-button-raised p-button-text" class="col-5 md:col-3 text-center" (click)="changeSaveJob(job.id,job.isBookmark,job.saveJobId)">
             <span class="col-12">
             <i class="pi pi-heart size"></i> Save Job</span>
           </p-button>
-          <p-button *ngIf="job.isBookmark" styleClass="p-button-raised p-button-text" class="col-12 md:col-3 text-center" (click)="changeSaveJob(job.id,job.isBookmark,job.saveJobId)">
+          <p-button *ngIf="job.isBookmark" styleClass="p-button-raised p-button-text" class="col-5 md:col-3 text-center" (click)="changeSaveJob(job.id,job.isBookmark,job.saveJobId)">
             <span class="col-12">
             <i class="pi pi-heart-fill text-red-500"></i> Save Job</span>
           </p-button>
