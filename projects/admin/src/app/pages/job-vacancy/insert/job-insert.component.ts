@@ -155,7 +155,7 @@ export class JobInsertComponent implements AfterViewChecked {
   }
 
   insertAll() {
-    this.jobInsertReqDto.get('description')?.setValue(this.cleanText)
+    // this.jobInsertReqDto.get('description')?.setValue(this.cleanText)
     const data = this.jobInsertReqDto.getRawValue()
     firstValueFrom(this.jobService.insertJob(data)).then(result => {
       this.router.navigateByUrl('/job-vacancies')
@@ -207,7 +207,8 @@ export class JobInsertComponent implements AfterViewChecked {
     return this.visibleTest = value
   }
 
-  cleanString(){
-    this.cleanText = this.editor.el.nativeElement.innerText
-  }
+  // cleanString(){
+  //   this.cleanText = this.editor.el.nativeElement.
+                // (ngModelChange)="cleanString()" put on your html
+  // }
 }

@@ -52,4 +52,9 @@ export class UserListComponent implements OnInit {
     this.userIsActiveReqDto.get("isActive")?.setValue(value)
   }
 
+  switchIsActive(event: MouseEvent, user: any){
+    event.stopPropagation()
+    this.setActive(user.userId, !user.isActive)
+  }
+
 }

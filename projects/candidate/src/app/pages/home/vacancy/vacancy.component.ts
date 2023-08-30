@@ -97,7 +97,7 @@ export class VacancyComponent implements OnInit {
     const data = this.searchJobReqDto.getRawValue();
     this.firstData = start;
     data.userId=this.userId;
-    this.jobService.getAllWithPagination(start,end,data).subscribe(result => {
+    firstValueFrom(this.jobService.getAllWithPagination(start,end,data)).then(result => {
       this.jobs = result;
     })
   }
@@ -106,7 +106,7 @@ export class VacancyComponent implements OnInit {
     const data = this.searchJobReqDto.getRawValue();
     data.userId=this.userId;
     this.lengthData=0;
-    this.jobService.getAll(data).subscribe(result => {
+    firstValueFrom(this.jobService.getAll(data)).then(result => {
       this.jobs = result;
       this.lengthData=result.length;
     })
@@ -115,7 +115,7 @@ export class VacancyComponent implements OnInit {
   getAllJobWithPagination(){
     const data = this.searchJobReqDto.getRawValue();
     data.userId=this.userId;
-    this.jobService.getAllWithPagination(this.firstData,this.dataPerRow,data).subscribe(result => {
+    firstValueFrom(this.jobService.getAllWithPagination(this.firstData,this.dataPerRow,data)).then(result => {
       this.jobs = result;
     })
   }
@@ -123,13 +123,13 @@ export class VacancyComponent implements OnInit {
   getAllJobIndustryWithPagination(){
     const data = this.searchJobReqDto.getRawValue();
     data.userId=this.userId;
-    this.jobService.getAllByIndustryWithPagination(this.firstData,this.dataPerRow,this.industryId).subscribe(result => {
+    firstValueFrom(this.jobService.getAllByIndustryWithPagination(this.firstData,this.dataPerRow,this.industryId)).then(result => {
       this.jobs = result;
     })
   }
 
   getAllJobsIndustry() {
-    this.jobService.getAllByIndustry(this.industryId).subscribe(result => {
+    firstValueFrom(this.jobService.getAllByIndustry(this.industryId)).then(result => {
       this.jobs = result;
       this.lengthData=result.length;
     })
@@ -137,7 +137,7 @@ export class VacancyComponent implements OnInit {
 
   getAllJobsByEmploymentType(){
     const data = this.searchJobReqDto.getRawValue();
-    this.jobService.getAll(data).subscribe(result => {
+    firstValueFrom(this.jobService.getAll(data)).then(result => {
       this.lengthData=result.length;
      this.getAllJobWithPagination();
     })
@@ -145,7 +145,7 @@ export class VacancyComponent implements OnInit {
 
   getAllJobsBySalary(){
     const data = this.searchJobReqDto.getRawValue();
-    this.jobService.getAll(data).subscribe(result => {
+    firstValueFrom(this.jobService.getAll(data)).then(result => {
       this.lengthData=result.length;
      this.getAllJobWithPagination();
     })
@@ -187,11 +187,11 @@ export class VacancyComponent implements OnInit {
     this.saveJobReqDto.jobId = jobId;
     event.stopPropagation();
     if(isBookMark){
-      this.jobService.deleteSaveJob(saveJobId).subscribe(result => {
+      firstValueFrom(this.jobService.deleteSaveJob(saveJobId)).then(result => {
         this.getAllJobWithPagination();
       })
     }else{
-      this.jobService.insertSaveJob(data).subscribe(result => {
+      firstValueFrom(this.jobService.insertSaveJob(data)).then(result => {
         this.getAllJobWithPagination();
       })
     }

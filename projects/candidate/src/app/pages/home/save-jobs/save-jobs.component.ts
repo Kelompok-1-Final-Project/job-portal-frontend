@@ -38,7 +38,7 @@ export class SaveJobsComponent implements OnInit {
 
   deleteSaveJob(saveJobId:string,event:any){
     event.stopPropagation();
-      this.jobService.deleteSaveJob(saveJobId).subscribe(result => {
+      firstValueFrom(this.jobService.deleteSaveJob(saveJobId)).then(result => {
         this.lengthSaveJobs=this.lengthSaveJobs-1;
         this.getAllJobsWithPagination();
       })
@@ -52,14 +52,14 @@ export class SaveJobsComponent implements OnInit {
   }
 
   getAllJobsWithPagination(){
-    this.jobService.getAllSaveJobsWithPagination(this.firstData,this.dataPerRow,this.userId).subscribe(result => {
+    firstValueFrom(this.jobService.getAllSaveJobsWithPagination(this.firstData,this.dataPerRow,this.userId)).then(result => {
       this.jobs = result
     })
   }
 
   getPagination(start:number,end:number){
     this.firstData = start;
-    this.jobService.getAllSaveJobsWithPagination(start,end,this.userId).subscribe(result => {
+    firstValueFrom(this.jobService.getAllSaveJobsWithPagination(start,end,this.userId)).then(result => {
       this.jobs = result;
     })
   }

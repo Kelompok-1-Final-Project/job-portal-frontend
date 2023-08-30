@@ -1,6 +1,6 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
-import { Title } from "@angular/platform-browser";
+import { DomSanitizer, SafeHtml, Title } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 import { ProgressStatus } from "@constant/progress.enum";
 import { BenefitGetResDto } from "@dto/benefit/benefit.get.res.dto";
@@ -45,6 +45,8 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     listBenefits!: BenefitGetResDto[]
     visibleUpdateNotes: boolean = false
     visibleButtonNotes: boolean = false
+    sanitizedContent: SafeHtml
+    editorContent: string = '<p><strong>Testing</strong></p>'
 
     assessmentInsertReqDto = this.fb.group({
         candidateId: ['', [Validators.required]],
@@ -100,9 +102,11 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         private skillTestService: SkillTestService,
         private fb: NonNullableFormBuilder,
         private cd: ChangeDetectorRef,
-        private benefitService: BenefitService
+        private benefitService: BenefitService,
+        private sanitizer: DomSanitizer
     ) {
         this.title.setTitle('Job Detail | Job Portal Admin')
+        this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.editorContent)
     }
 
     ngOnInit(): void {
@@ -297,7 +301,7 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         })
     }
 
-    isQuestion(){
-        return this.test!=null       
+    isQuestion() {
+        return this.test != null
     }
 }
