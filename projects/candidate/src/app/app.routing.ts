@@ -5,7 +5,7 @@ import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { NotFoundComponent } from "@component/not-found/not-found.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { authValidation } from "projects/base/src/app/validation/auth.validation";
+import { authValidation, authValidationNonLogin } from "projects/base/src/app/validation/auth.validation";
 import { BaseModule } from "@component/base/base.module";
 import { ButtonComponent } from "@component/button/button.component";
 import { UrlPipeCandidate } from "@pipes/url.pipe";
@@ -19,39 +19,43 @@ const routes : Routes = [
     {
         component : LoginComponent,
         path : 'login',
-        // canMatch : [ authValidation ]
+        canMatch : [ authValidation ]
     },
     {
         component : RegisterComponent,
         path : 'register',
-        // canMatch : [ authValidation ]
+        canMatch : [ authValidation ]
     },
     {
         component : TestComponent,
         path : 'tests',
-        // canMatch : [ authValidation ]
+        canMatch : [ authValidationNonLogin ]
     },{
         component : BaseComponent,
         path : 'home',
         loadChildren : () => import ('./pages/home/home.module')
-        .then(c => c.HomeModule)
+        .then(c => c.HomeModule),
+        canMatch : [ authValidationNonLogin ]
     },{
         component : BaseComponent,
         path : 'profile',
         loadChildren : () => import ('./pages/profile/profile.module')
-        .then(c => c.ProfileModule)
+        .then(c => c.ProfileModule),
+        // canMatch : [ authValidationNonLogin ]
     },
     {
         component : BaseComponent,
         path : 'status-progress',
         loadChildren : () => import ('./pages/status-progress/application.module')
-        .then(c => c.ApplicationModule)
+        .then(c => c.ApplicationModule),
+        canMatch : [ authValidationNonLogin ]
     },
     {
         component : BaseComponent,
         path : 'companies',
         loadChildren : () => import ('./pages/company/company.module')
-        .then(c => c.CompanyModule)
+        .then(c => c.CompanyModule),
+        canMatch : [ authValidationNonLogin ]
     },
     {
         path : '',

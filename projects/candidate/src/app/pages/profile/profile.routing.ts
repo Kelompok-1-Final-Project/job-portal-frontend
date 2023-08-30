@@ -21,7 +21,9 @@ import { ChipModule } from "primeng/chip";
 import {CalendarModule} from 'primeng/calendar';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import { UrlPipeCandidate } from "@pipes/url.pipe";
-
+import { ChangePasswordComponent } from "./change-password/change-password.component";
+import { PasswordModule } from 'primeng/password';
+import { ButtonComponent } from "@component/button/button.component";
 
 
 
@@ -29,12 +31,17 @@ const routes : Routes = [
     {
         path : '',
         component : ProfileDetailComponent
+    },
+    {
+        path : 'change-password',
+        component : ChangePasswordComponent
     }
 ];
 
 @NgModule({
     declarations : [
         ProfileDetailComponent,
+        ChangePasswordComponent
     ],
     imports : [
         RouterModule.forChild(routes),
@@ -57,7 +64,9 @@ const routes : Routes = [
         CalendarModule,
         OverlayPanelModule,
         UrlPipeCandidate,
-        FileUploadModule
+        FileUploadModule,
+        ButtonComponent,
+        PasswordModule
     ],
     exports : [
         RouterModule

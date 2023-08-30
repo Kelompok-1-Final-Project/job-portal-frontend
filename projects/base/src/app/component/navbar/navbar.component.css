@@ -28,6 +28,10 @@
   color: #224674;
 }
 
+::ng-deep .p-menubar .p-menuitem.p-highlight > .p-menuitem-content {
+  background-color:#F8F7F3;
+}
+
 ::ng-deep .p-menubar {
   border-radius: 0;
   background-color: #F8F7F3;
