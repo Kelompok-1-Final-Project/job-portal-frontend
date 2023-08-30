@@ -85,7 +85,7 @@
       </div>
       <div class="p-2 md:p-1">
         <div class="grid" *ngFor="let e of educations;let i =index">
-          <div class="col-4 md:col-2 text-gray-500">{{ e.startDate }} - {{ e.endDate }}</div>
+          <div class="col-4 md:col-2 text-gray-500">{{ e.startDate | dateFormatPipe }} - {{ e.endDate | dateFormatPipe }}</div>
           <div class="col-6 md:col-8">
             <div class="font-semibold">{{e.educationName}}
             </div>
@@ -110,7 +110,7 @@
       </div>
       <div class="p-2 md:p-1">
         <div class="grid" *ngFor="let w of workExperience;let i =index">
-          <div class="col-4 md:col-2 text-gray-500">{{ w.startDate }} - {{ w.endDate }}</div>
+          <div class="col-4 md:col-2 text-gray-500">{{ w.startDate | dateFormatPipe }} - {{ w.endDate | dateFormatPipe }}</div>
           <div class="col-6 md:col-8">
             <div class="font-semibold">{{ w.companyName }}</div>
             <div class="text-gray-500">{{ w.positionName }}</div>
@@ -159,7 +159,7 @@
           <div class="col-12 md:col-8">
             <div class="font-bold">{{ o.organizationName }}</div>
             <div class="font-semibold">{{ o.positionName }}</div>
-            <div class="text-gray-500">{{ o.startDate }} - {{ o.endDate }} <span>(10 Bulan)</span></div>
+            <div class="text-gray-500">{{ o.startDate | dateFormatPipe }} - {{ o.endDate | dateFormatPipe }} <span>({{ o.startDate | dateDifference: o.endDate }})</span></div>
             <div class="text-gray-500">{{ o.description }}</div>
           </div>
           <div class="col-12 lg:col-4 mt-4">

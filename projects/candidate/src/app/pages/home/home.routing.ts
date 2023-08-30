@@ -24,8 +24,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { UrlPipeCandidate } from "@pipes/url.pipe";
 import { PaginatorModule } from "primeng/paginator";
-
-
+import { TimeAgoPipe } from "@pipes/time-ago.pipe";
 
 const routes : Routes = [
     {
@@ -74,7 +73,8 @@ const routes : Routes = [
         AutoCompleteModule,
         UrlPipeCandidate,
         PaginatorModule,
-        FileUploadModule
+        FileUploadModule,
+        TimeAgoPipe
     ],
     exports : [
         RouterModule

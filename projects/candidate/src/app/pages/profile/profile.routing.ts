@@ -21,6 +21,8 @@ import { ChipModule } from "primeng/chip";
 import {CalendarModule} from 'primeng/calendar';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import { UrlPipeCandidate } from "@pipes/url.pipe";
+import { DateFormatPipe } from "@pipes/time-convert";
+import { DateDifference } from "@pipes/date-difference";
 
 
 
@@ -57,7 +59,9 @@ const routes : Routes = [
         CalendarModule,
         OverlayPanelModule,
         UrlPipeCandidate,
-        FileUploadModule
+        FileUploadModule,
+        DateFormatPipe,
+        DateDifference
     ],
     exports : [
         RouterModule
