@@ -2,6 +2,7 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BenefitGetResDto } from '@dto/benefit/benefit.get.res.dto';
 import { AssignJobReqDto } from '@dto/candidateprogress/candidate-assign.get.res.dto';
@@ -29,6 +30,7 @@ export class VacancyDetailComponent implements OnInit {
   job!:JobGetResDto;
   company!:CompanyGetResDto;
   benefits!:BenefitGetResDto[];
+  jobDesc!:SafeHtml;
 
   assignJobReqDto= {
     candidateEmail:'',
@@ -47,7 +49,7 @@ export class VacancyDetailComponent implements OnInit {
     private authService : AuthService,
     private jobService : JobService,
     private companyService : CompanyService,
-    private router : Router
+    private sn : DomSanitizer
   ) {
 
   }
@@ -85,8 +87,13 @@ export class VacancyDetailComponent implements OnInit {
       }
       firstValueFrom(this.companyService.getById(result.companyId)).then(result => {
         this.company = result;
+        this.showJobDescription();
       })
     })
+  }
+
+  showJobDescription(){
+    this.jobDesc = this.sn.bypassSecurityTrustHtml(this.job.description);
   }
 
   getJobByCode() {

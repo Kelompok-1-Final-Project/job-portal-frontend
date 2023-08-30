@@ -16,6 +16,8 @@ export class CompanyService{
     }
 
     getById(id:string):Observable<CompanyDataGetResDto>{
+        console.log("test")
+        console.log(id);
         return this.base.get<CompanyDataGetResDto>(`${BASE_URL_CAN}/companies/detail?id=${id}`)
     }
     
