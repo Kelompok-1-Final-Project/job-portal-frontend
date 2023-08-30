@@ -8,17 +8,6 @@ body{
     padding: 0;
 }
 
-footer{
-    width: 100%;
-    background-color: dodgerblue;
-    position: fixed;
-    height: 4rem;
-    bottom: 0;
-}
-
-footer .social-icon li a:hover{
-    transform: translateY(-2rem);
-}
 
 :root {
     --PRIMARY: #bab893;
