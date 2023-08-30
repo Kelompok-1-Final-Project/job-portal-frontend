@@ -49,6 +49,7 @@ export class AssesmentListComponent implements OnInit {
     const data = this.updateAssessmentNotesReqDto.getRawValue()
     firstValueFrom(this.statusProgressService.updateAssessmentNotes(data)).then(result => {
       this.visibleUpdateNotes = false
+      this.getAssessment()
     })
   }
 

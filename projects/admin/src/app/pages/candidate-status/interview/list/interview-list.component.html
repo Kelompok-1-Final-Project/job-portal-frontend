@@ -36,7 +36,8 @@
 </div>
 
 <!-- Modal Insert Interview Notes-->
-<p-dialog header="Add Interview Notes" [modal]="true" [(visible)]="visibleUpdateNotes" [style]="{ width: '30vw' }">
+<p-dialog header="Add Interview Notes" [modal]="true" [(visible)]="visibleUpdateNotes" [style]="{ width: '30vw' }"
+  [breakpoints]="{'768px': '90vw'}" [draggable]="false">
   <pre>{{interviewUpdateReqDto.value | json}}</pre>
   <form [formGroup]="interviewUpdateReqDto" (ngSubmit)="updateNotes()">
     <div class="grid surface-card border-round-sm border-400">
@@ -47,7 +48,8 @@
         <textarea pInputTextarea type="text" class="col-12 " id="inputName" required formControlName="notes"></textarea>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <app-button btnType="submit" label="Submit" link="/candidate-statuses/interview"></app-button>
+        <app-button btnType="submit" label="Submit" [disabled]="interviewUpdateReqDto.invalid"
+          link="/candidate-statuses/interview"></app-button>
       </div>
     </div>
   </form>

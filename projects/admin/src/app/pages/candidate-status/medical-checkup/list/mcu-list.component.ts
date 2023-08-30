@@ -53,6 +53,7 @@ export class McuListComponent implements OnInit {
     const data = this.medicalUpdateReqDto.getRawValue()
     firstValueFrom(this.statusProgressService.updateMcuFile(data)).then(result =>{
       this.visibleMcu = false
+      this.getMedicalCheckup()
     })
   }
 

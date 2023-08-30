@@ -4,4 +4,6 @@ export interface UserInsertReqDto {
 	roleCode: string
 	userPhone: string
 	genderCode: string
+	file: string
+	ext: string
 }

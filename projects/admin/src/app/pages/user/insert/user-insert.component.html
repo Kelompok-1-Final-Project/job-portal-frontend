@@ -24,10 +24,10 @@
                 aria-describedby="companyNameHelp" required formControlName="fullName">
             </div>
             <div class="col-12 md:col-3">
-              <label for="companyName">Role</label>
+              <label for="companyName">Role<span style="color: red">*</span></label>
             </div>
             <div class="col-12 md:col-9">
-              <p-dropdown [options]="roles" optionValue="roleCode" optionLabel="roleName"
+              <p-dropdown [options]="roles" styleClass="w-full" optionValue="roleCode" optionLabel="roleName"
                 formControlName="roleCode"></p-dropdown>
             </div>
             <div class="col-12 md:col-3">
@@ -41,15 +41,24 @@
               <label for="companyName">Gender</label>
             </div>
             <div class="col-12 md:col-9">
-              <p-dropdown [options]="genders" optionValue="genderCode" optionLabel="genderName"
+              <p-dropdown [options]="genders" styleClass="w-full" optionValue="genderCode" optionLabel="genderName"
                 formControlName="genderCode"></p-dropdown>
+            </div>
+            <div class="col-12 md:col-3">
+              <label for="companyName">File</label>
+            </div>
+            <div class="col-12 md:col-9">
+              <p-fileUpload mode="basic" class="col-12 md:col-9" chooseLabel="Upload" #photo accept="image/*"
+              (onSelect)="photosUpload($event, photo)">
+              </p-fileUpload>
             </div>
           </div>
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
           <app-button classBtn="p-button-secondary" styleBtn="margin-right:0.5rem;" iconBtn="pi pi-angle-double-left"
             label="Back to Previous Menu" btnType="button" link="/users"></app-button>
-          <app-button btnType="submit" classBtn="w-12" link="/users" label="Submit" (clickChange)="insertUser()"></app-button>
+          <app-button btnType="submit" classBtn="w-12" link="/users" label="Submit"
+            (clickChange)="insertUser()"></app-button>
         </div>
       </div>
     </div>

@@ -1,24 +1,24 @@
-<pre>{{userLoginReqDto.value | json}}</pre>
-
 <div class="h-screen flex align-items-center justify-content-center">
     <form [formGroup]="userLoginReqDto" (ngSubmit)="onLogin()" class="grid gy-md-3">
         <div class="col-12 text-center">
+            <img src="../../../assets/images/logo.png" class="w-15rem">
             <h1>Login</h1>
         </div>
         <div class="col-12">
             <label for="email">Email</label>
         </div>
         <div class="col-12">
-            <input class="w-full" type="email" pInputText id="email" formControlName="userEmail" >
+            <input class="w-full" type="email" pInputText id="email" formControlName="userEmail">
         </div>
         <div class="col-12">
             <label for="password">Password</label>
         </div>
         <div class="col-12">
-            <p-password styleClass = "w-full" [inputStyle]="{'width':'100%'}" [toggleMask]="true" id="password" [feedback]="false" formControlName="userPassword"></p-password>
+            <p-password styleClass="w-full" [inputStyle]="{'width':'100%'}" [toggleMask]="true" id="password"
+                [feedback]="false" formControlName="userPassword"></p-password>
         </div>
-        <div class="col-12 mt-2 text-center"> 
-            <app-button classBtn = "w-4" label="Login" [loading] = "loading" btnType = "submit"></app-button>
+        <div class="col-12 mt-2 text-center">
+            <app-button classBtn="w-4" label="Login" [loading]="loading" btnType="submit"></app-button>
         </div>
     </form>
 </div>

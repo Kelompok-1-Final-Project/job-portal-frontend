@@ -4,6 +4,6 @@ export interface UserGetResDto{
 	fullName : string
 	roleName : string
 	userPhone : string
-	userGender : string
+	userGender : string 
 	isActive : boolean
 }
