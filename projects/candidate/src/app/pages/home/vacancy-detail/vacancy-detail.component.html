@@ -36,9 +36,9 @@
         <div class="footer col-12 mt-3">
           <small>
             <i class="pi pi-clock"></i>
-            <span>{{ job.createdAt }} Tayang 14 Hari Yang Lalu</span>
+            <span>Created {{ job.createdAt | timeAgo }}</span>
             <span> * </span>
-            <span>{{ job.updatedAt }} Diperbaharui 3 hari yang lalu</span>
+            <span>Updated {{ updatedAt | timeAgo }}</span>
           </small>
         </div>
         <div class="button grid col-12 gap-3 justify-content-evenly">

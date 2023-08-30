@@ -40,6 +40,8 @@ export class VacancyDetailComponent implements OnInit {
     jobId:''
   }
 
+  updatedAt!:String;
+
   constructor(
     private activatedRoute : ActivatedRoute,
     private authService : AuthService,
@@ -74,6 +76,13 @@ export class VacancyDetailComponent implements OnInit {
     firstValueFrom(this.jobService.getById(this.idJob,this.userId)).then(result => {
       this.job = result;
       this.idJob = result.id;
+      console.log(result)
+      if(result.updatedAt != null){
+        this.updatedAt = result.updatedAt
+      }
+      else{
+        this.updatedAt = result.createdAt
+      }
       firstValueFrom(this.companyService.getById(result.companyId)).then(result => {
         this.company = result;
       })
@@ -84,6 +93,12 @@ export class VacancyDetailComponent implements OnInit {
     firstValueFrom(this.jobService.getByCode(this.codeJob,this.userId)).then(result => {
       this.job = result;
       this.idJob = result.id;
+      if(result.updatedAt != null){
+        this.updatedAt = result.updatedAt
+      }
+      else{
+        this.updatedAt = result.createdAt
+      }
       firstValueFrom(this.companyService.getById(result.companyId)).then(result => {
         this.company = result;
       })
