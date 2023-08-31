@@ -46,7 +46,8 @@
           <input pInputText type="text" class="col-12 " id="inputName" required formControlName="skillName">
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <app-button btnType="submit" label="Submit" link="/skills" [disabled]="skillInsertReqDto.invalid"></app-button>
+          <app-button btnType="submit" label="Submit" link="/skills"
+            [disabled]="skillInsertReqDto.invalid"></app-button>
         </div>
       </div>
     </form>
@@ -83,7 +84,7 @@
         <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary">Submit</button>
+        <app-button btnType="submit" iconBtn="pi pi-check" classBtn="p-button-primary" label="Submit"></app-button>
       </div>
     </div>
   </p-dialog>

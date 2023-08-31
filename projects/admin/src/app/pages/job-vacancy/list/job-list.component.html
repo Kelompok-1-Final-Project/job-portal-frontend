@@ -5,16 +5,17 @@
   <div class="card col-12">
     <!-- <div class="grid justify-content-start mb-3 ml-1">
     </div> -->
-    <p-table #dt1 [value]="vacancies" dataKey="vacancies.id" [paginator]="true" [rows]="5"
+    <p-table #table [value]="vacancies" dataKey="vacancies.id" [paginator]="true" [rows]="5"
       [tableStyle]="{ 'min-width': '50rem' }" [showCurrentPageReport]="true"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['vacancies.jobTitle', 'vacancies.companyName']">
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single"
+      [globalFilterFields]="['jobTitle', 'companyName']">
       <ng-template pTemplate="caption">
         <div class="flex">
           <app-button link="create" label="Add Vacancy"></app-button>
           <span class="p-input-icon-left ml-auto">
             <i class="pi pi-search"></i>
-            <input pInputText type="text" (input)="dt1.filterGlobal($event.target ,'contains')"
+            <input #searchInput pInputText type="text" [(ngModel)]="searchText" (input)="table.filterGlobal(searchText ,'contains')"
               placeholder="Search keyword" />
           </span>
         </div>
