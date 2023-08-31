@@ -3,6 +3,7 @@ import {
   OnInit
 } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { JobGetResDto } from '@dto/job/job.get.res.dto';
 import { SaveJobGetResDto } from '@dto/savejob/save-job.get.res.dto';
 import { AuthService } from '@serviceCandidate/auth.service';
@@ -20,10 +21,12 @@ export class SaveJobsComponent implements OnInit {
   lengthSaveJobs:number=0;
   firstData:number=0;
   dataPerRow:number=9;
+  visibleRedirectModal:boolean=false;
 
   constructor(
     private jobService: JobService,
     private authService : AuthService,
+    private router :Router,
     private title: Title,
   ) {}
 
@@ -32,6 +35,9 @@ export class SaveJobsComponent implements OnInit {
 
   ngOnInit(){
     this.userId  = this.authService.getUserId();
+    if(!this.userId){
+      this.router.navigateByUrl('/login');
+    }
     this.getAllJobs();
     this.getAllJobsWithPagination();
   }

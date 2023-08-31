@@ -49,6 +49,7 @@ export class VacancyDetailComponent implements OnInit {
     private authService : AuthService,
     private jobService : JobService,
     private companyService : CompanyService,
+    private router:Router,
     private sn : DomSanitizer
   ) {
 
@@ -69,6 +70,9 @@ export class VacancyDetailComponent implements OnInit {
 
   ngOnInit(){
     this.userId = this.authService.getUserId();
+    if(!this.userId){
+      this.router.navigateByUrl('/login');
+    }
     this.userEmail = this.authService.getUserEmail();
     this.init();
     this.getJobBenefit();
