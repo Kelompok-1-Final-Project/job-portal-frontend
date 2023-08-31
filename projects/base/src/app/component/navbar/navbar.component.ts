@@ -268,13 +268,7 @@ export class NavbarComponent implements OnInit {
       routerLink: "/home/save-jobs",
       icon: 'pi pi-fw pi-heart',
       // visible : this.isAdmin
-    },
-    {
-      label: 'Test Skill',
-      icon: 'pi pi-fw pi-ticket',
-      routerLink: "/tests",
-      // visible : this.isDeveloper
-    },
+    }
     ];
 
     this.itemsCandidateProfile = [{

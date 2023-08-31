@@ -115,6 +115,7 @@ export class VacancyComponent implements OnInit {
   getAllJobWithPagination(){
     const data = this.searchJobReqDto.getRawValue();
     data.userId=this.userId;
+    this.getAllJobs();
     firstValueFrom(this.jobService.getAllWithPagination(this.firstData,this.dataPerRow,data)).then(result => {
       this.jobs = result;
     })

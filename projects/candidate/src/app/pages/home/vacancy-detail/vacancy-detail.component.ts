@@ -7,7 +7,6 @@ import {
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BenefitGetResDto } from '@dto/benefit/benefit.get.res.dto';
-import { AssignJobReqDto } from '@dto/candidateprogress/candidate-assign.get.res.dto';
 import { CompanyGetResDto } from '@dto/company/company.get.res.dto';
 import { JobGetResDto } from '@dto/job/job.get.res.dto';
 import { AuthService } from '@serviceCandidate/auth.service';
