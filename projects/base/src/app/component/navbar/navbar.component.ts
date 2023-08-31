@@ -57,7 +57,7 @@ export class NavbarComponent implements OnInit {
     const profilePhoto = this.authService.getUserPhoto();
     const profile = this.authService.getProfile();
 
-    if (profilePhoto != null) {
+    if (profilePhoto != null&&profilePhoto != '') {
       this.imgUrl = `${BASE_URL_CAN}/files/${profilePhoto}`;
       this.imgUrlAdmin = `${BASE_URL}/files/${profilePhoto}`;
     } else {
@@ -250,12 +250,6 @@ export class NavbarComponent implements OnInit {
       routerLink: "/home/save-jobs",
       icon: 'pi pi-fw pi-heart',
       // visible : this.isAdmin
-    },
-    {
-      label: 'Test Skill',
-      icon: 'pi pi-fw pi-ticket',
-      routerLink: "/tests",
-      // visible : this.isDeveloper
     },
     {
       label: 'Users',
