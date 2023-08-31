@@ -29,16 +29,16 @@ import {
   standalone: true
 })
 export class ButtonComponent {
-  @Input() label = ''
-  @Input() styleBtn = ''
-  @Input() classBtn = ''
-  @Input() btnType = ''
-  @Input() iconBtn = ''
-  @Input() tooltipBtn = ''
-  @Input() tooltipPstn = ''
-  @Input() loading = false
-  @Input() disabled = false
-  @Input() show = true
+    @Input() label = ''
+    @Input() styleBtn = ''
+    @Input() classBtn = ''
+    @Input() btnType = ''
+    @Input() iconBtn = ''
+    @Input() tooltipBtn = ''
+    @Input() tooltipPstn = ''
+    @Input() loading = false
+    @Input() disabled = false
+    @Input() show = true
 
   @Output() clickChange = new EventEmitter < void > ()
 
