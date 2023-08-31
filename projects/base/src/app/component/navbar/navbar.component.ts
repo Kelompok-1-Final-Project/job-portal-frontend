@@ -28,10 +28,10 @@ export class NavbarComponent implements OnInit {
 
   imgUrl!: string;
   imgUrlAdmin!: string;
-  logoWeb!:string;
+  logoWeb!: string;
   roleCode!: string;
-  isAdmin!:boolean;
-  isCandidate!:boolean;
+  isAdmin!: boolean;
+  isCandidate!: boolean;
 
   constructor(
     private authService: AuthService,
@@ -44,32 +44,33 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl("/login");
   }
 
-  login():void {
+  login(): void {
     this.router.navigateByUrl("/login");
   }
 
   // contoh
   items: MenuItem[] | undefined;
-  itemsCandidate : MenuItem[] | undefined;
+  itemsCandidate: MenuItem[] | undefined;
 
   ngOnInit() {
 
     const profilePhoto = this.authService.getUserPhoto();
     const profile = this.authService.getProfile();
-          if (profilePhoto!='') {
-            this.imgUrl = `${BASE_URL_CAN}/files/${profilePhoto}`;
-            this.imgUrlAdmin = `${BASE_URL}/files/${profilePhoto}`;
-          } else {
-            this.imgUrl = '../../../assets/images/avatar.png';
-            this.imgUrlAdmin = '../../../assets/images/avatar.png';
-          }
-    
-    if(profile?.roleCode!=undefined){
-      this.isAdmin=true;
-      this.isCandidate=false;
-    }else{
-      this.isCandidate=true;
-      this.isAdmin=false;
+
+    if (profilePhoto != null) {
+      this.imgUrl = `${BASE_URL_CAN}/files/${profilePhoto}`;
+      this.imgUrlAdmin = `${BASE_URL}/files/${profilePhoto}`;
+    } else {
+      this.imgUrl = '../../../assets/images/avatar.png';
+      this.imgUrlAdmin = '../../../assets/images/avatar.png';
+    }
+
+    if (profile?.roleCode != undefined) {
+      this.isAdmin = true;
+      this.isCandidate = false;
+    } else {
+      this.isCandidate = true;
+      this.isAdmin = false;
     }
     this.logoWeb = '/assets/logo.png';
 
@@ -126,12 +127,6 @@ export class NavbarComponent implements OnInit {
         routerLink: "/skills",
         icon: 'pi pi-fw pi-ticket',
         // visible : this.isPic
-      },
-      {
-        label: 'Skill Test',
-        icon: 'pi pi-fw pi-ticket',
-        routerLink: "/skill-test",
-        // visible : this.isDeveloper
       },
       {
         label: 'Employee',
@@ -232,7 +227,7 @@ export class NavbarComponent implements OnInit {
     ];
 
     // ========================================================
-  
+
     this.itemsCandidate = [{
       label: 'InLook - Home',
       icon: 'pi pi-fw pi-ticket',
@@ -280,7 +275,7 @@ export class NavbarComponent implements OnInit {
         icon: 'pi pi-fw pi-cog',
         routerLink: "/profile/change-password",
       }
-    ]
+      ]
     }
     ];
 
@@ -292,7 +287,7 @@ export class NavbarComponent implements OnInit {
           this.logout();
         }
       });
-    }else{
+    } else {
       this.itemsCandidate.push({
         label: 'Login',
         icon: 'pi pi-fw pi-sign-in',
@@ -300,7 +295,7 @@ export class NavbarComponent implements OnInit {
           this.login();
         }
       });
-    }    
+    }
 
   }
 }

@@ -4,17 +4,13 @@
   </div>
   <div>
     <div class="grid justify-content-end mb-3">
-      <button (click)="assign(3)" pButton pRipple class="p-button-primary mr-3" label="Assign Vacancy"></button>
-      <app-button label="Add Candidate" classBtn="p-button-primary mr-3" link="create"></app-button>
+      <app-button label="Add Candidate" classBtn="p-button-primary mr-3" routerLink="create"></app-button>
     </div>
     <p-table [value]="candidates" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
       [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
       <ng-template pTemplate="header">
         <tr>
-          <th style="width: 4rem">
-            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-          </th>
           <th scope="col">No</th>
           <th scope="col">Email</th>
           <th scope="col">Name </th>
@@ -25,9 +21,6 @@
       </ng-template>
       <ng-template pTemplate="body" let-c let-i="rowIndex">
         <tr pSelectableRow="c" routerLink="detail/{{c.id}}">
-          <td>
-            <p-tableCheckbox [value]="c" binary="true"></p-tableCheckbox>
-          </td>
           <td scope="row">{{ i+1 }}</td>
           <td>{{ c.email}}</td>
           <td>{{ c.fullName }}</td>

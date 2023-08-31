@@ -4,7 +4,7 @@
   </div>
   <div class="card col-9">
     <div class="grid justify-content-end mb-3">
-      <app-button link="new" label="Add City"></app-button>
+      <app-button routerLink="new" label="Add City"></app-button>
     </div>
     <p-table [value]="cities" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
       [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -12,8 +12,8 @@
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>
-          <th scope="col">City Code </th>
-          <th scope="col">City Name</th>
+          <th scope="col">Code </th>
+          <th scope="col">Name</th>
           <th scope="col">Action</th>
         </tr>
       </ng-template>
@@ -23,7 +23,7 @@
           <td>{{ p.cityCode }}</td>
           <td>{{ p.cityName }}</td>
           <td>
-            <app-button link="/cities/update/{{p.cityCode}}" classBtn="p-button-secondary" iconBtn="pi pi-pencil"
+            <app-button routerLink="/cities/update/{{p.cityCode}}" classBtn="p-button-secondary" iconBtn="pi pi-pencil"
               styleBtn="margin-right:0.5rem;" tooltipBtn="Edit" tooltipPstn="top"></app-button>
             <app-button classBtn="p-button-danger" iconBtn="pi pi-trash" tooltipBtn="Delete"
               tooltipPstn="top"></app-button>

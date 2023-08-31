@@ -1,9 +1,9 @@
 <div class="card">
-    <h2>Candidate Detail</h2>
+    <h2>User Detail</h2>
     <app-button classBtn="p-button-secondary" label="Back" iconBtn="pi pi-arrow-left"
-        styleBtn="margin-bottom:0.5rem; margin-right:0.5rem" link="/users"></app-button>
+        styleBtn="margin-bottom:0.5rem; margin-right:0.5rem" routerLink="/users"></app-button>
     <app-button classBtn="p-button-primary" label="Update" iconBtn="pi pi-pencil" styleBtn="margin-bottom:0.5rem"
-        link="/users/update/{{userId}}"></app-button>
+        routerLink="/users/update/{{userId}}"></app-button>
     <p-card>
         <div class="fluid">
             <div class="grid mb-2">
@@ -39,7 +39,7 @@
                     <label for="phoneNumber">Photos</label>
                 </div>
                 <div class="col-4">
-                    <img src="{{detailUser?.userId | urlAdmin}}" alt="">
+                    <img src="{{ detailUser?.fileId | urlAdmin }}" alt="">
                 </div>
                 <div class="col-2 md-6">
                     <label for="phoneNumber">Role</label>
