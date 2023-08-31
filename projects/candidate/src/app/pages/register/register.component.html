@@ -1,35 +1,46 @@
 <div class="grid grid-nogutter h-screen">
-  <div class="col-12 md:col-5 text-center p-5 form-register">
+  <div class="col-12 md:col-5 text-center p-4 form-register">
+    <div class="col-12 grid grid-nogutter justify-content-center">
+      <div class="col-4">
+        <a routerLink="/home">
+          <img src="../../../assets/images/logo.png" class="w-full">
+        </a>
+      </div>
+    </div>
     <form [formGroup]="userInsertReqDto" (ngSubmit)="insert()"
-      class="flex flex-column align-content-center justify-content-center h-full gap-3">
+      class="flex flex-column align-content-center justify-content-center gap-3">
       <div class="text-center">
         <h2>Create An Account</h2>
       </div>
       <div>
-        <label for="email">Email<span style="color: red;">*</span></label>
+        <label for="email">Email<span class="text-red-500">*</span></label>
       </div>
       <div>
         <input pInputText type="text" class="form-control col-12" id="email" required formControlName="email">
+        <small class="p-error block mt-1" *ngIf="userInsertReqDto.get('email')?.invalid&&userInsertReqDto.get('email')?.touched">Email Invalid</small>
       </div>
       <div>
-        <label for="fullName">Fullname<span style="color: red;">*</span></label>
+        <label for="fullName">Fullname<span class="text-red-500">*</span></label>
       </div>
       <div>
         <input pInputText type="text" class="form-control col-12" id="fullName" required formControlName="fullname">
+        <small class="p-error block mt-1" *ngIf="userInsertReqDto.get('fullname')?.invalid&&userInsertReqDto.get('fullname')?.touched">Fullname Required</small>
       </div>
       <div>
-        <label for="password">Password</label>
+        <label for="password">Password<span class="text-red-500">*</span></label>
       </div>
       <div>
         <p-password styleClass="w-full" [inputStyle]="{'width':'100%'}" [toggleMask]="true" id="password"
           [feedback]="true" formControlName="pass">
         </p-password>
+        <small class="p-error block mt-1" *ngIf="userInsertReqDto.get('pass')?.invalid&&userInsertReqDto.get('pass')?.touched">Password Required</small>
       </div>
       <div>
-        <app-button classBtn="w-4 surface-900 text-100" label="Register" [loading]="loading" btnType="submit"></app-button>
+        <app-button classBtn="w-4 surface-900 text-100" label="Register" [loading]="loading" btnType="submit" [disabled]="userInsertReqDto.invalid">
+        </app-button>
       </div>
       <div>
-        <a routerLink="/login">
+        <a routerLink="/login" style="text-decoration: none;" class="text-primary-500">
           Already have an account? Login!
         </a>
       </div>

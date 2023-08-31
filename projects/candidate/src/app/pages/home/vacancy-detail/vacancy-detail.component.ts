@@ -30,6 +30,7 @@ export class VacancyDetailComponent implements OnInit,AfterViewChecked {
   param!:string;
   idCompany!:string;
   job!:JobGetResDto;
+  linkTo!:string;
   company!:CompanyGetResDto;
   benefits!:BenefitGetResDto[];
   jobDesc!:SafeHtml;
@@ -63,9 +64,11 @@ export class VacancyDetailComponent implements OnInit,AfterViewChecked {
       this.param = String(Object.values(param));
       if(this.param.length==5){
         this.codeJob = this.param;
+        this.linkTo = '/status-progress'
         this.getJobByCode();
       }else if(this.param.length==36){
         this.idJob = this.param;
+        this.linkTo = '/home/job'
         this.getJobById();
       }
     })

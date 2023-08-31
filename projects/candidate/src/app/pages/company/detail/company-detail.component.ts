@@ -24,7 +24,8 @@ import { firstValueFrom } from 'rxjs';
 export class CompanyDetailComponent implements OnInit {
 
   idCompany: string=``;
-  companyData!: CompanyDataGetResDto; 
+  companyData!: CompanyDataGetResDto;
+  linkTo!:string; 
 
   constructor(
     private companyService: CompanyService,
@@ -49,6 +50,7 @@ export class CompanyDetailComponent implements OnInit {
 
   ngOnInit() {
     this.init();
+    this.linkTo = '/companies'
   }
 
 }

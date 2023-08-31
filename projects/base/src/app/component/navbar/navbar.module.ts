@@ -4,6 +4,8 @@ import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { MenubarModule } from 'primeng/menubar';
 import { OverlayPanelModule } from "primeng/overlaypanel";
+import { AvatarModule } from "primeng/avatar";
+import { AvatarGroupModule } from 'primeng/avatargroup';
 import { MenuModule } from 'primeng/menu';
 
 @NgModule({
@@ -17,6 +19,9 @@ import { MenuModule } from 'primeng/menu';
         MenuModule
     ],
     exports: [
+        AvatarModule,
+        AvatarGroupModule,
+        MenuModule
         NavbarComponent
     ]
 })
