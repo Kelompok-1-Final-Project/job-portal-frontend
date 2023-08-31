@@ -56,6 +56,7 @@ export class NavbarComponent implements OnInit {
 
     const profilePhoto = this.authService.getUserPhoto();
     const profile = this.authService.getProfile();
+
     if (profilePhoto != null) {
       this.imgUrl = `${BASE_URL_CAN}/files/${profilePhoto}`;
       this.imgUrlAdmin = `${BASE_URL}/files/${profilePhoto}`;

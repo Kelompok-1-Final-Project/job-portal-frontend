@@ -7,6 +7,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import {
+  FormControl,
   NonNullableFormBuilder, Validators
 } from '@angular/forms';
 import {
@@ -84,6 +85,7 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
   marital!:MaritalGetResDto[];
   gender!:GenderGetResDto[];
   personType!:PersonTypeGetResDto[];
+  birthdateTemp!:Date;
 
 
   candidateUpdateReqDto = this.fb.group({
@@ -92,6 +94,7 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     fullName: ['', [Validators.required]],
     email: ['',[Validators.required]],
     birthdate: ['', [Validators.required]],
+    birthdateTemp: new FormControl<Date | null>(null),
     mobileNumber: ['', [Validators.required]],
     photoExt: ['', [Validators.required]],
     photoFiles: ['', [Validators.required]],
@@ -101,22 +104,22 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
   })
 
   educationInsertReqDto = this.fb.group({
-    candidateId: ['', [Validators.required]],
+    candidateId: [''],
     educationName: ['', [Validators.required]],
-    startDate: [''],
-    endDate: ['']
+    startDate: ['',[Validators.required]],
+    endDate: ['',[Validators.required]]
   })
 
   educationUpdateReqDto = this.fb.group({
     educationId: ['', [Validators.required]],
     candidateId: ['', [Validators.required]],
     educationName: ['', [Validators.required]],
-    startDate: [''],
-    endDate: ['']
+    startDate: ['', [Validators.required]],
+    endDate: ['', [Validators.required]]
   })
 
   workExperienceInsertReqDto = this.fb.group({
-    candidateId: ['', [Validators.required]],
+    candidateId: [''],
     companyName: ['', [Validators.required]],
     positionName: ['', [Validators.required]],
     startDate: ['', [Validators.required]],
@@ -139,7 +142,7 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
   })
 
   organizationInsertReqDto = this.fb.group({
-    candidateId: ['', [Validators.required]],
+    candidateId: [''],
     organizationName: ['', [Validators.required]],
     positionName: ['', [Validators.required]],
     startDate: ['', [Validators.required]],
@@ -158,7 +161,7 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
   })
 
   familyInsertReqDto = this.fb.group({
-    userId:['', [Validators.required]],
+    userId:[''],
 	  familyName : ['', [Validators.required]],
 	  relationshipCode : ['', [Validators.required]],
 	  degreeCode : ['', [Validators.required]],
@@ -175,13 +178,13 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
   })
 
   cvUpdateReqDto = this.fb.group({
-    candidateId:['', [Validators.required]],
+    candidateId:[''],
     file:['', [Validators.required]],
     ext:['', [Validators.required]]
   })
 
   summaryUpdateReqDto = this.fb.group({
-    candidateId:['', [Validators.required]],
+    candidateId:[''],
     summary:['', [Validators.required]]
   })
 
@@ -233,7 +236,6 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     this.candidateUpdateReqDto.get('mobileNumber')?.setValue(this.userData.phone);
     this.candidateUpdateReqDto.get('idNumber')?.setValue(this.userData.idNumber);
     this.candidateUpdateReqDto.get('expectedSalary')?.setValue(this.userData.expectedSalary);
-    this.candidateUpdateReqDto.get('birthdate')?.setValue(this.userData.birthdate);
     this.candidateUpdateReqDto.get('genderCode')?.setValue(this.userData.genderCode);
     this.candidateUpdateReqDto.get('maritalStatusCode')?.setValue(this.userData.maritalStatusCode);
   }
@@ -554,7 +556,6 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     data.candidateId = this.userId;
     this.profileService.updateCv(data).subscribe(result => {
       this.visibleUpdateCv = false;
-      console.log(data);
       this.getCandidateData();
     })
   }
