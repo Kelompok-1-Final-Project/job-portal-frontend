@@ -1,8 +1,8 @@
 <!-- home.component.html -->
 <!-- <pre>{{ industryId|json }}</pre> -->
-<pre>{{ jobs | json }}</pre>
+<!-- <pre>{{ jobs | json }}</pre> -->
 <!-- <pre>{{ locations | json }}</pre> -->
-<pre>{{ searchJobReqDto.value|json }}</pre>
+<!-- <pre>{{ searchJobReqDto.value|json }}</pre> -->
 <div class="home-container">
   <!-- Search Options -->
   <form [formGroup]="searchJobReqDto" (ngSubmit)="getAllJobWithPagination()">
@@ -11,7 +11,7 @@
         <h4 class="text-dark col-10 -mb-3">
           Search Vacancy
         </h4>
-        <div class="search-options grid col-12 justify-content-between mt-3">
+        <div class="search-options grid grid-nogutter col-12 justify-content-between mt-3">
           <div class="col-12 md:col-4 md:-ml-2">
             <input pInputText type="text" placeholder="Search Job" formControlName="jobName" [style]="{'width':'100%'}">
           </div>
@@ -28,7 +28,7 @@
             </p-dropdown>
           </div>
           <div class="col-12 text-center md:col-1">
-            <button type="submit" pButton pRipple class="p-button-primary">
+            <button type="submit" pButton pRipple class="p-button-primary" class="w-full">
               <i class="pi pi-search m-1"></i> Cari
             </button>
           </div>

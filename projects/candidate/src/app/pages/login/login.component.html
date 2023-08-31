@@ -8,6 +8,13 @@
     </div>
     <div class="col-12 md:col-5 p-5 form-login">
         <form [formGroup]="userLoginReqDto" class="flex flex-column align-content-center justify-content-center h-full gap-3" (ngSubmit)="onLogin()">
+            <div class="col-12 grid grid-nogutter justify-content-center">
+                <div class="col-4">
+                    <a routerLink="/home">
+                        <img src="../../../assets/images/logo.png" class="w-full">
+                    </a>
+                </div>
+            </div>
             <div>
                 <h1>Login</h1>
             </div>
@@ -29,9 +36,8 @@
             <div class="text-center">
                 <app-button classBtn="w-4 surface-900 text-100" label="Login" [loading]="loading" btnType="submit" [disabled]="userLoginReqDto.invalid"></app-button>
             </div>
-            <div class="text-center">
-                <span>Don't have account? </span>
-                <a routerLink="/register">Sign Up</a>
+            <div class="text-center text-primary-500">
+                <a routerLink="/register" style="text-decoration: none;" class="text-primary-500">Don't have account? Sign Up</a>
             </div>
         </form>
     </div>

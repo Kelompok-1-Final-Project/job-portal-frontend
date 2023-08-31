@@ -18,11 +18,10 @@ export const authValidationNonLogin = (route: Route, segments: UrlSegment[]) => 
     const profile = auth.getProfile();
     const router = inject(Router);
 
-    // if (!profile) {
-    //     router.navigateByUrl('/login')
-    // } 
-    
-    // return true
+    if (!profile) {
+        router.navigateByUrl('/login')
+    } 
+    return true
 }
 
 export const authValidationTest = (route: Route, segments: UrlSegment[]) => {
