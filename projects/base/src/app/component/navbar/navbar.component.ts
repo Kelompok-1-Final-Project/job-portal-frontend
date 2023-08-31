@@ -32,6 +32,7 @@ export class NavbarComponent implements OnInit {
   roleCode!: string;
   isAdmin!: boolean;
   isCandidate!: boolean;
+  adminProfiles: MenuItem[] | undefined;
 
   constructor(
     private authService: AuthService,
@@ -201,7 +202,7 @@ export class NavbarComponent implements OnInit {
       items: [{
         label: 'Profile',
         icon: 'pi pi-fw pi-user',
-        routerLink: "/users/profile",
+        routerLink: "/users/profiles",
       },
       {
         label: 'Change Password',
@@ -225,6 +226,29 @@ export class NavbarComponent implements OnInit {
       }
     }
     ];
+
+    this.adminProfiles = [
+      {
+          icon: 'pi pi-fw pi-user',
+          items: [
+              {
+                  label: 'Profile',
+                  routerLink: '/users/profile'
+              },
+              {
+                  label: 'Change Password',
+                  routerLink: '/users/change-password'
+              },
+              {
+                  separator: true
+              },
+              {
+                  label: 'Logout',
+                  command: () => (this.logout())
+              }
+          ]
+      }
+  ]
 
     // ========================================================
 

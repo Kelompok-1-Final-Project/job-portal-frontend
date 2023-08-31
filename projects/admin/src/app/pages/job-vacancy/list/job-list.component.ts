@@ -11,10 +11,7 @@ import { firstValueFrom } from "rxjs";
   selector: 'job-list',
   templateUrl: './job-list.component.html'
 })
-export class JobListComponent implements OnInit, AfterViewInit {
-
-  @ViewChild('dt1') dt1!: Table;
-  @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
+export class JobListComponent implements OnInit {
 
   visibleAssign: boolean = false;
   vacancies!: JobAdminGetResDto[]

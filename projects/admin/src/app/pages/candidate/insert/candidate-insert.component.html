@@ -46,7 +46,7 @@
           </div>
           <div class="col-12 md:col-9">
             <p-dropdown [options]="gender" optionValue="genderCode" optionLabel="genderName"
-              formControlName="genderCode"></p-dropdown>
+              formControlName="genderCode" styleClass="w-full"></p-dropdown>
           </div>
           <div class="col-12 md:col-3">
             <label for="formFile">Upload CV</label>
@@ -61,7 +61,7 @@
             <label for="companyName">Expected Salary</label>
           </div>
           <div class="col-6 md:col-9">
-            <input pInputText type="text" class="form-control col-5" id="companyName" aria-describedby="companyNameHelp"
+            <input pInputText type="number" class="form-control col-5" id="companyName" aria-describedby="companyNameHelp"
               required formControlName="expectedSalary">
           </div>
           <div class="col-12 md:col-3">
@@ -74,15 +74,15 @@
             <label for="companyName">Marital Status</label>
           </div>
           <div class="col-12 md:col-9">
-            <p-dropdown [options]="marital" optionValue="maritalStatusCode" optionLabel="maritalStatusName"
-              formControlName="maritalStatusCode">
+            <p-dropdown [options]="marital" optionValue="maritalStatusCode" styleClass="w-full"
+              optionLabel="maritalStatusName" formControlName="maritalStatusCode">
             </p-dropdown>
           </div>
           <div class="col-12 md:col-3">
             <label for="companyName">Person Type</label>
           </div>
           <div class="col-12 md:col-9">
-            <p-dropdown [options]="personType" optionValue="typeCode" optionLabel="typeName"
+            <p-dropdown [options]="personType" styleClass="w-full" optionValue="typeCode" optionLabel="typeName"
               formControlName="personTypeCode"></p-dropdown>
           </div>
           <div class="col-12 md:col-3">

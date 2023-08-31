@@ -4,11 +4,20 @@
   </div>
   <div class="card col-9">
     <div class="grid justify-content-end mb-3">
-      <app-button label="Add Skill" link="/skills" classBtn="p-button-primary" (clickChange)="add()"></app-button>
     </div>
-    <p-table [value]="skills" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+    <p-table #skill [value]="skills" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
       [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['skillName']">
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <app-button label="Add Skill" link="/skills" classBtn="p-button-primary" (clickChange)="add()"></app-button>
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input #searchInput pInputText type="text" [(ngModel)]="search"
+              (input)="skill.filterGlobal(search ,'contains')" placeholder="Search keyword" />
+          </span>
+        </div>
+      </ng-template>
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>

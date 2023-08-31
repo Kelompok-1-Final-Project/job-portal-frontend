@@ -12,6 +12,9 @@ import { UserUpdateComponent } from "./update/user-update.component";
 import { UserInsertComponent } from "./insert/user-insert.component";
 import { TagModule } from 'primeng/tag';
 import { UserDetailComponent } from "./detail/user-detail.component";
+import { UserProfilesComponent } from "./profiles/user-profiles.component";
+import { FileUploadModule } from "primeng/fileupload";
+import { UpdateProfilesComponent } from "./update-profiles/update-profiles.component";
 
 const routes : Routes = [
     {
@@ -29,6 +32,14 @@ const routes : Routes = [
     {
         path: 'detail/:id',
         component: UserDetailComponent
+    },
+    {
+        path: 'profiles',
+        component: UserProfilesComponent
+    },
+    {
+        path: 'profiles/update/:id',
+        component: UpdateProfilesComponent
     }
 ]
 
@@ -37,7 +48,9 @@ const routes : Routes = [
         UserInsertComponent,
         UserUpdateComponent,
         UserListComponent,
-        UserDetailComponent
+        UserDetailComponent,
+        UserProfilesComponent,
+        UpdateProfilesComponent
     ],
     imports :[
         RouterModule.forChild(routes),

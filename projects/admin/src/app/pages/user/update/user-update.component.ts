@@ -84,7 +84,7 @@ export class UserUpdateComponent implements OnInit, AfterViewChecked {
   updateUser() {
     const data = this.userUpdateReqDto.getRawValue()
     firstValueFrom(this.userService.update(data)).then(result => {
-      // this.router.navigateByUrl('/users/detail/{{this.userId}}')
+      this.router.navigate(['/users/detail/', this.userId])
     })
   }
 

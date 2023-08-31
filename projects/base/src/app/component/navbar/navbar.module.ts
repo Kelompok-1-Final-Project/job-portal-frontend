@@ -3,20 +3,24 @@ import { NavbarComponent } from "./navbar.component";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { MenubarModule } from 'primeng/menubar';
+import { OverlayPanelModule } from "primeng/overlaypanel";
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
-    declarations : [
+    declarations: [
         NavbarComponent
-    ],imports :[
+    ], imports: [
         RouterModule,
         CommonModule,
-        MenubarModule
-    ], 
-    exports : [
+        MenubarModule,
+        OverlayPanelModule,
+        MenuModule
+    ],
+    exports: [
         NavbarComponent
     ]
 })
 
-export class NavbarModule{
+export class NavbarModule {
 
 }

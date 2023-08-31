@@ -1,9 +1,12 @@
 <div class="card">
-  <p-menubar  *ngIf="isAdmin" [model]="items">
+  <p-menubar *ngIf="isAdmin" [model]="items">
     <ng-template pTemplate="start">
       <img src="../../../assets/images/logo.png" height="60" class="mx-2 cursor-pointer logo" routerLink="/home" />
     </ng-template>
     <ng-template pTemplate="end">
+      <p-overlayPanel #op>
+        <p-menu [model]="adminProfiles"></p-menu>
+      </p-overlayPanel>
       <img [src]="imgUrlAdmin" height="40" class="bg-center w-3rem h-3rem border-round" />
     </ng-template>
   </p-menubar>

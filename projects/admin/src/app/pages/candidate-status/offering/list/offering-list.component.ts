@@ -17,6 +17,7 @@ export class OfferingListComponent implements OnInit {
   visibleUpdateStatus: boolean = false;
   offering!: OfferingGetResDto[]
   userId!: string
+  search: string = ''
 
   constructor(
     private statusProgressService: StatusProgressService,

@@ -14,6 +14,7 @@ export class ApplicationListComponent implements OnInit {
   visibleUpdateStatus: boolean = false;
   application!: ApplicationGetResDto[]
   userId!: string
+  search: string = ''
 
   constructor(
     private title: Title,

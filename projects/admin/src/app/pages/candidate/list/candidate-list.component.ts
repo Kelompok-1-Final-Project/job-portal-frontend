@@ -28,6 +28,7 @@ export class CandidateListComponent implements OnInit {
   visibleAssign: boolean = false;
   candidates!: CandidateGetResDto[]
   selectedCandidates!: Candidates;
+  searchText: string = ''
   vacancies: Vacancies[] = [
     {
       code: 'C001',

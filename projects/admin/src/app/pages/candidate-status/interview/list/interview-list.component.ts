@@ -17,6 +17,7 @@ export class InterviewListComponent implements OnInit {
 
   visibleUpdateNotes: boolean = false;
   userId!:string
+  search: string = ''
 
   interviewUpdateReqDto = this.fb.group({
     interviewId: ['', [Validators.required]],

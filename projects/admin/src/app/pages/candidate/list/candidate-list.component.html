@@ -3,12 +3,19 @@
     <h3 class="text-center">Table Candidate List</h3>
   </div>
   <div>
-    <div class="grid justify-content-end mb-3">
-      <app-button label="Add Candidate" classBtn="p-button-primary mr-3" routerLink="create"></app-button>
-    </div>
-    <p-table [value]="candidates" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+    <p-table #candidate [value]="candidates" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
       [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['fullName', 'email']">
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <app-button label="Add Candidate" classBtn="p-button-primary mr-3" routerLink="create"></app-button>
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input #searchInput pInputText type="text" [(ngModel)]="searchText"
+              (input)="candidate.filterGlobal(searchText ,'contains')" placeholder="Search keyword" />
+          </span>
+        </div>
+      </ng-template>
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>

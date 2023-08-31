@@ -12,7 +12,7 @@ import { LoginService } from "@serviceAdmin/login.service";
 export class LoginComponent {
 
     userLoginReqDto = this.fb.group({
-        userEmail: ['', [Validators.required]],
+        userEmail: ['', [Validators.required, Validators.email]],
         userPassword: ['', [Validators.required]]
     })
 

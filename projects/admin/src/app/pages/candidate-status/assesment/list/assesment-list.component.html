@@ -2,10 +2,20 @@
   <div class=" grid justify-content-center col-12">
     <h3 class="text-center">All Assesment Progress</h3>
   </div>
-  <div class="card col-9">
-    <p-table [value]="assesments" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+  <div class="col-12">
+    <p-table #assessment [value]="assesments" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
       [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single"
+      [globalFilterFields]="['candidateName','jobName','hrName']">
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input #searchInput pInputText type="text" [(ngModel)]="search"
+              (input)="assessment.filterGlobal(search ,'contains')" placeholder="Search keyword" />
+          </span>
+        </div>
+      </ng-template>
       <ng-template pTemplate="header">
         <tr>
           <th>No</th>
@@ -36,7 +46,7 @@
 </div>
 
 <!-- Modal Insert Assessment Notes-->
-<p-dialog header="Add Interview Notes" [modal]="true" [(visible)]="visibleUpdateNotes" [style]="{ width: '30vw' }"
+<p-dialog header="Add Assessment Notes" [modal]="true" [(visible)]="visibleUpdateNotes" [style]="{ width: '30vw' }"
   [breakpoints]="{'768px': '90vw'}" [draggable]="false">
   <pre>{{updateAssessmentNotesReqDto.value | json}}</pre>
   <form [formGroup]="updateAssessmentNotesReqDto" (ngSubmit)="insertNotes()">
@@ -48,7 +58,7 @@
         <textarea pInputTextarea type="text" class="col-12 " id="inputName" required formControlName="notes"></textarea>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <app-button btnType="submit" label="Submit" [disabled]="updateAssessmentNotesReqDto.invalid" link="/candidate-statuses/assessment"></app-button>
+        <app-button btnType="submit" label="Submit" [disabled]="updateAssessmentNotesReqDto.invalid"></app-button>
       </div>
     </div>
   </form>
