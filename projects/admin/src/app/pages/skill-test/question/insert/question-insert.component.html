@@ -1,5 +1,3 @@
-<pre>{{ questionsInsertReqDto.value|json }}</pre>
-
 <div class="container">
   <div class="card-container w-screen flex flex-wrap justify-content-center align-items-center"
     style="min-height: 700px">
@@ -52,9 +50,9 @@
               </div>
             </div>
             <div class="col-12 md:col-10 mt-2 text-center md:text-left">
-              <app-button btnType="button" classBtn="p-button-secondary" label="Back" link="/questions"></app-button>
-              <app-button label="Submit" btnType="submit" [disabled]="questionsInsertReqDto.invalid" link="/questions"
-                (clickChange)="onSubmit()"></app-button>
+              <app-button btnType="button" classBtn="p-button-secondary" label="Back"
+                routerLink="/questions"></app-button>
+              <app-button label="Submit" btnType="submit" [disabled]="questionsInsertReqDto.invalid"></app-button>
             </div>
           </div>
         </form>

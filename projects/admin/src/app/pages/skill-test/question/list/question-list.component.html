@@ -4,7 +4,7 @@
   </div>
   <div class="card col-12">
     <div class="grid justify-content-end mb-3">
-      <app-button link="create" label="Add Question"></app-button>
+      <app-button routerLink="create" label="Add Question" classBtn="mr-2"></app-button>
     </div>
     <p-table [value]="questions" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
       [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -21,7 +21,8 @@
           <td scope="row">{{ i+1 }}</td>
           <td>{{ question.question }}</td>
           <td>
-            <app-button iconBtn="pi pi-trash" classBtn="p-button-danger" tooltipBtn="Delete" tooltipPstn="top"></app-button>
+            <app-button iconBtn="pi pi-trash" classBtn="p-button-danger" tooltipBtn="Delete"
+              tooltipPstn="top"></app-button>
           </td>
         </tr>
       </ng-template>

@@ -25,7 +25,7 @@ export class CandidateDetailComponent implements OnInit {
     candidateId!: string
     visibleExperience: boolean = false
     visibleFamily: boolean = false
-    candidateProfile!: CandidateProfileGetResDto
+    candidateProfile?: CandidateProfileGetResDto
     organizations!: OrganizationGetResDto[]
     skills!: UserSkillAdminGetResDto[]
     educations!: EducationGetResDto[]

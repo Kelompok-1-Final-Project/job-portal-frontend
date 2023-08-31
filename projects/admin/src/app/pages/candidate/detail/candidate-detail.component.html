@@ -1,9 +1,9 @@
 <div class="card">
     <h2>Candidate Detail</h2>
     <app-button classBtn="p-button-secondary" label="Back" iconBtn="pi pi-arrow-left"
-        styleBtn="margin-bottom:0.5rem; margin-right:0.5rem" link="/candidates"></app-button>
-    <app-button classBtn="p-button-primary" label="Update" iconBtn="pi pi-pencil" styleBtn="margin-bottom:0.5rem"
-        link=""></app-button>
+        styleBtn="margin-bottom:0.5rem; margin-right:0.5rem" routerLink="/candidates"></app-button>
+    <app-button classBtn="p-button-primary" label="Update" iconBtn="pi pi-pencil"
+        styleBtn="margin-bottom:0.5rem"></app-button>
     <p-card>
         <div class="fluid">
             <div class="grid mb-2">
@@ -11,13 +11,13 @@
                     <label for="fullName">Full Name</label>
                 </div>
                 <div class="col-4">
-                    <input class="w-full" pInputText readonly placeholder="{{candidateProfile.fullName}}" type="text">
+                    <input class="w-full" pInputText readonly placeholder="{{candidateProfile?.fullName}}" type="text">
                 </div>
                 <div class="col-2 md-6">
                     <label for="phoneNumber">ID Number</label>
                 </div>
                 <div class="col-4">
-                    <input class="w-full" type="text" pInputText readonly placeholder="{{candidateProfile.idNumber}}">
+                    <input class="w-full" type="text" pInputText readonly placeholder="{{candidateProfile?.idNumber}}">
                 </div>
             </div>
             <div class="grid">
@@ -25,13 +25,13 @@
                     <label for="phoneNumber">Phone Number</label>
                 </div>
                 <div class="col-4">
-                    <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile.phone}}">
+                    <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile?.phone}}">
                 </div>
                 <div class="col-2 md-6">
                     <label for="phoneNumber">Email</label>
                 </div>
                 <div class="col-4">
-                    <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile.email}}">
+                    <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile?.email}}">
                 </div>
             </div>
             <div class="grid">
@@ -40,13 +40,13 @@
                 </div>
                 <div class="col-4">
                     <input type="text" class="w-full" pInputText readonly
-                        placeholder="{{candidateProfile.maritalStatus}}">
+                        placeholder="{{candidateProfile?.maritalStatus}}">
                 </div>
                 <div class="col-2 md-6">
                     <label for="phoneNumber">Phone Number</label>
                 </div>
                 <div class="col-4">
-                    <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile.gender}}">
+                    <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile?.gender}}">
                 </div>
             </div>
             <div class="grid">
@@ -55,13 +55,13 @@
                 </div>
                 <div class="col-4">
                     <input type="text" class="w-full" pInputText readonly
-                        placeholder="{{candidateProfile.expectedSalary}}">
+                        placeholder="{{candidateProfile?.expectedSalary}}">
                 </div>
                 <div class="col-2 md-6">
                     <label for="phoneNumber">Age</label>
                 </div>
                 <div class="col-4">
-                    <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile.age}}">
+                    <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile?.age}}">
                 </div>
             </div>
             <div class="grid">
@@ -73,16 +73,15 @@
                         <app-button iconBtn="pi pi-download" label="{{candidateProfile.photoId}}.pdf"></app-button>
                     </a> -->
                     <div class="col-4">
-                        <img src="{{candidateProfile.photoId | urlAdmin}}" class="w-5rem md:w-full">
+                        <img src="{{candidateProfile?.photoId | urlAdmin}}" class="w-5rem md:w-full">
                     </div>
                 </div>
                 <div class="col-2 md-6">
                     <label for="phoneNumber">CV</label>
                 </div>
                 <div class="col-4">
-                    <a href="{{candidateProfile.cvId | urlAdmin}}" download>
-                        <app-button iconBtn="pi pi-download" label="{{candidateProfile.cvId}}.pdf"
-                            link="/candidates/detail/{{candidateId}}"></app-button>
+                    <a href="{{candidateProfile?.cvId | urlAdmin}}" download>
+                        <app-button iconBtn="pi pi-download" label="{{candidateProfile?.cvId}}.pdf"></app-button>
                     </a>
                 </div>
             </div>
@@ -91,7 +90,7 @@
                     <label for="phoneNumber">Summary</label>
                 </div>
                 <div class="col-4">
-                    <label>{{candidateProfile.summary}}</label>
+                    <label>{{candidateProfile?.summary}}</label>
                 </div>
             </div>
         </div>
@@ -237,7 +236,7 @@
                 <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" label="Submit" link="/candidates/detail/{{candidateId}}"></app-button>
+                <app-button btnType="submit" label="Submit"></app-button>
             </div>
         </div>
     </form>
