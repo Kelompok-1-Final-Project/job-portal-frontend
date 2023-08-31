@@ -17,6 +17,7 @@ export class McuListComponent implements OnInit {
   mcus!: MedicalCheckupGetResDto[]
   visibleMcu: boolean = false
   userId!: string
+  search: string = ''
 
   medicalUpdateReqDto = this.fb.group({
     medicalId: ['', [Validators.required]],

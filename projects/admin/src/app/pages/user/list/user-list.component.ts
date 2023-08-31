@@ -15,6 +15,7 @@ export class UserListComponent implements OnInit {
   users!: UserGetResDto[]
   visibleIsActive: boolean = false
   checked: boolean = false
+  searchText: string = ''
 
   userIsActiveReqDto = this.fb.group({
     userId: ['', [Validators.required]],
@@ -53,7 +54,7 @@ export class UserListComponent implements OnInit {
     this.userIsActiveReqDto.get("isActive")?.setValue(value)
   }
 
-  switchIsActive(event: MouseEvent, user: any){
+  switchIsActive(event: MouseEvent, user: any) {
     event.stopPropagation()
     this.setActive(user.userId, !user.isActive)
   }

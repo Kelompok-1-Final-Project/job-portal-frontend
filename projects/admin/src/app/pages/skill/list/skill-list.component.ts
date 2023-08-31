@@ -17,6 +17,7 @@ export class SkillListComponent implements OnInit {
   visibleUpdate: boolean = false
   skills!: SkillGetResDto[]
   code!: string
+  search: string = ''
 
   skillInsertReqDto = this.fb.group({
     skillName: ['', [Validators.required]]

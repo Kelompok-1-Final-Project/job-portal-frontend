@@ -1,7 +1,7 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { DomSanitizer, SafeHtml, Title } from "@angular/platform-browser";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ProgressStatus } from "@constant/progress.enum";
 import { BenefitGetResDto } from "@dto/benefit/benefit.get.res.dto";
 import { CandidateProgressGetResDto } from "@dto/candidateprogress/candidate-progress.get.res.dto";
@@ -103,7 +103,8 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         private fb: NonNullableFormBuilder,
         private cd: ChangeDetectorRef,
         private benefitService: BenefitService,
-        private sanitizer: DomSanitizer
+        private sanitizer: DomSanitizer,
+        private router: Router
     ) {
         this.title.setTitle('Job Detail | Job Portal Admin')
     }
@@ -299,6 +300,7 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         const data = this.jobBenefitInsertReqDto.getRawValue()
         firstValueFrom(this.jobService.insertJobBenefit(data)).then(result => {
             this.visibleAddBenefit = false
+            this.router.navigate(['/job-vacancies/details/', this.id])
         })
     }
 

@@ -17,6 +17,7 @@ interface Cities {
 export class CityListComponent implements OnInit {
 
   cities!: CityGetResDto[]
+  search: string = ''
 
   constructor(
     private title: Title,

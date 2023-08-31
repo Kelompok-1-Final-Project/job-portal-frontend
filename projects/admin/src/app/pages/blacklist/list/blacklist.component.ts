@@ -11,6 +11,7 @@ import { firstValueFrom } from "rxjs";
 export class BlacklistComponent implements OnInit {
 
   blacklist!: BlacklistGetResDto[]
+  search: string = ''
 
   constructor(
     private blacklistService: BlacklistService,

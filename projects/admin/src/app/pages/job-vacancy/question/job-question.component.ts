@@ -66,7 +66,7 @@ export class JobQuestionComponent implements OnInit {
     insertQuestion(){
         const data = this.insertQuestionReqDto.getRawValue()
         firstValueFrom(this.jobService.insertJobQuestion(data)).then(result =>{
-            this.router.navigateByUrl('/job-vacancies')
+            this.router.navigate(['/job-vacancies/details', this.jobId])
         })
     }
 }

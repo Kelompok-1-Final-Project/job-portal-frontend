@@ -11,6 +11,7 @@ import { firstValueFrom } from "rxjs";
 export class CompanyListComponent implements OnInit {
 
   companies!: CompanyGetResDto[]
+  search: string = ''
 
   constructor(
     private companyService: CompanyService,

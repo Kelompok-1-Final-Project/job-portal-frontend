@@ -16,6 +16,7 @@ export class IndustryListComponent implements OnInit {
   visibleDelete: boolean = false;
   visibleUpdate: boolean = false
   code!: string
+  search: string = ''
 
   industryInsertReqDto = this.fb.group({
     industryName: ['', [Validators.required]]

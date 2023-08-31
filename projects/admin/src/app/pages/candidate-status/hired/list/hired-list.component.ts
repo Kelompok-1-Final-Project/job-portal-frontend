@@ -17,6 +17,7 @@ export class HiredListComponent implements OnInit {
   visibleUpdateStatus:boolean=false;
   hired!: HiredGetResDto[]
   userId!: string
+  search: string = ''
 
   constructor(
     private title: Title,

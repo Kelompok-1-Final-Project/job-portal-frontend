@@ -14,6 +14,7 @@ export class BenefitListComponent implements OnInit {
   visibleAdd: boolean = false;
   visibleUpdate: boolean = false;
   visibleDelete: boolean = false;
+  search: string = ''
 
   benefits!: BenefitGetResDto[]
   code!: string

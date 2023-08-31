@@ -3,20 +3,18 @@
     <h3 class="text-center">Table Job List</h3>
   </div>
   <div class="card col-12">
-    <!-- <div class="grid justify-content-start mb-3 ml-1">
-    </div> -->
     <p-table #table [value]="vacancies" dataKey="vacancies.id" [paginator]="true" [rows]="5"
       [tableStyle]="{ 'min-width': '50rem' }" [showCurrentPageReport]="true"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single"
-      [globalFilterFields]="['jobTitle', 'companyName']">
+      [globalFilterFields]="['jobTitle', 'companyName','employmentName']">
       <ng-template pTemplate="caption">
         <div class="flex">
-          <app-button link="create" label="Add Vacancy"></app-button>
+          <app-button routerLink="create" label="Add Vacancy"></app-button>
           <span class="p-input-icon-left ml-auto">
             <i class="pi pi-search"></i>
-            <input #searchInput pInputText type="text" [(ngModel)]="searchText" (input)="table.filterGlobal(searchText ,'contains')"
-              placeholder="Search keyword" />
+            <input #searchInput pInputText type="text" [(ngModel)]="searchText"
+              (input)="table.filterGlobal(searchText ,'contains')" placeholder="Search keyword" />
           </span>
         </div>
       </ng-template>
@@ -27,7 +25,6 @@
           <th scope="col">Title</th>
           <th scope="col">Salary Start</th>
           <th scope="col">Salary End</th>
-          <th scope="col">Description</th>
           <th scope="col">End Date</th>
           <th scope="col">Company</th>
           <th scope="col">Position</th>
@@ -45,7 +42,6 @@
           <td>{{ c.jobTitle }}</td>
           <td>{{ c.salaryStart }}</td>
           <td>{{ c.salaryEnd }}</td>
-          <td>{{ c.description }}</td>
           <td>{{ c.endDate }}</td>
           <td>{{ c.companyName }}</td>
           <td>{{ c.positionName }}</td>

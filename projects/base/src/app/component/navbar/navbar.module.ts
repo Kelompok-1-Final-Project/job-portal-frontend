@@ -9,22 +9,23 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
 import { MenuModule } from 'primeng/menu';
 
 @NgModule({
-    declarations : [
+    declarations: [
         NavbarComponent
-    ],imports :[
+    ], imports: [
         RouterModule,
         CommonModule,
         MenubarModule,
         OverlayPanelModule,
+        MenuModule
+    ],
+    exports: [
         AvatarModule,
         AvatarGroupModule,
         MenuModule
-    ], 
-    exports : [
         NavbarComponent
     ]
 })
 
-export class NavbarModule{
+export class NavbarModule {
 
 }

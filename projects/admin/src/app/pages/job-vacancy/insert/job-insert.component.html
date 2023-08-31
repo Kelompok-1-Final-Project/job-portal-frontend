@@ -1,6 +1,6 @@
 <div class="container">
   <pre>{{ jobInsertReqDto.value|json }}</pre>
-  <form [formGroup]="jobInsertReqDto">
+  <form [formGroup]="jobInsertReqDto" (ngSubmit)="insertAll()">
     <div class="card-container flex flex-wrap justify-content-center align-items-center" style="min-height: 700px">
       <div class="grid shadow-8 m-4 surface-card border-round-sm border-400 p-3 md:col-9 text">
         <div class="flex col-12">
@@ -117,8 +117,8 @@
         <div *ngIf="isVisible()" class="grid grid-nogutter col-12">
           <div *ngFor="let c of questionList.controls; let i=index" formArrayName="questionId" class="col-12">
             <div class="col-12 md:col-6">
-              <p-dropdown [options]="questions" [filter]="true" [formControlName]="i" optionValue="questionId" styleClass="w-full"
-                optionLabel="question"></p-dropdown>
+              <p-dropdown [options]="questions" [filter]="true" [formControlName]="i" optionValue="questionId"
+                styleClass="w-full" optionLabel="question"></p-dropdown>
             </div>
             <div class="col-2">
               <p-button type="button" styleClass="p-button-danger" (click)="remove(i)">Remove</p-button>
@@ -126,9 +126,9 @@
           </div>
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <app-button link="/job-vacancies" classBtn="p-button-secondary" styleBtn="margin-right:0.5rem"
+          <app-button routerLink="/job-vacancies" classBtn="p-button-secondary" styleBtn="margin-right:0.5rem"
             iconBtn="pi pi-angle-double-left" label="Back to Previous Menu"></app-button>
-          <app-button btnType="submit" label="Submit" link="/job-vacancies" (clickChange)="insertAll()"></app-button>
+          <app-button btnType="submit" label="Submit"></app-button>
         </div>
       </div>
     </div>

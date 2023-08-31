@@ -6,12 +6,11 @@
             </div>
             <div class="col-12">
                 <div class="grid justify-content-start">
-                    <app-button classBtn="p-button-secondary" link="/job-vacancies" styleBtn="margin-right:0.5rem"
+                    <app-button classBtn="p-button-secondary" routerLink="/job-vacancies" styleBtn="margin-right:0.5rem"
                         iconBtn="pi pi-arrow-left" label="Back"></app-button>
-                    <app-button classBtn="p-button-primary" routerLink="/job-vacancies/preview/{{job.id}}"
-                        iconBtn="pi pi-eye" label="Preview" styleBtn="margin-right:0.5rem"></app-button>
-                    <app-button classBtn="p-button-secondary" iconBtn="pi pi-pencil" label="Update"
-                        routerLink="/job-vacancies/update/{{job.id}}"></app-button>
+                    <app-button classBtn="p-button-primary" iconBtn="pi pi-eye" label="Preview"
+                        styleBtn="margin-right:0.5rem"></app-button>
+                    <app-button classBtn="p-button-secondary" iconBtn="pi pi-pencil" label="Update"></app-button>
                 </div>
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
@@ -290,7 +289,7 @@
     <form (ngSubmit)="deleteJobBenefit()">
         <div class="grid surface-card border-round-sm border-400">
             <div class="col-12">
-                <h3 for="inputName">Apakah anda ingin menghapus Benefit dari job?</h3>
+                <h3 for="inputName">Apakah anda ingin menghapus Benefit dari job</h3>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
                 <app-button btnType="submit" classBtn="p-button-primary" styleBtn="margin-right:0.3rem"
@@ -312,7 +311,7 @@
                 <label for="inputName">Choose Benefit</label>
             </div>
             <div class="col-12 md:col-9">
-                <p-dropdown styleClass="w-full" [options]="listBenefits" optionValue="id" optionLabel="benefitName"
+                <p-dropdown styleClass="w-full" [options]="listBenefits" [filter]="true" optionValue="id" optionLabel="benefitName"
                     formControlName="benefitId" placeholder="Choose" appendTo="body"></p-dropdown>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">

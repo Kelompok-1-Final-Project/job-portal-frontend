@@ -4,11 +4,20 @@
   </div>
   <div>
     <div class="grid justify-content-end mb-3">
-      <app-button classBtn="mr-3" label="Add User" btnType="button" routerLink="create"></app-button>
     </div>
-    <p-table [value]="users" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
-      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
+    <p-table #user [value]="users" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+    [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['fullName','roleName']">
+    <ng-template pTemplate="caption">
+      <div class="flex">
+          <app-button label="Add User" btnType="button" routerLink="create"></app-button>
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input #searchInput pInputText type="text" [(ngModel)]="searchText"
+              (input)="user.filterGlobal(searchText ,'contains')" placeholder="Search keyword" />
+          </span>
+        </div>
+      </ng-template>
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>
