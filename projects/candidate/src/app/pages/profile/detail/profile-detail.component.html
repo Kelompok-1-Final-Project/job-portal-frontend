@@ -1,4 +1,3 @@
-<!-- <pre>{{ relationship|json }}</pre> -->
 <!-- <pre>{{ userData|json }}</pre> -->
 
 <div class="profile-container grid justify-content-center m-3">
@@ -85,7 +84,8 @@
       </div>
       <div class="p-2 md:p-1">
         <div class="grid" *ngFor="let e of educations;let i =index">
-          <div class="col-4 md:col-2 text-gray-500">{{ e.startDate | dateFormatPipe }} - {{ e.endDate | dateFormatPipe }}</div>
+          <div class="col-4 md:col-2 text-gray-500">{{ e.startDate | dateFormatPipe }} -
+            {{ e.endDate | dateFormatPipe }}</div>
           <div class="col-6 md:col-8">
             <div class="font-semibold">{{e.educationName}}
             </div>
@@ -110,7 +110,8 @@
       </div>
       <div class="p-2 md:p-1">
         <div class="grid" *ngFor="let w of workExperience;let i =index">
-          <div class="col-4 md:col-2 text-gray-500">{{ w.startDate | dateFormatPipe }} - {{ w.endDate | dateFormatPipe }}</div>
+          <div class="col-4 md:col-2 text-gray-500">{{ w.startDate | dateFormatPipe }} -
+            {{ w.endDate | dateFormatPipe }}</div>
           <div class="col-6 md:col-8">
             <div class="font-semibold">{{ w.companyName }}</div>
             <div class="text-gray-500">{{ w.positionName }}</div>
@@ -159,7 +160,8 @@
           <div class="col-12 md:col-8">
             <div class="font-bold">{{ o.organizationName }}</div>
             <div class="font-semibold">{{ o.positionName }}</div>
-            <div class="text-gray-500">{{ o.startDate | dateFormatPipe }} - {{ o.endDate | dateFormatPipe }} <span>({{ o.startDate | dateDifference: o.endDate }})</span></div>
+            <div class="text-gray-500">{{ o.startDate | dateFormatPipe }} - {{ o.endDate | dateFormatPipe }}
+              <span>({{ o.startDate | dateDifference: o.endDate }})</span></div>
             <div class="text-gray-500">{{ o.description }}</div>
           </div>
           <div class="col-12 lg:col-4 mt-4">
@@ -203,18 +205,22 @@
 
   <p-accordion class="col-11 md:col-8">
     <p-accordionTab header="Resume" [selected]="true">
-      <div class="grid md:justify-content-end">
+      <div class="content grid md:justify-content-between">
+        <a *ngIf="userData.cvId" href="{{ userData.cvId|urlCandidate }}">
+          <p-button icon="pi pi-download" label="Download CV" styleClass="p-button-raised p-button-info"></p-button>
+        </a>
+        <span> - </span>
         <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2" label="Edit"
           (click)="updateCv()">
         </button>
       </div>
-      <div class="content">{{ userData.cvId ? userData.cvId:'-' }}</div>
     </p-accordionTab>
   </p-accordion>
 
 </div>
 
 <!-- Modal Edit User-->
+<pre>{{ birthdateTemp|json }}</pre>
 <p-dialog header="Edit Profile" [modal]="true" [(visible)]="visibleEditUser" [breakpoints]="{'768px': '90vw'}"
   [style]="{width: '45vw' }" [draggable]="false">
   <pre>{{ candidateUpdateReqDto.value|json }}</pre>
@@ -236,7 +242,8 @@
             <label for="email">Email</label>
           </div>
           <div class="col-12 md:col-9">
-            <input pInputText type="text" class="form-control col-12" id="email" required formControlName="email">
+            <input pInputText type="text" class="form-control col-12 p-disabled" id="email" required
+              formControlName="email">
           </div>
           <div class="col-12 md:col-3">
             <label for="fullName">Fullname</label>
@@ -252,11 +259,11 @@
               formControlName="mobileNumber">
           </div>
           <div class="col-12 md:col-3">
-            <label for="companyName">Gender</label>
+            <label for="gender">Gender</label>
           </div>
           <div class="col-12 md:col-9">
             <p-dropdown [options]="gender" optionValue="genderCode" optionLabel="genderName"
-              formControlName="genderCode" styleClass="w-full" appendTo="body">
+              formControlName="genderCode" id="gender" styleClass="w-full">
             </p-dropdown>
           </div>
           <div class="col-12 md:col-3">
@@ -270,7 +277,8 @@
             <label for="companyAddress">Birthdate</label>
           </div>
           <div class="col-12 md:col-9">
-            <p-calendar appendTo="body" [showIcon]="true" formControlName="birthdate" styleClass="w-full"></p-calendar>
+            <p-calendar appendTo="body" [showIcon]="true" formControlName="birthdate" styleClass="w-full"
+              [defaultDate]="birthdateTemp"></p-calendar>
           </div>
           <div class="col-12 md:col-3">
             <label for="companyName">Marital Status</label>
@@ -281,7 +289,7 @@
             </p-dropdown>
           </div>
           <div class="flex flex-wrap justify-content-end mt-2 col-12">
-            <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+            <button type="submit" pButton pRipple class="p-button-primary">Save Changes</button>
           </div>
         </div>
       </div>
@@ -295,25 +303,25 @@
   <form [formGroup]="educationInsertReqDto" (ngSubmit)="insertEducation()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
-        <label for="inputName">Education Name</label>
+        <label for="inputName">Education Name <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <input pInputText type="text" class="col-12 " id="inputName" required formControlName="educationName">
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputName">From </label>
+        <label for="inputName">From <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate" styleClass="w-full"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputName">To </label>
+        <label for="inputName">To <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate" styleClass="w-full"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        <app-button label="Submit" btnType="submit" [disabled]="educationInsertReqDto.invalid"></app-button>
       </div>
     </div>
   </form>
@@ -345,7 +353,7 @@
         <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate" styleClass="w-full"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        <button type="submit" pButton pRipple class="p-button-primary">Save Changes</button>
       </div>
     </div>
   </form>
@@ -356,7 +364,7 @@
   [breakpoints]="{'768px': '90vw'}" [style]="{width: '30vw' }" [draggable]="false">
   <div class="grid surface-card border-round-sm border-400">
     <div class="col-12">
-      <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
+      <label for="inputName">Are You Sure to Delete this Data ?</label>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
       <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary"
@@ -371,31 +379,31 @@
   <form [formGroup]="workExperienceInsertReqDto" (ngSubmit)="insertWorkExperience()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
-        <label for="inputName">Company Name</label>
+        <label for="inputName">Company Name <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <input pInputText type="text" class="col-12 " id="inputName" required formControlName="companyName">
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputJobPosition">Job Position</label>
+        <label for="inputJobPosition">Job Position <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="positionName">
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputName">From </label>
+        <label for="inputName">From <span class="text-red-500">*</span> </label>
       </div>
       <div class="col-12 md:col-9">
         <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate" styleClass="w-full"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputName">To </label>
+        <label for="inputName">To <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate" styleClass="w-full"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        <app-button label="Submit" btnType="submit" [disabled]="workExperienceInsertReqDto.invalid"></app-button>
       </div>
     </div>
   </form>
@@ -407,33 +415,33 @@
   <form [formGroup]="workExperienceUpdateReqDto" (ngSubmit)="submitUpdateWorkExp()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
-        <label for="inputName">Company Name</label>
+        <label for="inputName">Company Name <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <input pInputText type="text" class="col-12 " id="inputName" required formControlName="companyName">
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputJobPosition">Job Position</label>
+        <label for="inputJobPosition">Job Position <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="positionName">
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputName">From </label>
+        <label for="inputName">From <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate" [readonlyInput]="true"
           styleClass="w-full"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputName">To </label>
+        <label for="inputName">To <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate" [readonlyInput]="true"
           styleClass="w-full"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        <button type="submit" pButton pRipple class="p-button-primary">Save Changes</button>
       </div>
     </div>
   </form>
@@ -444,7 +452,7 @@
   [breakpoints]="{'768px': '90vw'}" [style]="{width: '30vw' }" [draggable]="false">
   <div class="grid surface-card border-round-sm border-400">
     <div class="col-12">
-      <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
+      <label for="inputName">Are You Sure to Delete this Data ?</label>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
       <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary"
@@ -478,7 +486,7 @@
         </p-dropdown>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        <app-button label="Submit" btnType="submit" [disabled]="skillCandidateReqDto.invalid"></app-button>
       </div>
     </div>
   </form>
@@ -522,37 +530,37 @@
   <form [formGroup]="organizationInsertReqDto" (ngSubmit)="insertOrganization()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
-        <label for="inputName">Organization Name</label>
+        <label for="inputName">Organization Name <span class="text-red-500">*</span> </label>
       </div>
       <div class="col-12 md:col-9">
         <input pInputText type="text" class="col-12 " id="inputName" required formControlName="organizationName">
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputJobPosition">Position</label>
+        <label for="inputJobPosition">Position <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="positionName">
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputName">From </label>
+        <label for="inputName">From <span class="text-red-500">*</span> </label>
       </div>
       <div class="col-12 md:col-9">
         <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate" styleClass="w-full"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputName">To </label>
+        <label for="inputName">To <span class="text-red-500">*</span> </label>
       </div>
       <div class="col-12 md:col-9">
         <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate" styleClass="w-full"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputJobPosition">Description</label>
+        <label for="inputJobPosition">Description <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="description">
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        <app-button label="Submit" btnType="submit" [disabled]="organizationInsertReqDto.invalid"></app-button>
       </div>
     </div>
   </form>
@@ -564,37 +572,37 @@
   <form [formGroup]="organizationUpdateReqDto" (ngSubmit)="submitUpdateOrganization()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
-        <label for="inputName">Organization Name</label>
+        <label for="inputName">Organization Name <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <input pInputText type="text" class="col-12 " id="inputName" required formControlName="organizationName">
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputJobPosition">Position</label>
+        <label for="inputJobPosition">Position <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="positionName">
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputName">From </label>
+        <label for="inputName">From <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate" styleClass="w-full"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputName">To </label>
+        <label for="inputName">To <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate" styleClass="w-full"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputJobPosition">Description</label>
+        <label for="inputJobPosition">Description <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="description">
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        <button type="submit" pButton pRipple class="p-button-primary">Save Changes</button>
       </div>
     </div>
   </form>
@@ -605,7 +613,7 @@
   [breakpoints]="{'768px': '90vw'}" [style]="{width: '30vw' }" [draggable]="false">
   <div class="grid surface-card border-round-sm border-400">
     <div class="col-12">
-      <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
+      <label for="inputName">Are You Sure to Delete this Data ? </label>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
       <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary"
@@ -621,13 +629,13 @@
   <form [formGroup]="familyInsertReqDto" (ngSubmit)="insertFamily()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
-        <label for="inputName">Family Name</label>
+        <label for="inputName">Family Name <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <input pInputText type="text" class="col-12 " id="inputName" required formControlName="familyName">
       </div>
       <div class="col-12 md:col-3">
-        <label for="relation">Relationship</label>
+        <label for="relation">Relationship <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <p-dropdown [options]="relationship" optionValue="relationshipCode" optionLabel="relationshipName" id="relation"
@@ -635,7 +643,7 @@
         </p-dropdown>
       </div>
       <div class="col-12 md:col-3">
-        <label for="degree">Degree</label>
+        <label for="degree">Degree <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <p-dropdown [options]="degree" optionValue="degreeCode" optionLabel="degreeName" id="degree"
@@ -643,14 +651,14 @@
         </p-dropdown>
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputName">Birthdate</label>
+        <label for="inputName">Birthdate <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <p-calendar appendTo="body" [showIcon]="true" formControlName="birthdate" appendTo="body" styleClass="w-full">
         </p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        <app-button label="Submit" btnType="submit" [disabled]="familyInsertReqDto.invalid"></app-button>
       </div>
     </div>
   </form>
@@ -663,13 +671,13 @@
   <form [formGroup]="familyUpdateReqDto" (ngSubmit)="submitUpdateFamily()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
-        <label for="inputName">Family Name</label>
+        <label for="inputName">Family Name <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <input pInputText type="text" class="col-12 " id="inputName" required formControlName="familyName">
       </div>
       <div class="col-12 md:col-3">
-        <label for="relation">Relationship</label>
+        <label for="relation">Relationship <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <p-dropdown [options]="relationship" optionValue="relationshipCode" optionLabel="relationshipName" id="relation"
@@ -677,7 +685,7 @@
         </p-dropdown>
       </div>
       <div class="col-12 md:col-3">
-        <label for="degree">Degree</label>
+        <label for="degree">Degree <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <p-dropdown [options]="degree" optionValue="degreeCode" styleClass="w-full" optionLabel="degreeName" id="degree"
@@ -685,14 +693,14 @@
         </p-dropdown>
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputName">Birthdate</label>
+        <label for="inputName">Birthdate <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <p-calendar appendTo="body" [showIcon]="true" formControlName="birthdate" appendTo="body" styleClass="w-full">
         </p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        <button type="submit" pButton pRipple class="p-button-primary">Save Changes</button>
       </div>
     </div>
   </form>
@@ -703,7 +711,7 @@
   [style]="{width: '30vw' }" [draggable]="false">
   <div class="grid surface-card border-round-sm border-400">
     <div class="col-12">
-      <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
+      <label for="inputName">Are You Sure to Delete this Data ? </label>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
       <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary"
@@ -726,7 +734,7 @@
         </textarea>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+        <app-button label="Save Changes" btnType="submit" [disabled]="summaryUpdateReqDto.invalid"></app-button>
       </div>
     </div>
   </form>
@@ -743,7 +751,7 @@
       </div>
       <div class="col-8">
         <span>
-          <a *ngIf="userData.cvId" href="{{ userData.cvId|json }}">
+          <a *ngIf="userData.cvId" href="{{ userData.cvId|urlCandidate }}">
             {{ userData.cvId }}
           </a>
           <p *ngIf="!userData.cvId">
@@ -757,7 +765,7 @@
       </div>
       <div class="col-12">
         <div class="grid grid-nogutter justify-content-end">
-          <button type="submit" pButton pRipple class="p-button-primary">Submit</button>
+          <app-button label="Save Changes" btnType="submit"></app-button>
         </div>
       </div>
     </div>

@@ -1,4 +1,6 @@
 import {
+  AfterViewChecked,
+  ChangeDetectorRef,
   Component,
   OnInit
 } from '@angular/core';
@@ -19,7 +21,7 @@ import { firstValueFrom } from 'rxjs';
   templateUrl: './vacancy-detail.component.html',
   styleUrls: ['./vacancy-detail.component.css',]
 })
-export class VacancyDetailComponent implements OnInit {
+export class VacancyDetailComponent implements OnInit,AfterViewChecked {
   visibleAssignJob:boolean=false;
   userId!:string;
   userEmail!:string;
@@ -50,7 +52,8 @@ export class VacancyDetailComponent implements OnInit {
     private jobService : JobService,
     private companyService : CompanyService,
     private router:Router,
-    private sn : DomSanitizer
+    private sn : DomSanitizer,
+    private cd : ChangeDetectorRef
   ) {
 
   }
@@ -66,6 +69,10 @@ export class VacancyDetailComponent implements OnInit {
         this.getJobById();
       }
     })
+  }
+
+  ngAfterViewChecked(): void {
+      this.cd.detectChanges();
   }
 
   ngOnInit(){

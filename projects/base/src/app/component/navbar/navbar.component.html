@@ -1,6 +1,5 @@
 <div class="card">
-  <p-menubar [model]="items">
-    <!-- <p-menubar [model]="itemsCandidate"> -->
+  <p-menubar  *ngIf="isAdmin" [model]="items">
     <ng-template pTemplate="start">
       <img src="../../../assets/images/logo.png" height="60" class="mx-2 cursor-pointer logo" routerLink="/home" />
     </ng-template>
