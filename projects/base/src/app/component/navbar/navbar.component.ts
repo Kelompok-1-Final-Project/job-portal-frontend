@@ -17,6 +17,7 @@ import {
 } from 'primeng/api';
 import { AuthService } from "../../service/auth.service";
 import { BASE_URL, BASE_URL_CAN } from "@constant/api.constant";
+import { OverlayPanel } from "primeng/overlaypanel";
 
 @Component({
   selector: 'app-navbar',
@@ -32,13 +33,22 @@ export class NavbarComponent implements OnInit {
   roleCode!: string;
   isAdmin!: boolean;
   isCandidate!: boolean;
+  isLogin! : boolean;
+  op! : OverlayPanel;
 
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
 
+  getOP(op : OverlayPanel){
+    this.op = op
+  }
 
+  hideOP(op : OverlayPanel){
+      op.hide();
+  }
+  
   logout(): void {
     localStorage.clear();
     this.router.navigateByUrl("/login");
@@ -48,14 +58,22 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl("/login");
   }
 
+
+
   // contoh
   items: MenuItem[] | undefined;
   itemsCandidate: MenuItem[] | undefined;
-
+  itemsCandidateProfile: MenuItem[] | undefined;
   ngOnInit() {
 
     const profilePhoto = this.authService.getUserPhoto();
     const profile = this.authService.getProfile();
+
+    if (profile){
+      this.isLogin = true;
+    }else{
+      this.isLogin = false;
+    }
 
     if (profilePhoto != null) {
       this.imgUrl = `${BASE_URL_CAN}/files/${profilePhoto}`;
@@ -257,7 +275,9 @@ export class NavbarComponent implements OnInit {
       routerLink: "/tests",
       // visible : this.isDeveloper
     },
-    {
+    ];
+
+    this.itemsCandidateProfile = [{
       label: 'Users',
       icon: 'pi pi-fw pi-user',
       items: [{
@@ -276,8 +296,7 @@ export class NavbarComponent implements OnInit {
         routerLink: "/profile/change-password",
       }
       ]
-    }
-    ];
+    }];
 
     if (profile) {
       this.itemsCandidate.push({

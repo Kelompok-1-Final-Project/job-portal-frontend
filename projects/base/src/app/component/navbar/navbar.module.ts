@@ -3,6 +3,10 @@ import { NavbarComponent } from "./navbar.component";
 import { RouterModule } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { MenubarModule } from 'primeng/menubar';
+import { OverlayPanelModule } from "primeng/overlaypanel";
+import { AvatarModule } from "primeng/avatar";
+import { AvatarGroupModule } from 'primeng/avatargroup';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
     declarations : [
@@ -10,7 +14,11 @@ import { MenubarModule } from 'primeng/menubar';
     ],imports :[
         RouterModule,
         CommonModule,
-        MenubarModule
+        MenubarModule,
+        OverlayPanelModule,
+        AvatarModule,
+        AvatarGroupModule,
+        MenuModule
     ], 
     exports : [
         NavbarComponent
