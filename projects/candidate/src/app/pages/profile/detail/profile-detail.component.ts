@@ -165,6 +165,8 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
 	  relationshipCode : ['', [Validators.required]],
 	  degreeCode : ['', [Validators.required]],
 	  birthdate : ['', [Validators.required]],
+    birthdateTemp: [new Date],
+
   })
 
   familyUpdateReqDto = this.fb.group({
@@ -173,7 +175,8 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
 	  familyName:['', [Validators.required]],
 	  relationshipCode:['', [Validators.required]],
 	  degreeCode:['', [Validators.required]],
-	  birthdate:['', [Validators.required]]
+	  birthdate:['', [Validators.required]],
+    birthdateTemp: [new Date],
   })
 
   cvUpdateReqDto = this.fb.group({
@@ -241,9 +244,23 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     this.candidateUpdateReqDto.get('maritalStatusCode')?.setValue(this.userData.maritalStatusCode);
   }
 
-  convertDate(e : any){
+  convertCandidateDate(e : any){
     const birthConvert = new Date(convertUTCToLocalDate(e));
     this.candidateUpdateReqDto.patchValue({
+      birthdate: birthConvert.toISOString()
+    })
+  }
+
+  convertFamilyInsertDate(e : any){
+    const birthConvert = new Date(convertUTCToLocalDate(e));
+    this.familyInsertReqDto.patchValue({
+      birthdate: birthConvert.toISOString()
+    })
+  }
+
+  convertFamilyUpdateDate(e : any){
+    const birthConvert = new Date(convertUTCToLocalDate(e));
+    this.familyUpdateReqDto.patchValue({
       birthdate: birthConvert.toISOString()
     })
   }
@@ -535,6 +552,7 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     this.familyUpdateReqDto.get('familyName')?.setValue(this.families[index].familyName);
     this.familyUpdateReqDto.get('relationshipCode')?.setValue(this.families[index].relationshipCode);
     this.familyUpdateReqDto.get('degreeCode')?.setValue(this.families[index].degreeCode);
+    this.familyUpdateReqDto.get('birthdateTemp')?.setValue(new Date(this.families[index].familyBirthDate));
   }
   deleteFamily(id: string) {
     this.patchId = id;

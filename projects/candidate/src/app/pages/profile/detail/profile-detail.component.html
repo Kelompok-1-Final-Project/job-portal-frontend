@@ -277,7 +277,7 @@
           </div>
           <div class="col-12 md:col-9">
             <p-calendar appendTo="body" [showIcon]="true" formControlName="birthdateTemp" styleClass="w-full"
-              (onSelect)="convertDate($event)" ></p-calendar>
+              (onSelect)="convertCandidateDate($event)" ></p-calendar>
           </div>
           <div class="col-12 md:col-3">
             <label for="companyName">Marital Status</label>
@@ -653,7 +653,7 @@
         <label for="inputName">Birthdate <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar appendTo="body" [showIcon]="true" formControlName="birthdate" appendTo="body" styleClass="w-full">
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="birthdateTemp" appendTo="body" styleClass="w-full" (onSelect)="convertFamilyInsertDate($event)">
         </p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
@@ -695,7 +695,7 @@
         <label for="inputName">Birthdate <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar appendTo="body" [showIcon]="true" formControlName="birthdate" appendTo="body" styleClass="w-full">
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="birthdateTemp" appendTo="body" styleClass="w-full" (onSelect)="convertFamilyUpdateDate($event)">
         </p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
