@@ -43,6 +43,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl("/login");
   }
 
+  login():void {
+    this.router.navigateByUrl("/login");
+  }
+
   // contoh
   items: MenuItem[] | undefined;
   itemsCandidate : MenuItem[] | undefined;
@@ -54,7 +58,7 @@ export class NavbarComponent implements OnInit {
           if (profilePhoto!='') {
             this.imgUrl = `${BASE_URL_CAN}/files/${profilePhoto}`;
           } else {
-            this.imgUrl = '../../../assets/images.avatar.png';
+            this.imgUrl = '../../../assets/images/avatar.png';
           }
     
     if(profile?.roleCode!=undefined){
@@ -274,14 +278,26 @@ export class NavbarComponent implements OnInit {
         routerLink: "/profile/change-password",
       }
     ]
-    },
-    {
-      label: 'Quit',
-      icon: 'pi pi-fw pi-power-off',
-      command: () => {
-        this.logout()
-      }
     }
     ];
+
+    if (profile) {
+      this.itemsCandidate.push({
+        label: 'Quit',
+        icon: 'pi pi-fw pi-power-off',
+        command: () => {
+          this.logout();
+        }
+      });
+    }else{
+      this.itemsCandidate.push({
+        label: 'Login',
+        icon: 'pi pi-fw pi-sign-in',
+        command: () => {
+          this.login();
+        }
+      });
+    }    
+
   }
 }

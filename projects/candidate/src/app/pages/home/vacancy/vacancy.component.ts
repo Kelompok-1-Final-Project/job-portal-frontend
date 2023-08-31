@@ -182,6 +182,9 @@ export class VacancyComponent implements OnInit {
   }
 
   changeSaveJob(jobId:string,isBookMark:boolean,saveJobId:string,event:any){
+    if(!this.userId){
+      this.router.navigateByUrl('/login');
+    }
     const data = this.saveJobReqDto;
     this.saveJobReqDto.candidateId = this.userId;
     this.saveJobReqDto.jobId = jobId;

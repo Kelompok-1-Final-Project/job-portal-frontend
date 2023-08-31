@@ -34,14 +34,13 @@ const routes : Routes = [
         component : BaseComponent,
         path : 'home',
         loadChildren : () => import ('./pages/home/home.module')
-        .then(c => c.HomeModule),
-        canMatch : [ authValidationNonLogin ]
+        .then(c => c.HomeModule)
     },{
         component : BaseComponent,
         path : 'profile',
         loadChildren : () => import ('./pages/profile/profile.module')
         .then(c => c.ProfileModule),
-        // canMatch : [ authValidationNonLogin ]
+        canMatch : [ authValidationNonLogin ]
     },
     {
         component : BaseComponent,
@@ -59,7 +58,7 @@ const routes : Routes = [
     },
     {
         path : '',
-        redirectTo : '/login',
+        redirectTo : '/home',
         pathMatch : 'full'
     },
     {
