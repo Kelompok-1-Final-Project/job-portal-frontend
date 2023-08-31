@@ -220,7 +220,6 @@
 </div>
 
 <!-- Modal Edit User-->
-<pre>{{ birthdateTemp|json }}</pre>
 <p-dialog header="Edit Profile" [modal]="true" [(visible)]="visibleEditUser" [breakpoints]="{'768px': '90vw'}"
   [style]="{width: '45vw' }" [draggable]="false">
   <pre>{{ candidateUpdateReqDto.value|json }}</pre>
@@ -277,8 +276,8 @@
             <label for="companyAddress">Birthdate</label>
           </div>
           <div class="col-12 md:col-9">
-            <p-calendar appendTo="body" [showIcon]="true" formControlName="birthdate" styleClass="w-full"
-              [defaultDate]="birthdateTemp"></p-calendar>
+            <p-calendar appendTo="body" [showIcon]="true" formControlName="birthdateTemp" styleClass="w-full"
+              (onSelect)="convertDate($event)" ></p-calendar>
           </div>
           <div class="col-12 md:col-3">
             <label for="companyName">Marital Status</label>

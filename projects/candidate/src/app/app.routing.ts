@@ -5,7 +5,7 @@ import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { NotFoundComponent } from "@component/not-found/not-found.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { authValidation, authValidationTest } from "projects/base/src/app/validation/auth.validation";
+import { authValidation, authValidationTest, authValidationNonLogin } from "projects/base/src/app/validation/auth.validation";
 import { BaseModule } from "@component/base/base.module";
 import { ButtonComponent } from "@component/button/button.component";
 import { UrlPipeCandidate } from "@pipes/url.pipe";

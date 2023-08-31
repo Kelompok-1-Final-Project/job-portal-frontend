@@ -85,8 +85,7 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
   marital!:MaritalGetResDto[];
   gender!:GenderGetResDto[];
   personType!:PersonTypeGetResDto[];
-  birthdateTemp!:Date;
-
+  userBirthDate!: Date
 
   candidateUpdateReqDto = this.fb.group({
     candidateId: ['', [Validators.required]],
@@ -94,7 +93,7 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     fullName: ['', [Validators.required]],
     email: ['',[Validators.required]],
     birthdate: ['', [Validators.required]],
-    birthdateTemp: new FormControl<Date | null>(null),
+    birthdateTemp: [new Date],
     mobileNumber: ['', [Validators.required]],
     photoExt: ['', [Validators.required]],
     photoFiles: ['', [Validators.required]],
@@ -229,15 +228,24 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
   // User
   editUser() {
     this.visibleEditUser = true;
+    this.userBirthDate = new Date(this.userData.birthDate);
     this.candidateUpdateReqDto.get('candidateId')?.setValue(this.userId);
     this.candidateUpdateReqDto.get('fullName')?.setValue(this.userData.fullName);
     this.candidateUpdateReqDto.get('email')?.setValue(this.userData.email);
-    this.candidateUpdateReqDto.get('birthdate')?.setValue(this.userData.birthdate);
+    this.candidateUpdateReqDto.get('birthdateTemp')?.setValue(this.userBirthDate);
+    this.candidateUpdateReqDto.get('birthdate')?.setValue(this.userBirthDate.toISOString());
     this.candidateUpdateReqDto.get('mobileNumber')?.setValue(this.userData.phone);
     this.candidateUpdateReqDto.get('idNumber')?.setValue(this.userData.idNumber);
     this.candidateUpdateReqDto.get('expectedSalary')?.setValue(this.userData.expectedSalary);
     this.candidateUpdateReqDto.get('genderCode')?.setValue(this.userData.genderCode);
     this.candidateUpdateReqDto.get('maritalStatusCode')?.setValue(this.userData.maritalStatusCode);
+  }
+
+  convertDate(e : any){
+    const birthConvert = new Date(convertUTCToLocalDate(e));
+    this.candidateUpdateReqDto.patchValue({
+      birthdate: birthConvert.toISOString()
+    })
   }
 
   getCandidateData() {

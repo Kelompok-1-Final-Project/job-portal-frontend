@@ -4,7 +4,7 @@ export interface CandidateGetResDto {
   idNumber: string;
   phone: string;
   email: string;
-  birthdate : string;
+  birthDate : string;
   maritalStatusCode: string;
   maritalStatus: string;
   genderCode : string;
