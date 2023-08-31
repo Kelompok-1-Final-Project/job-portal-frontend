@@ -6,7 +6,7 @@ import { SharedModuleComponent } from "@shared/shared.module";
 @Component({
     selector: 'app-button',
     template: `
-        <button pButton pRipple icon="{{ iconBtn }}" label="{{ label }}" *ngIf="show" [loading]="loading" type="{{ btnType }}" style="{{ styleBtn }}" class="{{ classBtn }}" routerLink="{{link}}" pTooltip="{{tooltipBtn}}" tooltipPosition="{{tooltipPstn}}" [disabled]="disabled" (click)= "clickBtn()"></button>
+        <button pButton pRipple icon="{{ iconBtn }}" label="{{ label }}" *ngIf="show" [loading]="loading" type="{{ btnType }}" style="{{ styleBtn }}" class="{{ classBtn }}" pTooltip="{{tooltipBtn}}" tooltipPosition="{{tooltipPstn}}" [disabled]="disabled" (click)= "clickBtn()"></button>
     `,
     imports: [
         CommonModule,
@@ -26,7 +26,6 @@ export class ButtonComponent {
     @Input() loading = false
     @Input() disabled = false
     @Input() show = true
-    @Input() link: string | undefined = undefined
 
     @Output() clickChange = new EventEmitter<void>()
 

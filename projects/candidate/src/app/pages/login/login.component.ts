@@ -14,6 +14,7 @@ import {
 import {
   LoginService
 } from "@serviceCandidate/login.service";
+import { AuthService } from "@serviceCandidate/auth.service";
 
 
 @Component({
@@ -32,6 +33,7 @@ export class LoginComponent {
   constructor(
     private fb: NonNullableFormBuilder,
     private loginService: LoginService,
+    private auth : AuthService,
     private router: Router,
     private title: Title) {
     this.title.setTitle('Login | InLook')
@@ -39,13 +41,18 @@ export class LoginComponent {
 
   onLogin() {
     if (this.userLoginReqDto.valid) {
+      const testPage = this.auth.getTest()
       const data = this.userLoginReqDto.getRawValue()
       this.loading = true
       this.loginService.login(data).subscribe({
         next: (result) => {
           localStorage.setItem('data', JSON.stringify(result))
           this.loading = false
-          this.router.navigateByUrl('/home')
+          if(testPage != null && testPage != undefined){
+            this.router.navigateByUrl(`/tests/${testPage.jobId}`)
+          }else{
+            this.router.navigateByUrl('/home')
+          }
         },
         error: () => {
           this.loading = false
