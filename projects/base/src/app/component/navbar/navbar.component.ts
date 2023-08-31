@@ -16,7 +16,7 @@ import {
   MenuItem
 } from 'primeng/api';
 import { AuthService } from "../../service/auth.service";
-import { BASE_URL_CAN } from "@constant/api.constant";
+import { BASE_URL, BASE_URL_CAN } from "@constant/api.constant";
 
 @Component({
   selector: 'app-navbar',
@@ -27,6 +27,7 @@ import { BASE_URL_CAN } from "@constant/api.constant";
 export class NavbarComponent implements OnInit {
 
   imgUrl!: string;
+  imgUrlAdmin!: string;
   logoWeb!:string;
   roleCode!: string;
   isAdmin!:boolean;
@@ -57,8 +58,10 @@ export class NavbarComponent implements OnInit {
     const profile = this.authService.getProfile();
           if (profilePhoto!='') {
             this.imgUrl = `${BASE_URL_CAN}/files/${profilePhoto}`;
+            this.imgUrlAdmin = `${BASE_URL}/files/${profilePhoto}`;
           } else {
             this.imgUrl = '../../../assets/images/avatar.png';
+            this.imgUrlAdmin = '../../../assets/images/avatar.png';
           }
     
     if(profile?.roleCode!=undefined){

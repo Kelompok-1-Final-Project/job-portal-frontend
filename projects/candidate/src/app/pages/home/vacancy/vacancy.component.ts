@@ -107,7 +107,7 @@ export class VacancyComponent implements OnInit {
     data.userId=this.userId;
     this.lengthData=0;
     firstValueFrom(this.jobService.getAll(data)).then(result => {
-      this.jobs = result;
+      // this.jobs = result;
       this.lengthData=result.length;
     })
   }
