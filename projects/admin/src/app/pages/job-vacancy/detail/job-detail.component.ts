@@ -45,7 +45,7 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     listBenefits!: BenefitGetResDto[]
     visibleUpdateNotes: boolean = false
     visibleButtonNotes: boolean = false
-    sanitizedContent: SafeHtml
+    sanitizedContent!: SafeHtml
     editorContent: string = '<p><strong>Testing</strong></p>'
 
     assessmentInsertReqDto = this.fb.group({
@@ -106,7 +106,6 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         private sanitizer: DomSanitizer
     ) {
         this.title.setTitle('Job Detail | Job Portal Admin')
-        this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.editorContent)
     }
 
     ngOnInit(): void {
@@ -136,6 +135,7 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         firstValueFrom(this.jobService.getById(this.id)).then(result => {
             this.job = result
             this.getCandidateStatus()
+            this.showOriginalContent()
         })
     }
 
@@ -191,6 +191,7 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         const data = this.assessmentInsertReqDto.getRawValue()
         firstValueFrom(this.statusProgressService.insertAssessment(data)).then(result => {
             this.visibleAssessment = false
+            this.getCandidateStatus()
         })
     }
 
@@ -303,5 +304,9 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
 
     isQuestion() {
         return this.test != null
+    }
+
+    showOriginalContent(){
+        this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.job.description)
     }
 }

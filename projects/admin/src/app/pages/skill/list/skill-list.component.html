@@ -12,8 +12,8 @@
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>
-          <th scope="col">Skill Code </th>
-          <th scope="col">Skill Name</th>
+          <th scope="col">Code </th>
+          <th scope="col">Name</th>
           <th scope="col">Action</th>
         </tr>
       </ng-template>
@@ -34,8 +34,8 @@
   </div>
 
   <!-- Modal Add-->
-  <p-dialog header="Add Data Skill" [modal]="true" [(visible)]="visibleAdd" [style]="{ width: '30vw' }">
-    <pre>{{skillInsertReqDto.value | json}}</pre>
+  <p-dialog header="Add Data Skill" [modal]="true" [(visible)]="visibleAdd" [style]="{ width: '30vw' }"
+    [breakpoints]="{'768px': '90vw'}" [draggable]="false">
     <form [formGroup]="skillInsertReqDto" (ngSubmit)="insertSkill()">
       <div class="grid surface-card border-round-sm border-400">
         <div class="col-12 md:col-3">
@@ -45,7 +45,8 @@
           <input pInputText type="text" class="col-12 " id="inputName" required formControlName="skillName">
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <app-button btnType="submit" label="Submit" link="/skills"></app-button>
+          <app-button btnType="submit" label="Submit" link="/skills"
+            [disabled]="skillInsertReqDto.invalid"></app-button>
         </div>
       </div>
     </form>
@@ -82,7 +83,7 @@
         <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary">Submit</button>
+        <app-button btnType="submit" iconBtn="pi pi-check" classBtn="p-button-primary" label="Submit"></app-button>
       </div>
     </div>
   </p-dialog>

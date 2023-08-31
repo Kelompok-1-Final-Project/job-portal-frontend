@@ -3,12 +3,23 @@
     <h3 class="text-center">Table Job List</h3>
   </div>
   <div class="card col-12">
-    <div class="grid justify-content-end mb-3">
-      <app-button link="create" label="Add Vacancy"></app-button>
-    </div>
-    <p-table [value]="vacancies" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
-      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
+    <!-- <div class="grid justify-content-start mb-3 ml-1">
+    </div> -->
+    <p-table #table [value]="vacancies" dataKey="vacancies.id" [paginator]="true" [rows]="5"
+      [tableStyle]="{ 'min-width': '50rem' }" [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single"
+      [globalFilterFields]="['jobTitle', 'companyName']">
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <app-button link="create" label="Add Vacancy"></app-button>
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input #searchInput pInputText type="text" [(ngModel)]="searchText" (input)="table.filterGlobal(searchText ,'contains')"
+              placeholder="Search keyword" />
+          </span>
+        </div>
+      </ng-template>
       <ng-template pTemplate="header">
         <tr>
           <th>No</th>

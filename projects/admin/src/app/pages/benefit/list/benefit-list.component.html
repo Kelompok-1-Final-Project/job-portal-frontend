@@ -12,8 +12,8 @@
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>
-          <th scope="col">benefit Code </th>
-          <th scope="col">benefit Name</th>
+          <th scope="col">Code </th>
+          <th scope="col">Name</th>
           <th scope="col">Action</th>
         </tr>
       </ng-template>
@@ -36,17 +36,19 @@
 
 
   <!-- Modal Add-->
-  <p-dialog header="Add Data benefit" [modal]="true" [(visible)]="visibleAdd" [style]="{ width: '30vw' }">
+  <p-dialog header="Add Data benefit" [modal]="true" [(visible)]="visibleAdd" [style]="{ width: '30vw' }"
+    [breakpoints]="{'768px':'90vw'}" [draggable]="false">
     <form [formGroup]="benefitInsertReqDto" (ngSubmit)="insertBenefit()">
       <div class="grid surface-card border-round-sm border-400">
         <div class="col-12 md:col-3">
-          <label for="inputName">Benefit Name</label>
+          <label for="inputName">Benefit Name<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-9">
           <input pInputText type="text" class="col-12 " id="inputName" required formControlName="benefitName">
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <app-button btnType="submit" link="/benefits" label="Submit"></app-button>
+          <app-button btnType="submit" link="/benefits" [disabled]="benefitInsertReqDto.invalid"
+            label="Submit"></app-button>
         </div>
       </div>
     </form>
@@ -61,8 +63,7 @@
           <label for="inputName">Benefit Code</label>
         </div>
         <div class="col-12 md:col-9">
-          <input pInputText type="text" class="col-12 p-disabled" id="inputName" required formControlName="productName"
-            value={{code}}>
+          <input pInputText type="text" class="col-12 p-disabled" id="inputName" required value={{code}}>
         </div>
         <div class="col-12 md:col-3">
           <label for="inputName">Benefit Name</label>

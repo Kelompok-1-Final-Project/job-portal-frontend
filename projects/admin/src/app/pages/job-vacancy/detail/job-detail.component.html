@@ -8,10 +8,10 @@
                 <div class="grid justify-content-start">
                     <app-button classBtn="p-button-secondary" link="/job-vacancies" styleBtn="margin-right:0.5rem"
                         iconBtn="pi pi-arrow-left" label="Back"></app-button>
-                    <app-button classBtn="p-button-primary" link="/job-vacancies/preview/{{job.id}}" iconBtn="pi pi-eye"
-                        label="Preview" styleBtn="margin-right:0.5rem"></app-button>
+                    <app-button classBtn="p-button-primary" routerLink="/job-vacancies/preview/{{job.id}}"
+                        iconBtn="pi pi-eye" label="Preview" styleBtn="margin-right:0.5rem"></app-button>
                     <app-button classBtn="p-button-secondary" iconBtn="pi pi-pencil" label="Update"
-                        link="/job-vacancies/update/{{job.id}}"></app-button>
+                        routerLink="/job-vacancies/update/{{job.id}}"></app-button>
                 </div>
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
@@ -44,7 +44,6 @@
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
                 <label class="text-sm font-medium">Description</label>
-                <!-- <p class="text-lg">{{ job.description }}</p> -->
                 <div [innerHTML]="sanitizedContent"></div>
             </div>
             <div class="flex col-12">
@@ -63,7 +62,7 @@
         <p-tabView>
             <p-tabPanel header="Job Benefit">
                 <div class="container">
-                    <app-button label="Add Benefit" link="/job-vacancies/details/{{job.id}}"
+                    <app-button label="Add Benefit" routerLink="/job-vacancies/details/{{job.id}}"
                         (clickChange)="addJobBenefit()"></app-button>
                     <h3>List Benefit:</h3>
                     <div class="list-benefit">
@@ -77,7 +76,7 @@
                                         <app-button classBtn="p-button-danger" styleBtn="margin-bottom:0.3rem"
                                             (clickChange)="deleteBenefit(job.jobCode, b.benefitCode)"
                                             iconBtn="pi pi-trash" tooltipBtn="Delete" tooltipPstn="top"
-                                            link="/job-vacancies/details/{{id}}"></app-button>
+                                            routerLink="/job-vacancies/details/{{id}}"></app-button>
                                     </div>
                                 </div>
                             </li>
@@ -130,7 +129,7 @@
                         <div class="question">
                             <h4 class="detail-heading">Questions:</h4>
                             <app-button label="Add Question" styleBtn="margin-bottom:0.5rem"
-                                link="/job-vacancies/{{id}}/question/{{test.testCode}}"></app-button>
+                                routerLink="/job-vacancies/{{id}}/question/{{test.testCode}}"></app-button>
                             <div *ngFor="let q of test.questionGetResDtos; let i = index">
                                 <p-accordion [multiple]="true" [activeIndex]="[0]">
                                     <p-accordionTab header="Question {{i+1}}">
@@ -144,7 +143,7 @@
                                         <app-button classBtn="p-button-danger" iconBtn="pi pi-trash"
                                             tooltipBtn="Delete Question" tooltipPstn="top"
                                             (clickChange)="questionModal(test.testCode, q.questionCode)"
-                                            link="/job-vacancies/details/{{job.id}}"></app-button>
+                                            routerLink="/job-vacancies/details/{{job.id}}"></app-button>
                                     </p-accordionTab>
                                 </p-accordion>
                             </div>
@@ -194,8 +193,7 @@
                 <p-calendar [showIcon]="true" formControlName="schedule"></p-calendar>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" classBtn="p-button-primary" label="Submit"
-                    link="/job-vacancies/details/{{job.id}}"></app-button>
+                <app-button btnType="submit" classBtn="p-button-primary" label="Submit"></app-button>
             </div>
         </div>
     </form>
@@ -213,8 +211,7 @@
                 <p-calendar [showIcon]="true" formControlName="schedule"></p-calendar>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" classBtn="p-button-primary"
-                    link="/job-vacancies/detail/{{job.id}}"></app-button>
+                <app-button btnType="submit" classBtn="p-button-primary" label="Submit"></app-button>
             </div>
         </div>
     </form>
@@ -229,9 +226,9 @@
                 <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Medical Checkup?</h3>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" classBtn="p-button-primary" label="Yes" link="/job-vacancies"></app-button>
-                <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelMcu()" label="No"
-                    link="/job-vacancies/detail/{{job.id}}"></app-button>
+                <app-button btnType="submit" classBtn="p-button-primary mr-2" label="Yes"></app-button>
+                <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelMcu()"
+                    label="No"></app-button>
             </div>
         </div>
     </form>
@@ -246,9 +243,9 @@
                 <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Offering?</h3>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" classBtn="p-button-primary" label="Yes"></app-button>
-                <app-button btnType="submit" classBtn="p-button-secondary" (clickChange)="cancelOffering()" label="No"
-                    link="/job-vacancies/detail/{{job.id}}"></app-button>
+                <app-button btnType="submit" classBtn="p-button-primary mr-3" label="Yes"></app-button>
+                <app-button btnType="submit" classBtn="p-button-secondary" (clickChange)="cancelOffering()"
+                    label="No"></app-button>
             </div>
         </div>
     </form>
@@ -263,10 +260,9 @@
                 <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Hired?</h3>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" classBtn="p-button-primary" link="/job-vacancies/detail/{{job.id}}"
-                    label="Yes"></app-button>
-                <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelHired()" label="No"
-                    link="/job-vacancies/detail/{{job.id}}"></app-button>
+                <app-button btnType="submit" classBtn="p-button-primary mr-3" label="Yes"></app-button>
+                <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelHired()"
+                    label="No"></app-button>
             </div>
         </div>
     </form>
@@ -281,10 +277,9 @@
                 <h3 for="inputName">Apakah anda ingin memasukkan candidate ke dalam rejected?</h3>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" classBtn="p-button-primary" label="Yes"
-                    link="/job-vacancies/detail/{{job.id}}"></app-button>
-                <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelRejected()" label="No"
-                    link="/job-vacancies/detail/{{job.id}}"></app-button>
+                <app-button btnType="submit" classBtn="p-button-primary" label="Yes"></app-button>
+                <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelRejected()"
+                    label="No"></app-button>
             </div>
         </div>
     </form>
@@ -308,8 +303,8 @@
 </p-dialog>
 
 <!-- Modal Add-->
-<p-dialog header="Add benefit" [modal]="true" [(visible)]="visibleAddBenefit" [breakpoints]="{'768px': '90vw'}"
-    [style]="{width: '30vw' }" [draggable]="false">
+<p-dialog header="Add benefit" [modal]="true" [(visible)]="visibleAddBenefit"
+    [breakpoints]="{'768px': '90vw','900px': '70vw'}" [style]="{width: '30vw' }" [draggable]="false">
     <pre>{{jobBenefitInsertReqDto.value | json}}</pre>
     <form [formGroup]="jobBenefitInsertReqDto" (ngSubmit)="insertJobBenefit()">
         <div class="grid surface-card border-round-sm border-400">
@@ -317,11 +312,11 @@
                 <label for="inputName">Choose Benefit</label>
             </div>
             <div class="col-12 md:col-9">
-                <p-dropdown [options]="listBenefits" optionValue="id" optionLabel="benefitName"
+                <p-dropdown styleClass="w-full" [options]="listBenefits" optionValue="id" optionLabel="benefitName"
                     formControlName="benefitId" placeholder="Choose" appendTo="body"></p-dropdown>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" link="/job-vacancies/details/{{job.id}}" label="Submit"></app-button>
+                <app-button btnType="submit" label="Submit"></app-button>
             </div>
         </div>
     </form>

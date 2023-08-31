@@ -19,15 +19,15 @@
           <label for="companyName" class="form-label">Industry Name<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-9">
-          <p-dropdown formControlName="industryCode" [options]="industries" optionValue="industryCode"
-            optionLabel="industryName" placeholder="Choose Key"></p-dropdown>
+          <p-dropdown formControlName="industryCode" styleClass="w-full" [options]="industries"
+            optionValue="industryCode" optionLabel="industryName"></p-dropdown>
         </div>
         <div class="col-12 md:col-3">
           <label for="companyName" class="form-label">City Name<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-9">
-          <p-dropdown formControlName="cityCode" [options]="cities" optionValue="cityCode" optionLabel="cityName"
-            placeholder="Choose Key"></p-dropdown>
+          <p-dropdown formControlName="cityCode" styleClass="w-full" [options]="cities" optionValue="cityCode"
+            optionLabel="cityName"></p-dropdown>
         </div>
         <div class="col-12 md:col-3">
           <label for="companyAddress" class="form-label">Description<span style="color: red;">*</span></label>
@@ -49,8 +49,9 @@
         </p-fileUpload>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
           <app-button classBtn="w-12" label="Back" btnType="button" classBtn="p-button-secondary"
-            styleBtn="margin-right:0.5rem" link="/companies"></app-button>
-          <app-button label="Submit" classBtn="p-button-primary" btnType="submit"></app-button>
+            styleBtn="margin-right:0.5rem" routerLink="/companies"></app-button>
+          <app-button label="Submit" classBtn="p-button-primary" btnType="submit"
+            [disabled]="companyInsertReqDto.invalid"></app-button>
         </div>
       </div>
     </div>

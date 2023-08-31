@@ -7,7 +7,7 @@
         </h3>
     </div>
     <div class="col-12 md:col-5 p-5 form-login">
-        <form [formGroup]="userLoginReqDto" (ngSubmit)="onLogin()" class="flex flex-column align-content-center justify-content-center h-full gap-3">
+        <form [formGroup]="userLoginReqDto" class="flex flex-column align-content-center justify-content-center h-full gap-3" (ngSubmit)="onLogin()">
             <div>
                 <h1>Login</h1>
             </div>
@@ -27,7 +27,7 @@
                     <small class="p-error block mt-1" *ngIf="userLoginReqDto.get('userPassword')?.invalid&&userLoginReqDto.get('userPassword')?.touched">Password Required</small>
             </div>
             <div class="text-center">
-                <app-button classBtn="w-4 surface-900 text-100" label="Login" [loading]="loading" btnType="submit"></app-button>
+                <app-button classBtn="w-4 surface-900 text-100" label="Login" [loading]="loading" btnType="submit" [disabled]="userLoginReqDto.invalid"></app-button>
             </div>
             <div class="text-center">
                 <span>Don't have account? </span>

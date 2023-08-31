@@ -60,6 +60,7 @@ export class InterviewListComponent implements OnInit {
     const data = this.interviewUpdateReqDto.getRawValue()
     firstValueFrom(this.statusProgressService.updateInterviewNotes(data)).then(result => {
       this.visibleUpdateNotes = false
+      this.getInterview()
     })
   }
 }

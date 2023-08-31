@@ -24,7 +24,7 @@ import { AuthService } from "@serviceCandidate/auth.service";
 })
 export class LoginComponent {
   userLoginReqDto = this.fb.group({
-    userEmail: ['', [Validators.email]],
+    userEmail: ['', [Validators.email,Validators.required]],
     userPassword: ['', [Validators.required]]
   })
 

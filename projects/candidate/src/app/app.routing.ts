@@ -19,12 +19,12 @@ const routes : Routes = [
     {
         component : LoginComponent,
         path : 'login',
-        // canMatch : [ authValidation ]
+        canMatch : [ authValidation ]
     },
     {
         component : RegisterComponent,
         path : 'register',
-        // canMatch : [ authValidation ]
+        canMatch : [ authValidation ]
     },
     {
         component : TestComponent,
@@ -39,23 +39,26 @@ const routes : Routes = [
         component : BaseComponent,
         path : 'profile',
         loadChildren : () => import ('./pages/profile/profile.module')
-        .then(c => c.ProfileModule)
+        .then(c => c.ProfileModule),
+        canMatch : [ authValidationNonLogin ]
     },
     {
         component : BaseComponent,
         path : 'status-progress',
         loadChildren : () => import ('./pages/status-progress/application.module')
-        .then(c => c.ApplicationModule)
+        .then(c => c.ApplicationModule),
+        canMatch : [ authValidationNonLogin ]
     },
     {
         component : BaseComponent,
         path : 'companies',
         loadChildren : () => import ('./pages/company/company.module')
-        .then(c => c.CompanyModule)
+        .then(c => c.CompanyModule),
+        canMatch : [ authValidationNonLogin ]
     },
     {
         path : '',
-        redirectTo : '/login',
+        redirectTo : '/home',
         pathMatch : 'full'
     },
     {

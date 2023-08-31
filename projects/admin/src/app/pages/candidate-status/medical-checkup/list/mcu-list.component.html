@@ -35,7 +35,8 @@
 </div>
 
 <!-- Modal Add-->
-<p-dialog header="Upload Medical Check Up File" [modal]="true" [(visible)]="visibleMcu" [style]="{ width: '40vw' }">
+<p-dialog header="Upload Medical Check Up File" [modal]="true" [(visible)]="visibleMcu" [style]="{ width: '40vw' }"
+  [breakpoints]="{'768px': '90vw'}">
   <pre>{{medicalUpdateReqDto.value | json}}</pre>
   <form [formGroup]="medicalUpdateReqDto" (ngSubmit)="updateMcu()">
     <div class="grid surface-card border-round-sm border-400">
@@ -47,7 +48,8 @@
         </p-fileUpload>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <app-button btnType="submit" label="Submit" link="/candidate-statuses/mcu"></app-button>
+        <app-button btnType="submit" label="Submit" link="/candidate-statuses/mcu"
+          [disabled]="medicalUpdateReqDto.invalid"></app-button>
       </div>
     </div>
   </form>

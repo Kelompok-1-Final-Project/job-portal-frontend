@@ -40,11 +40,18 @@
           <label for="companyName" class="form-label">Company<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown [options]="companies" optionValue="companyCode" optionLabel="companyName"
-            formControlName="companyCode"></p-dropdown>
+          <p-dropdown styleClass="w-full" [filter]="true" [options]="companies" optionValue="companyCode"
+            optionLabel="companyName" formControlName="companyCode"></p-dropdown>
         </div>
         <div class="flex col-12">
           <h2 class="text-center">Vacancy Status</h2>
+        </div>
+        <div class="col-12 md:col-2">
+          <label for="companyName" class="form-label">Hr PIC<span style="color: red;">*</span></label>
+        </div>
+        <div class="col-12 md:col-4">
+          <p-dropdown styleClass="w-full" [filter]="true" [options]="hr" optionValue="userId" optionLabel="fullName"
+            formControlName="hrId"></p-dropdown>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Status<span style="color: red;">*</span></label>
@@ -54,17 +61,11 @@
             formControlName="jobStatusCode"></p-dropdown>
         </div>
         <div class="col-12 md:col-2">
-          <label for="companyName" class="form-label">Hr PIC<span style="color: red;">*</span></label>
-        </div>
-        <div class="col-12 md:col-4">
-          <p-dropdown [options]="hr" optionValue="userId" optionLabel="fullName" formControlName="hrId"></p-dropdown>
-        </div>
-        <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Interviewer PIC<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown [options]="interviewer" optionValue="userId" optionLabel="fullName"
-            formControlName="interviewerId"></p-dropdown>
+          <p-dropdown styleClass="w-full" [filter]="true" [options]="interviewer" optionValue="userId"
+            optionLabel="fullName" formControlName="interviewerId"></p-dropdown>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Employment Type<span style="color: red;">*</span></label>
@@ -113,10 +114,10 @@
         <div class="col-12">
           <button *ngIf="isVisible()" pButton pRipple label="Add" type="button" (click)="onAdd()"></button>
         </div>
-        <div *ngIf="isVisible()" class="col-12">
-          <div *ngFor="let c of questionList.controls; let i=index" formArrayName="questionId">
-            <div class="col-6">
-              <p-dropdown styleClass="w-full" [options]="questions" [formControlName]="i" optionValue="questionId"
+        <div *ngIf="isVisible()" class="grid grid-nogutter col-12">
+          <div *ngFor="let c of questionList.controls; let i=index" formArrayName="questionId" class="col-12">
+            <div class="col-12 md:col-6">
+              <p-dropdown [options]="questions" [filter]="true" [formControlName]="i" optionValue="questionId" styleClass="w-full"
                 optionLabel="question"></p-dropdown>
             </div>
             <div class="col-2">

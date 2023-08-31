@@ -4,6 +4,7 @@ export interface UserGetResDto{
 	fullName : string
 	roleName : string
 	userPhone : string
-	userGender : string
+	userGender : string 
+	fileId: string
 	isActive : boolean
 }

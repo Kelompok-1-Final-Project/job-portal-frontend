@@ -23,8 +23,8 @@ export class CandidateInsertComponent implements OnInit, AfterViewChecked {
   candidateInsertReqDto = this.fb.group({
     photoExt: [''],
     photoFiles: [''],
-    email: [''],
-    fullName: [''],
+    email: ['', Validators.required],
+    fullName: ['', Validators.required],
     idNumber: [''],
     mobileNumber: [''],
     genderCode: [''],

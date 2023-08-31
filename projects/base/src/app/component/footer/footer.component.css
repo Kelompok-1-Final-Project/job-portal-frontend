@@ -1,0 +1,14 @@
+footer{
+    width: 100%;
+    background-color: navy;
+    bottom: 0;
+}
+
+
+.social-account li {
+    list-style: none;
+}
+
+footer .social-account li a i:hover{
+    transform: translateY(0.5rem)
+}
