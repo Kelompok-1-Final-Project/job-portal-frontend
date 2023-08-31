@@ -1,5 +1,5 @@
 <div class="container">
-  <button pButton pRipple class="p-button-secondary" label="Back" routerLink="/questions" style="margin-top: 0.5rem;"></button>
+  <app-button classBtn="p-button-secondary mt-1" label="Back" link="/questions"></app-button>
   <h2>Question Detail</h2>
   <h3>Question: </h3>
 
@@ -7,8 +7,8 @@
     <textarea pInputTextarea rows="4" cols="50" id="question" name="question" [value]="questions.question"
       disabled></textarea>
   </form>
-  <button pButton class="edit-button" (click)="editQuestion(questions.questionId)" icon="pi pi-pencil"
-    label="Edit Question"></button>
+  <app-button iconBtn="pi pi-pencil" label="Edit Question"
+    (clickChange)="editQuestion(questions.questionId)"></app-button>
 
   <p-table [value]="questions.listQuestionOption" class="options-table">
     <ng-template pTemplate="header">
@@ -25,7 +25,8 @@
         <td>{{option.labels}}</td>
         <td>{{option.isAnswer}}</td>
         <td>
-          <button pButton (click)="editOption(option.questionOptionId)" icon="pi pi-pencil" label="Edit"></button>
+          <app-button (clickChange)="editOption(option.questionOptionId)" iconBtn="pi pi-pencil"
+            label="Edit"></app-button>
         </td>
       </tr>
     </ng-template>
@@ -41,11 +42,12 @@
         <label for="inputName">Question</label>
       </div>
       <div class="col-12 md:col-9">
-        <textarea pInputTextarea type="text" class="col-12 " id="inputName" required formControlName="question"></textarea>
+        <textarea pInputTextarea type="text" class="col-12 " id="inputName" required
+          formControlName="question"></textarea>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary"
-          [disabled]="questionUpdateReqDto.invalid">Submit</button>
+        <app-button btnType="submit" classBtn="p-button-primary" [disabled]="questionUpdateReqDto.invalid"
+          label="Submit"></app-button>
       </div>
     </div>
   </form>
@@ -66,11 +68,12 @@
         <label for="inputName">Answer</label>
       </div>
       <div class="col-12 md:col-9">
-        <p-dropdown [options]="keyAnswer" optionLabel="name" optionValue="value" formControlName="isAnswer"></p-dropdown>
+        <p-dropdown [options]="keyAnswer" optionLabel="name" optionValue="value"
+          formControlName="isAnswer"></p-dropdown>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary"
-          [disabled]="optionUpdateReqDto.invalid">Submit</button>
+        <app-button btnType="submit" classBtn="p-button-primary" [disabled]="optionUpdateReqDto.invalid"
+          label="Submit"></app-button>
       </div>
     </div>
   </form>
