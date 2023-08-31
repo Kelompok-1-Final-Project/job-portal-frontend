@@ -1,5 +1,5 @@
 <div class="card">
-  <p-menubar  *ngIf="isAdmin" [model]="items">
+  <p-menubar *ngIf="isAdmin" [model]="items">
     <ng-template pTemplate="start">
       <img src="../../../assets/images/logo.png" height="60" class="mx-2 cursor-pointer logo" routerLink="/home" />
     </ng-template>
@@ -12,8 +12,12 @@
     <ng-template pTemplate="start">
       <img src="../../../assets/images/logo.png" height="60" class="mx-2 cursor-pointer logo" routerLink="/home" />
     </ng-template>
-    <ng-template pTemplate="end">
-      <img [src]="imgUrl" height="40" class="bg-center w-3rem h-3rem border-round" />
+    <ng-template pTemplate="end" *ngIf="isLogin">
+      <p-overlayPanel #op>
+        <p-menu [model]="itemsCandidateProfile"> </p-menu>
+      </p-overlayPanel>
+      <p-avatar image="{{imgUrl}}" styleClass="mr-2" size="large" shape="circle"
+        (click)="op.toggle($event); getOP(op)"></p-avatar>
     </ng-template>
   </p-menubar>
 </div>
