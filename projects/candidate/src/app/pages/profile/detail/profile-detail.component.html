@@ -90,6 +90,7 @@
           <div class="col-6 md:col-8">
             <div class="font-semibold">{{e.educationName}}
             </div>
+            <span>({{ e.startDate | dateDifference: e.endDate }})</span>
           </div>
           <div class="col-12 lg:col-2 mt-4">
             <div class="grid justify-content-end">
@@ -116,6 +117,7 @@
           <div class="col-6 md:col-8">
             <div class="font-semibold">{{ w.companyName }}</div>
             <div class="text-gray-500">{{ w.positionName }}</div>
+            <span>({{ w.startDate | dateDifference: w.endDate }})</span>
           </div>
           <div class="col-12 lg:col-2 mt-4">
             <div class="grid justify-content-end">
@@ -312,13 +314,15 @@
         <label for="inputName">From <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate" styleClass="w-full"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDateTemp" styleClass="w-full"
+        (onSelect)="convertEducationInsertStartDate($event)"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputName">To <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate" styleClass="w-full"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDateTemp" styleClass="w-full"
+        (onSelect)="convertEducationInsertEndDate($event)"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <app-button label="Submit" btnType="submit" [disabled]="educationInsertReqDto.invalid"></app-button>
@@ -344,13 +348,15 @@
         <label for="inputName">From<span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate" styleClass="w-full"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDateTemp" styleClass="w-full"
+        (onSelect)="convertEducationUpdateStartDate($event)"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputName">To<span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate" styleClass="w-full"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDateTemp" styleClass="w-full"
+        (onSelect)="convertEducationUpdateEndDate($event)"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <button type="submit" pButton pRipple class="p-button-primary">Save Changes</button>
@@ -394,13 +400,15 @@
         <label for="inputName">From <span class="text-red-500">*</span> </label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate" styleClass="w-full"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDateTemp" styleClass="w-full"
+        (onSelect)="convertExperienceInsertStartDate($event)"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputName">To <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate" styleClass="w-full"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDateTemp" styleClass="w-full"
+        (onSelect)="convertExperienceInsertEndDate($event)"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <app-button label="Submit" btnType="submit" [disabled]="workExperienceInsertReqDto.invalid"></app-button>
@@ -430,15 +438,15 @@
         <label for="inputName">From <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate" [readonlyInput]="true"
-          styleClass="w-full"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDateTemp" [readonlyInput]="true"
+          styleClass="w-full" (onSelect)="convertExperienceUpdateStartDate($event)"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputName">To <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate" [readonlyInput]="true"
-          styleClass="w-full"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDateTemp" [readonlyInput]="true"
+          styleClass="w-full" (onSelect)="convertExperienceUpdateEndDate($event)"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <button type="submit" pButton pRipple class="p-button-primary">Save Changes</button>
@@ -545,13 +553,15 @@
         <label for="inputName">From <span class="text-red-500">*</span> </label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate" styleClass="w-full"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDateTemp" styleClass="w-full"
+        (onSelect)="convertOrganizationInsertStartDate($event)"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputName">To <span class="text-red-500">*</span> </label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate" styleClass="w-full"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDateTemp" styleClass="w-full"
+        (onSelect)="convertOrganizationInsertEndDate($event)"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputJobPosition">Description <span class="text-red-500">*</span></label>
@@ -587,13 +597,15 @@
         <label for="inputName">From <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDate" styleClass="w-full"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="startDateTemp" styleClass="w-full"
+        (onSelect)="convertOrganizationUpdateStartDate($event)"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputName">To <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
-        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDate" styleClass="w-full"></p-calendar>
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="endDateTemp" styleClass="w-full"
+        (onSelect)="convertOrganizationUpdateEndDate($event)"></p-calendar>
       </div>
       <div class="col-12 md:col-3">
         <label for="inputJobPosition">Description <span class="text-red-500">*</span></label>

@@ -106,23 +106,29 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     candidateId: [''],
     educationName: ['', [Validators.required]],
     startDate: ['',[Validators.required]],
-    endDate: ['',[Validators.required]]
+    startDateTemp:[new Date],
+    endDate: ['',[Validators.required]],
+    endDateTemp:[new Date]
   })
 
   educationUpdateReqDto = this.fb.group({
     educationId: ['', [Validators.required]],
     candidateId: ['', [Validators.required]],
     educationName: ['', [Validators.required]],
-    startDate: ['', [Validators.required]],
-    endDate: ['', [Validators.required]]
+    startDate: ['',[Validators.required]],
+    startDateTemp:[new Date],
+    endDate: ['',[Validators.required]],
+    endDateTemp:[new Date]
   })
 
   workExperienceInsertReqDto = this.fb.group({
     candidateId: [''],
     companyName: ['', [Validators.required]],
     positionName: ['', [Validators.required]],
-    startDate: ['', [Validators.required]],
-    endDate: ['', [Validators.required]]
+    startDate: ['',[Validators.required]],
+    startDateTemp:[new Date],
+    endDate: ['',[Validators.required]],
+    endDateTemp:[new Date]
   })
 
   workExperienceUpdateReqDto = this.fb.group({
@@ -130,8 +136,10 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     candidateId: ['', [Validators.required]],
     companyName: ['', [Validators.required]],
     positionName: ['', [Validators.required]],
-    startDate: ['', [Validators.required]],
-    endDate: ['', [Validators.required]]
+    startDate: ['',[Validators.required]],
+    startDateTemp:[new Date],
+    endDate: ['',[Validators.required]],
+    endDateTemp:[new Date]
   })
 
   skillCandidateReqDto = this.fb.group({
@@ -144,8 +152,10 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     candidateId: [''],
     organizationName: ['', [Validators.required]],
     positionName: ['', [Validators.required]],
-    startDate: ['', [Validators.required]],
-    endDate: ['', [Validators.required]],
+    startDate: ['',[Validators.required]],
+    startDateTemp:[new Date],
+    endDate: ['',[Validators.required]],
+    endDateTemp:[new Date],
     description: ['', [Validators.required]]
   })
 
@@ -154,8 +164,10 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     candidateId: ['', [Validators.required]],
     organizationName: ['', [Validators.required]],
     positionName: ['', [Validators.required]],
-    startDate: ['', [Validators.required]],
-    endDate: ['', [Validators.required]],
+    startDate: ['',[Validators.required]],
+    startDateTemp:[new Date],
+    endDate: ['',[Validators.required]],
+    endDateTemp:[new Date],
     description: ['', [Validators.required]]
   })
 
@@ -258,10 +270,95 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     })
   }
 
+  
   convertFamilyUpdateDate(e : any){
     const birthConvert = new Date(convertUTCToLocalDate(e));
     this.familyUpdateReqDto.patchValue({
       birthdate: birthConvert.toISOString()
+    })
+  }
+
+  convertExperienceInsertStartDate(e : any){
+    const startDate = new Date(convertUTCToLocalDate(e));
+    this.workExperienceInsertReqDto.patchValue({
+      startDate: startDate.toISOString()
+    })
+  }
+
+  convertExperienceInsertEndDate(e : any){
+    const endDate = new Date(convertUTCToLocalDate(e));
+    this.workExperienceInsertReqDto.patchValue({
+      endDate: endDate.toISOString()
+    })
+  }
+
+  convertExperienceUpdateStartDate(e : any){
+    const startDate = new Date(convertUTCToLocalDate(e));
+    this.workExperienceUpdateReqDto.patchValue({
+      startDate: startDate.toISOString()
+    })
+  }
+
+  convertExperienceUpdateEndDate(e : any){
+    const endDate = new Date(convertUTCToLocalDate(e));
+    this.workExperienceUpdateReqDto.patchValue({
+      endDate: endDate.toISOString()
+    })
+  }
+  
+  convertOrganizationInsertStartDate(e : any){
+    const startDate = new Date(convertUTCToLocalDate(e));
+    this.organizationInsertReqDto.patchValue({
+      startDate: startDate.toISOString()
+    })
+  }
+
+  convertOrganizationInsertEndDate(e : any){
+    const endDate = new Date(convertUTCToLocalDate(e));
+    this.organizationInsertReqDto.patchValue({
+      endDate: endDate.toISOString()
+    })
+  }
+
+  convertOrganizationUpdateStartDate(e : any){
+    const startDate = new Date(convertUTCToLocalDate(e));
+    this.organizationUpdateReqDto.patchValue({
+      startDate: startDate.toISOString()
+    })
+  }
+
+  convertOrganizationUpdateEndDate(e : any){
+    const endDate = new Date(convertUTCToLocalDate(e));
+    this.organizationUpdateReqDto.patchValue({
+      endDate: endDate.toISOString()
+    })
+  }
+
+  convertEducationInsertStartDate(e : any){
+    const startDate = new Date(convertUTCToLocalDate(e));
+    this.educationInsertReqDto.patchValue({
+      startDate: startDate.toISOString()
+    })
+  }
+
+  convertEducationInsertEndDate(e : any){
+    const endDate = new Date(convertUTCToLocalDate(e));
+    this.educationInsertReqDto.patchValue({
+      endDate: endDate.toISOString()
+    })
+  }
+
+  convertEducationUpdateStartDate(e : any){
+    const startDate = new Date(convertUTCToLocalDate(e));
+    this.educationUpdateReqDto.patchValue({
+      startDate: startDate.toISOString()
+    })
+  }
+
+  convertEducationUpdateEndDate(e : any){
+    const endDate = new Date(convertUTCToLocalDate(e));
+    this.educationUpdateReqDto.patchValue({
+      endDate: endDate.toISOString()
     })
   }
 
@@ -332,8 +429,8 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
   updateEducation(id: string,index:number) {
     this.patchId = id;
     this.educationUpdateReqDto.get('educationName')?.setValue(this.educations[index].educationName);
-    this.educationUpdateReqDto.get('startDate')?.setValue(convertUTCToLocalDate(new Date(this.educations[index].startDate)));
-    this.educationUpdateReqDto.get('endDate')?.setValue(this.educations[index].endDate);
+    this.educationUpdateReqDto.get('startDateTemp')?.setValue(new Date(this.educations[index].startDate));
+    this.educationUpdateReqDto.get('endDateTemp')?.setValue(new Date(this.educations[index].endDate));
     this.visibleUpdateEducation = true;
   }
   deleteEducation(id: string) {
@@ -382,6 +479,8 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     this.visibleUpdateWorkExp = true;
     this.workExperienceUpdateReqDto.get('companyName')?.setValue(this.workExperience[index].companyName);
     this.workExperienceUpdateReqDto.get('positionName')?.setValue(this.workExperience[index].positionName);
+    this.workExperienceUpdateReqDto.get('startDateTemp')?.setValue(new Date(this.workExperience[index].startDate));
+    this.workExperienceUpdateReqDto.get('endDateTemp')?.setValue(new Date(this.workExperience[index].endDate));
   }
   deleteWorkExp(id: string) {
     this.patchId = id;
@@ -484,6 +583,8 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
     this.organizationUpdateReqDto.get('organizationName')?.setValue(this.organization[index].organizationName);
     this.organizationUpdateReqDto.get('positionName')?.setValue(this.organization[index].positionName);
     this.organizationUpdateReqDto.get('description')?.setValue(this.organization[index].description);
+    this.organizationUpdateReqDto.get('startDateTemp')?.setValue(new Date(this.organization[index].startDate));
+    this.organizationUpdateReqDto.get('endDateTemp')?.setValue(new Date(this.organization[index].endDate));
   }
   deleteOrganization(id: string) {
     this.patchId = id;
