@@ -1,12 +1,13 @@
-<pre>{{ job|json }}</pre>
+<!-- <pre>{{ job|json }}</pre> -->
 <!-- <pre>{{ company|json }}</pre> -->
 <div class="home-container">
+  <div class="col-12 grid grid-nogutter justify-content-center">
+    <app-button iconBtn="pi pi-angle-double-left" classBtn="p-button-raised p-button-text p-button-warning" label="Back to previous menu" btnType="submit" [routerLink]="linkTo" class="col-10"></app-button>
+  </div>
   <div class="container grid grid-nogutter justify-content-center">
     <div class="sub-container grid col-12 md:col-10 mt-3 justify-content-center">
       <div class="banner col-12">
       </div>
-      <!-- <div class="company-profile grid grid-nogutter jsut">
-      </div> -->
       <div class="company-profile grid grid-nogutter col-10 md:col-3 justify-content-center align-items-center">
         <div class="col-12">
           <img src="{{ job.companyPhoto|urlCandidate }}" alt="Image" class="w-10rem border-orange-300 surface-overlay border-3 border-round">

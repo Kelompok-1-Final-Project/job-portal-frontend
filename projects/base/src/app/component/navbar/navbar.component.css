@@ -1,10 +1,10 @@
 ::ng-deep .p-menubar .p-menuitem:hover > .p-menuitem-content .p-menuitem-link {
-    background-color:#F8F7F3 ;
+    background-color:#e3ddc5 ;
     border-bottom: 2px solid #224674; 
   }
   ::ng-deep
   .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-content .p-menuitem-link .p-menuitem-icon {
-      background-color: #F8F7F3;
+      background-color: #e3ddc5;
     color: #224674;
   }
 ::ng-deep
@@ -29,12 +29,12 @@
 }
 
 ::ng-deep .p-menubar .p-menuitem.p-highlight > .p-menuitem-content {
-  background-color:#F8F7F3;
+  background-color:#e3ddc5;
 }
 
 ::ng-deep .p-menubar {
   border-radius: 0;
-  background-color: #F8F7F3;
+  background-color: #e3ddc5;
   border: none;
   /* position: fixed; */
   width: 100%;

@@ -25,6 +25,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { UrlPipeCandidate } from "@pipes/url.pipe";
 import { PaginatorModule } from "primeng/paginator";
 import { TimeAgoPipe } from "@pipes/time-ago.pipe";
+import { ButtonComponent } from "@component/button/button.component";
 
 const routes : Routes = [
     {
@@ -74,6 +75,7 @@ const routes : Routes = [
         UrlPipeCandidate,
         PaginatorModule,
         FileUploadModule,
+        ButtonComponent,
         TimeAgoPipe
     ],
     exports : [

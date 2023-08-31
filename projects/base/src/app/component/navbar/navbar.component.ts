@@ -75,7 +75,7 @@ export class NavbarComponent implements OnInit {
       this.isLogin = false;
     }
 
-    if (profilePhoto != null) {
+    if (profilePhoto != null && profilePhoto != '') {
       this.imgUrl = `${BASE_URL_CAN}/files/${profilePhoto}`;
       this.imgUrlAdmin = `${BASE_URL}/files/${profilePhoto}`;
     } else {

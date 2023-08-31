@@ -7,7 +7,8 @@
         <div class="grid grid-nogutter">
           <div class="col-12 md:col-3">
             <div class="grid justify-content-center p-3">
-              <img src="{{ userData.photoId|urlCandidate}}" alt="Foto Profil" class="w-5 md:w-full">
+              <img *ngIf="userData.photoId" src="{{ userData.photoId|urlCandidate}}" alt="Foto Profil" class="w-5 md:w-full">
+              <img *ngIf="!userData.photoId" src="../../../../assets/images/avatar.png" alt="Foto Profil" class="w-5 md:w-full">
             </div>
           </div>
           <div class="col-12 md:col-9">
@@ -232,17 +233,17 @@
             (onSelect)="fileUpload($event)">
           </p-fileUpload>
           <div class="col-12 md:col-3">
-            <label for="nik">NIK</label>
-          </div>
-          <div class="col-12 md:col-9">
-            <input pInputText type="text" class="form-control col-12" id="nik" required formControlName="idNumber">
-          </div>
-          <div class="col-12 md:col-3">
             <label for="email">Email</label>
           </div>
           <div class="col-12 md:col-9">
             <input pInputText type="text" class="form-control col-12 p-disabled" id="email" required
               formControlName="email">
+          </div>
+          <div class="col-12 md:col-3">
+            <label for="nik">NIK</label>
+          </div>
+          <div class="col-12 md:col-9">
+            <input pInputText type="text" class="form-control col-12" id="nik" required formControlName="idNumber">
           </div>
           <div class="col-12 md:col-3">
             <label for="fullName">Fullname</label>
