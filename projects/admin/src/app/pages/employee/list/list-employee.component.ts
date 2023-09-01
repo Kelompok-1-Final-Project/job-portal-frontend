@@ -16,6 +16,7 @@ export class ListEmployeeComponent implements OnInit {
     employees!: EmployeeGetResDto[]
     visibleBlacklist: boolean = false
     loading: boolean = false
+    search: string = ''
 
     blacklistInsertReqDto = this.fb.group({
         candidateId : ['', [Validators.required]],

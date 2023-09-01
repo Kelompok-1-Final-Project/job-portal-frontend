@@ -23,7 +23,7 @@ import { firstValueFrom } from "rxjs";
 export class JobDetailComponent implements OnInit, AfterViewChecked {
 
     id!: string
-    job!: JobAdminGetResDto
+    job?: JobAdminGetResDto
     candidates!: CandidateProgressGetResDto[]
     status!: StatusProgressGetResDto[]
     test!: TestGetResDto
@@ -145,9 +145,10 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     }
 
     getCandidateStatus() {
-        firstValueFrom(this.statusProgressService.getCandidateByJob(this.job.jobCode)).then(result => {
-            this.candidates = result
-        })
+        const jobId = this.job?.jobCode
+        // firstValueFrom(this.statusProgressService.getCandidateByJob(this.job.jobId)).then(result => {
+        //     this.candidates = result
+        // })
     }
 
     getStatus() {
@@ -165,30 +166,42 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     changeStatus(code: string, candidateId: string, progressId: string) {
         if (code == ProgressStatus.ASSESSMENT) {
             this.visibleAssessment = true
-            this.assessmentInsertReqDto.get('hrId')?.setValue(this.job.hrId)
-            this.assessmentInsertReqDto.get('candidateId')?.setValue(candidateId)
-            this.assessmentInsertReqDto.get('jobId')?.setValue(this.job.id)
+            this.assessmentInsertReqDto.patchValue({
+                hrId: this.job?.hrId,
+                candidateId: candidateId,
+                jobId: this.job?.id
+            })
         } else if (code == ProgressStatus.INTERVIEW) {
             this.visibleInterview = true
-            this.interviewInsertReqDto.get('candidateId')?.setValue(candidateId)
-            this.interviewInsertReqDto.get('jobId')?.setValue(this.job.id)
-            this.interviewInsertReqDto.get('interviewerId')?.setValue(this.job.interviewerId)
+            this.interviewInsertReqDto.patchValue({
+                candidateId : candidateId,
+                jobId : this.job?.id,
+                interviewerId : this.job?.interviewerId
+            })
         } else if (code == ProgressStatus.MEDICAL) {
             this.visibleMcu = true
-            this.medicalcheckupInsertReqDto.get('candidateId')?.setValue(candidateId)
-            this.medicalcheckupInsertReqDto.get('jobId')?.setValue(this.job.id)
+            this.medicalcheckupInsertReqDto.patchValue({
+                candidateId: candidateId,
+                jobId: this.job?.id
+            })
         } else if (code == ProgressStatus.OFFERING) {
             this.visibleOffering = true
-            this.offeringInsertReqDto.get('candidateId')?.setValue(candidateId)
-            this.offeringInsertReqDto.get('jobId')?.setValue(this.job.id)
+            this.offeringInsertReqDto.patchValue({
+                candidateId : candidateId,
+                jobId: this.job?.id
+            })
         } else if (code == ProgressStatus.HIRED) {
             this.visibleHired = true
-            this.hiredInsertReqDto.get('candidateId')?.setValue(candidateId)
-            this.hiredInsertReqDto.get('jobId')?.setValue(this.job.id)
+            this.hiredInsertReqDto.patchValue({
+                candidateId: candidateId,
+                jobId: this.job?.id
+            })
         } else if (code == ProgressStatus.REJECTED) {
             this.visibleRejected = true
-            this.rejectedInsertReqDto.get('candidateProgressId')?.setValue(progressId)
-            this.rejectedInsertReqDto.get('statusProcessCode')?.setValue(code)
+            this.rejectedInsertReqDto.patchValue({
+                candidateProgressId: progressId,
+                statusProcessCode: code
+            })
         }
     }
 
@@ -287,7 +300,7 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         })
     }
 
-    deleteBenefit(job: string, benefit: string) {
+    deleteBenefit(job: any, benefit: string) {
         this.visibleBenefit = true
         this.jobCode = job
         this.benefitCode = benefit
@@ -326,7 +339,8 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         return this.test != null
     }
 
-    showOriginalContent(){
-        this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.job.description)
+    showOriginalContent() {
+        const description = this.job?.description
+        // this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.job?.description)
     }
 }

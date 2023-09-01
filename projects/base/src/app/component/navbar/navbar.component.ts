@@ -35,23 +35,23 @@ export class NavbarComponent implements OnInit {
   isAdmin!: boolean;
   isCandidate!: boolean;
   adminProfiles: MenuItem[] | undefined;
-  isLogin! : boolean;
-  op! : OverlayPanel;
+  isLogin!: boolean;
+  op!: OverlayPanel;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private profileServiceCan : ProfileService
+    private profileServiceCan: ProfileService
   ) { }
 
-  getOP(op : OverlayPanel){
+  getOP(op: OverlayPanel) {
     this.op = op
   }
 
-  hideOP(op : OverlayPanel){
-      op.hide();
+  hideOP(op: OverlayPanel) {
+    op.hide();
   }
-  
+
   logout(): void {
     localStorage.clear();
     this.router.navigateByUrl("/login");
@@ -72,9 +72,9 @@ export class NavbarComponent implements OnInit {
     let profilePhoto = this.authService.getUserPhoto();
     const profile = this.authService.getProfile();
 
-    if (profile){
+    if (profile) {
       this.isLogin = true;
-    }else{
+    } else {
       this.isLogin = false;
     }
 
@@ -248,15 +248,13 @@ export class NavbarComponent implements OnInit {
         label: 'Change Password',
         icon: 'pi pi-fw pi-cog',
         routerLink: "/users/change-password",
-      },
-      {
-        label: 'Logout',
-        icon: 'pi pi-fw pi-power-off',
-        command: () => {
-          this.logout()
-        }
       }
       ]
+    },
+    {
+      label: 'Report',
+      icon: 'pi pi-fw pi-cog',
+      routerLink: '/reports'
     },
     {
       label: 'Quit',
@@ -269,26 +267,26 @@ export class NavbarComponent implements OnInit {
 
     this.adminProfiles = [
       {
-          icon: 'pi pi-fw pi-user',
-          items: [
-              {
-                  label: 'Profile',
-                  routerLink: '/users/profile'
-              },
-              {
-                  label: 'Change Password',
-                  routerLink: '/users/change-password'
-              },
-              {
-                  separator: true
-              },
-              {
-                  label: 'Logout',
-                  command: () => (this.logout())
-              }
-          ]
+        icon: 'pi pi-fw pi-user',
+        items: [
+          {
+            label: 'Profile',
+            routerLink: '/users/profile'
+          },
+          {
+            label: 'Change Password',
+            routerLink: '/users/change-password'
+          },
+          {
+            separator: true
+          },
+          {
+            label: 'Logout',
+            command: () => (this.logout())
+          }
+        ]
       }
-  ]
+    ]
 
     // ========================================================
 

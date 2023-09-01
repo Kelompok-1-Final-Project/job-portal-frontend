@@ -11,7 +11,7 @@ import { firstValueFrom } from "rxjs";
 })
 export class UserProfilesComponent implements OnInit{
 
-    profile!: UserGetResDto
+    profile?: UserGetResDto
     profileId!: string
 
     constructor(
