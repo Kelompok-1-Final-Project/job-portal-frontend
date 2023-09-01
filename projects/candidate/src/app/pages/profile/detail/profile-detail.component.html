@@ -20,10 +20,8 @@
               </div>
               <div class="col-12 md:col-6">
                 <div class="grid justify-content-center md:justify-content-start">
-                  <button pButton type="button" icon="pi pi-pencil mr-3" class="p-button-success mt-2"
-                    (click)="editUser()">
-                    Edit Profile
-                  </button>
+                  <app-button classBtn="p-button-success mt-2" btnType="button" (clickChange)="editUser()" iconBtn="pi pi-pencil" label="Edit Profile">
+                  </app-button>
                 </div>
               </div>
               <div class="left-info col-6 p-3">
@@ -41,7 +39,6 @@
                   <div class="col-12 font-semibold text-gray-500">Gender</div>
                   <div class="col-12 mb-3">{{ userData.gender ? userData.gender:'-' }}</div>
                 </div>
-
               </div>
               <div class="right-info col-6 p-3">
                 <div class=" grid phone">
@@ -72,8 +69,8 @@
     <p-accordionTab header="Summary" [selected]="true">
       <div class="content mt-3">{{ userData.summary ? userData.summary:"- You haven't summary -" }}</div>
       <div class="grid md:justify-content-end">
-        <button pButton type="button" icon="pi pi-pencil mr-2" class="p-button-success"
-          (click)="updateSummary()">Edit</button>
+          <app-button classBtn="p-button-success" btnType="button" (clickChange)="updateSummary()" iconBtn="pi pi-pencil" label="Edit">
+          </app-button>
       </div>
     </p-accordionTab>
   </p-accordion>
@@ -81,7 +78,8 @@
   <p-accordion class="col-11 md:col-8">
     <p-accordionTab header="Education" [selected]="true">
       <div class="grid md:justify-content-end">
-        <button pButton type="button" icon="pi pi-plus" class="p-button-primary" (click)="addEducation()">Add</button>
+        <app-button classBtn="p-button-primary" btnType="button" (clickChange)="addEducation()" iconBtn="pi pi-plus" label="Add">
+        </app-button>
       </div>
       <div class="p-2 md:p-1">
         <div class="grid" *ngFor="let e of educations;let i =index">
@@ -94,10 +92,10 @@
           </div>
           <div class="col-12 lg:col-2 mt-4">
             <div class="grid justify-content-end">
-              <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"
-                (click)="deleteEducation(e.id)"></button>
-              <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"
-                (click)="updateEducation(e.id,i)"></button>
+                <app-button classBtn="p-button-danger mb-2" btnType="button" (clickChange)="deleteEducation(e.id)" iconBtn="pi pi-trash" tooltipBtn="Delete"  tooltipPstn="top">
+                </app-button>
+                <app-button classBtn="p-button-success ml-2 mb-2" btnType="button" (clickChange)="updateEducation(e.id,i)" iconBtn="pi pi-pencil" tooltipBtn="Update"  tooltipPstn="top">
+                </app-button>
             </div>
           </div>
         </div>
@@ -108,7 +106,8 @@
   <p-accordion class="col-11 md:col-8">
     <p-accordionTab header="Work Experience" [selected]="true">
       <div class="grid md:justify-content-end">
-        <button pButton type="button" icon="pi pi-plus" class="p-button-primary" (click)="addWorkExp()">Add</button>
+        <app-button btnType="button" (clickChange)="addWorkExp()" iconBtn="pi pi-plus" label="Add">
+        </app-button>
       </div>
       <div class="p-2 md:p-1">
         <div class="grid" *ngFor="let w of workExperience;let i =index">
@@ -121,10 +120,10 @@
           </div>
           <div class="col-12 lg:col-2 mt-4">
             <div class="grid justify-content-end">
-              <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"
-                (click)="deleteWorkExp(w.id)"></button>
-              <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"
-                (click)="updateWorkExp(w.id,i)"></button>
+                <app-button classBtn="p-button-danger mb-2" btnType="button" (clickChange)="deleteWorkExp(w.id)" iconBtn="pi pi-trash" tooltipBtn="Delete"  tooltipPstn="top">
+                </app-button>
+                <app-button classBtn="p-button-success ml-2 mb-2" btnType="button" (clickChange)="updateWorkExp(w.id,i)" iconBtn="pi pi-pencil" tooltipBtn="Update"  tooltipPstn="top">
+                </app-button>
             </div>
           </div>
         </div>
@@ -134,10 +133,11 @@
 
   <p-accordion class="col-11 md:col-8">
     <p-accordionTab header="Skills" [selected]="true">
-      <div class="grid p-buttonset md:justify-content-end p-butto">
-        <button pButton type="button" icon="pi pi-plus ml-1" class="p-button-primary" (click)="addSkill()">Add</button>
-        <button pButton type="button" icon="pi pi-pencil ml-1" class="p-button-success" (click)="updateSkill()">Edit
-          Skill</button>
+      <div class="grid md:justify-content-end">
+          <app-button classBtn="p-button-primary mb-2" btnType="button" (clickChange)="addSkill()" iconBtn="pi pi-plus" label="Add">
+          </app-button>
+          <app-button classBtn="p-button-success ml-2 mb-2" btnType="button" (clickChange)="updateSkill()" iconBtn="pi pi-pencil" label="Edit">
+          </app-button>
       </div>
       <div class="m-2 md:p-1 mt-5">
         <div class="grid">
@@ -155,8 +155,8 @@
   <p-accordion class="col-11 md:col-8">
     <p-accordionTab header="Organization Experience" [selected]="true">
       <div class="grid md:justify-content-end">
-        <button pButton type="button" icon="pi pi-plus" class="p-button-primary"
-          (click)="addOrganization()">Add</button>
+          <app-button btnType="button" (clickChange)="addOrganization()" iconBtn="pi pi-plus" tooltipBtn="Add" label="Add" tooltipPstn="top">
+          </app-button>
       </div>
       <div class="p-2 md:p-1">
         <div class="grid" *ngFor="let o of organization;let i=index">
@@ -169,10 +169,10 @@
           </div>
           <div class="col-12 lg:col-4 mt-4">
             <div class="grid justify-content-end">
-              <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"
-                (click)="deleteOrganization(o.id)"></button>
-              <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"
-                (click)="updateOrganization(o.id,i)"></button>
+                <app-button classBtn="p-button-danger mb-2" btnType="button" (clickChange)="deleteOrganization(o.id)" iconBtn="pi pi-trash" tooltipBtn="Delete"  tooltipPstn="top">
+                </app-button>
+                <app-button classBtn="p-button-success ml-2 mb-2" btnType="button" (clickChange)="updateOrganization(o.id,i)" iconBtn="pi pi-pencil" tooltipBtn="Update"  tooltipPstn="top">
+                </app-button>
             </div>
           </div>
         </div>
@@ -183,7 +183,8 @@
   <p-accordion class="col-11 md:col-8">
     <p-accordionTab header="Family" [selected]="true">
       <div class="grid md:justify-content-end">
-        <button pButton type="button" icon="pi pi-plus" class="p-button-primary" (click)="addFamily()">Add</button>
+        <app-button btnType="button" (clickChange)="addFamily()" iconBtn="pi pi-plus" label="Add">
+        </app-button>
       </div>
       <div class="p-2 md:p-1">
         <div class="grid" *ngFor="let f of families;let i = index">
@@ -195,10 +196,10 @@
           </div>
           <div class="col-12 lg:col-4 mt-4">
             <div class="grid justify-content-end">
-              <button pButton type="button" icon="pi pi-trash" class="p-button-danger mb-2"
-                (click)="deleteFamily(f.id)"></button>
-              <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2"
-                (click)="updateFamily(f.id,i)"></button>
+                <app-button classBtn="p-button-danger mb-2" btnType="button" (clickChange)="deleteFamily(f.id)" iconBtn="pi pi-trash" tooltipBtn="Delete"  tooltipPstn="top">
+                </app-button>
+                <app-button classBtn="p-button-success ml-2 mb-2" btnType="button" (clickChange)="updateFamily(f.id,i)" iconBtn="pi pi-pencil" tooltipBtn="Update"  tooltipPstn="top">
+                </app-button>
             </div>
           </div>
         </div>
@@ -213,9 +214,8 @@
           <p-button icon="pi pi-download" label="Download CV" styleClass="p-button-raised p-button-info"></p-button>
         </a>
         <span *ngIf="!userData.cvId" class="line-height-2"  > -  You haven't uploaded a cv - </span>
-        <button pButton type="button" icon="pi pi-pencil" class="p-button-success ml-2 mb-2" label="Edit"
-          (click)="updateCv()">
-        </button>
+        <app-button classBtn="p-button-success ml-2 mb-2" btnType="button" (clickChange)="updateCv()" iconBtn="pi pi-pencil" tooltipBtn="Update"  tooltipPstn="top">
+        </app-button>
       </div>
     </p-accordionTab>
   </p-accordion>
@@ -245,19 +245,19 @@
             <label for="nik">NIK</label>
           </div>
           <div class="col-12 md:col-9">
-            <input pInputText type="text" class="form-control col-12" id="nik" required formControlName="idNumber">
+            <input pInputText type="text" class="form-control col-12" id="nik" formControlName="idNumber">
           </div>
           <div class="col-12 md:col-3">
             <label for="fullName">Fullname</label>
           </div>
           <div class="col-12 md:col-9">
-            <input pInputText type="text" class="form-control col-12" id="fullName" required formControlName="fullName">
+            <input pInputText type="text" class="form-control col-12" id="fullName" formControlName="fullName">
           </div>
           <div class="col-12 md:col-3">
             <label for="mobileNumber">Mobile Phone</label>
           </div>
           <div class="col-12 md:col-9">
-            <input pInputText type="text" class="form-control col-12" id="mobileNumber" required
+            <input pInputText type="text" class="form-control col-12" id="mobileNumber"
               formControlName="mobileNumber">
           </div>
           <div class="col-12 md:col-3">
@@ -291,7 +291,6 @@
             </p-dropdown>
           </div>
           <div class="flex flex-wrap justify-content-end mt-2 col-12">
-            <!-- <button type="submit" pButton pRipple class="p-button-primary">Save Changes</button> -->
             <app-button btnType="submit" label="Save Changes">
             </app-button>
           </div>
@@ -361,7 +360,8 @@
         (onSelect)="convertEducationUpdateEndDate($event)"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Save Changes</button>
+        <app-button btnType="submit" label="Save Changes" [disabled]="educationUpdateReqDto.invalid">
+        </app-button>
       </div>
     </div>
   </form>
@@ -375,8 +375,8 @@
       <label for="inputName">Are You Sure to Delete this Data ?</label>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary"
-        (click)="submitDeleteEducation()">Submit</button>
+      <app-button btnType="submit" label="Submit" iconBtn="pi pi-check" (click)="submitDeleteEducation()">
+      </app-button>
     </div>
   </div>
 </p-dialog>
@@ -451,7 +451,7 @@
           styleClass="w-full" (onSelect)="convertExperienceUpdateEndDate($event)"></p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Save Changes</button>
+        <app-button label="Save Changes" btnType="submit" [disabled]="workExperienceUpdateReqDto.invalid"></app-button>
       </div>
     </div>
   </form>
@@ -465,8 +465,8 @@
       <label for="inputName">Are You Sure to Delete this Data ?</label>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary"
-        (click)="submitDeleteWorkExp()">Submit</button>
+        <app-button btnType="submit" label="Submit" iconBtn="pi pi-check" (click)="submitDeleteWorkExp()">
+        </app-button>
     </div>
   </div>
 </p-dialog>
@@ -517,8 +517,7 @@
       </div>
     </div>
     <div class="col-12 md:col-3">
-      <button pButton type="submit" icon="pi pi-trash" class="p-button-danger mb-2"
-        (click)="deleteSkill(s.id)"></button>
+        <app-button classBtn="p-button-danger" btnType="button" iconBtn="pi pi-trash" (clickChange)="deleteSkill(s.id)" tooltipBtn="Delete" tooltipPstn="top"></app-button>  
     </div>
   </div>
 </p-dialog>
@@ -530,13 +529,15 @@
     <p>Are you sure you want to delete this skill?</p>
   </div>
   <div class="p-dialog-footer">
-    <button pButton type="button" label="Delete" class="p-button-danger" (click)="submitDeleteSkill()"></button>
+    <app-button btnType="submit" label="Submit" (click)="submitDeleteSkill()">
+    </app-button>
   </div>
 </p-dialog>
 
 <!-- Modal Add Organization -->
 <p-dialog header="Add Work Organization" [modal]="true" [(visible)]="visibleAddOrganization"
   [breakpoints]="{'768px': '90vw'}" [style]="{width: '30vw' }" [draggable]="false">
+  <pre>{{ organizationInsertReqDto.value|json}}</pre>
   <form [formGroup]="organizationInsertReqDto" (ngSubmit)="insertOrganization()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
@@ -569,7 +570,7 @@
         <label for="inputJobPosition">Description <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
-        <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="description">
+        <textarea pInputText rows="5" type="text" id="inputJobPosition" class="w-full" id="summary" formControlName="description"></textarea>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <app-button label="Submit" btnType="submit" [disabled]="organizationInsertReqDto.invalid"></app-button>
@@ -613,10 +614,10 @@
         <label for="inputJobPosition">Description <span class="text-red-500">*</span></label>
       </div>
       <div class="col-12 md:col-9">
-        <input pInputText type="text" class="col-12 " id="inputJobPosition" required formControlName="description">
+        <textarea pInputText rows="5" type="text" id="inputJobPosition" class="w-full" id="summary" formControlName="description"></textarea>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Save Changes</button>
+        <app-button label="Save Changes" btnType="submit" [disabled]="organizationUpdateReqDto.invalid"></app-button>
       </div>
     </div>
   </form>
@@ -630,8 +631,8 @@
       <label for="inputName">Are You Sure to Delete this Data ? </label>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary"
-        (click)="submitDeleteOrganization()">Submit</button>
+        <app-button btnType="submit" label="Submit" iconBtn="pi pi-check" (click)="submitDeleteOrganization()">
+        </app-button>
     </div>
   </div>
 </p-dialog>
@@ -714,7 +715,7 @@
         </p-calendar>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <button type="submit" pButton pRipple class="p-button-primary">Save Changes</button>
+        <app-button label="Save Changes" btnType="submit" [disabled]="familyUpdateReqDto.invalid"></app-button>
       </div>
     </div>
   </form>
@@ -728,8 +729,8 @@
       <label for="inputName">Are You Sure to Delete this Data ? </label>
     </div>
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" icon="pi pi-check" pButton pRipple class="p-button-primary"
-        (click)="submitDeleteFamily()">Submit</button>
+        <app-button btnType="submit" label="Submit" iconBtn="pi pi-check" (click)="submitDeleteFamily()">
+        </app-button>
     </div>
   </div>
 </p-dialog>

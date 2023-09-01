@@ -156,7 +156,8 @@
 <pre>{{ assignJobReqDto|json }}</pre>
   <div class="grid surface-card border-round-sm border-400">
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
-      <button type="submit" pButton pRipple class="p-button-primary mr-2" (click)="submitAssignJob()">Submit</button>
+      <app-button classBtn="p-button-primary mr-2" btnType="submit" (clickChange)="submitAssignJob()" label="Submit">
+      </app-button>
     </div>
   </div>
 </p-dialog>
