@@ -45,28 +45,28 @@ export class McuListComponent implements OnInit {
     })
   }
 
-  addFile(id: string){
+  addFile(id: string) {
     this.visibleMcu = true
     this.medicalUpdateReqDto.get('medicalId')?.setValue(id)
   }
 
   updateMcu() {
     const data = this.medicalUpdateReqDto.getRawValue()
-    firstValueFrom(this.statusProgressService.updateMcuFile(data)).then(result =>{
+    firstValueFrom(this.statusProgressService.updateMcuFile(data)).then(result => {
       this.visibleMcu = false
       this.getMedicalCheckup()
     })
   }
 
-  getProfile(){
+  getProfile() {
     const profile = this.authService.getProfile()
-    if(profile){
+    if (profile) {
       this.userId = profile.userId
     }
   }
 
-  isFile(i: number):any{
-    if(this.mcus[i].fileId){
+  isFile(i: number): any {
+    if (this.mcus[i].fileId != null) {
       return true
     } else {
       return false
