@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BaseService } from "./base.service";
-import { Observable } from "rxjs";
+import { Observable, Observer } from "rxjs";
 import { BASE_URL, BASE_URL_CAN } from "@constant/api.constant";
 import { EducationGetResDto } from "@dto/education/education.get.res.dto";
 import { WorkExperienceGetResDto } from "@dto/workexperience/work-experience.get.res.dto";
@@ -26,82 +26,97 @@ import { UpdateSummaryReqDto } from "@dto/profile/update.cv.req.dto copy";
 @Injectable({
     providedIn: 'root'
 })
-export class ProfileService{
-    constructor(private base:BaseService){}
+export class ProfileService {
+    data?: Observable<string>;
+    private dataObserver?: Observer<string>;
 
-    getEducation(userId:string): Observable<EducationGetResDto[]>{
+    constructor(private base: BaseService) {
+        this.data = new Observable<string>(
+            (observer) => (this.dataObserver = observer)
+        );
+    }
+
+    navbarObservable(photoId: string) {
+        this.dataObserver?.next(photoId);
+    }
+
+    getEducation(userId: string): Observable<EducationGetResDto[]> {
         return this.base.get<EducationGetResDto[]>(`${BASE_URL_CAN}/educations?candidateId=${userId}`, true)
     }
 
-    insertEducation(data : EducationInsertReqDto): Observable<InsertResDto>{
+    insertEducation(data: EducationInsertReqDto): Observable<InsertResDto> {
         return this.base.post<InsertResDto>(`${BASE_URL_CAN}/educations`, data, true)
     }
 
-    updateEducation(data : EducationUpdateReqDto): Observable<UpdateResDto>{
+    updateEducation(data: EducationUpdateReqDto): Observable<UpdateResDto> {
         return this.base.patch<UpdateResDto>(`${BASE_URL_CAN}/educations`, data, true)
     }
 
-    deleteEducation(id : string): Observable<DeleteResDto>{
+    deleteEducation(id: string): Observable<DeleteResDto> {
         return this.base.delete<DeleteResDto>(`${BASE_URL_CAN}/educations?educationId=${id}`, true)
     }
 
-    getWorkExperience(userId:string): Observable<WorkExperienceGetResDto[]>{
+    getWorkExperience(userId: string): Observable<WorkExperienceGetResDto[]> {
         return this.base.get<WorkExperienceGetResDto[]>(`${BASE_URL_CAN}/work-experience?candidateId=${userId}`, true)
     }
 
-    insertWorkExp(data : WorkExperienceInsertReqDto): Observable<InsertResDto>{
+    insertWorkExp(data: WorkExperienceInsertReqDto): Observable<InsertResDto> {
         return this.base.post<InsertResDto>(`${BASE_URL_CAN}/work-experience`, data, true)
     }
 
-    updateWorkExp(data : WorkExperienceUpdateReqDto): Observable<UpdateResDto>{
+    updateWorkExp(data: WorkExperienceUpdateReqDto): Observable<UpdateResDto> {
         return this.base.patch<UpdateResDto>(`${BASE_URL_CAN}/work-experience`, data, true)
     }
 
-    deleteWorkExp(id : string): Observable<DeleteResDto>{
+    deleteWorkExp(id: string): Observable<DeleteResDto> {
         return this.base.delete<DeleteResDto>(`${BASE_URL_CAN}/work-experience?experienceId=${id}`, true)
     }
 
-    getSkills(userId:string): Observable<UserSkillGetResDto[]>{
+    getSkills(userId: string): Observable<UserSkillGetResDto[]> {
         return this.base.get<UserSkillGetResDto[]>(`${BASE_URL_CAN}/skills/user?candidateId=${userId}`, true)
     }
 
-    getOrganizations(userId:string): Observable<OrganizationGetResDto[]>{
+    getOrganizations(userId: string): Observable<OrganizationGetResDto[]> {
         return this.base.get<OrganizationGetResDto[]>(`${BASE_URL_CAN}/organizations?candidateId=${userId}`, true)
     }
 
-    insertOrganiztion(data : OrganizationInsertReqDto): Observable<InsertResDto>{
+    insertOrganiztion(data: OrganizationInsertReqDto): Observable<InsertResDto> {
         return this.base.post<InsertResDto>(`${BASE_URL_CAN}/organizations`, data, true)
     }
 
-    updateOrganization(data : OrganizationUpdateReqDto): Observable<UpdateResDto>{
+    updateOrganization(data: OrganizationUpdateReqDto): Observable<UpdateResDto> {
         return this.base.patch<UpdateResDto>(`${BASE_URL_CAN}/organizations`, data, true)
     }
 
-    deleteOrganization(id : string): Observable<DeleteResDto>{
+    deleteOrganization(id: string): Observable<DeleteResDto> {
         return this.base.delete<DeleteResDto>(`${BASE_URL_CAN}/organizations?organizationId=${id}`, true)
     }
 
-    getFamily(userId:string): Observable<FamilyGetResDto[]>{
+    getFamily(userId: string): Observable<FamilyGetResDto[]> {
         return this.base.get<FamilyGetResDto[]>(`${BASE_URL_CAN}/families/candidate?id=${userId}`, true)
     }
-    
-    updateProfile(data : ProfileUpdateReqDto): Observable<UpdateResDto>{
+
+    updateProfile(data: ProfileUpdateReqDto): Observable<UpdateResDto> {
         return this.base.patch<UpdateResDto>(`${BASE_URL_CAN}/profiles`, data, true)
     }
 
-    updateCv(data : UpdateCvReqDto): Observable<UpdateResDto>{
+    updateCv(data: UpdateCvReqDto): Observable<UpdateResDto> {
         return this.base.patch<UpdateResDto>(`${BASE_URL_CAN}/profiles/cvUpdate`, data, true)
     }
 
-    updateSummary(data : UpdateSummaryReqDto): Observable<UpdateResDto>{
+    updateSummary(data: UpdateSummaryReqDto): Observable<UpdateResDto> {
         return this.base.patch<UpdateResDto>(`${BASE_URL_CAN}/profiles/summaryUpdate`, data, true)
     }
 
-    getAllMarital(): Observable<MaritalGetResDto[]>{
+    getAllMarital(): Observable<MaritalGetResDto[]> {
         return this.base.get<MaritalGetResDto[]>(`${BASE_URL_CAN}/profiles/marital`, true)
     }
 
-    getAllGender(): Observable<GenderGetResDto[]>{
+    getAllGender(): Observable<GenderGetResDto[]> {
         return this.base.get<GenderGetResDto[]>(`${BASE_URL_CAN}/profiles/gender`, true)
     }
+
+    
+
+    
 }
