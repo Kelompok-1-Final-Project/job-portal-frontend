@@ -3,15 +3,29 @@
 }
 
 
-.jumbotron{
-    background-image: url(../../../../assets/images/job.jpg);
-    background-attachment: fixed;
-    background-size: cover;
+.jumbotron {
+  background-image: url(../../../../assets/images/job.jpg);
+  background-attachment: fixed;
+  background-size: cover;
 }
 
-.jumbotron::after{
-   display: block;
-   background-image: linear-gradient(to top,rgba(0,0,0,1),rgba(0,0,0,0));
-   position: absolute;
-   bottom: 0;
+.jumbotron::after {
+  display: block;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  position: absolute;
+  bottom: 0;
+}
+
+
+::ng-deep .surface-card q {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+::ng-deep .surface-card .author {
+  text-transform: uppercase;
+  letter-spacing: 0.3rem;
+  font-size: 1.3rem;
+  font-weight: normal;
+  color: orange;
 }

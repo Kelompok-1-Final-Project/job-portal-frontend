@@ -31,6 +31,18 @@ import { firstValueFrom } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 
+  
+    hoverIndex: number | null = null;
+    industries!: IndustryGetResDto[]
+    locations!:CityGetResDto[];
+    positions!:JobPositionGetResDto[];
+    
+  
+    employmentTypeSelected: string[] = [];
+
+    responsiveOptions: any[] | undefined;
+
+    
   constructor(
     private industryService: IndustryService,
     private jobService : JobService,
@@ -42,12 +54,6 @@ export class HomeComponent implements OnInit {
     this.title.setTitle('Industry | InLook')
   }
 
-  industries!: IndustryGetResDto[]
-  locations!:CityGetResDto[];
-  positions!:JobPositionGetResDto[];
-
-  employmentTypeSelected: string[] = [];
-
   searchJobReqDto = this.fb.group({
     jobName :[''],
     location :[''],
@@ -58,10 +64,47 @@ export class HomeComponent implements OnInit {
     userId : ['']
   })
 
+  quotes = [
+    {
+      text: 'The only limit to our realization of tomorrow will be our doubts of today.',
+      author: 'Franklin D. Roosevelt'
+    },
+    {
+      text: 'The future belongs to those who believe in the beauty of their dreams.',
+      author: 'Eleanor Roosevelt'
+    },
+    {
+      text: 'Success is not final, failure is not fatal: It is the courage to continue that counts.',
+      author: 'Winston Churchill'
+    },
+    {
+      text: 'The best way to predict the future is to create it.',
+      author: 'Peter Drucker'
+    }
+  ];
+
   ngOnInit(): void {
     this.getAllIndustry();
     this.getAllLocations();
     this.getAllPosition();
+
+    this.responsiveOptions = [
+      {
+          breakpoint: '1199px',
+          numVisible: 3,
+          numScroll: 3
+      },
+      {
+          breakpoint: '991px',
+          numVisible: 2,
+          numScroll: 2
+      },
+      {
+          breakpoint: '767px',
+          numVisible: 1,
+          numScroll: 1
+      }
+  ];
   }
 
   getAllIndustry() {
