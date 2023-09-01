@@ -46,9 +46,12 @@ export class RegisterComponent {
     const data = this.userInsertReqDto.getRawValue()
     if (this.userInsertReqDto.valid) {
       this.loading=true;
-      firstValueFrom(this.userService.insert(data)).then(result => {
+      firstValueFrom(this.userService.insert(data))
+      .then(result => {
         this.loading=false;
         this.router.navigateByUrl('/login')
+      }).catch(()=> {
+        this.loading = false;
       })
     }
   }

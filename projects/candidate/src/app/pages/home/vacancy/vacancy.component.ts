@@ -12,6 +12,7 @@ import { JobGetResDto } from '@dto/job/job.get.res.dto';
 import { AuthService } from '@serviceCandidate/auth.service';
 import { CityService } from '@serviceCandidate/city.service';
 import { JobService } from '@serviceCandidate/job.service';
+import { MessageService } from 'primeng/api';
 import { firstValueFrom } from 'rxjs';
 
 
@@ -56,6 +57,7 @@ export class VacancyComponent implements OnInit {
     private cityService : CityService,
     private authService : AuthService,
     private activatedRoute : ActivatedRoute,
+    private messageService : MessageService,
     private title: Title,
     private fb: NonNullableFormBuilder,
     private router: Router
@@ -64,7 +66,14 @@ export class VacancyComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.init();
+     firstValueFrom(this.activatedRoute.params).then(id => {
+      this.industryId = String(Object.values(id));
+      this.init();
+    })
+  }
+
+
+  init(){
     this.userId = this.authService.getUserId();
     if(this.industryId!=''){
       this.getAllJobsIndustry();
@@ -84,13 +93,6 @@ export class VacancyComponent implements OnInit {
     this.getAllTypes();
     this.getAllLocations();
     this.getAllPosition();
-  }
-
-
-  init(){
-    firstValueFrom(this.activatedRoute.params).then(id => {
-      this.industryId = String(Object.values(id));
-    })
   }
 
   getPagination(start:number,end:number){
@@ -131,7 +133,6 @@ export class VacancyComponent implements OnInit {
 
   getAllJobsIndustry() {
     firstValueFrom(this.jobService.getAllByIndustry(this.industryId)).then(result => {
-      this.jobs = result;
       this.lengthData=result.length;
     })
   }
@@ -184,7 +185,8 @@ export class VacancyComponent implements OnInit {
 
   changeSaveJob(jobId:string,isBookMark:boolean,saveJobId:string,event:any){
     if(!this.userId){
-      this.router.navigateByUrl('/login');
+      this.showWarnToLogin();
+      this.router.navigateByUrl('/home/job');
     }
     const data = this.saveJobReqDto;
     this.saveJobReqDto.candidateId = this.userId;
@@ -204,6 +206,10 @@ export class VacancyComponent implements OnInit {
   get employmentType(){
     return this.searchJobReqDto.get('employmentType') as FormArray
   }
+
+  showWarnToLogin() {
+    this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'You must log in to access this page' });
+}
 
  employmentTypeChange(event: any, idString: string) {
    const data = this.employmentType.getRawValue();

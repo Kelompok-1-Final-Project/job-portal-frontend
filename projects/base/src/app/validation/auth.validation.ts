@@ -1,6 +1,7 @@
 import { inject } from "@angular/core";
 import { Route, Router, UrlSegment } from "@angular/router";
 import { AuthService } from "@serviceCandidate/auth.service";
+import { MessageService } from "primeng/api";
 
 export const authValidation = (route: Route, segments: UrlSegment[]) => {
     const auth = inject(AuthService)
@@ -15,14 +16,17 @@ export const authValidation = (route: Route, segments: UrlSegment[]) => {
 
 export const authValidationNonLogin = (route: Route, segments: UrlSegment[]) => {
     const auth = inject (AuthService);
+    const messageService = inject (MessageService);
     const profile = auth.getProfile();
     const router = inject(Router);
 
     if (!profile) {
+        messageService.add({ severity: 'warn', summary: 'Warn', detail: 'You must log in to access this page' });
         router.navigateByUrl('/login')
     } 
     return true
 }
+
 
 export const authValidationTest = (route: Route, segments: UrlSegment[]) => {
     const auth = inject(AuthService)
