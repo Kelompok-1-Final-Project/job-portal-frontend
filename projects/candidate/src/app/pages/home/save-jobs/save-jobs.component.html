@@ -47,7 +47,7 @@
       <p-scrollTop styleClass="custom-scrolltop" [threshold]="100" icon="pi pi-arrow-up">
       </p-scrollTop>
     </div>
-    <p-paginator
+    <p-paginator *ngIf="lengthSaveJobs>0"
     (onPageChange)="renderPage($event)"
     [first]="firstData"
     [rows]="dataPerRow"

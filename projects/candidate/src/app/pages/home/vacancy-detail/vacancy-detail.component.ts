@@ -12,6 +12,7 @@ import { JobGetResDto } from '@dto/job/job.get.res.dto';
 import { AuthService } from '@serviceCandidate/auth.service';
 import { CompanyService } from '@serviceCandidate/company.service';
 import { JobService } from '@serviceCandidate/job.service';
+import { MessageService } from 'primeng/api';
 import { firstValueFrom } from 'rxjs';
 
 
@@ -45,6 +46,7 @@ export class VacancyDetailComponent implements OnInit,AfterViewChecked {
   }
 
   updatedAt!:String;
+  loading: boolean = false;
 
   constructor(
     private activatedRoute : ActivatedRoute,
@@ -53,6 +55,7 @@ export class VacancyDetailComponent implements OnInit,AfterViewChecked {
     private companyService : CompanyService,
     private router:Router,
     private sn : DomSanitizer,
+    private messageService : MessageService,
     private cd : ChangeDetectorRef
   ) {
 
@@ -80,7 +83,8 @@ export class VacancyDetailComponent implements OnInit,AfterViewChecked {
   ngOnInit(){
     this.userId = this.authService.getUserId();
     if(!this.userId){
-      this.router.navigateByUrl('/login');
+      this.showWarnToLogin();
+      this.router.navigateByUrl('/home');
     }
     this.userEmail = this.authService.getUserEmail();
     this.init();
@@ -108,6 +112,10 @@ export class VacancyDetailComponent implements OnInit,AfterViewChecked {
   showJobDescription(){
     this.jobDesc = this.sn.bypassSecurityTrustHtml(this.job.description);
   }
+
+  showWarnToLogin() {
+    this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'You must log in to access this page' });
+}
 
   getJobByCode() {
     firstValueFrom(this.jobService.getByCode(this.codeJob,this.userId)).then(result => {
@@ -155,9 +163,13 @@ export class VacancyDetailComponent implements OnInit,AfterViewChecked {
     const data = this.assignJobReqDto;
     data.candidateEmail = this.userEmail;
     data.jobId = this.idJob;
+    this.loading = true;
     firstValueFrom(this.jobService.assignJobCandidate(data)).then(result => {
       this.getJobById();
+      this.loading = false;
       this.visibleAssignJob=false;
+    }).catch(() => {
+      this.loading = false
     })
   }
 

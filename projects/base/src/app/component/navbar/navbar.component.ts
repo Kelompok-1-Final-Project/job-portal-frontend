@@ -294,13 +294,13 @@ export class NavbarComponent implements OnInit {
 
     this.itemsCandidate = [{
       label: 'InLook - Home',
-      icon: 'pi pi-fw pi-ticket',
+      icon: 'pi pi-fw pi-home',
       routerLink: "/home",
     },
     {
       label: 'Job vacancy',
       routerLink: "/home/job",
-      icon: 'pi pi-fw pi-ticket',
+      icon: 'pi pi-fw pi-briefcase',
       // visible : this.isCustomer
     },
     {
@@ -327,12 +327,12 @@ export class NavbarComponent implements OnInit {
       },
       {
         label: 'My Applications',
-        icon: 'pi pi-fw pi-cog',
+        icon: 'pi pi-fw pi-ticket',
         routerLink: "/status-progress",
       },
       {
         label: 'Change Password',
-        icon: 'pi pi-fw pi-cog',
+        icon: 'pi pi-spinner pi-fw pi-cog',
         routerLink: "/profile/change-password",
       }
       ]

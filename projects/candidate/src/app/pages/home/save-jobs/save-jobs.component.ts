@@ -8,6 +8,7 @@ import { JobGetResDto } from '@dto/job/job.get.res.dto';
 import { SaveJobGetResDto } from '@dto/savejob/save-job.get.res.dto';
 import { AuthService } from '@serviceCandidate/auth.service';
 import { JobService } from '@serviceCandidate/job.service';
+import { MessageService } from 'primeng/api';
 import { firstValueFrom } from 'rxjs';
 
 
@@ -28,6 +29,7 @@ export class SaveJobsComponent implements OnInit {
     private authService : AuthService,
     private router :Router,
     private title: Title,
+    private messageService : MessageService,
   ) {}
 
   jobs!: SaveJobGetResDto[];
@@ -35,8 +37,9 @@ export class SaveJobsComponent implements OnInit {
 
   ngOnInit(){
     this.userId  = this.authService.getUserId();
-    if(!this.userId){
-      this.router.navigateByUrl('/login');
+    if(!this.userId){ 
+      this.showWarnToLogin();
+      this.router.navigateByUrl('/home');
     }
     this.getAllJobs();
     this.getAllJobsWithPagination();
@@ -73,4 +76,8 @@ export class SaveJobsComponent implements OnInit {
   renderPage(event: any) {
     this.getPagination(event.first,this.dataPerRow);
   }
+
+  showWarnToLogin() {
+    this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'You must log in to access this page' });
+}
 }

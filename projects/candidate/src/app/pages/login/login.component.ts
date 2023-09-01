@@ -15,6 +15,7 @@ import {
   LoginService
 } from "@serviceCandidate/login.service";
 import { AuthService } from "@serviceCandidate/auth.service";
+import { firstValueFrom } from "rxjs";
 
 
 @Component({
@@ -44,8 +45,8 @@ export class LoginComponent {
       const testPage = this.auth.getTest()
       const data = this.userLoginReqDto.getRawValue()
       this.loading = true
-      this.loginService.login(data).subscribe({
-        next: (result) => {
+      firstValueFrom(this.loginService.login(data))
+          .then(result => {
           localStorage.setItem('data', JSON.stringify(result))
           this.loading = false
           if(testPage != null && testPage != undefined){
@@ -53,11 +54,11 @@ export class LoginComponent {
           }else{
             this.router.navigateByUrl('/home')
           }
-        },
-        error: () => {
+        }).catch(() => {
           this.loading = false
-        }
-      })
+        })
+      }else{
+        console.log('Invalid Login');
+      }
     }
   }
-}
