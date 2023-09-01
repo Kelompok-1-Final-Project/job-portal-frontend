@@ -16,12 +16,13 @@ import { MenuModule } from 'primeng/menu';
         CommonModule,
         MenubarModule,
         OverlayPanelModule,
+        AvatarModule,
         MenuModule
     ],
     exports: [
         AvatarModule,
         AvatarGroupModule,
-        MenuModule
+        MenuModule,
         NavbarComponent
     ]
 })
