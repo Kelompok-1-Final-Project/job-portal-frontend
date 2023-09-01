@@ -16,8 +16,8 @@ import { MenuModule } from 'primeng/menu';
         CommonModule,
         MenubarModule,
         OverlayPanelModule,
-        AvatarModule,
-        MenuModule
+        MenuModule,
+        AvatarModule
     ],
     exports: [
         AvatarModule,

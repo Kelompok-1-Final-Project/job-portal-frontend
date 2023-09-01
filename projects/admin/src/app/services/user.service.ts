@@ -8,6 +8,7 @@ import { InsertResDto } from "@dto/insert.res.dto";
 import { UpdateResDto } from "@dto/update.res.dto";
 import { UserIsActiveUpdateReqDto } from "@dto/user/user-is-active-update.req.dto";
 import { UserUpdateReqDto } from "@dto/user/user-update.req.dto";
+import { UserChangePassReqDto } from "@dto/user/user-change-password.req.dto";
 
 @Injectable({
     providedIn: 'root'
@@ -41,5 +42,9 @@ export class UserService {
 
     update(data: UserUpdateReqDto): Observable<UpdateResDto> {
         return this.base.patch<UpdateResDto>(`${BASE_URL}/users`, data, true)
+    }
+
+    changePassword(data: UserChangePassReqDto): Observable<UpdateResDto>{
+        return this.base.patch<UpdateResDto>(`${BASE_URL}/users/change-password`, data, true)
     }
 }
