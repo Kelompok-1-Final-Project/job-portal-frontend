@@ -28,9 +28,8 @@
             </p-dropdown>
           </div>
           <div class="col-12 text-center md:col-1">
-            <button type="submit" pButton pRipple class="p-button-primary" class="w-full">
-              <i class="pi pi-search m-1"></i> Cari
-            </button>
+            <app-button classBtn="w-full" btnType="submit" iconBtn="pi pi-search m-1" label="Search" >
+            </app-button>
           </div>
         </div>
       </div>
@@ -57,7 +56,7 @@
                   <span for="start">Start </span>
                 </div>
                 <div class="col-9">
-                  <p-inputNumber id="start" inputId="withoutgrouping" formControlName="salaryStart" class="w-full"
+                  <p-inputNumber id="start" inputId="withoutgrouping" prefix="Rp" formControlName="salaryStart" class="w-full"
                     styleClass="w-full">
                   </p-inputNumber>
                 </div>
@@ -65,14 +64,17 @@
                   <span for="end">End </span>
                 </div>
                 <div class="col-9">
-                  <p-inputNumber id="end" inputId="withoutgrouping" formControlName="salaryEnd" class="w-full"
+                  <p-inputNumber id="end" inputId="withoutgrouping" prefix="Rp" formControlName="salaryEnd" class="w-full"
                     styleClass="w-full">
                   </p-inputNumber>
                 </div>
-                <button type="button" pButton pRipple class="p-button-success col-12 text-center"
+                <!-- <button type="button" pButton pRipple class="p-button-success col-12 text-center"
                   (click)="getAllJobsBySalary()">
                   <i class="pi pi-search m-1"></i> Cari
-                </button>
+                </button> -->
+
+                <app-button classBtn="w-full" btnType="button" iconBtn="pi pi-search m-1" label="Search" onclick="getAllJobsBySalary()">
+                </app-button>
               </div>
             </p-accordionTab>
           </p-accordion>
@@ -106,6 +108,7 @@
           </div>
           <div class="Salary">
             <i class="pi pi-dollar"></i>
+            <span> IDR</span>
             <span> {{ job.salaryStart }} -</span>
             <span> {{ job.salaryEnd }}</span>
           </div>
