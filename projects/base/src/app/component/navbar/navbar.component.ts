@@ -18,6 +18,7 @@ import {
 import { AuthService } from "../../service/auth.service";
 import { BASE_URL, BASE_URL_CAN } from "@constant/api.constant";
 import { OverlayPanel } from "primeng/overlaypanel";
+import { ProfileService } from "@serviceCandidate/profile.service";
 
 @Component({
   selector: 'app-navbar',
@@ -38,7 +39,8 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private profileServiceCan : ProfileService
   ) { }
 
   getOP(op : OverlayPanel){
@@ -66,7 +68,7 @@ export class NavbarComponent implements OnInit {
   itemsCandidateProfile: MenuItem[] | undefined;
   ngOnInit() {
 
-    const profilePhoto = this.authService.getUserPhoto();
+    let profilePhoto = this.authService.getUserPhoto();
     const profile = this.authService.getProfile();
 
     if (profile){
@@ -74,6 +76,21 @@ export class NavbarComponent implements OnInit {
     }else{
       this.isLogin = false;
     }
+
+    this.profileServiceCan.data?.subscribe({
+      next: (e) => {
+        if (e != null && e != '') {
+          this.imgUrl = `${BASE_URL_CAN}/files/${e}`;
+          this.imgUrlAdmin = `${BASE_URL}/files/${e}`;
+        } else {
+          this.imgUrl = '../../../assets/images/avatar.png';
+          this.imgUrlAdmin = '../../../assets/images/avatar.png';
+        }
+      },
+      error(e) {
+        console.log(e);
+      },
+    });
 
     if (profilePhoto != null && profilePhoto != '') {
       this.imgUrl = `${BASE_URL_CAN}/files/${profilePhoto}`;
