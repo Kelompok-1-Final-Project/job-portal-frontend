@@ -1,0 +1,10 @@
+::ng-deep .p-table {
+    border-radius: 0;
+    background-color: aqua;
+    border: none;
+    /* position: fixed; */
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }

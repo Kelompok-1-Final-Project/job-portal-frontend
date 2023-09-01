@@ -4,12 +4,12 @@ import { JobStatus } from "@constant/job-status.constant";
 import { JobAdminGetResDto } from "@dto/job/job-admin.get.res.dto";
 import { AuthService } from "@serviceAdmin/auth.service";
 import { JobService } from "@serviceAdmin/job.service";
-import { Table } from "primeng/table";
 import { firstValueFrom } from "rxjs";
 
 @Component({
   selector: 'job-list',
-  templateUrl: './job-list.component.html'
+  templateUrl: './job-list.component.html',
+  styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent implements OnInit {
 

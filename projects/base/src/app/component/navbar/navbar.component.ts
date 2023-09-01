@@ -174,6 +174,11 @@ export class NavbarComponent implements OnInit {
         icon: 'pi pi-fw pi-ticket',
         routerLink: "/questions",
         // visible : this.isDeveloper
+      },
+      {
+        label: 'Job Position',
+        icon: 'pi pi-fw pi-user',
+        routerLink: "/positions"
       }
       ]
     },

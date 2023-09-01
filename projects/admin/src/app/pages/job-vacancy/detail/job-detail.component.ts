@@ -46,7 +46,11 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     visibleUpdateNotes: boolean = false
     visibleButtonNotes: boolean = false
     sanitizedContent!: SafeHtml
-    editorContent: string = '<p><strong>Testing</strong></p>'
+    disAssessment: boolean = false
+    disInterview: boolean = false
+    disMedicalCheckup: boolean = false
+    disOffering: boolean = false
+    disHired: boolean = false
 
     assessmentInsertReqDto = this.fb.group({
         candidateId: ['', [Validators.required]],
@@ -189,38 +193,52 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     }
 
     insertAssessment() {
+        this.disAssessment = true
         const data = this.assessmentInsertReqDto.getRawValue()
         firstValueFrom(this.statusProgressService.insertAssessment(data)).then(result => {
             this.visibleAssessment = false
+            this.disAssessment = false
             this.getCandidateStatus()
         })
     }
 
     insertInterview() {
+        this.disInterview = true
         const data = this.interviewInsertReqDto.getRawValue()
         firstValueFrom(this.statusProgressService.insertInterview(data)).then(result => {
             this.visibleInterview = false
+            this.disInterview = false
+            this.getCandidateStatus()
         })
     }
 
     insertMcu() {
+        this.disMedicalCheckup = true
         const data = this.medicalcheckupInsertReqDto.getRawValue()
         firstValueFrom(this.statusProgressService.insertMedicalCheckup(data)).then(result => {
             this.visibleMcu = false
+            this.disMedicalCheckup = false
+            this.getCandidateStatus()
         })
     }
 
     insertOffering() {
+        this.disOffering = true
         const data = this.offeringInsertReqDto.getRawValue()
         firstValueFrom(this.statusProgressService.insertOffering(data)).then(result => {
             this.visibleOffering = false
+            this.disOffering = false
+            this.getCandidateStatus()
         })
     }
 
     insertHired() {
+        this.disOffering = true
         const data = this.hiredInsertReqDto.getRawValue()
         firstValueFrom(this.statusProgressService.insertHired(data)).then(result => {
             this.visibleHired = false
+            this.disHired = false
+            this.getCandidateStatus()
         })
     }
 

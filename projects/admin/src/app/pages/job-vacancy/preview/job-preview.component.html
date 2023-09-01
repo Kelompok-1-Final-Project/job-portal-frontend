@@ -1,12 +1,23 @@
 <div class="home-container">
+    <div class="col-12 grid grid-nogutter justify-content-center">
+        <app-button iconBtn="pi pi-angle-double-left" classBtn="p-button-raised p-button-text p-button-warning"
+            label="Back to previous menu" btnType="submit" routerLink="/job-vacancies/details/{{jobId}}"
+            class="col-10"></app-button>
+    </div>
     <div class="container grid grid-nogutter justify-content-center">
         <div class="sub-container grid col-12 md:col-10 mt-3 justify-content-center">
-            <div class="col-10 md:col-3 text-center">
-                <img src="{{ job.companyPhoto|urlAdmin }}" alt="Image" class="w-full">
+            <div class="banner col-12">
+            </div>
+            <div class="company-profile grid grid-nogutter col-10 md:col-3 justify-content-center align-items-center">
+                <div class="col-12">
+                    <img src="{{ job.companyPhoto|urlAdmin }}" alt="Image"
+                        class="w-10rem border-orange-300 surface-overlay border-3 border-round">
+                </div>
             </div>
             <div class="title col-10 md:col-7 grid">
                 <span class="col-12 text-3xl">{{ job.jobTitle }}</span>
-                <a routerLink="" class="col-12 text-primary" style="text-decoration: none;">
+                <a routerLink="/companies/detail/{{ job.companyId }}" class="col-12 text-primary"
+                    style="text-decoration: none;">
                     {{ job.companyName }}
                 </a>
                 <div class="city col-12">
@@ -27,39 +38,20 @@
                 <div class="footer col-12 mt-3">
                     <small>
                         <i class="pi pi-clock"></i>
-                        <span>{{ job.createdAt }} Tayang 14 Hari Yang Lalu</span>
+                        <span>Created {{ job.createdAt | timeAgo }}</span>
                         <span> * </span>
-                        <span>{{ job.updatedAt }} Diperbaharui 3 hari yang lalu</span>
+                        <!-- <span>Updated {{ updatedAt | timeAgo }}</span> -->
                     </small>
                 </div>
-                <div class="button grid col-12 gap-3 text-center">
-                    <!-- <button *ngIf="!job.isApply" type="submit" pButton pRipple
-                        class="p-button-primary col-12 md:col-3 text-center " [disabled]="true">
+                <div class="button grid col-12 gap-3 justify-content-evenly">
+                    <p-button styleClass="p-button-raised p-button-text" class="col-5 md:col-3 text-center">
                         <span class="col-12">
                             <i class="pi pi-envelope"></i> Apply Now</span>
-                    </button>
-                    <button *ngIf="job.isApply" type="submit" pButton pRipple
-                        class="p-button-primary col-12 md:col-3 text-center" disabled>
+                    </p-button>
+                    <p-button styleClass="p-button-raised p-button-text" class="col-5 md:col-3 text-center">
                         <span class="col-12">
-                            <i class="pi pi-envelope"></i> Apply Now</span>
-                    </button>
-                    <button *ngIf="!job.isBookmark" type="submit" pButton pRipple
-                        class="p-button-primary col-12 md:col-3 text-center">
-                        <span class="col-12">
-                            <i class="pi pi-heart m-1"></i> Save Jobs
-                        </span>
-                    </button>
-                    <button *ngIf="job.isBookmark" type="submit" pButton pRipple
-                        class="p-button-primary col-12 md:col-3 text-center">
-                        <span class="col-12">
-                            <i class="pi pi-heart-fill m-1" style="color: lightblue;"></i> Save Jobs
-                        </span>
-                    </button> -->
-                    <button type="submit" pButton pRipple class="p-button-primary col-12 md:col-3 text-center">
-                        <span class="col-12">
-                            <i class="pi pi-share-alt m-1"></i> Share
-                        </span>
-                    </button>
+                            <i class="pi pi-heart size"></i> Save Job</span>
+                    </p-button>
                 </div>
             </div>
         </div>
@@ -70,19 +62,18 @@
                 </h3>
             </div>
             <div class="col-12">
-                <span>
-                    {{ job.description }}
-                </span>
+                <div [innerHTML]="jobDesc">
+                </div>
             </div>
             <div class="col-12 benefit">
                 <h3>
                     Benefit
                 </h3>
-                <!-- <span *ngIf="!benefits[0]"> - </span>
+                <span *ngIf="isBenefit()"> - </span>
                 <div *ngFor="let benefit of benefits; let i = index">
                     <input type="checkbox" class="p-disabled">
                     <label>{{ benefit.benefitName }}</label>
-                </div> -->
+                </div>
             </div>
             <div class="col-12">
                 <h3>
@@ -101,52 +92,7 @@
                             {{ job.employmentName }}
                         </span>
                     </div>
-                    <div class="address col-3 mt-3">
-                        <h4>Address</h4>
-                        <span>
-                            <!-- {{ company.address?company.address:'-' }} -->
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="description col-10 md:col-8 grid justify-content-center">
-            <div class="company mt-4">
-                <div class="container grid justify-content-center">
-                    <div class="sub-container grid col-12 shadow-1 surface-card border-round-sm">
-                        <h3 class="col-12 col-offset-1">About Company</h3>
-                        <div class="sub-container col-12 grid justify-content-center">
-                            <div class="col-12 md:col-4 justify-content-center align-content-center">
-                                <img src="{{ job.companyPhoto|urlAdmin }}" alt="Image" class="w-full">
-                            </div>
-                            <div class="title col-10 md:col-6">
-                                <a routerLink="/companies/detail/{{ job.companyId }}" class="col-12 text-primary"
-                                    style="text-decoration: none;">
-                                    {{ job.companyName }}
-                                </a>
-                                <div class="city col-12">
-                                    <i class="pi pi-map-marker"></i>
-                                    <span>
-                                        {{ job.cityName }}
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="description grid justify-content-center">
-                                <span class="col-10">
-                                    <h4>Description</h4>
-                                    {{ job.description?job.description:'-' }}
-                                </span>
-                                <div class="col-10">
-                                    <h4>Address</h4>
-                                    <span class="-mt-3">
-                                        <!-- {{ company.address?company.address:'-' }} -->
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

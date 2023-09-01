@@ -13,8 +13,9 @@ import { UserInsertComponent } from "./insert/user-insert.component";
 import { TagModule } from 'primeng/tag';
 import { UserDetailComponent } from "./detail/user-detail.component";
 import { UserProfilesComponent } from "./profiles/user-profiles.component";
-import { FileUploadModule } from "primeng/fileupload";
 import { UpdateProfilesComponent } from "./update-profiles/update-profiles.component";
+import { PasswordModule } from "primeng/password";
+import { UserChangePasswordComponent } from "./changePassword/change-password.component";
 
 const routes : Routes = [
     {
@@ -40,6 +41,10 @@ const routes : Routes = [
     {
         path: 'profiles/update/:id',
         component: UpdateProfilesComponent
+    },
+    {   
+        path: 'change-password',
+        component: UserChangePasswordComponent
     }
 ]
 
@@ -50,7 +55,8 @@ const routes : Routes = [
         UserListComponent,
         UserDetailComponent,
         UserProfilesComponent,
-        UpdateProfilesComponent
+        UpdateProfilesComponent,
+        UserChangePasswordComponent
     ],
     imports :[
         RouterModule.forChild(routes),
@@ -61,7 +67,8 @@ const routes : Routes = [
         PanelModule,
         TableModule,
         SharedModuleComponent,
-        TagModule
+        TagModule,
+        PasswordModule
     ],
     exports :[
         UserInsertComponent,

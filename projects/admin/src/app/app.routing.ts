@@ -134,6 +134,12 @@ const routes: Routes = [
             .then(c => c.EmployeeModule)
     },
     {
+        component: BaseComponent,
+        path: 'positions',
+        loadChildren: () => import('./pages/position/position.module')
+            .then(c => c.PositionModule)
+    },
+    {
         component: LoginComponent,
         path: 'login',
         // canMatch : [ authValidation ]
