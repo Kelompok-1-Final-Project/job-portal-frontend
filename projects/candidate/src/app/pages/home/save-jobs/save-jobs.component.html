@@ -44,6 +44,8 @@
           </ng-template>
         </div>
       </p-card>
+      <p-scrollTop styleClass="custom-scrolltop" [threshold]="100" icon="pi pi-arrow-up">
+      </p-scrollTop>
     </div>
     <p-paginator
     (onPageChange)="renderPage($event)"

@@ -8,6 +8,8 @@ import { CompanyListComponent } from "./list/company.component";
 import { ImageModule } from 'primeng/image';
 import { UrlPipeCandidate } from "@pipes/url.pipe";
 import { ButtonComponent } from "@component/button/button.component";
+import { TimeAgoPipe } from "@pipes/time-ago.pipe";
+import { ScrollTopModule } from "primeng/scrolltop";
 
 
 const routes : Routes = [
@@ -33,7 +35,9 @@ const routes : Routes = [
         ImageModule,
         ReactiveFormsModule,
         ButtonComponent,
-        UrlPipeCandidate
+        UrlPipeCandidate,
+        ScrollTopModule,
+        TimeAgoPipe
     ],
     exports : [
         RouterModule

@@ -22,6 +22,7 @@ import { TabMenuModule } from 'primeng/tabmenu';
 import { ChipModule } from "primeng/chip";
 import { UrlPipeAdmin, UrlPipeCandidate } from "@pipes/url.pipe";
 import { PaginatorModule } from "primeng/paginator";
+import { ScrollTopModule } from "primeng/scrolltop";
 
 
 const routes : Routes = [
@@ -58,6 +59,7 @@ const routes : Routes = [
         UrlPipeAdmin,
         UrlPipeCandidate,
         PaginatorModule,
+        ScrollTopModule,
         FileUploadModule
     ],
     exports : [

@@ -7,4 +7,6 @@ export interface CompanyDataGetResDto{
     description:string;
 	address:string;
 	cityName:string;
+	createdAt:string;
+    updatedAt: string;
 }

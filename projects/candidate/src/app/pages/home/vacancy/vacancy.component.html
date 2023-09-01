@@ -1,8 +1,3 @@
-<!-- home.component.html -->
-<!-- <pre>{{ industryId|json }}</pre> -->
-<!-- <pre>{{ jobs | json }}</pre> -->
-<!-- <pre>{{ locations | json }}</pre> -->
-<!-- <pre>{{ searchJobReqDto.value|json }}</pre> -->
 <div class="home-container">
   <!-- Search Options -->
   <form [formGroup]="searchJobReqDto" (ngSubmit)="getAllJobWithPagination()">
@@ -28,7 +23,7 @@
             </p-dropdown>
           </div>
           <div class="col-12 text-center md:col-1">
-            <app-button classBtn="w-full" btnType="submit" iconBtn="pi pi-search m-1" label="Search" >
+            <app-button classBtn="w-full" btnType="submit" iconBtn="pi pi-search m-1" label="Search">
             </app-button>
           </div>
         </div>
@@ -56,19 +51,20 @@
                   <span for="start">Start </span>
                 </div>
                 <div class="col-9">
-                  <p-inputNumber id="start" inputId="withoutgrouping" prefix="Rp" formControlName="salaryStart" class="w-full"
-                    styleClass="w-full">
+                  <p-inputNumber id="start" inputId="withoutgrouping" prefix="Rp" formControlName="salaryStart"
+                    class="w-full" styleClass="w-full">
                   </p-inputNumber>
                 </div>
                 <div class="col-3">
                   <span for="end">End </span>
                 </div>
                 <div class="col-9">
-                  <p-inputNumber id="end" inputId="withoutgrouping" prefix="Rp" formControlName="salaryEnd" class="w-full"
-                    styleClass="w-full">
+                  <p-inputNumber id="end" inputId="withoutgrouping" prefix="Rp" formControlName="salaryEnd"
+                    class="w-full" styleClass="w-full">
                   </p-inputNumber>
                 </div>
-                <app-button classBtn="w-full" btnType="button" iconBtn="pi pi-search m-1" label="Search" onclick="getAllJobsBySalary()">
+                <app-button classBtn="w-full" btnType="button" iconBtn="pi pi-search m-1" label="Search"
+                  onclick="getAllJobsBySalary()">
                 </app-button>
               </div>
             </p-accordionTab>
@@ -121,14 +117,11 @@
       </div>
     </div>
   </div>
+  <p-scrollTop styleClass="custom-scrolltop" [threshold]="150" icon="pi pi-arrow-up"
+    icon="pi pi-arrow-up">
+  </p-scrollTop>
 
-  
-<p-paginator
-  (onPageChange)="renderPage($event)"
-  [first]="firstData"
-  [rows]="dataPerRow"
-  [totalRecords]="lengthData"
-  >
-</p-paginator>
+  <p-paginator (onPageChange)="renderPage($event)" [first]="firstData" [rows]="dataPerRow" [totalRecords]="lengthData">
+  </p-paginator>
 
 </div>

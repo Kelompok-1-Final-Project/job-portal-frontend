@@ -26,6 +26,8 @@ import { UrlPipeCandidate } from "@pipes/url.pipe";
 import { PaginatorModule } from "primeng/paginator";
 import { TimeAgoPipe } from "@pipes/time-ago.pipe";
 import { ButtonComponent } from "@component/button/button.component";
+import { ScrollTopModule } from 'primeng/scrolltop';
+import { ScrollPanelModule } from "primeng/scrollpanel";
 
 const routes : Routes = [
     {
@@ -76,6 +78,8 @@ const routes : Routes = [
         PaginatorModule,
         FileUploadModule,
         ButtonComponent,
+        ScrollTopModule,
+        ScrollPanelModule,
         TimeAgoPipe
     ],
     exports : [
