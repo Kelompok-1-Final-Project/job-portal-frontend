@@ -56,7 +56,7 @@
           <input pInputText type="text" class="col-12 " id="inputName" required formControlName="benefitName">
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <app-button btnType="submit" link="/benefits" [disabled]="benefitInsertReqDto.invalid"
+          <app-button btnType="submit" link="/benefits" [loading]="loading" [disabled]="benefitInsertReqDto.invalid"
             label="Submit"></app-button>
         </div>
       </div>

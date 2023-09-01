@@ -83,6 +83,7 @@ export class QuestionInsertComponent implements OnInit {
             this.loading = true
             const data = this.questionsInsertReqDto.getRawValue().data
             firstValueFrom(this.questionService.insert(data)).then(result => {
+                this.loading = false
                 this.router.navigateByUrl('/questions')
             })
         }

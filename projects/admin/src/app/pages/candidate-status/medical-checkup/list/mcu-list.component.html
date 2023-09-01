@@ -28,7 +28,7 @@
           <td>{{ i+1 }}</td>
           <td>{{row.candidateName}}</td>
           <td>
-            <a *ngIf="isFile(i)" href="{{row.fileId  | urlAdmin}}" download>
+            <a *ngIf="isFile(row.fileId)" href="{{row.fileId  | urlAdmin}}" download>
               <app-button link="/candidate-statuses/mcu" iconBtn="pi pi-download"
                 label="MCU {{ row.candidateName }}.pdf"></app-button>
             </a>

@@ -92,7 +92,7 @@
         <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <app-button btnType="submit" iconBtn="pi pi-check" classBtn="p-button-primary" label="Submit"></app-button>
+        <app-button btnType="submit" [loading]="loading" iconBtn="pi pi-check" classBtn="p-button-primary" label="Submit"></app-button>
       </div>
     </div>
   </p-dialog>

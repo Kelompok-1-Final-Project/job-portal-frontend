@@ -15,6 +15,7 @@ export class BenefitListComponent implements OnInit {
   visibleUpdate: boolean = false;
   visibleDelete: boolean = false;
   search: string = ''
+  loading: boolean = false
 
   benefits!: BenefitGetResDto[]
   code!: string
@@ -48,8 +49,10 @@ export class BenefitListComponent implements OnInit {
   }
 
   insertBenefit() {
+    this.loading = true
     const data = this.benefitInsertReqDto.getRawValue()
     firstValueFrom(this.benefitService.insert(data)).then(result => {
+      this.loading = false
       this.visibleAdd = false
       this.getAllBenefit()
     })

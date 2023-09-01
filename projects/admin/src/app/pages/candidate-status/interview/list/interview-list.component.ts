@@ -18,6 +18,7 @@ export class InterviewListComponent implements OnInit {
   visibleUpdateNotes: boolean = false;
   userId!:string
   search: string = ''
+  loading: boolean = false
 
   interviewUpdateReqDto = this.fb.group({
     interviewId: ['', [Validators.required]],
@@ -58,8 +59,10 @@ export class InterviewListComponent implements OnInit {
   }
 
   updateNotes() {
+    this.loading = true
     const data = this.interviewUpdateReqDto.getRawValue()
     firstValueFrom(this.statusProgressService.updateInterviewNotes(data)).then(result => {
+      this.loading = false
       this.visibleUpdateNotes = false
       this.getInterview()
     })

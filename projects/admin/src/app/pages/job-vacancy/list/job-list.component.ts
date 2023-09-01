@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { JobStatus } from "@constant/job-status.constant";
 import { JobAdminGetResDto } from "@dto/job/job-admin.get.res.dto";
