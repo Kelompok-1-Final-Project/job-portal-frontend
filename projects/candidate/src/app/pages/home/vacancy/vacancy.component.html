@@ -1,4 +1,4 @@
-<div class="home-container">
+<div class="home-container min-h-screen">
   <!-- Search Options -->
   <form [formGroup]="searchJobReqDto" (ngSubmit)="getAllJobWithPagination()">
     <div class="container mt-5 grid grid-nogutter justify-content-center align-content-center">
@@ -73,6 +73,11 @@
       </div>
 
       <div class="content col-12 md:col-8 md:col-offset-1 grid">
+        <div *ngIf="lengthData<1" class="col-12 mt-4 min-h-30rem grid justify-content-center align-content-center">
+          <span class=" col-10 text-2xl line-height-4 text-center">
+              Sorry, no vacancies were found.
+          </span>
+        </div>
         <p-card class="col-12 md:col-6 mt-4 min-h-20rem md:min-h-15rem" *ngFor="let job of jobs"
           routerLink="/home/detail/{{job.id}}">
           <div class="thumbnail grid grid-nogutter justify-content-center">
@@ -121,7 +126,7 @@
     icon="pi pi-arrow-up">
   </p-scrollTop>
 
-  <p-paginator (onPageChange)="renderPage($event)" [first]="firstData" [rows]="dataPerRow" [totalRecords]="lengthData">
+  <p-paginator *ngIf="lengthData>0" (onPageChange)="renderPage($event)" [first]="firstData" [rows]="dataPerRow" [totalRecords]="lengthData">
   </p-paginator>
 
 </div>

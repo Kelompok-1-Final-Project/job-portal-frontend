@@ -1,4 +1,6 @@
 import {
+  AfterViewChecked,
+  ChangeDetectorRef,
   Component,
   OnInit
 } from '@angular/core';
@@ -21,7 +23,7 @@ import { firstValueFrom } from 'rxjs';
   templateUrl: './vacancy.component.html',
   styleUrls: ['./vacancy.component.css',]
 })
-export class VacancyComponent implements OnInit {
+export class VacancyComponent implements OnInit,AfterViewChecked {
   
   userId:string='';
   industryId:string='';
@@ -58,6 +60,7 @@ export class VacancyComponent implements OnInit {
     private authService : AuthService,
     private activatedRoute : ActivatedRoute,
     private messageService : MessageService,
+    private cd : ChangeDetectorRef,
     private title: Title,
     private fb: NonNullableFormBuilder,
     private router: Router
@@ -93,6 +96,10 @@ export class VacancyComponent implements OnInit {
     this.getAllTypes();
     this.getAllLocations();
     this.getAllPosition();
+  }
+
+  ngAfterViewChecked(): void {
+      this.cd.detectChanges();
   }
 
   getPagination(start:number,end:number){
