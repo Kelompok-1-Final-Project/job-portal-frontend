@@ -26,6 +26,7 @@ import { PasswordModule } from 'primeng/password';
 import { ButtonComponent } from "@component/button/button.component";
 import { DateFormatPipe } from "@pipes/time-convert";
 import { DateDifference } from "@pipes/date-difference";
+import { ScrollTopModule } from "primeng/scrolltop";
 
 const routes : Routes = [
     {
@@ -68,6 +69,7 @@ const routes : Routes = [
         ButtonComponent,
         PasswordModule,
         DateFormatPipe,
+        ScrollTopModule,
         DateDifference
     ],
     exports : [
