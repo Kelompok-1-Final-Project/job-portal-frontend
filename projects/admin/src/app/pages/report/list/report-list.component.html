@@ -1,0 +1,59 @@
+<pre>{{filterData.value | json}} </pre>
+<div>
+    <div class=" grid justify-content-center col-12">
+        <h3 class="text-center">Report List</h3>
+    </div>
+    <div class="card mb-3">
+        
+        <p-table #report [value]="reports" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+            [showCurrentPageReport]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['skillName']">
+            <ng-template pTemplate="caption">
+                <form (ngSubmit)="filter()" [formGroup]="filterData">
+                    <div class="grid justify-content-end mb-3">
+                        <a [href]="reportUrl"> Download </a>
+                    </div>
+                    <span>Start Date</span>
+                    <p-calendar appendTo="body" [showIcon]="true" formControlName="startDateTemp" (onSelect)="convertStartDate($event)"></p-calendar>
+                    <span>End Date</span>
+                    <p-calendar appendTo="body" [showIcon]="true" formControlName="endDateTemp" (onSelect)="convertEndDate($event)"></p-calendar>
+                    <app-button label="Search" classBtn="p-button-primary" btnType="submit"></app-button>
+                </form>
+
+                <!-- <div class="flex">
+            <app-button label="Add Skill" link="/skills" classBtn="p-button-primary" (clickChange)="add()"></app-button>
+            <span class="p-input-icon-left ml-auto">
+              <i class="pi pi-search"></i>
+              <input #searchInput pInputText type="text" [(ngModel)]="search"
+                (input)="skill.filterGlobal(search ,'contains')" placeholder="Search keyword" />
+            </span>
+          </div> -->
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Candidate Name</th>
+                    <th scope="col">Job Name</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Employment Type</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-r let-i="rowIndex">
+                <tr>
+                    <td scope="row">{{ i+1 }}</td>
+                    <td>{{ r.candidateName }}</td>
+                    <td>{{ r.jobName }}</td>
+                    <td>{{ r.dateDiff > 0 ? r.dateDiff + " days" : "Less than one day" }}</td>
+                    <td>{{ r.employmentTypeName }} </td>
+                    <!-- <td>
+              <app-button classBtn="p-button-secondary" tooltipBtn="Edit" tooltipPstn="top" iconBtn="pi pi-pencil"
+                (clickChange)="update(p.skillCode)" link="/skills" styleBtn="margin-right:0.5rem;"></app-button>
+              <app-button iconBtn="pi pi-trash" classBtn="p-button-danger" tooltipBtn="Delete"
+                tooltipPstn="top"></app-button>
+            </td> -->
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
