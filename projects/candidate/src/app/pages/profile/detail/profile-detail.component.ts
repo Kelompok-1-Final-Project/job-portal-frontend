@@ -112,8 +112,8 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
   })
 
   educationUpdateReqDto = this.fb.group({
-    educationId: ['', [Validators.required]],
-    candidateId: ['', [Validators.required]],
+    educationId: [''],
+    candidateId: [''],
     educationName: ['', [Validators.required]],
     startDate: ['',[Validators.required]],
     startDateTemp:[new Date],
@@ -132,8 +132,8 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
   })
 
   workExperienceUpdateReqDto = this.fb.group({
-    experienceId: ['', [Validators.required]],
-    candidateId: ['', [Validators.required]],
+    experienceId: [''],
+    candidateId: [''],
     companyName: ['', [Validators.required]],
     positionName: ['', [Validators.required]],
     startDate: ['',[Validators.required]],
@@ -160,8 +160,8 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
   })
 
   organizationUpdateReqDto = this.fb.group({
-    organizationId: ['', [Validators.required]],
-    candidateId: ['', [Validators.required]],
+    organizationId: [''],
+    candidateId: [''],
     organizationName: ['', [Validators.required]],
     positionName: ['', [Validators.required]],
     startDate: ['',[Validators.required]],
@@ -182,8 +182,8 @@ export class ProfileDetailComponent implements OnInit,AfterViewChecked {
   })
 
   familyUpdateReqDto = this.fb.group({
-    familyId : ['', [Validators.required]],
-	  candidateId:['', [Validators.required]],
+    familyId : [''],
+	  candidateId:[''],
 	  familyName:['', [Validators.required]],
 	  relationshipCode:['', [Validators.required]],
 	  degreeCode:['', [Validators.required]],
