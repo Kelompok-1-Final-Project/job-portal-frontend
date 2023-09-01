@@ -24,6 +24,7 @@ export class UserUpdateComponent implements OnInit, AfterViewChecked {
   user!: UserGetResDto
   roles!: RoleGetResDto[]
   genders!: GenderGetResDto[]
+  loading: boolean = false
 
   userUpdateReqDto = this.fb.group({
     userId: ['', [Validators.required]],
@@ -82,8 +83,10 @@ export class UserUpdateComponent implements OnInit, AfterViewChecked {
   }
 
   updateUser() {
+    this.loading = true
     const data = this.userUpdateReqDto.getRawValue()
     firstValueFrom(this.userService.update(data)).then(result => {
+      this.loading = false
       this.router.navigate(['/users/detail/', this.userId])
     })
   }

@@ -20,6 +20,7 @@ export class AssesmentListComponent implements OnInit {
   visibleUpdateNotes: boolean = false
   userId!: string
   search: string = ''
+  loading: boolean = false
 
   updateAssessmentNotesReqDto = this.fb.group({
     assessmentId: ['', [Validators.required]],
@@ -47,8 +48,10 @@ export class AssesmentListComponent implements OnInit {
   }
 
   insertNotes() {
+    this.loading = true
     const data = this.updateAssessmentNotesReqDto.getRawValue()
     firstValueFrom(this.statusProgressService.updateAssessmentNotes(data)).then(result => {
+      this.loading = false
       this.visibleUpdateNotes = false
       this.getAssessment()
       this.updateAssessmentNotesReqDto.get('notes')?.setValue('')

@@ -14,7 +14,7 @@ import { firstValueFrom } from 'rxjs';
 })
 export class HiredListComponent implements OnInit {
 
-  visibleUpdateStatus:boolean=false;
+  visibleUpdateStatus: boolean = false;
   hired!: HiredGetResDto[]
   userId!: string
   search: string = ''
@@ -23,24 +23,24 @@ export class HiredListComponent implements OnInit {
     private title: Title,
     private statusProgressService: StatusProgressService,
     private authService: AuthService
-  ){
+  ) {
     this.title.setTitle('Hired | Job Portal Admin')
   }
-  
+
   ngOnInit(): void {
     this.getProfile()
     this.getHired()
   }
 
-  getHired(){
+  getHired() {
     firstValueFrom(this.statusProgressService.getHired(this.userId)).then(result => {
       this.hired = result
     })
   }
 
-  getProfile(){
+  getProfile() {
     const profile = this.authService.getProfile()
-    if(profile){
+    if (profile) {
       this.userId = profile.userId
     }
   }

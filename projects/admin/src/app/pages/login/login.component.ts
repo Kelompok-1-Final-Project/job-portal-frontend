@@ -3,6 +3,7 @@ import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { Title } from "@angular/platform-browser";
 import { LoginService } from "@serviceAdmin/login.service";
+import { firstValueFrom } from "rxjs";
 
 
 @Component({
@@ -30,17 +31,15 @@ export class LoginComponent {
         if (this.userLoginReqDto.valid) {
             const data = this.userLoginReqDto.getRawValue()
             this.loading = true
-            this.loginService.login(data).subscribe({
-                next: (result) => {
+
+            firstValueFrom(this.loginService.login(data))
+                .then(result => {
                     localStorage.setItem('data', JSON.stringify(result))
                     this.loading = false
                     this.router.navigateByUrl('/dashboard')
-                },
-                error: () => {
+                }).catch(() => {
                     this.loading = false
-                }
-            })
-            // })
+                })
         } else {
             console.log('Invalid Login')
         }

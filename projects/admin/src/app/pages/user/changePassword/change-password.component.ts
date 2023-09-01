@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
+import { Router } from "@angular/router";
 import { AuthService } from "@serviceAdmin/auth.service";
 import { UserService } from "@serviceAdmin/user.service";
 import { first, firstValueFrom } from "rxjs";
@@ -9,7 +10,7 @@ import { first, firstValueFrom } from "rxjs";
     selector: 'change-password',
     templateUrl: 'change-password.component.html'
 })
-export class UserChangePasswordComponent implements OnInit{
+export class UserChangePasswordComponent implements OnInit {
 
     userId!: string
     loading: boolean = false
@@ -25,8 +26,9 @@ export class UserChangePasswordComponent implements OnInit{
         private title: Title,
         private userService: UserService,
         private fb: NonNullableFormBuilder,
-        private authService: AuthService
-    ){
+        private authService: AuthService,
+        private router: Router
+    ) {
         this.title.setTitle('Change Password | Job Portal Admin')
     }
 
@@ -35,16 +37,18 @@ export class UserChangePasswordComponent implements OnInit{
         this.userChangePassReqDto.get('userId')?.setValue(this.userId)
     }
 
-    changePassword(){
+    changePassword() {
+        this.loading = true
         const data = this.userChangePassReqDto.getRawValue()
         firstValueFrom(this.userService.changePassword(data)).then(result => {
             this.loading = false
+            this.router.navigate(['/users/change-password'])
         })
     }
 
-    getUserId(){
+    getUserId() {
         const profile = this.authService.getProfile()
-        if(profile){
+        if (profile) {
             this.userId = profile.userId
         }
     }

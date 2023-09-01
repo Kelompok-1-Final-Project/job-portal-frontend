@@ -58,7 +58,7 @@
                         formControlName="positionName">
                 </div>
                 <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                    <app-button btnType="submit" link="/benefits" [disabled]="positionInsertReqDto.invalid"
+                    <app-button btnType="submit" [loading]="loading" [disabled]="positionInsertReqDto.invalid"
                         label="Submit"></app-button>
                 </div>
             </div>

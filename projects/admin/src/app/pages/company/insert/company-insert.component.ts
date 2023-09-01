@@ -18,6 +18,7 @@ export class CompanyInsertComponent implements AfterViewChecked {
 
   industries!: IndustryGetResDto[]
   cities!: CityGetResDto[]
+  loading: boolean = false
 
   companyInsertReqDto = this.fb.group({
     companyName: ['', [Validators.required]],
@@ -51,8 +52,10 @@ export class CompanyInsertComponent implements AfterViewChecked {
   }
 
   insertCompany() {
+    this.loading = true
     const data = this.companyInsertReqDto.getRawValue()
     firstValueFrom(this.companyService.insert(data)).then(result => {
+      this.loading = false
       this.router.navigateByUrl('/companies')
     })
   }

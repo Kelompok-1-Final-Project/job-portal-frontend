@@ -17,6 +17,7 @@ export class IndustryListComponent implements OnInit {
   visibleUpdate: boolean = false
   code!: string
   search: string = ''
+  loading: boolean = false
 
   industryInsertReqDto = this.fb.group({
     industryName: ['', [Validators.required]]
@@ -48,9 +49,10 @@ export class IndustryListComponent implements OnInit {
   }
 
   insertIndustry() {
+    this.loading = true
     const data = this.industryInsertReqDto.getRawValue()
     firstValueFrom(this.industryService.insert(data)).then(result => {
-      this.router.navigateByUrl('/industries')
+      this.loading = false
       this.visibleAdd = false
       this.getAllIndustry()
     })

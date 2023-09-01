@@ -2,7 +2,7 @@
     border-radius: 0;
     background-color: aqua;
     border: none;
-    /* position: fixed; */
+    position: fixed;
     width: 100%;
     top: 0;
     left: 0;

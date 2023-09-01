@@ -16,7 +16,7 @@
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
           <app-button classBtn="p-button-secondary" routerLink="/cities" styleBtn="margin-right:0.5rem;" btnType="button"
             iconBtn="pi pi-angle-double-left" label="Back to Previous Menu"></app-button>
-          <app-button btnType="submit" [disabled]="cityInsertReqDto.invalid" label="Submit"></app-button>
+          <app-button btnType="submit" [loading]="loading" [disabled]="cityInsertReqDto.invalid" label="Submit"></app-button>
         </div>
       </div>
     </div>

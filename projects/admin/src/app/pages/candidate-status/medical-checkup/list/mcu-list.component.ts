@@ -65,8 +65,8 @@ export class McuListComponent implements OnInit {
     }
   }
 
-  isFile(i: number): any {
-    if (this.mcus[i].fileId != null) {
+  isFile(file: string): any {
+    if (file != null) {
       return true
     } else {
       return false

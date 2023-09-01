@@ -52,7 +52,7 @@
             <div class="col-12 md:col-10 mt-2 text-center md:text-left">
               <app-button btnType="button" classBtn="p-button-secondary mb-2" label="Back"
                 routerLink="/questions"></app-button>
-              <app-button label="Submit" btnType="submit" [disabled]="questionsInsertReqDto.invalid"></app-button>
+              <app-button label="Submit" btnType="submit" [loading]="loading" [disabled]="questionsInsertReqDto.invalid"></app-button>
             </div>
           </div>
         </form>

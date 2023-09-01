@@ -11,6 +11,8 @@ import { firstValueFrom } from "rxjs";
 })
 export class CityInsertComponent implements OnInit {
 
+    loading: boolean = false
+
     cityInsertReqDto = this.fb.group({
         cityName: ['', [Validators.required]]
     })

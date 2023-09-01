@@ -51,7 +51,7 @@
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
           <app-button btnType="button" routerLink="/users/detail/{{userId}}" classBtn="p-button-secondary mr-3"
             label="Back to Previous Menu" iconBtn="pi pi-angle-double-left"></app-button>
-          <app-button btnType="submit" classBtn="p-button-primary" label="Submit"></app-button>
+          <app-button btnType="submit" [loading]="loading" classBtn="p-button-primary" label="Submit"></app-button>
         </div>
       </div>
     </div>

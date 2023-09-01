@@ -15,6 +15,7 @@ export class ListEmployeeComponent implements OnInit {
 
     employees!: EmployeeGetResDto[]
     visibleBlacklist: boolean = false
+    loading: boolean = false
 
     blacklistInsertReqDto = this.fb.group({
         candidateId : ['', [Validators.required]],
@@ -48,8 +49,10 @@ export class ListEmployeeComponent implements OnInit {
     }
 
     insertBlacklist(){
+        this.loading = true
         const data = this.blacklistInsertReqDto.getRawValue()
         firstValueFrom(this.blacklistService.insert(data)).then(result => {
+            this.loading = false
             this.visibleBlacklist = false 
         })
     }

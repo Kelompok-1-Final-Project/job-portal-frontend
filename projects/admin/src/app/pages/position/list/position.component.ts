@@ -15,6 +15,7 @@ export class PositionComponent implements OnInit{
     positions!: JobPositionGetResDto[]
     search: string = ''
     visibleAdd: boolean = false
+    loading: boolean = false
 
     positionInsertReqDto = this.fb.group({
         positionName: ['', [Validators.required]]
@@ -32,8 +33,10 @@ export class PositionComponent implements OnInit{
     }
 
     insertPosition(){
+        this.loading = true
         const data = this.positionInsertReqDto.getRawValue()
         firstValueFrom(this.positionService.insertJobPosition(data)).then(result => {
+            this.loading = false
             this.visibleAdd = false
             this.getAll()
         })

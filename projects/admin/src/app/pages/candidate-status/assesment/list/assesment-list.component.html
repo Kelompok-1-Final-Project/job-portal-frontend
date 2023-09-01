@@ -58,7 +58,7 @@
         <textarea pInputTextarea type="text" class="col-12 " id="inputName" required formControlName="notes"></textarea>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <app-button btnType="submit" label="Submit" [disabled]="updateAssessmentNotesReqDto.invalid"></app-button>
+        <app-button btnType="submit" label="Submit" [loading]="loading" [disabled]="updateAssessmentNotesReqDto.invalid"></app-button>
       </div>
     </div>
   </form>
