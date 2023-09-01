@@ -13,6 +13,7 @@ import { JobDetailComponent } from "./detail/job-detail.component";
 import { TabViewModule } from 'primeng/tabview';
 import { JobQuestionComponent } from "./question/job-question.component";
 import { JobPreviewComponent } from "./preview/job-preview.component";
+import { TimeAgoPipe } from "@pipes/time-ago.pipe";
 
 const routes: Routes = [
     {
@@ -58,7 +59,8 @@ const routes: Routes = [
         AutoCompleteModule,
         EditorModule,
         SharedModuleComponent,
-        TabViewModule
+        TabViewModule,
+        TimeAgoPipe
     ],
     exports: [
         RouterModule

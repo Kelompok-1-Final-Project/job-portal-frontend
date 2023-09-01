@@ -155,9 +155,10 @@ export class JobInsertComponent implements AfterViewChecked {
   }
 
   insertAll() {
-    // this.jobInsertReqDto.get('description')?.setValue(this.cleanText)
+    this.loading = true
     const data = this.jobInsertReqDto.getRawValue()
     firstValueFrom(this.jobService.insertJob(data)).then(result => {
+      this.loading = false
       this.router.navigateByUrl('/job-vacancies')
     })
   }

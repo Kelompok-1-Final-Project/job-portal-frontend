@@ -9,7 +9,7 @@
                     <app-button classBtn="p-button-secondary" routerLink="/job-vacancies" styleBtn="margin-right:0.5rem"
                         iconBtn="pi pi-arrow-left" label="Back"></app-button>
                     <app-button classBtn="p-button-primary" iconBtn="pi pi-eye" label="Preview"
-                        styleBtn="margin-right:0.5rem"></app-button>
+                        styleBtn="margin-right:0.5rem" routerLink="/job-vacancies/preview/{{job.id}}"></app-button>
                     <app-button classBtn="p-button-secondary" iconBtn="pi pi-pencil" label="Update"></app-button>
                 </div>
             </div>
@@ -105,8 +105,8 @@
                                 <td>{{row.jobName}}</td>
                                 <td>{{row.statusName}}</td>
                                 <td>
-                                    <p-dropdown [options]="status" appendTo="body" optionValue="progressCode"
-                                        optionLabel="progressName" [ngModel]="row.statusCode"
+                                    <p-dropdown [options]="status" styleClass="w-full" appendTo="body"
+                                        optionValue="progressCode" optionLabel="progressName" [ngModel]="row.statusCode"
                                         [ngModelOptions]="{standalone: true}"
                                         (onChange)="changeStatus($event.value, row.candidateId, row.candidateProgressId)"></p-dropdown>
                                 </td>
@@ -189,10 +189,11 @@
                 <label for="inputName">Schedule</label>
             </div>
             <div class="col-12 md:col-9">
-                <p-calendar [showIcon]="true" formControlName="schedule"></p-calendar>
+                <p-calendar appendTo="body" [showIcon]="true" formControlName="schedule"></p-calendar>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" classBtn="p-button-primary" label="Submit"></app-button>
+                <app-button btnType="submit" [loading]="disAssessment" classBtn="p-button-primary"
+                    label="Submit"></app-button>
             </div>
         </div>
     </form>
@@ -207,10 +208,12 @@
                 <label for="inputName">Schedule</label>
             </div>
             <div class="col-12 md:col-9">
-                <p-calendar [showIcon]="true" formControlName="schedule"></p-calendar>
+                <p-calendar appendTo="body" styleClass="w-full" [showIcon]="true"
+                    formControlName="schedule"></p-calendar>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" classBtn="p-button-primary" label="Submit"></app-button>
+                <app-button btnType="submit" [loading]="disInterview" classBtn="p-button-primary"
+                    label="Submit"></app-button>
             </div>
         </div>
     </form>
@@ -225,7 +228,8 @@
                 <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Medical Checkup?</h3>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" classBtn="p-button-primary mr-2" label="Yes"></app-button>
+                <app-button btnType="submit" [loading]="disMedicalCheckup" classBtn="p-button-primary mr-2"
+                    label="Yes"></app-button>
                 <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelMcu()"
                     label="No"></app-button>
             </div>
@@ -242,7 +246,8 @@
                 <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Offering?</h3>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" classBtn="p-button-primary mr-3" label="Yes"></app-button>
+                <app-button btnType="submit" [loading]="disOffering" classBtn="p-button-primary mr-3"
+                    label="Yes"></app-button>
                 <app-button btnType="submit" classBtn="p-button-secondary" (clickChange)="cancelOffering()"
                     label="No"></app-button>
             </div>
@@ -259,7 +264,8 @@
                 <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Hired?</h3>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" classBtn="p-button-primary mr-3" label="Yes"></app-button>
+                <app-button btnType="submit" [loading]="disHired" classBtn="p-button-primary mr-3"
+                    label="Yes"></app-button>
                 <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelHired()"
                     label="No"></app-button>
             </div>
@@ -311,8 +317,9 @@
                 <label for="inputName">Choose Benefit</label>
             </div>
             <div class="col-12 md:col-9">
-                <p-dropdown styleClass="w-full" [options]="listBenefits" [filter]="true" optionValue="id" optionLabel="benefitName"
-                    formControlName="benefitId" placeholder="Choose" appendTo="body"></p-dropdown>
+                <p-dropdown styleClass="w-full" [options]="listBenefits" [filter]="true" optionValue="id"
+                    optionLabel="benefitName" formControlName="benefitId" placeholder="Choose"
+                    appendTo="body"></p-dropdown>
             </div>
             <div class="flex flex-wrap justify-content-end mt-2 col-12">
                 <app-button btnType="submit" label="Submit"></app-button>

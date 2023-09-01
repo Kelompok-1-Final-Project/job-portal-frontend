@@ -128,7 +128,7 @@
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
           <app-button routerLink="/job-vacancies" classBtn="p-button-secondary" styleBtn="margin-right:0.5rem"
             iconBtn="pi pi-angle-double-left" label="Back to Previous Menu"></app-button>
-          <app-button btnType="submit" label="Submit"></app-button>
+          <app-button btnType="submit" [loading]="loading" label="Submit"></app-button>
         </div>
       </div>
     </div>

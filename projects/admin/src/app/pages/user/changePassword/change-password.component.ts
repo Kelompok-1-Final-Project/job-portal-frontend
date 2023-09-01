@@ -3,7 +3,7 @@ import { NonNullableFormBuilder, Validators } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { AuthService } from "@serviceAdmin/auth.service";
 import { UserService } from "@serviceAdmin/user.service";
-import { firstValueFrom } from "rxjs";
+import { first, firstValueFrom } from "rxjs";
 
 @Component({
     selector: 'change-password',
@@ -12,8 +12,9 @@ import { firstValueFrom } from "rxjs";
 export class UserChangePasswordComponent implements OnInit{
 
     userId!: string
+    loading: boolean = false
 
-    userChangePasswordReqDto = this.fb.group({
+    userChangePassReqDto = this.fb.group({
         userId: ['', [Validators.required]],
         userOldPass: ['', [Validators.required]],
         userNewPass: ['', [Validators.required]],
@@ -31,12 +32,13 @@ export class UserChangePasswordComponent implements OnInit{
 
     ngOnInit(): void {
         this.getUserId()
+        this.userChangePassReqDto.get('userId')?.setValue(this.userId)
     }
 
     changePassword(){
-        const data = this.userChangePasswordReqDto.getRawValue()
+        const data = this.userChangePassReqDto.getRawValue()
         firstValueFrom(this.userService.changePassword(data)).then(result => {
-
+            this.loading = false
         })
     }
 

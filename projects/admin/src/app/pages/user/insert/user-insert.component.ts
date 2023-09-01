@@ -17,6 +17,7 @@ export class UserInsertComponent implements AfterViewChecked {
 
   roles!: RoleGetResDto[]
   genders!: GenderGetResDto[]
+  loading: boolean = false
 
   userInsertReqDto = this.fb.group({
     userEmail: ['', [Validators.required]],
@@ -62,8 +63,10 @@ export class UserInsertComponent implements AfterViewChecked {
   }
 
   insertUser() {
+    this.loading = true
     const data = this.userInsertReqDto.getRawValue()
     firstValueFrom(this.userService.insert(data)).then(result => {
+      this.loading = false
       this.router.navigateByUrl('/users')
     })
   }

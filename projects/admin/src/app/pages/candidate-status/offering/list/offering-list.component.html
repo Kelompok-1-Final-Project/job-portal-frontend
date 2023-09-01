@@ -1,8 +1,8 @@
-<div class="container grid justify-content-center p-3">
+<div>
   <div class=" grid justify-content-center col-12">
     <h3 class="text-center">All Offering Progress</h3>
   </div>
-  <div class="card col-9">
+  <div class="card mb-3">
     <p-table #offer [value]="offering" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
       [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['candidateName','jobTitle']">
