@@ -444,6 +444,8 @@ export class ProfileDetailComponent implements OnInit, AfterViewChecked {
   updateEducation(id: string, index: number) {
     this.patchId = id;
     this.educationUpdateReqDto.get('educationName')?.setValue(this.educations[index].educationName);
+    this.educationUpdateReqDto.get('startDate')?.setValue(new Date(this.educations[index].startDate).toISOString());
+    this.educationUpdateReqDto.get('endDate')?.setValue(new Date(this.educations[index].endDate).toISOString());
     this.educationUpdateReqDto.get('startDateTemp')?.setValue(new Date(this.educations[index].startDate));
     this.educationUpdateReqDto.get('endDateTemp')?.setValue(new Date(this.educations[index].endDate));
     this.visibleUpdateEducation = true;
@@ -494,6 +496,8 @@ export class ProfileDetailComponent implements OnInit, AfterViewChecked {
     this.visibleUpdateWorkExp = true;
     this.workExperienceUpdateReqDto.get('companyName')?.setValue(this.workExperience[index].companyName);
     this.workExperienceUpdateReqDto.get('positionName')?.setValue(this.workExperience[index].positionName);
+    this.workExperienceUpdateReqDto.get('startDate')?.setValue(new Date(this.workExperience[index].startDate).toISOString());
+    this.workExperienceUpdateReqDto.get('endDate')?.setValue(new Date(this.workExperience[index].endDate).toISOString());
     this.workExperienceUpdateReqDto.get('startDateTemp')?.setValue(new Date(this.workExperience[index].startDate));
     this.workExperienceUpdateReqDto.get('endDateTemp')?.setValue(new Date(this.workExperience[index].endDate));
   }
@@ -598,6 +602,8 @@ export class ProfileDetailComponent implements OnInit, AfterViewChecked {
     this.organizationUpdateReqDto.get('organizationName')?.setValue(this.organization[index].organizationName);
     this.organizationUpdateReqDto.get('positionName')?.setValue(this.organization[index].positionName);
     this.organizationUpdateReqDto.get('description')?.setValue(this.organization[index].description);
+    this.organizationUpdateReqDto.get('startDate')?.setValue(new Date(this.organization[index].startDate).toISOString());
+    this.organizationUpdateReqDto.get('endDate')?.setValue(new Date(this.organization[index].endDate).toISOString());
     this.organizationUpdateReqDto.get('startDateTemp')?.setValue(new Date(this.organization[index].startDate));
     this.organizationUpdateReqDto.get('endDateTemp')?.setValue(new Date(this.organization[index].endDate));
   }
@@ -668,6 +674,7 @@ export class ProfileDetailComponent implements OnInit, AfterViewChecked {
     this.familyUpdateReqDto.get('familyName')?.setValue(this.families[index].familyName);
     this.familyUpdateReqDto.get('relationshipCode')?.setValue(this.families[index].relationshipCode);
     this.familyUpdateReqDto.get('degreeCode')?.setValue(this.families[index].degreeCode);
+    this.familyUpdateReqDto.get('birthdate')?.setValue(this.families[index].familyBirthDate);
     this.familyUpdateReqDto.get('birthdateTemp')?.setValue(new Date(this.families[index].familyBirthDate));
   }
   deleteFamily(id: string) {
