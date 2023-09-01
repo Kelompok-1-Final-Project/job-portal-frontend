@@ -7,7 +7,7 @@
                 <label for="name">Email</label>
             </div>
             <div class="col-10">
-                <label>{{profile.userEmail}}</label>
+                <label>{{profile?.userEmail}}</label>
             </div>
         </div>
         <div class="grid mb-3">
@@ -15,7 +15,7 @@
                 <label for="name">Full Name</label>
             </div>
             <div class="col-10">
-                <label>{{profile.fullName}}</label>
+                <label>{{profile?.fullName}}</label>
             </div>
         </div>
         <div class="grid mb-3">
@@ -23,7 +23,7 @@
                 <label for="type">Role</label>
             </div>
             <div class="col-10">
-                <label>{{profile.roleName}}</label>
+                <label>{{profile?.roleName}}</label>
             </div>
         </div>
         <div class="grid mb-3">
@@ -31,7 +31,7 @@
                 <label for="type">Gender</label>
             </div>
             <div class="col-10">
-                <label>{{profile.userGender}}</label>
+                <label>{{profile?.userGender}}</label>
             </div>
         </div>
         <div class="grid mb-3">
@@ -39,7 +39,7 @@
                 <label for="type">Phone Number</label>
             </div>
             <div class="col-10">
-                <label>{{profile.userPhone}}</label>
+                <label>{{profile?.userPhone}}</label>
             </div>
         </div>
         <div class="grid mb-3">
@@ -47,13 +47,13 @@
                 <label for="type">Profile Photos</label>
             </div>
             <div class="col-10">
-                <img [src]="profile.fileId | urlAdmin" style="height: 8rem; width: 8rem">
+                <img [src]="profile?.fileId | urlAdmin" style="height: 8rem; width: 8rem">
             </div>
         </div>
         <div class="grid mb-3">
             <div class="col-2 col-offset-2">
                 <app-button classBtn="p-button primary bi-pencil-square" label="Edit Profile"
-                    routerLink="/users/profiles/update/{{profile.userId}}"></app-button>
+                    routerLink="/users/profiles/update/{{profile?.userId}}"></app-button>
             </div>
         </div>
     </div>

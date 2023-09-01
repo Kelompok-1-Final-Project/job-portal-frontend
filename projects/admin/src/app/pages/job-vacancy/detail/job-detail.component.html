@@ -9,37 +9,37 @@
                     <app-button classBtn="p-button-secondary" routerLink="/job-vacancies" styleBtn="margin-right:0.5rem"
                         iconBtn="pi pi-arrow-left" label="Back"></app-button>
                     <app-button classBtn="p-button-primary" iconBtn="pi pi-eye" label="Preview"
-                        styleBtn="margin-right:0.5rem" routerLink="/job-vacancies/preview/{{job.id}}"></app-button>
+                        styleBtn="margin-right:0.5rem" routerLink="/job-vacancies/preview/{{job?.id}}"></app-button>
                     <app-button classBtn="p-button-secondary" iconBtn="pi pi-pencil" label="Update"></app-button>
                 </div>
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
                 <label class="text-sm font-medium">Vacancy Title</label>
-                <p class="text-lg">{{ job.jobTitle }}</p>
+                <p class="text-lg">{{ job?.jobTitle }}</p>
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
                 <label class="text-sm font-medium">Position</label>
-                <p class="text-lg">{{ job.positionName }}</p>
+                <p class="text-lg">{{ job?.positionName }}</p>
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
                 <label class="text-sm font-medium">Salary</label>
-                <p class="text-lg">Rp {{ job.salaryStart }} - Rp {{ job.salaryEnd }}</p>
+                <p class="text-lg">Rp {{ job?.salaryStart }} - Rp {{ job?.salaryEnd }}</p>
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
                 <label class="text-sm font-medium">Expired Time</label>
-                <p class="text-lg">{{ job.endDate }}</p>
+                <p class="text-lg">{{ job?.endDate }}</p>
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
                 <label class="text-sm font-medium">Company</label>
-                <p class="text-lg">{{ job.companyName }}</p>
+                <p class="text-lg">{{ job?.companyName }}</p>
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
                 <label class="text-sm font-medium">Employment Type</label>
-                <p class="text-lg">{{ job.employmentName }}</p>
+                <p class="text-lg">{{ job?.employmentName }}</p>
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
                 <label class="text-sm font-medium">Status</label>
-                <p class="text-lg">{{ job.statusName }}</p>
+                <p class="text-lg">{{ job?.statusName }}</p>
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
                 <label class="text-sm font-medium">Description</label>
@@ -50,18 +50,18 @@
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
                 <label class="text-sm font-medium">HR</label>
-                <p class="text-lg">{{job.hrName}}</p>
+                <p class="text-lg">{{job?.hrName}}</p>
             </div>
             <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
                 <label class="text-sm font-medium">Interviewer</label>
-                <p class="text-lg">{{job.interviewerName}}</p>
+                <p class="text-lg">{{job?.interviewerName}}</p>
             </div>
         </div>
 
         <p-tabView>
             <p-tabPanel header="Job Benefit">
                 <div class="container">
-                    <app-button label="Add Benefit" routerLink="/job-vacancies/details/{{job.id}}"
+                    <app-button label="Add Benefit" routerLink="/job-vacancies/details/{{job?.id}}"
                         (clickChange)="addJobBenefit()"></app-button>
                     <h3>List Benefit:</h3>
                     <div class="list-benefit">
@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="col-11">
                                         <app-button classBtn="p-button-danger" styleBtn="margin-bottom:0.3rem"
-                                            (clickChange)="deleteBenefit(job.jobCode, b.benefitCode)"
+                                            (clickChange)="deleteBenefit(job?.jobCode, b.benefitCode)"
                                             iconBtn="pi pi-trash" tooltipBtn="Delete" tooltipPstn="top"
                                             routerLink="/job-vacancies/details/{{id}}"></app-button>
                                     </div>
@@ -142,7 +142,7 @@
                                         <app-button classBtn="p-button-danger" iconBtn="pi pi-trash"
                                             tooltipBtn="Delete Question" tooltipPstn="top"
                                             (clickChange)="questionModal(test.testCode, q.questionCode)"
-                                            routerLink="/job-vacancies/details/{{job.id}}"></app-button>
+                                            routerLink="/job-vacancies/details/{{job?.id}}"></app-button>
                                     </p-accordionTab>
                                 </p-accordion>
                             </div>

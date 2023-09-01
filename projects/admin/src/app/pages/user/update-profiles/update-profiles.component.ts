@@ -15,7 +15,7 @@ import { firstValueFrom } from "rxjs";
 export class UpdateProfilesComponent implements OnInit {
 
   profileId!: string
-  profile!: UserGetResDto
+  profile?: UserGetResDto
 
   userUpdateProfileReqDto = this.fb.group({
     userId: ['', [Validators.required]],

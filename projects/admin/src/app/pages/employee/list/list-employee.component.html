@@ -3,9 +3,19 @@
     <h3 class="text-center">Employee List</h3>
   </div>
   <div class="card mb-3">
-    <p-table [value]="employees" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+    <p-table #employee [value]="employees" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
       [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['candidateName']">
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <app-button classBtn="p-button-primary mr-2" label="Add Company" routerLink="create"></app-button>
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input #searchInput pInputText type="text" [(ngModel)]="search"
+              (input)="employee.filterGlobal(search ,'contains')" placeholder="Search keyword" />
+          </span>
+        </div>
+      </ng-template>
       <ng-template pTemplate="header">
         <tr>
           <th>No</th>
