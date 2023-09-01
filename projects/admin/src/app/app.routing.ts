@@ -63,6 +63,12 @@ const routes: Routes = [
     },
     {
         component: BaseComponent,
+        path: 'reports',
+        loadChildren: () => import('./pages/report/report.module')
+            .then(c => c.ReportModule)
+    },
+    {
+        component: BaseComponent,
         path: 'job-vacancies',
         loadChildren: () => import('./pages/job-vacancy/job.module')
             .then(c => c.JobModule)
