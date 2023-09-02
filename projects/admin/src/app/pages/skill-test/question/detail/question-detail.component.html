@@ -14,12 +14,12 @@
           <h3>Question: </h3>
         </div>
         <div class="col-3">
-          <app-button iconBtn="pi pi-pencil" label="Edit Question" (clickChange)="editQuestion(questions.questionId)">
+          <app-button iconBtn="pi pi-pencil" label="Edit Question" (clickChange)="editQuestion()">
           </app-button>
         </div>
         <div class="col-12">
           <form class="edit-form">
-            <textarea pInputTextarea rows="4" cols="50" id="question" name="question" [value]="questions.question"
+            <textarea pInputTextarea rows="4" cols="50" id="question" name="question" [value]="questions?.question"
               disabled class="w-full"></textarea>
           </form>
         </div>
