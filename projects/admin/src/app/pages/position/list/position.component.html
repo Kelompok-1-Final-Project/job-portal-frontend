@@ -35,7 +35,7 @@
                     <td>
                         <app-button classBtn="p-button-secondary" style="margin-right:0.5rem;" iconBtn="pi pi-pencil"
                             btnType="submit" tooltipBtn="Edit" link="/benefits" tooltipPstn="top"
-                            (clickChange)="update(p.benefitCode)"></app-button>
+                            (clickChange)="update(p.positionCode)"></app-button>
                         <app-button classBtn="p-button-danger" tooltipBtn="Delete" tooltipPstn="top"
                             iconBtn="pi pi-trash"></app-button>
                     </td>
@@ -67,7 +67,6 @@
 
     <!-- Modal Update-->
     <!-- <p-dialog header="Update Data benefit" [modal]="true" [(visible)]="visibleUpdate" [style]="{ width: '30vw' }">
-      <pre>{{benefitUpdateReqDto.value | json}}</pre>
       <form [formGroup]="benefitUpdateReqDto" (ngSubmit)="updateBenefit()">
         <div class="grid surface-card border-round-sm border-400">
           <div class="col-12 md:col-3">

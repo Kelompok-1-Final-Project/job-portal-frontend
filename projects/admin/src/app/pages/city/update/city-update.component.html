@@ -1,6 +1,4 @@
-<pre>{{cityUpdateReqDto.value | json}}</pre>
-
-<form [formGroup]="cityUpdateReqDto">
+<form [formGroup]="cityUpdateReqDto" (ngSubmit)="updateCity()">
   <div class="container">
     <div class="card-container w-screen flex flex-wrap justify-content-center align-items-center"
       style="min-height: 700px">
@@ -14,7 +12,7 @@
         </div>
         <div class="col-12 md:col-9">
           <input pInputText type="text" class="form-control col-12" id="inputCode" aria-describedby="inputName" required
-            value={{code}} disabled>
+            value={{code}} readonly>
         </div>
         <div class="col-12 md:col-3">
           <label for="inputName" class="form-label">City Name<span style="color: red;">*</span></label>
@@ -22,11 +20,16 @@
         <div class="col-12 md:col-9">
           <input pInputText type="text" class="form-control col-12 " id="inputName" aria-describedby="inputName"
             required formControlName="cityName">
+          <small class="p-error block mt-1"
+            *ngIf="cityUpdateReqDto.get('cityName')?.invalid&&cityUpdateReqDto.get('cityName')?.touched">This
+            Fill is Required</small>
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <app-button link="/cities" classBtn="p-button-secondary" btnType="button" iconBtn="pi pi-angle-double-left"
-            label="Back to Previous Menu" styleBtn="margin-right:0.5rem;"></app-button>
-            <app-button btnType="submit" label="Submit" link="/cities" (clickChange)="updateCity()"></app-button>
+          <app-button routerLink="/cities" classBtn="p-button-secondary" btnType="button"
+            iconBtn="pi pi-angle-double-left" label="Back to Previous Menu"
+            styleBtn="margin-right:0.5rem;"></app-button>
+          <app-button btnType="submit" label="Submit" [loading]="loading"
+            [disabled]="cityUpdateReqDto.invalid"></app-button>
         </div>
       </div>
     </div>

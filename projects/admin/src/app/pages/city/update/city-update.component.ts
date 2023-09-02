@@ -12,6 +12,7 @@ import { firstValueFrom } from "rxjs";
 export class CityUpdateComponent implements OnInit {
     
     code!: string;
+    loading: boolean = false
 
     cityUpdateReqDto = this.fb.group({
         cityCode: ['', [Validators.required]],
@@ -37,8 +38,10 @@ export class CityUpdateComponent implements OnInit {
     }
 
     updateCity(){
+        this.loading = true
         const data = this.cityUpdateReqDto.getRawValue()
         firstValueFrom(this.cityService.update(data)).then(result => {
+            this.loading = false
             this.router.navigateByUrl('cities')
         })
     }

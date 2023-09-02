@@ -19,6 +19,7 @@ export class CandidateInsertComponent implements OnInit, AfterViewChecked {
   marital!: MaritalGetResDto[]
   gender!: GenderGetResDto[]
   personType!: PersonTypeGetResDto[]
+  loading: boolean = false
 
   candidateInsertReqDto = this.fb.group({
     photoExt: [''],
@@ -77,8 +78,10 @@ export class CandidateInsertComponent implements OnInit, AfterViewChecked {
   }
 
   insertCandidate() {
+    this.loading = true
     const data = this.candidateInsertReqDto.getRawValue()
     firstValueFrom(this.candidateService.insert(data)).then(result => {
+      this.loading = false
       this.router.navigateByUrl('/candidates')
     })
   }

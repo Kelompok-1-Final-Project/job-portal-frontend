@@ -12,6 +12,9 @@ interface Country {
   templateUrl: './candidate-update.component.html'
 })
 export class CandidateUpdateComponent implements AfterViewChecked {
+
+  loading: boolean = false
+
   selectedCountry: Country | undefined;
   countries: Country[] = [
     { name: 'Indonesia' },

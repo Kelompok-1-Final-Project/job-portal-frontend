@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,10 +11,10 @@ import { firstValueFrom } from 'rxjs';
   selector: 'question-detail',
   templateUrl: './question-detail.component.html'
 })
-export class QuestionDetailComponent implements OnInit {
+export class QuestionDetailComponent implements OnInit, AfterViewChecked{
 
   id!: string
-  questions!: QuestionGetResDto
+  questions?: QuestionGetResDto
   listOption!: QuestionOptionResDto[]
   visibleUpdateQuestion: boolean = false
   visibleOption: boolean = false
@@ -39,7 +39,8 @@ export class QuestionDetailComponent implements OnInit {
     private router: Router,
     private title: Title,
     private questionService: QuestionService,
-    private fb: NonNullableFormBuilder
+    private fb: NonNullableFormBuilder,
+    private cd: ChangeDetectorRef
   ) {
     this.title.setTitle('Question Detail | Job Portal Admin')
   }
@@ -51,15 +52,19 @@ export class QuestionDetailComponent implements OnInit {
     })
   }
 
+  ngAfterViewChecked(): void {
+      this.cd.detectChanges()
+  }
+
   getQuestionById() {
     firstValueFrom(this.questionService.getDetailQuestionById(this.id)).then(result => {
-      console.log(result)
       this.questions = result
+      this.listOption = this.questions.listQuestionOption
     })
   }
 
-  editQuestion(id: string) {
-    this.questionUpdateReqDto.get('questionId')?.setValue(id)
+  editQuestion() {
+    this.questionUpdateReqDto.get('questionId')?.setValue(this.id)
     this.visibleUpdateQuestion = true
   }
 

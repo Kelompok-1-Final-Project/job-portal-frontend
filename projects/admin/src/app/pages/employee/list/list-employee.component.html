@@ -8,7 +8,6 @@
       [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['candidateName']">
       <ng-template pTemplate="caption">
         <div class="flex">
-          <app-button classBtn="p-button-primary mr-2" label="Add Company" routerLink="create"></app-button>
           <span class="p-input-icon-left ml-auto">
             <i class="pi pi-search"></i>
             <input #searchInput pInputText type="text" [(ngModel)]="search"
@@ -40,8 +39,8 @@
 </div>
 
 <!-- Modal Blacklist-->
-<p-dialog header="Add Blacklist" [modal]="true" [(visible)]="visibleBlacklist" [style]="{ width: '30vw' }">
-  <pre>{{blacklistInsertReqDto.value | json}}</pre>
+<p-dialog header="Add Blacklist" [modal]="true" [(visible)]="visibleBlacklist" [style]="{ width: '30vw' }"
+  [breakpoints]="{'768':'90vw'}" [draggable]="false">
   <form [formGroup]="blacklistInsertReqDto" (ngSubmit)="insertBlacklist()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12">

@@ -1,5 +1,3 @@
-<pre>{{userUpdateProfileReqDto.value | json}}</pre>
-
 <div class="container mt-5 mb-5">
     <app-button classBtn="p-button-secondary" label="Back" routerLink="/users/profiles"></app-button>
     <h2>Form Edit Profile</h2>
@@ -22,8 +20,8 @@
                     <span class="text-red-600">*</span>
                 </div>
                 <div class="col-10">
-                    <input pInputText type="text" [placeholder]="profile?.fullName" class="form-control col-4" id="full-name"
-                        formControlName="fullName" />
+                    <input pInputText type="text" [placeholder]="profile?.fullName" class="form-control col-4"
+                        id="full-name" formControlName="fullName" />
                 </div>
             </div>
             <div class="grid">
@@ -32,8 +30,8 @@
                     <span class="text-red-600">*</span>
                 </div>
                 <div class="col-10">
-                    <input pInputText type="text" [placeholder]="profile?.userPhone" class="form-control col-4" id="full-name"
-                        formControlName="mobileNumber" />
+                    <input pInputText type="text" [placeholder]="profile?.userPhone" class="form-control col-4"
+                        id="full-name" formControlName="mobileNumber" />
                 </div>
             </div>
             <div class="grid">
@@ -42,8 +40,8 @@
                     <span class="text-red-600">*</span>
                 </div>
                 <div class="col-10">
-                    <input pInputText type="text" [value]="profile?.userGender" class="form-control col-4" id="full-name"
-                        readonly />
+                    <input pInputText type="text" [value]="profile?.userGender" class="form-control col-4"
+                        id="full-name" readonly />
                 </div>
             </div>
             <div class="grid">
@@ -71,7 +69,8 @@
             </div>
             <div class="grid">
                 <div class="col-2 col-offset-2">
-                    <app-button btnType="submit" classBtn="p-button-primary" label="Save"></app-button>
+                    <app-button btnType="submit" [loading]="loading" classBtn="p-button-primary"
+                        label="Save"></app-button>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-<div>
+<div class="min-h-screen">
   <div class=" grid justify-content-center col-12">
     <h3 class="text-center">Benefit List</h3>
   </div>
@@ -6,11 +6,11 @@
     <div class="grid justify-content-end mb-3">
     </div>
     <p-table #benefit [value]="benefits" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
-    [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['benefitName']">
-    <ng-template pTemplate="caption">
-      <div class="flex">
-        <app-button label="Add Benefit" class="p-button-primary" link="/benefits" (clickChange)="add()"></app-button>
+      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['benefitName']">
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <app-button label="Add Benefit" class="p-button-primary" link="/benefits" (clickChange)="add()"></app-button>
           <span class="p-input-icon-left ml-auto">
             <i class="pi pi-search"></i>
             <input #searchInput pInputText type="text" [(ngModel)]="search"
@@ -54,6 +54,9 @@
         </div>
         <div class="col-12 md:col-9">
           <input pInputText type="text" class="col-12 " id="inputName" required formControlName="benefitName">
+          <small class="p-error block mt-1"
+            *ngIf="benefitInsertReqDto.get('benefitName')?.invalid&&benefitInsertReqDto.get('benefitName')?.touched">This
+            Fill is Required</small>
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
           <app-button btnType="submit" link="/benefits" [loading]="loading" [disabled]="benefitInsertReqDto.invalid"
@@ -64,24 +67,27 @@
   </p-dialog>
 
   <!-- Modal Update-->
-  <p-dialog header="Update Data benefit" [modal]="true" [(visible)]="visibleUpdate" [style]="{ width: '30vw' }">
-    <pre>{{benefitUpdateReqDto.value | json}}</pre>
+  <p-dialog header="Update Data benefit" [modal]="true" [(visible)]="visibleUpdate" [style]="{ width: '30vw' }"
+    [breakpoints]="{'768px':'90vw'}" [draggable]="false">
     <form [formGroup]="benefitUpdateReqDto" (ngSubmit)="updateBenefit()">
       <div class="grid surface-card border-round-sm border-400">
         <div class="col-12 md:col-3">
           <label for="inputName">Benefit Code</label>
         </div>
         <div class="col-12 md:col-9">
-          <input pInputText type="text" class="col-12 p-disabled" id="inputName" required value={{code}}>
+          <input pInputText type="text" class="col-12" readonly id="inputName" required value={{code}}>
         </div>
         <div class="col-12 md:col-3">
           <label for="inputName">Benefit Name</label>
         </div>
         <div class="col-12 md:col-9">
           <input pInputText type="text" class="col-12 " id="inputName" required formControlName="benefitName">
+          <small class="p-error block mt-1"
+            *ngIf="benefitUpdateReqDto.get('benefitName')?.invalid&&benefitUpdateReqDto.get('benefitName')?.touched">This
+            Fill is Required</small>
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <app-button btnType="submit" label="Submit" [disabled]="benefitUpdateReqDto.invalid"
+          <app-button btnType="submit" label="Submit" [loading]="loading" [disabled]="benefitUpdateReqDto.invalid"
             link="/benefits"></app-button>
         </div>
       </div>

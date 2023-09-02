@@ -4,18 +4,18 @@
   </div>
   <div class="card mb-3">
     <p-table #industry [value]="industries" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
-    [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['industryName']">
-    <ng-template pTemplate="caption">
-      <div class="flex">
-        <app-button link="/industries" (clickChange)="add()" label="Add Industry"></app-button>
-            <span class="p-input-icon-left ml-auto">
-              <i class="pi pi-search"></i>
-              <input #searchInput pInputText type="text" [(ngModel)]="search"
-                (input)="industry.filterGlobal(search ,'contains')" placeholder="Search keyword" />
-            </span>
-          </div>
-        </ng-template>
+      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['industryName']">
+      <ng-template pTemplate="caption">
+        <div class="flex">
+          <app-button link="/industries" (clickChange)="add()" label="Add Industry"></app-button>
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input #searchInput pInputText type="text" [(ngModel)]="search"
+              (input)="industry.filterGlobal(search ,'contains')" placeholder="Search keyword" />
+          </span>
+        </div>
+      </ng-template>
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>
@@ -42,43 +42,49 @@
 
 
   <!-- Modal Add-->
-  <p-dialog header="Add Data Industry" [modal]="true" [(visible)]="visibleAdd" [style]="{ width: '30vw' }" 
+  <p-dialog header="Add Data Industry" [modal]="true" [(visible)]="visibleAdd" [style]="{ width: '30vw' }"
     [breakpoints]="{'768px' : '90vw'}" [draggable]="false">
     <form [formGroup]="industryInsertReqDto" (ngSubmit)="insertIndustry()">
       <div class="grid surface-card border-round-sm border-400">
         <div class="col-12 md:col-3">
-          <label for="inputName">Industry Name</label>
+          <label for="inputName">Industry Name<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-9">
           <input pInputText type="text" class="col-12 " id="inputName" required formControlName="industryName">
+          <small class="p-error block mt-1"
+            *ngIf="industryInsertReqDto.get('industryName')?.invalid&&industryInsertReqDto.get('industryName')?.touched">This
+            Fill is Required</small>
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
           <app-button btnType="submit" label="Submit" [disabled]="industryInsertReqDto.invalid"
-            link="/industries"></app-button>
+            [loading]="loading"></app-button>
         </div>
       </div>
     </form>
   </p-dialog>
 
   <!-- Modal Update-->
-  <p-dialog header="Update Data Industry" [modal]="true" [(visible)]="visibleUpdate" [style]="{ width: '30vw' }">
-    <pre>{{industryUpdateReqDto.value | json}}</pre>
+  <p-dialog header="Update Data Industry" [modal]="true" [(visible)]="visibleUpdate" [style]="{ width: '30vw' }"
+    [breakpoints]="{'768px':'90vw'}" [draggable]="false">
     <form [formGroup]="industryUpdateReqDto" (ngSubmit)="updateIndustry()">
       <div class="grid surface-card border-round-sm border-400">
         <div class="col-12 md:col-3">
           <label for="inputName">Industry Code</label>
         </div>
         <div class="col-12 md:col-9">
-          <input pInputText type="text" class="col-12 p-disabled" id="inputName" required value={{code}}>
+          <input pInputText type="text" class="col-12" readonly id="inputName" required value={{code}}>
         </div>
         <div class="col-12 md:col-3">
-          <label for="inputName">Industry Name</label>
+          <label for="inputName">Industry Name<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-9">
           <input pInputText type="text" class="col-12 " id="inputName" required formControlName="industryName">
+          <small class="p-error block mt-1"
+            *ngIf="industryUpdateReqDto.get('industryName')?.invalid&&industryUpdateReqDto.get('industryName')?.touched">This
+            Fill is Required</small>
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <app-button btnType="submit" label="Submit" link="/industries"
+          <app-button btnType="submit" label="Submit" [loading]="loading"
             [disabled]="industryUpdateReqDto.invalid"></app-button>
         </div>
       </div>
@@ -92,7 +98,8 @@
         <label for="inputName">Are You Sure to Delete this Data ? <span style="color: red;">*</span></label>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <app-button btnType="submit" [loading]="loading" iconBtn="pi pi-check" classBtn="p-button-primary" label="Submit"></app-button>
+        <app-button btnType="submit" [loading]="loading" iconBtn="pi pi-check" classBtn="p-button-primary"
+          label="Submit"></app-button>
       </div>
     </div>
   </p-dialog>

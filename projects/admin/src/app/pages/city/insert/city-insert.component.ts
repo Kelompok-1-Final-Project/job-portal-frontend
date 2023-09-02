@@ -31,8 +31,10 @@ export class CityInsertComponent implements OnInit {
     }
 
     insertCity() {
+        this.loading = true
         const data = this.cityInsertReqDto.getRawValue()
         firstValueFrom(this.cityService.insert(data)).then(result => {
+            this.loading = false
             this.router.navigateByUrl('/cities')
         })
     }

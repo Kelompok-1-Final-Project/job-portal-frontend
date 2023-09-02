@@ -19,7 +19,7 @@ export class ListEmployeeComponent implements OnInit {
     search: string = ''
 
     blacklistInsertReqDto = this.fb.group({
-        candidateId : ['', [Validators.required]],
+        candidateId: ['', [Validators.required]],
         companyId: ['', [Validators.required]]
     })
 
@@ -38,23 +38,23 @@ export class ListEmployeeComponent implements OnInit {
     }
 
     getEmployee() {
-        firstValueFrom(this.employeeService.getAll()).then(result =>{
+        firstValueFrom(this.employeeService.getAll()).then(result => {
             this.employees = result
         })
     }
 
-    add(candidate: string, company: string){
+    add(candidate: string, company: string) {
         this.blacklistInsertReqDto.get('candidateId')?.setValue(candidate)
         this.blacklistInsertReqDto.get('companyId')?.setValue(company)
         this.visibleBlacklist = true
     }
 
-    insertBlacklist(){
+    insertBlacklist() {
         this.loading = true
         const data = this.blacklistInsertReqDto.getRawValue()
         firstValueFrom(this.blacklistService.insert(data)).then(result => {
             this.loading = false
-            this.visibleBlacklist = false 
+            this.visibleBlacklist = false
         })
     }
 }

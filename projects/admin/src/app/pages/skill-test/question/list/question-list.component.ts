@@ -13,6 +13,7 @@ export class QuestionListComponent implements OnInit {
   visibleUpdate: boolean = false;
   visibleDelete: boolean = false;
   questions!: QuestionGetResDto[]
+  search: string = ''
 
   constructor(
     private title: Title,

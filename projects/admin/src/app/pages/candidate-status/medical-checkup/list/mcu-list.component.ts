@@ -18,6 +18,7 @@ export class McuListComponent implements OnInit {
   visibleMcu: boolean = false
   userId!: string
   search: string = ''
+  loading: boolean = false
 
   medicalUpdateReqDto = this.fb.group({
     medicalId: ['', [Validators.required]],
@@ -51,8 +52,10 @@ export class McuListComponent implements OnInit {
   }
 
   updateMcu() {
+    this.loading = true
     const data = this.medicalUpdateReqDto.getRawValue()
     firstValueFrom(this.statusProgressService.updateMcuFile(data)).then(result => {
+      this.loading = false
       this.visibleMcu = false
       this.getMedicalCheckup()
     })

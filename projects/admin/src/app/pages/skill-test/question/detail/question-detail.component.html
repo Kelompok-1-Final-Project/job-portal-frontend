@@ -4,13 +4,13 @@
   <h3>Question: </h3>
 
   <form class="edit-form">
-    <textarea pInputTextarea rows="4" cols="50" id="question" name="question" [value]="questions.question"
+    <textarea pInputTextarea rows="4" cols="50" id="question" name="question" [value]="questions?.question"
       disabled></textarea>
   </form>
   <app-button iconBtn="pi pi-pencil" label="Edit Question"
-    (clickChange)="editQuestion(questions.questionId)"></app-button>
+    (clickChange)="editQuestion()"></app-button>
 
-  <p-table [value]="questions.listQuestionOption" class="options-table">
+  <p-table [value]="listOption" class="options-table">
     <ng-template pTemplate="header">
       <tr>
         <th>No</th>
@@ -35,7 +35,6 @@
 
 <!-- Modal Update Question -->
 <p-dialog header="Update Question" [modal]="true" [(visible)]="visibleUpdateQuestion" [style]="{ width: '30vw' }">
-  <pre>{{questionUpdateReqDto.value | json}}</pre>
   <form [formGroup]="questionUpdateReqDto" (ngSubmit)="updateQuestion()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
@@ -55,7 +54,6 @@
 
 <!-- Modal Update Option-->
 <p-dialog header="Update Option" [modal]="true" [(visible)]="visibleOption" [style]="{ width: '30vw' }">
-  <pre>{{optionUpdateReqDto.value | json}}</pre>
   <form [formGroup]="optionUpdateReqDto" (ngSubmit)="updateOption()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">

@@ -21,7 +21,7 @@ interface Country {
 export class UserUpdateComponent implements OnInit, AfterViewChecked {
 
   userId!: string
-  user!: UserGetResDto
+  user?: UserGetResDto
   roles!: RoleGetResDto[]
   genders!: GenderGetResDto[]
   loading: boolean = false
