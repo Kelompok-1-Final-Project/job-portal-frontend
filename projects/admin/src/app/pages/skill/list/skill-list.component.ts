@@ -19,6 +19,7 @@ export class SkillListComponent implements OnInit {
   skills!: SkillGetResDto[]
   code!: string
   search: string = ''
+  loading: boolean = false
 
   skillInsertReqDto = this.fb.group({
     skillName: ['', [Validators.required]]
@@ -49,8 +50,10 @@ export class SkillListComponent implements OnInit {
   }
 
   insertSkill(){
+    this.loading = true
     const data = this.skillInsertReqDto.getRawValue()
     firstValueFrom(this.skillService.insert(data)).then(result => {
+      this.loading = false
       this.visibleAdd = false
       this.router.navigateByUrl('/skills')
       this.getAllSkill()
@@ -68,8 +71,10 @@ export class SkillListComponent implements OnInit {
   }
 
   updateSkill(){
+    this.loading = true
     const data = this.skillUpdateReqDto.getRawValue()
     firstValueFrom(this.skillService.update(data)).then(result =>{
+      this.loading = false
       this.visibleUpdate = false
     })
   }

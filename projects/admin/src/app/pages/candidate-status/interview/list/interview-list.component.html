@@ -50,7 +50,6 @@
 <!-- Modal Insert Interview Notes-->
 <p-dialog header="Add Interview Notes" [modal]="true" [(visible)]="visibleUpdateNotes" [style]="{ width: '30vw' }"
   [breakpoints]="{'768px': '90vw'}" [draggable]="false">
-  <pre>{{interviewUpdateReqDto.value | json}}</pre>
   <form [formGroup]="interviewUpdateReqDto" (ngSubmit)="updateNotes()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">

@@ -23,7 +23,7 @@ import { firstValueFrom } from "rxjs";
 export class JobDetailComponent implements OnInit, AfterViewChecked {
 
     id!: string
-    job?: JobAdminGetResDto
+    job: JobAdminGetResDto | undefined
     candidates!: CandidateProgressGetResDto[]
     status!: StatusProgressGetResDto[]
     test!: TestGetResDto
@@ -51,6 +51,7 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     disMedicalCheckup: boolean = false
     disOffering: boolean = false
     disHired: boolean = false
+    loading: boolean = false
 
     assessmentInsertReqDto = this.fb.group({
         candidateId: ['', [Validators.required]],
@@ -145,10 +146,11 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     }
 
     getCandidateStatus() {
-        const jobId = this.job?.jobCode
-        // firstValueFrom(this.statusProgressService.getCandidateByJob(this.job.jobId)).then(result => {
-        //     this.candidates = result
-        // })
+        if(this.job){
+            firstValueFrom(this.statusProgressService.getCandidateByJob(this.job?.id)).then(result => {
+                this.candidates = result
+            })
+        }
     }
 
     getStatus() {
@@ -174,9 +176,9 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         } else if (code == ProgressStatus.INTERVIEW) {
             this.visibleInterview = true
             this.interviewInsertReqDto.patchValue({
-                candidateId : candidateId,
-                jobId : this.job?.id,
-                interviewerId : this.job?.interviewerId
+                candidateId: candidateId,
+                jobId: this.job?.id,
+                interviewerId: this.job?.interviewerId
             })
         } else if (code == ProgressStatus.MEDICAL) {
             this.visibleMcu = true
@@ -187,7 +189,7 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         } else if (code == ProgressStatus.OFFERING) {
             this.visibleOffering = true
             this.offeringInsertReqDto.patchValue({
-                candidateId : candidateId,
+                candidateId: candidateId,
                 jobId: this.job?.id
             })
         } else if (code == ProgressStatus.HIRED) {
@@ -256,8 +258,10 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     }
 
     insertRejected() {
+        this.loading = true
         const data = this.rejectedInsertReqDto.getRawValue()
         firstValueFrom(this.statusProgressService.updateReject(data)).then(result => {
+            this.loading = false
             this.visibleRejected = false
         })
     }
@@ -311,7 +315,9 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     }
 
     deleteJobBenefit() {
+        this.loading = true
         firstValueFrom(this.jobService.deleteJobBenefit(this.jobCode, this.benefitCode)).then(result => {
+            this.loading = false
             this.visibleBenefit = false
         })
     }
@@ -328,8 +334,10 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     }
 
     insertJobBenefit() {
+        this.loading = true
         const data = this.jobBenefitInsertReqDto.getRawValue()
         firstValueFrom(this.jobService.insertJobBenefit(data)).then(result => {
+            this.loading = false
             this.visibleAddBenefit = false
             this.router.navigate(['/job-vacancies/details/', this.id])
         })
@@ -340,7 +348,8 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     }
 
     showOriginalContent() {
-        const description = this.job?.description
-        // this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.job?.description)
+        if(this.job){
+            this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.job?.description)
+        }
     }
 }

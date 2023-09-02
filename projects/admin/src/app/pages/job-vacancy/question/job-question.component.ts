@@ -17,6 +17,7 @@ export class JobQuestionComponent implements OnInit {
     listQuestionCode: string[] = []
     listQuestion!: QuestionGetResDto[]
     jobId!: string
+    loading: boolean = false
 
     insertQuestionReqDto = this.fb.group({
         skillTestCode: ['', [Validators.required]],
@@ -64,8 +65,10 @@ export class JobQuestionComponent implements OnInit {
     }
 
     insertQuestion(){
+        this.loading = true
         const data = this.insertQuestionReqDto.getRawValue()
         firstValueFrom(this.jobService.insertJobQuestion(data)).then(result =>{
+            this.loading = false
             this.router.navigate(['/job-vacancies/details', this.jobId])
         })
     }

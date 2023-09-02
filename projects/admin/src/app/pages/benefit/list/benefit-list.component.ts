@@ -60,8 +60,10 @@ export class BenefitListComponent implements OnInit {
   }
 
   updateBenefit() {
+    this.loading = true
     const data = this.benefitUpdateReqDto.getRawValue()
     firstValueFrom(this.benefitService.update(data)).then(result => {
+      this.loading = false
       this.visibleUpdate = false
       this.router.navigateByUrl('/benefits')
     })

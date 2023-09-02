@@ -52,7 +52,6 @@
 <!-- Modal Insert Assessment Notes-->
 <p-dialog header="Add Assessment Notes" [modal]="true" [(visible)]="visibleUpdateNotes" [style]="{ width: '30vw' }"
   [breakpoints]="{'768px': '90vw'}" [draggable]="false">
-  <pre>{{updateAssessmentNotesReqDto.value | json}}</pre>
   <form [formGroup]="updateAssessmentNotesReqDto" (ngSubmit)="insertNotes()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">

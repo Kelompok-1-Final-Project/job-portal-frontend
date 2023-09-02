@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { JobStatus } from "@constant/job-status.constant";
 import { JobAdminGetResDto } from "@dto/job/job-admin.get.res.dto";
@@ -9,7 +9,8 @@ import { firstValueFrom } from "rxjs";
 @Component({
   selector: 'job-list',
   templateUrl: './job-list.component.html',
-  styleUrls: ['./job-list.component.css']
+  styleUrls: ['./job-list.component.css'],
+  encapsulation: ViewEncapsulation.None 
 })
 export class JobListComponent implements OnInit {
 

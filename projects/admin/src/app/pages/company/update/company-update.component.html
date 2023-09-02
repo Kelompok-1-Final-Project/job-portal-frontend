@@ -1,5 +1,3 @@
-<pre>{{companyUpdateReqDto.value | json}}</pre>
-
 <form [formGroup]="companyUpdateReqDto" (ngSubmit)="updateCompany()">
   <div class="container min-h-screen grid grid-nogutter">
     <div class="card-container w-screen flex flex-wrap justify-content-center align-items-center"
@@ -13,7 +11,7 @@
         </div>
         <div class="col-12 md:col-9">
           <input pInputText type="text" class="form-control col-12" id="companyCode" aria-describedby="companyCodeHelp"
-            required value={{code}} disabled>
+            required value={{code}} readonly>
         </div>
         <div class="col-12 md:col-3">
           <label for="companyName" class="form-label">Company Name<span style="color: red;">*</span></label>
@@ -21,6 +19,9 @@
         <div class="col-12 md:col-9">
           <input pInputText type="text" class="form-control col-12" id="companyName" aria-describedby="companyNameHelp"
             required formControlName="companyName">
+          <small class="p-error block mt-1"
+            *ngIf="companyUpdateReqDto.get('companyName')?.invalid&&companyUpdateReqDto.get('companyName')?.touched">This
+            Fill is Required</small>
         </div>
         <div class="col-12 md:col-3">
           <label for="companyName" class="form-label">Industry Name<span style="color: red;">*</span></label>
@@ -42,6 +43,9 @@
         <div class="col-12 md:col-9">
           <textarea required pInputText class="form-control col-12" id="companyAddress" rows="3" required
             formControlName="description"></textarea>
+          <small class="p-error block mt-1"
+            *ngIf="companyUpdateReqDto.get('description')?.invalid&&companyUpdateReqDto.get('description')?.touched">This
+            Fill is Required</small>
         </div>
         <div class="col-12 md:col-3">
           <label for="companyAddress" class="form-label">Address<span style="color: red;">*</span></label>
@@ -49,6 +53,9 @@
         <div class="col-12 md:col-9">
           <textarea required pInputText class="form-control col-12" id="companyAddress" rows="3" required
             formControlName="address"></textarea>
+          <small class="p-error block mt-1"
+            *ngIf="companyUpdateReqDto.get('address')?.invalid&&companyUpdateReqDto.get('address')?.touched">This
+            Fill is Required</small>
         </div>
         <label for="formFile" class="col-12 md:col-3 form-label">Company Photo<span style="color: red;">*</span></label>
         <p-fileUpload mode="basic" class="col-12 md:col-9" chooseLabel="Upload" accept="image/*"
@@ -57,8 +64,8 @@
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
           <app-button classBtn="p-button-secondary" btnType="button" styleBtn="margin-right:0.5rem;"
             iconBtn="pi pi-angle-double-left" routerLink="/companies" label="Back to Previous Menu"></app-button>
-          <app-button classBtn="p-button-primary" btnType="submit" [disabled]="companyUpdateReqDto.invalid"
-            label="Submit"></app-button>
+          <app-button classBtn="p-button-primary" [loading]="loading" btnType="submit"
+            [disabled]="companyUpdateReqDto.invalid" label="Submit"></app-button>
         </div>
       </div>
     </div>

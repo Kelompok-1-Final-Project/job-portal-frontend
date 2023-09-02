@@ -42,8 +42,8 @@
 
 
 <!-- Modal Blacklist-->
-<p-dialog header="Add Blacklist" [modal]="true" [(visible)]="visibleBlacklist" [style]="{ width: '30vw' }">
-  <pre>{{blacklistInsertReqDto.value | json}}</pre>
+<p-dialog header="Add Blacklist" [modal]="true" [(visible)]="visibleBlacklist" [style]="{ width: '30vw' }"
+  [breakpoints]="{'768':'90vw'}" [draggable]="false">
   <form [formGroup]="blacklistInsertReqDto" (ngSubmit)="insertBlacklist()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12">

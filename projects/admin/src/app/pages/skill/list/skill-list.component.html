@@ -48,13 +48,16 @@
     <form [formGroup]="skillInsertReqDto" (ngSubmit)="insertSkill()">
       <div class="grid surface-card border-round-sm border-400">
         <div class="col-12 md:col-3">
-          <label for="inputName">Skill Name</label>
+          <label for="inputName">Skill Name<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-9">
           <input pInputText type="text" class="col-12 " id="inputName" required formControlName="skillName">
+          <small class="p-error block mt-1"
+            *ngIf="skillInsertReqDto.get('skillName')?.invalid&&skillInsertReqDto.get('skillName')?.touched">This
+            Fill is Required</small>
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <app-button btnType="submit" label="Submit" link="/skills"
+          <app-button btnType="submit" [loading]="loading" label="Submit"
             [disabled]="skillInsertReqDto.invalid"></app-button>
         </div>
       </div>
@@ -62,24 +65,28 @@
   </p-dialog>
 
   <!-- Modal Update-->
-  <p-dialog header="Update Data Skill" [modal]="true" [(visible)]="visibleUpdate" [style]="{ width: '30vw' }">
-    <pre>{{skillUpdateReqDto.value | json}}</pre>
+  <p-dialog header="Update Data Skill" [modal]="true" [(visible)]="visibleUpdate" [style]="{ width: '30vw' }"
+    [breakpoints]="{'768px':'90vw'}" [draggable]="false">
     <form [formGroup]="skillUpdateReqDto" (ngSubmit)="updateSkill()">
       <div class="grid surface-card border-round-sm border-400">
         <div class="col-12 md:col-3">
           <label for="inputName">Skill Code</label>
         </div>
         <div class="col-12 md:col-9">
-          <input pInputText type="text" class="col-12 p-disabled" id="inputName" value={{code}}>
+          <input pInputText type="text" class="col-12" readonly id="inputName" value={{code}}>
         </div>
         <div class="col-12 md:col-3">
-          <label for="inputName">Skill Name</label>
+          <label for="inputName">Skill Name<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-9">
           <input pInputText type="text" class="col-12 " id="inputName" required formControlName="skillName">
+          <small class="p-error block mt-1"
+            *ngIf="skillUpdateReqDto.get('skillName')?.invalid&&skillUpdateReqDto.get('skillName')?.touched">This
+            Fill is Required</small>
         </div>
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <app-button btnType="submit" label="Submit" link="/skills"></app-button>
+          <app-button btnType="submit" [disabled]="skillUpdateReqDto.invalid" [loading]="loading"
+            label="Submit"></app-button>
         </div>
       </div>
     </form>

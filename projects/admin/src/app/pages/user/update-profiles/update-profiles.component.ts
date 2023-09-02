@@ -16,6 +16,7 @@ export class UpdateProfilesComponent implements OnInit {
 
   profileId!: string
   profile?: UserGetResDto
+  loading: boolean = false
 
   userUpdateProfileReqDto = this.fb.group({
     userId: ['', [Validators.required]],
@@ -58,8 +59,10 @@ export class UpdateProfilesComponent implements OnInit {
   }
 
   updateProfile() {
+    this.loading = true 
     const data = this.userUpdateProfileReqDto.getRawValue()
     firstValueFrom(this.userService.update(data)).then(result => {
+      this.loading = false
       this.router.navigateByUrl('/users/profiles')
     })
   }

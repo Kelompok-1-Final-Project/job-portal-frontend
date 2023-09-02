@@ -1,3 +1,4 @@
+
 <!-- <pre>{{ candidateInsertReqDto.value | json }}</pre> -->
 
 <div class="container">
@@ -42,7 +43,6 @@
           <div class="col-12 md:col-9">
             <input pInputText type="text" class="form-control col-12" id="companyName"
               aria-describedby="companyNameHelp" required formControlName="mobileNumber">
-            <!-- <p-inputNumber id="phone" inputId="withoutgrouping" [useGrouping]="false" formControlName="userPhone"></p-inputNumber> -->
           </div>
           <div class="col-12 md:col-3">
             <label for="companyName">Gender</label>
@@ -98,7 +98,7 @@
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
           <app-button classBtn="p-button-secondary" styleBtn="margin-right:0.5rem;" btnType="button"
             routerLink="/candidates" iconBtn="pi pi-angle-double-left" label="Back to Previous Menu"></app-button>
-          <app-button btnType="submit" label="Submit" [disabled]="candidateInsertReqDto.invalid"></app-button>
+          <app-button btnType="submit" [loading]="loading" label="Submit" [disabled]="candidateInsertReqDto.invalid"></app-button>
         </div>
       </div>
     </div>

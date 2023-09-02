@@ -60,8 +60,10 @@ export class IndustryListComponent implements OnInit {
   }
 
   updateIndustry() {
+    this.loading = true
     const data = this.industryUpdateReqDto.getRawValue()
     firstValueFrom(this.industryService.update(data)).then(result => {
+      this.loading = false
       this.visibleUpdate = false
     })
   }

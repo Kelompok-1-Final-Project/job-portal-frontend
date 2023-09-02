@@ -22,6 +22,7 @@ export class CompanyUpdateComponent {
   cities!: CityGetResDto[]
   industries!: IndustryGetResDto[]
   code!: string
+  loading: boolean = false
 
   companyUpdateReqDto = this.fb.group({
     companyName: ['', [Validators.required]],
@@ -47,7 +48,7 @@ export class CompanyUpdateComponent {
   }
 
   ngOnInit(): void {
-    firstValueFrom(this.route.params).then(param =>{
+    firstValueFrom(this.route.params).then(param => {
       this.code = param['id']
       this.getCity()
       this.getIndustry()
@@ -57,19 +58,21 @@ export class CompanyUpdateComponent {
   }
 
   updateCompany() {
+    this.loading = true
     const data = this.companyUpdateReqDto.getRawValue()
     firstValueFrom(this.companyService.update(data)).then(result => {
+      this.loading = false
       this.router.navigateByUrl('/companies')
     })
   }
 
-  getIndustry(){
+  getIndustry() {
     firstValueFrom(this.industryService.getAll()).then(result => {
       this.industries = result
     })
   }
 
-  getCity(){
+  getCity() {
     firstValueFrom(this.cityService.getAll()).then(result => {
       this.cities = result
     })

@@ -25,6 +25,7 @@ export class JobUpdateComponent implements AfterViewChecked {
   employment!: EmploymentTypeGetResDto[]
   hr!: UserGetResDto[]
   interviewer!: UserGetResDto[]
+  loading: boolean = false
 
   jobUpdateReqDto = this.fb.group({
     jobId: ['', [Validators.required]],
@@ -108,8 +109,10 @@ export class JobUpdateComponent implements AfterViewChecked {
   }
 
   updateJob() {
+    this.loading = true
     const data = this.jobUpdateReqDto.getRawValue()
     firstValueFrom(this.jobService.update(data)).then(result => {
+      this.loading = false
       this.router.navigateByUrl('/job-vacancies')
     })
   }
