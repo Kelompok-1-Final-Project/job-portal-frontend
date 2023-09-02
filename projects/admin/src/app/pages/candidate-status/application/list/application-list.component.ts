@@ -7,7 +7,8 @@ import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'application-list',
-  templateUrl: './application-list.component.html'
+  templateUrl: './application-list.component.html',
+  styleUrls: ['./application-list.component.css']
 })
 export class ApplicationListComponent implements OnInit {
 

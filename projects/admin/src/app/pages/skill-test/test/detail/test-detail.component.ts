@@ -2,7 +2,8 @@ import { Component } from "@angular/core";
 
 @Component({
     selector: 'test-details',
-    templateUrl: './test-detail.component.html'
+    templateUrl: './test-detail.component.html',
+    styleUrls: ['./test-detail.component.css']
 })
 export class TestDetailComponent{
 

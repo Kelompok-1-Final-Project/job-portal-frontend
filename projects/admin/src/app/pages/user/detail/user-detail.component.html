@@ -1,53 +1,61 @@
-<div class="card">
+<div class="container min-h-screen">
+<div class="card grid grid-nogutter justify-content-center">
+  <div class="title col-12 text-center">
     <h2>User Detail</h2>
+  </div>
+  <div class="col-9 grid grid-nogutter">
     <app-button classBtn="p-button-secondary" label="Back" iconBtn="pi pi-arrow-left"
-        styleBtn="margin-bottom:0.5rem; margin-right:0.5rem" routerLink="/users"></app-button>
+      styleBtn="margin-bottom:0.5rem; margin-right:0.5rem" routerLink="/users"></app-button>
     <app-button routerLink="/users/update/{{userId}}" classBtn="p-button-primary" label="Update" iconBtn="pi pi-pencil"
-        styleBtn="margin-bottom:0.5rem"></app-button>
+      styleBtn="margin-bottom:0.5rem"></app-button>
+  </div>
+  <div class="card col-9">
     <p-card>
-        <div class="fluid">
-            <div class="grid mb-2">
-                <div class="col-2 md-6">
-                    <label for="fullName">Full Name</label>
-                </div>
-                <div class="col-4">
-                    <input class="w-full" pInputText readonly placeholder="{{detailUser?.fullName}}" type="text">
-                </div>
-                <div class="col-2 md-6">
-                    <label for="phoneNumber">Email</label>
-                </div>
-                <div class="col-4">
-                    <input class="w-full" type="text" pInputText readonly placeholder="{{detailUser?.userEmail}}">
-                </div>
-            </div>
-            <div class="grid">
-                <div class="col-2 md-6">
-                    <label for="phoneNumber">Mobile Number</label>
-                </div>
-                <div class="col-4">
-                    <input type="text" class="w-full" pInputText readonly placeholder="{{detailUser?.userPhone}}">
-                </div>
-                <div class="col-2 md-6">
-                    <label for="phoneNumber">Gender</label>
-                </div>
-                <div class="col-4">
-                    <input type="text" class="w-full" pInputText readonly placeholder="{{detailUser?.userGender}}">
-                </div>
-            </div>
-            <div class="grid">
-                <div class="col-2 md-6">
-                    <label for="phoneNumber">Photos</label>
-                </div>
-                <div class="col-4">
-                    <img src="{{ detailUser?.fileId | urlAdmin }}" alt="">
-                </div>
-                <div class="col-2 md-6">
-                    <label for="phoneNumber">Role</label>
-                </div>
-                <div class="col-4">
-                    <input type="text" class="w-full" pInputText readonly placeholder="{{detailUser?.roleName}}">
-                </div>
-            </div>
+      <div class="fluid">
+        <div class="grid mb-2">
+          <div class="col-2 md-6">
+            <label for="fullName">Full Name</label>
+          </div>
+          <div class="col-4">
+            <input class="w-full" pInputText readonly placeholder="{{detailUser?.fullName}}" type="text">
+          </div>
+          <div class="col-2 md-6">
+            <label for="phoneNumber">Email</label>
+          </div>
+          <div class="col-4">
+            <input class="w-full" type="text" pInputText readonly placeholder="{{detailUser?.userEmail}}">
+          </div>
         </div>
+        <div class="grid">
+          <div class="col-2 md-6">
+            <label for="phoneNumber">Mobile Number</label>
+          </div>
+          <div class="col-4">
+            <input type="text" class="w-full" pInputText readonly placeholder="{{detailUser?.userPhone}}">
+          </div>
+          <div class="col-2 md-6">
+            <label for="phoneNumber">Gender</label>
+          </div>
+          <div class="col-4">
+            <input type="text" class="w-full" pInputText readonly placeholder="{{detailUser?.userGender}}">
+          </div>
+        </div>
+        <div class="grid">
+          <div class="col-2 md-6">
+            <label for="phoneNumber">Photos</label>
+          </div>
+          <div class="col-4">
+            <img src="{{ detailUser?.fileId | urlAdmin }}" alt="">
+          </div>
+          <div class="col-2 md-6">
+            <label for="phoneNumber">Role</label>
+          </div>
+          <div class="col-4">
+            <input type="text" class="w-full" pInputText readonly placeholder="{{detailUser?.roleName}}">
+          </div>
+        </div>
+      </div>
     </p-card>
+  </div>
+</div>
 </div>

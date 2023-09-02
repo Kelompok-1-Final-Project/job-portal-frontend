@@ -8,7 +8,8 @@ import { firstValueFrom } from "rxjs";
 
 @Component({
     selector: 'position',
-    templateUrl: 'position.component.html'
+    templateUrl: 'position.component.html',
+    styleUrls: ['position.component.css'],
 })
 export class PositionComponent implements OnInit{
 

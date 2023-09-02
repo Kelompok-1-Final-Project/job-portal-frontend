@@ -1,279 +1,283 @@
-<div class="card">
+<div class="container grid grid-nogutter justify-content-center">
+  <div class="title col-12 text-center">
     <h2>Candidate Detail</h2>
+  </div>
+  <div class="col-11 grid grid-nogutter">
     <app-button classBtn="p-button-secondary" label="Back" iconBtn="pi pi-arrow-left"
-        styleBtn="margin-bottom:0.5rem; margin-right:0.5rem" routerLink="/candidates"></app-button>
-    <app-button classBtn="p-button-primary" label="Update" iconBtn="pi pi-pencil"
-        styleBtn="margin-bottom:0.5rem"></app-button>
+      styleBtn="margin-bottom:0.5rem; margin-right:0.5rem" routerLink="/candidates"></app-button>
+    <app-button classBtn="p-button-primary" label="Update" iconBtn="pi pi-pencil" styleBtn="margin-bottom:0.5rem">
+    </app-button>
+  </div>
+  <div class="card col-11">
     <p-card>
-        <div class="fluid">
-            <div class="grid mb-2">
-                <div class="col-2 md-6">
-                    <label for="fullName">Full Name</label>
-                </div>
-                <div class="col-4">
-                    <input class="w-full" pInputText readonly placeholder="{{candidateProfile?.fullName}}" type="text">
-                </div>
-                <div class="col-2 md-6">
-                    <label for="phoneNumber">ID Number</label>
-                </div>
-                <div class="col-4">
-                    <input class="w-full" type="text" pInputText readonly placeholder="{{candidateProfile?.idNumber}}">
-                </div>
-            </div>
-            <div class="grid">
-                <div class="col-2 md-6">
-                    <label for="phoneNumber">Phone Number</label>
-                </div>
-                <div class="col-4">
-                    <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile?.phone}}">
-                </div>
-                <div class="col-2 md-6">
-                    <label for="phoneNumber">Email</label>
-                </div>
-                <div class="col-4">
-                    <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile?.email}}">
-                </div>
-            </div>
-            <div class="grid">
-                <div class="col-2 md-6">
-                    <label for="phoneNumber">Marital Status</label>
-                </div>
-                <div class="col-4">
-                    <input type="text" class="w-full" pInputText readonly
-                        placeholder="{{candidateProfile?.maritalStatus}}">
-                </div>
-                <div class="col-2 md-6">
-                    <label for="phoneNumber">Phone Number</label>
-                </div>
-                <div class="col-4">
-                    <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile?.gender}}">
-                </div>
-            </div>
-            <div class="grid">
-                <div class="col-2 md-6">
-                    <label for="phoneNumber">Expeceted Salary</label>
-                </div>
-                <div class="col-4">
-                    <input type="text" class="w-full" pInputText readonly
-                        placeholder="{{candidateProfile?.expectedSalary}}">
-                </div>
-                <div class="col-2 md-6">
-                    <label for="phoneNumber">Age</label>
-                </div>
-                <div class="col-4">
-                    <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile?.age}}">
-                </div>
-            </div>
-            <div class="grid">
-                <div class="col-2 md-6">
-                    <label for="phoneNumber">Photo</label>
-                </div>
-                <div class="col-4">
-                    <!-- <a href="path_to_mcu_file" download>
-                        <app-button iconBtn="pi pi-download" label="{{candidateProfile.photoId}}.pdf"></app-button>
-                    </a> -->
-                    <div class="col-4">
-                        <img src="{{candidateProfile?.photoId | urlAdmin}}" class="w-5rem md:w-full">
-                    </div>
-                </div>
-                <div class="col-2 md-6">
-                    <label for="phoneNumber">CV</label>
-                </div>
-                <div class="col-4">
-                    <a href="{{candidateProfile?.cvId | urlAdmin}}" download>
-                        <app-button iconBtn="pi pi-download" label="{{candidateProfile?.cvId}}.pdf"></app-button>
-                    </a>
-                </div>
-            </div>
-            <div class="grid">
-                <div class="col-2 md-6">
-                    <label for="phoneNumber">Summary</label>
-                </div>
-                <div class="col-4">
-                    <label>{{candidateProfile?.summary}}</label>
-                </div>
-            </div>
+      <div class="fluid">
+        <div class="grid mb-2">
+          <div class="col-2 md-6">
+            <label for="fullName">Full Name</label>
+          </div>
+          <div class="col-4">
+            <input class="w-full" pInputText readonly placeholder="{{candidateProfile?.fullName}}" type="text">
+          </div>
+          <div class="col-2 md-6">
+            <label for="phoneNumber">ID Number</label>
+          </div>
+          <div class="col-4">
+            <input class="w-full" type="text" pInputText readonly placeholder="{{candidateProfile?.idNumber}}">
+          </div>
         </div>
+        <div class="grid">
+          <div class="col-2 md-6">
+            <label for="phoneNumber">Phone Number</label>
+          </div>
+          <div class="col-4">
+            <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile?.phone}}">
+          </div>
+          <div class="col-2 md-6">
+            <label for="phoneNumber">Email</label>
+          </div>
+          <div class="col-4">
+            <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile?.email}}">
+          </div>
+        </div>
+        <div class="grid">
+          <div class="col-2 md-6">
+            <label for="phoneNumber">Marital Status</label>
+          </div>
+          <div class="col-4">
+            <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile?.maritalStatus}}">
+          </div>
+          <div class="col-2 md-6">
+            <label for="phoneNumber">Phone Number</label>
+          </div>
+          <div class="col-4">
+            <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile?.gender}}">
+          </div>
+        </div>
+        <div class="grid">
+          <div class="col-2 md-6">
+            <label for="phoneNumber">Expeceted Salary</label>
+          </div>
+          <div class="col-4">
+            <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile?.expectedSalary}}">
+          </div>
+          <div class="col-2 md-6">
+            <label for="phoneNumber">Age</label>
+          </div>
+          <div class="col-4">
+            <input type="text" class="w-full" pInputText readonly placeholder="{{candidateProfile?.age}}">
+          </div>
+        </div>
+        <div class="grid">
+          <div class="col-2 md-6">
+            <label for="phoneNumber">Photo</label>
+          </div>
+          <div class="col-4">
+            <!-- <a href="path_to_mcu_file" download>
+                            <app-button iconBtn="pi pi-download" label="{{candidateProfile.photoId}}.pdf"></app-button>
+                        </a> -->
+            <div class="col-4">
+              <img src="{{candidateProfile?.photoId | urlAdmin}}" class="w-5rem md:w-full">
+            </div>
+          </div>
+          <div class="col-2 md-6">
+            <label for="phoneNumber">CV</label>
+          </div>
+          <div class="col-4">
+            <a href="{{candidateProfile?.cvId | urlAdmin}}" download>
+              <app-button iconBtn="pi pi-download" label="{{candidateProfile?.cvId}}.pdf"></app-button>
+            </a>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="col-2 md-6">
+            <label for="phoneNumber">Summary</label>
+          </div>
+          <div class="col-4">
+            <label>{{candidateProfile?.summary}}</label>
+          </div>
+        </div>
+      </div>
     </p-card>
 
     <p-tabView>
-        <p-tabPanel header="Family">
-            <p-table [value]="families" [tableStyle]="{'min-width': '50rem'}">
-                <ng-template pTemplate="header" let-columns>
-                    <tr>
-                        <th scope="row">No</th>
-                        <th>Name</th>
-                        <th>Relationship</th>
-                        <th>Degree</th>
-                        <th>Birthdate</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-f let-i="rowIndex">
-                    <tr>
-                        <td scope="row">{{i+1}}</td>
-                        <td>{{f.familyName}}</td>
-                        <td>{{f.relationshipName}}</td>
-                        <td>{{f.degreeName}}</td>
-                        <td>{{f.birthdate}}</td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </p-tabPanel>
-        <p-tabPanel header="Work Experience">
-            <p-table [value]="experiences" [tableStyle]="{'min-width': '50rem'}">
-                <ng-template pTemplate="header" let-columns>
-                    <tr>
-                        <th scope="row">No</th>
-                        <th>Position</th>
-                        <th>Company</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-f let-i="rowIndex">
-                    <tr>
-                        <td scope="row">{{i+1}}</td>
-                        <td>{{f.positionName}}</td>
-                        <td>{{f.companyName}}</td>
-                        <td>{{f.startDate}}</td>
-                        <td>{{f.endDate}}</td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </p-tabPanel>
-        <p-tabPanel header="Organization">
-            <p-table [value]="organizations" [tableStyle]="{'min-width': '50rem'}">
-                <ng-template pTemplate="header" let-columns>
-                    <tr>
-                        <th scope="row">No</th>
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Description</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-f let-i="rowIndex">
-                    <tr>
-                        <td scope="row">{{i+1}}</td>
-                        <td>{{f.organizationName}}</td>
-                        <td>{{f.positionName}}</td>
-                        <td>{{f.startDate}}</td>
-                        <td>{{f.endDate}}</td>
-                        <td>{{f.description}}</td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </p-tabPanel>
-        <p-tabPanel header="Education">
-            <p-table [value]="educations" [tableStyle]="{'min-width': '50rem'}">
-                <ng-template pTemplate="header" let-columns>
-                    <tr>
-                        <th scope="row">No</th>
-                        <th>Name</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-f let-i="rowIndex">
-                    <tr>
-                        <td scope="row">{{i+1}}</td>
-                        <td>{{f.educationName}}</td>
-                        <td>{{f.startDate}}</td>
-                        <td>{{f.endDate}}</td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </p-tabPanel>
-        <p-tabPanel header="Skill">
-            <p-table [value]="skills" [tableStyle]="{'min-width': '50rem'}">
-                <ng-template pTemplate="header" let-columns>
-                    <tr>
-                        <th scope="row">No</th>
-                        <th>Name</th>
-                        <th>Level</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-f let-i="rowIndex">
-                    <tr>
-                        <td scope="row">{{i+1}}</td>
-                        <td>{{f.skillName}}</td>
-                        <td>{{f.levelName}}</td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </p-tabPanel>
+      <p-tabPanel header="Family">
+        <p-table [value]="families" [tableStyle]="{'min-width': '50rem'}">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th scope="row">No</th>
+              <th>Name</th>
+              <th>Relationship</th>
+              <th>Degree</th>
+              <th>Birthdate</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-f let-i="rowIndex">
+            <tr>
+              <td scope="row">{{i+1}}</td>
+              <td>{{f.familyName}}</td>
+              <td>{{f.relationshipName}}</td>
+              <td>{{f.degreeName}}</td>
+              <td>{{f.birthdate}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-tabPanel>
+      <p-tabPanel header="Work Experience">
+        <p-table [value]="experiences" [tableStyle]="{'min-width': '50rem'}">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th scope="row">No</th>
+              <th>Position</th>
+              <th>Company</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-f let-i="rowIndex">
+            <tr>
+              <td scope="row">{{i+1}}</td>
+              <td>{{f.positionName}}</td>
+              <td>{{f.companyName}}</td>
+              <td>{{f.startDate}}</td>
+              <td>{{f.endDate}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-tabPanel>
+      <p-tabPanel header="Organization">
+        <p-table [value]="organizations" [tableStyle]="{'min-width': '50rem'}">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th scope="row">No</th>
+              <th>Name</th>
+              <th>Position</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Description</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-f let-i="rowIndex">
+            <tr>
+              <td scope="row">{{i+1}}</td>
+              <td>{{f.organizationName}}</td>
+              <td>{{f.positionName}}</td>
+              <td>{{f.startDate}}</td>
+              <td>{{f.endDate}}</td>
+              <td>{{f.description}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-tabPanel>
+      <p-tabPanel header="Education">
+        <p-table [value]="educations" [tableStyle]="{'min-width': '50rem'}">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th scope="row">No</th>
+              <th>Name</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-f let-i="rowIndex">
+            <tr>
+              <td scope="row">{{i+1}}</td>
+              <td>{{f.educationName}}</td>
+              <td>{{f.startDate}}</td>
+              <td>{{f.endDate}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-tabPanel>
+      <p-tabPanel header="Skill">
+        <p-table [value]="skills" [tableStyle]="{'min-width': '50rem'}">
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th scope="row">No</th>
+              <th>Name</th>
+              <th>Level</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-f let-i="rowIndex">
+            <tr>
+              <td scope="row">{{i+1}}</td>
+              <td>{{f.skillName}}</td>
+              <td>{{f.levelName}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-tabPanel>
     </p-tabView>
+  </div>
 </div>
 
 <!-- Modal Experience-->
 <p-dialog header="Add Candidate Experience" [modal]="true" [(visible)]="visibleExperience" [style]="{ width: '30vw' }">
-    <pre>{{experienceInsertReqDto.value | json}}</pre>
-    <form [formGroup]="experienceInsertReqDto" (ngSubmit)="insertExperience()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12 md:col-3">
-                <label for="inputName">Position Name</label>
-            </div>
-            <div class="col-12 md:col-9">
-                <input pInputText type="text" class="col-12" required formControlName="positionName">
-            </div>
-            <div class="col-12 md:col-3">
-                <label for="inputName">Company Name</label>
-            </div>
-            <div class="col-12 md:col-9">
-                <input pInputText type="text" class="col-12" required formControlName="companyName">
-            </div>
-            <div class="col-12 md:col-3">
-                <label for="inputName">Start Date</label>
-            </div>
-            <div class="col-12 md:col-9">
-                <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
-            </div>
-            <div class="col-12 md:col-3">
-                <label for="inputName">End Date</label>
-            </div>
-            <div class="col-12 md:col-9">
-                <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" label="Submit"></app-button>
-            </div>
-        </div>
-    </form>
+  <pre>{{experienceInsertReqDto.value | json}}</pre>
+  <form [formGroup]="experienceInsertReqDto" (ngSubmit)="insertExperience()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Position Name</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12" required formControlName="positionName">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">Company Name</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12" required formControlName="companyName">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">Start Date</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">End Date</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" label="Submit"></app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Family-->
 <p-dialog header="Add Candidate Family" [modal]="true" [(visible)]="visibleFamily" [style]="{ width: '30vw' }">
-    <pre>{{experienceInsertReqDto.value | json}}</pre>
-    <form [formGroup]="experienceInsertReqDto" (ngSubmit)="insertFamily()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12 md:col-3">
-                <label for="inputName">Position Name</label>
-            </div>
-            <div class="col-12 md:col-9">
-                <input pInputText type="text" class="col-12" required formControlName="positionName">
-            </div>
-            <div class="col-12 md:col-3">
-                <label for="inputName">Company Name</label>
-            </div>
-            <div class="col-12 md:col-9">
-                <input pInputText type="text" class="col-12" required formControlName="companyName">
-            </div>
-            <div class="col-12 md:col-3">
-                <label for="inputName">Start Date</label>
-            </div>
-            <div class="col-12 md:col-9">
-                <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
-            </div>
-            <div class="col-12 md:col-3">
-                <label for="inputName">End Date</label>
-            </div>
-            <div class="col-12 md:col-9">
-                <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" label="Submit" link="candidates"></app-button>
-            </div>
-        </div>
-    </form>
+  <pre>{{experienceInsertReqDto.value | json}}</pre>
+  <form [formGroup]="experienceInsertReqDto" (ngSubmit)="insertFamily()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Position Name</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12" required formControlName="positionName">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">Company Name</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <input pInputText type="text" class="col-12" required formControlName="companyName">
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">Start Date</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="startDate"></p-calendar>
+      </div>
+      <div class="col-12 md:col-3">
+        <label for="inputName">End Date</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" label="Submit" link="candidates"></app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>

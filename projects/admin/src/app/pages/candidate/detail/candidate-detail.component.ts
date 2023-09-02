@@ -16,7 +16,8 @@ import { firstValueFrom } from "rxjs";
 
 @Component({
     selector: 'candidate-detail',
-    templateUrl: './candidate-detail.component.html'
+    templateUrl: './candidate-detail.component.html',
+    styleUrls:['./candidate-detail.component.css']
 })
 export class CandidateDetailComponent implements OnInit {
 

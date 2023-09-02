@@ -1,11 +1,10 @@
 <div class="min-h-screen">
   <div class=" grid justify-content-center col-12">
-    <h3 class="text-center">User List</h3>
+    <h2 class="text-center">User List</h2>
   </div>
-  <div>
-    <div class="grid justify-content-end mb-3">
-    </div>
-    <p-table #user [value]="users" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+  <div class="grid justify-content-center">
+    <div class="col-11 shadow-2 surface-card border-round-sm border-800">
+      <p-table #user [value]="users" styleClass="p-datatable-striped" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
     [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['fullName','roleName']">
     <ng-template pTemplate="caption">
@@ -45,6 +44,7 @@
         </tr>
       </ng-template>
     </p-table>
+    </div>
   </div>
 
   <!-- Modal Add-->
