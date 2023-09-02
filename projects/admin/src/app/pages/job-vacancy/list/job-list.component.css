@@ -1,34 +1,8 @@
-::ng-deep .te {
-  background-color: #3498db; /* Ganti dengan warna biru yang Anda inginkan */
-  color: #fff; /* Ganti dengan warna teks yang Anda inginkan */
+::ng-deep .p-datatable .p-datatable-header {
+  background: #1d58a0;
 }
 
-::ng-deep #testing {
-  background-color: #3498db; /* Ganti dengan warna biru yang Anda inginkan */
-  color: #fff; /* Ganti dengan warna teks yang Anda inginkan */
+::ng-deep .p-datatable .p-datatable-thead>tr>th {
+  color: white;
+  background-color: #3d74b8;
 }
-
-::ng-deep .test {
-    border-radius: 0;
-    background-color: aqua;
-    border: none;
-    /* position: fixed; */
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-  }
-
-.ui-table .ui-table-thead > tr {
-  background-color: #3498db;
-  color: #fff; 
-}
-
-:host /deep/ .testing {
-  background-color: #3498db;
-  color: #fff; 
-}
-
-
-
-

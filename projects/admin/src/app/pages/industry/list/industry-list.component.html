@@ -1,21 +1,22 @@
-<div>
-  <div class=" grid justify-content-center col-12">
+<div class="min-h-screen">
+  <div class=" grid grid-nogutter justify-content-center">
+    <div class="col-12">
     <h3 class="text-center">Industry List</h3>
   </div>
-  <div class="card mb-3">
-    <p-table #industry [value]="industries" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
-      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['industryName']">
-      <ng-template pTemplate="caption">
-        <div class="flex">
-          <app-button link="/industries" (clickChange)="add()" label="Add Industry"></app-button>
-          <span class="p-input-icon-left ml-auto">
-            <i class="pi pi-search"></i>
-            <input #searchInput pInputText type="text" [(ngModel)]="search"
-              (input)="industry.filterGlobal(search ,'contains')" placeholder="Search keyword" />
-          </span>
-        </div>
-      </ng-template>
+  <div class="col-11 shadow-2 surface-card border-round-sm border-800 p-2">
+    <p-table #industry [value]="industries" styleClass="p-datatable-striped" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+    [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['industryName']">
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <app-button link="/industries" (clickChange)="add()" label="Add Industry"></app-button>
+            <span class="p-input-icon-left ml-auto">
+              <i class="pi pi-search"></i>
+              <input #searchInput pInputText type="text" [(ngModel)]="search"
+                (input)="industry.filterGlobal(search ,'contains')" placeholder="Search keyword" />
+            </span>
+          </div>
+        </ng-template>
       <ng-template pTemplate="header">
         <tr>
           <th scope="col">No</th>
@@ -38,6 +39,7 @@
         </tr>
       </ng-template>
     </p-table>
+  </div>
   </div>
 
 

@@ -1,57 +1,60 @@
-<form [formGroup]="userUpdateReqDto" (ngSubmit)="updateUser()">
-  <div class="container">
-    <div class="card-container w-screen flex flex-wrap justify-content-center align-items-center"
-      style="min-height: 700px">
-      <div class="grid shadow-8 m-4 surface-card border-round-sm border-400 p-3 md:col-9 text">
-        <div class="flex col-12">
-          <h2 class="text-center">Update User Data</h2>
-        </div>
-        <label for="formFile" class="col-12 md:col-3 form-label">User Photo</label>
-        <p-fileUpload mode="basic" class="col-12 md:col-9" chooseLabel="Upload" #photo accept="image/*"
-          (onSelect)="photoUpload($event, photo)">
-        </p-fileUpload>
-        <div class="col-12 md:col-6 grid">
-          <div class="col-12 md:col-3">
-            <label for="companyName">Email<span style="color: red;">*</span></label>
+<!-- <pre>{{userUpdateReqDto.value | json}}</pre> -->
+<div class="min-h-screen">
+  <form [formGroup]="userUpdateReqDto" (ngSubmit)="updateUser()">
+    <div class="container grid grid-nogutter justify-content-center">
+      <div class="card-container col-9 grid grid-nogutter justify-content-center">
+        <div class="grid shadow-4 m-4 surface-card border-round-sm border-400 p-3 md:col-9 justify-content-center ">
+          <div class="flex justify-content-center col-12">
+            <h2 class="text-center">Update User Data</h2>
           </div>
-          <div class="col-12 md:col-9">
-            <input pInputText type="text" class="form-control col-12" id="companyName" required
-              placeholder="{{user?.userEmail}}" readonly>
+          <label for="formFile" class="col-12 md:col-3 form-label">User Photo</label>
+          <p-fileUpload mode="basic" class="col-12 md:col-9" chooseLabel="Upload" #photo accept="image/*"
+            (onSelect)="photoUpload($event, photo)">
+          </p-fileUpload>
+          <div class="col-12 grid justify-content-center">
+            <div class="col-12 md:col-3">
+              <label for="companyName">Email<span style="color: red;">*</span></label>
+            </div>
+            <div class="col-12 md:col-9">
+              <input pInputText type="text" class="form-control col-12" id="companyName" required
+                placeholder="{{user.userEmail}}" readonly>
+            </div>
+            <div class="col-12 md:col-3">
+              <label for="companyName">Full Name<span style="color: red;">*</span></label>
+            </div>
+            <div class="col-12 md:col-9">
+              <input pInputText type="text" class="form-control col-12" id="companyName" required
+                formControlName="fullName">
+            </div>
+            <div class="col-12 md:col-3">
+              <label for="companyName">Mobile Phone</label>
+            </div>
+            <div class="col-12 md:col-9">
+              <input pInputText type="text" class="form-control col-12" id="companyName" required
+                formControlName="mobileNumber">
+            </div>
+            <div class="col-12 md:col-3">
+              <label for="companyName">Gender</label>
+            </div>
+            <div class="col-12 md:col-3">
+              <p-dropdown [options]="genders" optionValue="id" optionLabel="genderName" formControlName="genderId">
+              </p-dropdown>
+            </div>
+            <div class="col-12 md:col-1">
+              <label for="companyName">Role</label>
+            </div>
+            <div class="col-12 md:col-3">
+              <p-dropdown [options]="roles" optionValue="id" optionLabel="roleName" formControlName="roleId">
+              </p-dropdown>
+            </div>
           </div>
-          <div class="col-12 md:col-3">
-            <label for="companyName">Full Name<span style="color: red;">*</span></label>
+          <div class="flex flex-wrap justify-content-end mt-2 col-12">
+            <app-button btnType="button" routerLink="/users/detail/{{userId}}" classBtn="p-button-secondary mr-3"
+              label="Back to Previous Menu" iconBtn="pi pi-angle-double-left"></app-button>
+            <app-button btnType="submit" [loading]="loading" classBtn="p-button-primary" label="Submit"></app-button>
           </div>
-          <div class="col-12 md:col-9">
-            <input pInputText type="text" class="form-control col-12" id="companyName" required
-              formControlName="fullName">
-          </div>
-          <div class="col-12 md:col-3">
-            <label for="companyName">Mobile Phone</label>
-          </div>
-          <div class="col-12 md:col-9">
-            <input pInputText type="text" class="form-control col-12" id="companyName" required
-              formControlName="mobileNumber">
-          </div>
-          <div class="col-12 md:col-3">
-            <label for="companyName">Gender</label>
-          </div>
-          <div class="col-12 md:col-9">
-            <p-dropdown [options]="genders" optionValue="id" optionLabel="genderName"
-              formControlName="genderId"></p-dropdown>
-          </div>
-          <div class="col-12 md:col-3">
-            <label for="companyName">Role</label>
-          </div>
-          <div class="col-12 md:col-9">
-            <p-dropdown [options]="roles" optionValue="id" optionLabel="roleName" formControlName="roleId"></p-dropdown>
-          </div>
-        </div>
-        <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <app-button btnType="button" routerLink="/users/detail/{{userId}}" classBtn="p-button-secondary mr-3"
-            label="Back to Previous Menu" iconBtn="pi pi-angle-double-left"></app-button>
-          <app-button btnType="submit" [loading]="loading" classBtn="p-button-primary" label="Submit"></app-button>
         </div>
       </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>

@@ -9,7 +9,8 @@ import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'mcu-list',
-  templateUrl: './mcu-list.component.html'
+  templateUrl: './mcu-list.component.html',
+  styleUrls: ['./mcu-list.component.css']
 })
 export class McuListComponent implements OnInit {
 

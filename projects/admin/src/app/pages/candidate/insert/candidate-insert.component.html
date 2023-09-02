@@ -1,7 +1,13 @@
+
+<!-- <pre>{{ candidateInsertReqDto.value | json }}</pre> -->
+
 <div class="container">
+  <div class="col-12">
+    <h3 class="text-center">Create Candidate</h3>
+  </div>
   <form [formGroup]="candidateInsertReqDto" (ngSubmit)="insertCandidate()">
     <div class="card-container flex flex-wrap justify-content-center align-items-center" style="min-height: 700px">
-      <div class="grid shadow-8 m-4 surface-card border-round-sm border-400 p-3 md:col-9 text">
+      <div class="grid shadow-4 m-4 surface-card border-round-sm border-400 p-3 md:col-9 text">
         <div class="flex col-12">
           <h2 class="text-center">Candidate Information</h2>
         </div>
@@ -58,14 +64,14 @@
             <label for="companyName">Expected Salary</label>
           </div>
           <div class="col-6 md:col-9">
-            <input pInputText type="number" class="form-control col-5" id="companyName"
-              aria-describedby="companyNameHelp" required formControlName="expectedSalary">
+            <input pInputText type="number" class="form-control col-12" id="companyName" aria-describedby="companyNameHelp"
+              required formControlName="expectedSalary" >
           </div>
           <div class="col-12 md:col-3">
             <label for="companyAddress">Birthdate</label>
           </div>
           <div class="col-12 md:col-9">
-            <p-calendar [showIcon]="true" formControlName="birthdate"></p-calendar>
+            <p-calendar [showIcon]="true" formControlName="birthdate" styleClass="w-full"></p-calendar>
           </div>
           <div class="col-12 md:col-3">
             <label for="companyName">Marital Status</label>

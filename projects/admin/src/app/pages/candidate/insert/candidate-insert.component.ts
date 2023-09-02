@@ -12,7 +12,8 @@ import { firstValueFrom } from "rxjs";
 
 @Component({
   selector: 'candidate-insert',
-  templateUrl: './candidate-insert.component.html'
+  templateUrl: './candidate-insert.component.html',
+  styleUrls:['./candidate-insert.component.css']
 })
 export class CandidateInsertComponent implements OnInit, AfterViewChecked {
 

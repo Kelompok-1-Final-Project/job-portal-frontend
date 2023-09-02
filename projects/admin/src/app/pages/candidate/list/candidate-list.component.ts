@@ -22,7 +22,8 @@ interface Vacancies {
 
 @Component({
   selector: 'candidate-list',
-  templateUrl: './candidate-list.component.html'
+  templateUrl: './candidate-list.component.html',
+  styleUrls:['./candidate-list.component.css']
 })
 export class CandidateListComponent implements OnInit {
   visibleAssign: boolean = false;

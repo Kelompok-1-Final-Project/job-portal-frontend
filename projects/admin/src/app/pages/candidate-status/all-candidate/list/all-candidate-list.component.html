@@ -1,31 +1,33 @@
 <div class="container grid justify-content-center p-3">
-  <div class=" grid justify-content-center col-12">
-    <h3 class="text-center">All Candidates Progress</h3>
-  </div>
-  <div class="card col-9">
-    <app-button link="/job-vacancies" classBtn="p-button-secondary" label="Back"></app-button>
-    <p-table [value]="candidates" [paginator]="true" [rows]="10">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>No</th>
-          <th>Candidate Name</th>
-          <th>Job Title</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-row let-i="rowIndex">
-        <tr>
-          <td>{{ i+1 }}</td>
-          <td>{{row.candidateName}}</td>
-          <td>{{row.jobName}}</td>
-          <td>{{row.statusName}}</td>
-          <td>
-            <p-dropdown appendTo="body" [options]="status" placeholder="Select Status" optionValue="statusId"
-              optionLabel="progressName"></p-dropdown>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
+  <div class=" grid grid-nogutter justify-content-center col-12">
+    <div class="col-12">
+      <h3 class="text-center">All Candidates Progress</h3>
+    </div>
+    <div class="card col-9 shadow-2 surface-card border-round-sm border-800 p-2">
+      <app-button link="/job-vacancies" styleClass="p-datatable-striped" classBtn="p-button-secondary" label="Back"></app-button>
+      <p-table [value]="candidates" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>No</th>
+            <th>Candidate Name</th>
+            <th>Job Title</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-row let-i="rowIndex">
+          <tr>
+            <td>{{ i+1 }}</td>
+            <td>{{row.candidateName}}</td>
+            <td>{{row.jobName}}</td>
+            <td>{{row.statusName}}</td>
+            <td>
+              <p-dropdown appendTo="body" [options]="status" placeholder="Select Status" optionValue="statusId"
+                optionLabel="progressName"></p-dropdown>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
   </div>
 </div>

@@ -1,40 +1,33 @@
-<div>
-  <div class="grid justify-content-center col-12">
-    <h3 class="text-center">Question List</h3>
-  </div>
-  <div class="card col-12">
-    <div class="grid justify-content-end mb-3">
+<div class="min-h-screen">
+  <div class="grid grid-nogutter justify-content-center">
+    <div class="col-12">
+      <h3 class="text-center">Question List</h3>
     </div>
-    <p-table #question [value]="questions" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
-    [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['question']">
-    <ng-template pTemplate="caption">
-      <div class="flex">
+    <div class="col-11 shadow-2 surface-card border-round-sm border-800 p-2">
+      <div class="grid col-12 mb-3">
         <app-button routerLink="create" label="Add Question" classBtn="mr-2"></app-button>
-        <span class="p-input-icon-left ml-auto">
-            <i class="pi pi-search"></i>
-            <input #searchInput pInputText type="text" [(ngModel)]="search"
-              (input)="question.filterGlobal(search ,'contains')" placeholder="Search keyword" />
-          </span>
-        </div>
-      </ng-template>
-      <ng-template pTemplate="header">
-        <tr>
-          <th scope="col">No</th>
-          <th scope="col">Question</th>
-          <th scope="col">Action</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-question let-i="rowIndex">
-        <tr [pSelectableRow]="question" routerLink="./detail/{{question.questionId}}">
-          <td scope="row">{{ i+1 }}</td>
-          <td>{{ question.question }}</td>
-          <td>
-            <app-button iconBtn="pi pi-trash" classBtn="p-button-danger" tooltipBtn="Delete"
-              tooltipPstn="top"></app-button>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
+      </div>
+      <p-table [value]="questions" styleClass="p-datatable-striped" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single">
+        <ng-template pTemplate="header">
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Question</th>
+            <th scope="col">Action</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-question let-i="rowIndex">
+          <tr [pSelectableRow]="question" routerLink="./detail/{{question.questionId}}">
+            <td scope="row">{{ i+1 }}</td>
+            <td>{{ question.question }}</td>
+            <td>
+              <app-button iconBtn="pi pi-trash" classBtn="p-button-danger" tooltipBtn="Delete" tooltipPstn="top">
+              </app-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
   </div>
 </div>

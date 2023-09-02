@@ -1,47 +1,51 @@
-<div class="container grid justify-content-center p-3">
-  <div class=" grid justify-content-center col-12">
-    <h3 class="text-center">All Assesment Progress</h3>
-  </div>
-  <div class="col-12">
-    <p-table #assessment [value]="assesments" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
-      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single"
-      [globalFilterFields]="['candidateName','jobName','hrName']">
-      <ng-template pTemplate="caption">
-        <div class="flex">
-          <span class="p-input-icon-left ml-auto">
-            <i class="pi pi-search"></i>
-            <input #searchInput pInputText type="text" [(ngModel)]="search"
-              (input)="assessment.filterGlobal(search ,'contains')" placeholder="Search keyword" />
-          </span>
-        </div>
-      </ng-template>
-      <ng-template pTemplate="header">
-        <tr>
-          <th>No</th>
-          <th>Candidate Name</th>
-          <th>Job Name</th>
-          <th>HR Name</th>
-          <th>Schedule</th>
-          <th>Notes</th>
-          <th>Action</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-row let-i="rowIndex">
-        <tr>
-          <td>{{ i+1 }}</td>
-          <td>{{row.candidateName}}</td>
-          <td>{{row.jobName}}</td>
-          <td>{{row.hrName}}</td>
-          <td>{{row.schedule}}</td>
-          <td>{{row.notes}}</td>
-          <td>
-            <app-button iconBtn="pi pi-pencil" tooltipBtn="Insert Notes" tooltipPstn="top"
-              (clickChange)="addNotes(row.assessmentId)" link="/candidate-statuses/assessment"></app-button>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
+<div class="min-h-screen">
+  <div class="container grid grid-nogutter justify-content-center p-3">
+    <div class=" grid justify-content-center col-12">
+      <div class="col-12">
+        <h3 class="text-center">All Assesment Progress</h3>
+      </div>
+      <div class="col-11 shadow-2 surface-card border-round-sm border-800 p-2">
+        <p-table #assessment [value]="assesments" styleClass="p-datatable-striped" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+          [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single"
+          [globalFilterFields]="['candidateName','jobName','hrName']">
+          <ng-template pTemplate="caption">
+            <div class="flex">
+              <span class="p-input-icon-left ml-auto">
+                <i class="pi pi-search"></i>
+                <input #searchInput pInputText type="text" [(ngModel)]="search"
+                  (input)="assessment.filterGlobal(search ,'contains')" placeholder="Search keyword" />
+              </span>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th>No</th>
+              <th>Candidate Name</th>
+              <th>Job Name</th>
+              <th>HR Name</th>
+              <th>Schedule</th>
+              <th>Notes</th>
+              <th>Action</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-row let-i="rowIndex">
+            <tr>
+              <td>{{ i+1 }}</td>
+              <td>{{row.candidateName}}</td>
+              <td>{{row.jobName}}</td>
+              <td>{{row.hrName}}</td>
+              <td>{{row.schedule}}</td>
+              <td>{{row.notes}}</td>
+              <td>
+                <app-button iconBtn="pi pi-pencil" tooltipBtn="Insert Notes" tooltipPstn="top"
+                  (clickChange)="addNotes(row.assessmentId)" link="/candidate-statuses/assessment"></app-button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -1,78 +1,83 @@
-<div class="container mt-5 mb-5">
-    <app-button classBtn="p-button-secondary" label="Back" routerLink="/users/profiles"></app-button>
-    <h2>Form Edit Profile</h2>
-    <hr />
-    <form [formGroup]="userUpdateProfileReqDto" (ngSubmit)="updateProfile()">
-        <div class="row">
-            <div class="grid">
-                <div class="col-2 mb-4">
-                    <label for="email">Email</label>
-                    <span class="text-red-600">*</span>
-                </div>
-                <div class="col-10">
-                    <input pInputText type="text" [value]="profile?.userEmail" readonly class="form-control col-4"
-                        id="full-name" />
-                </div>
-            </div>
-            <div class="grid">
-                <div class="col-2">
-                    <label for="full-name">Full Name</label>
-                    <span class="text-red-600">*</span>
-                </div>
-                <div class="col-10">
-                    <input pInputText type="text" [placeholder]="profile?.fullName" class="form-control col-4"
-                        id="full-name" formControlName="fullName" />
-                </div>
-            </div>
-            <div class="grid">
-                <div class="col-2">
-                    <label for="full-name">User Phone</label>
-                    <span class="text-red-600">*</span>
-                </div>
-                <div class="col-10">
-                    <input pInputText type="text" [placeholder]="profile?.userPhone" class="form-control col-4"
-                        id="full-name" formControlName="mobileNumber" />
-                </div>
-            </div>
-            <div class="grid">
-                <div class="col-2">
-                    <label for="full-name">Gender</label>
-                    <span class="text-red-600">*</span>
-                </div>
-                <div class="col-10">
-                    <input pInputText type="text" [value]="profile?.userGender" class="form-control col-4"
-                        id="full-name" readonly />
-                </div>
-            </div>
-            <div class="grid">
-                <div class="col-2">
-                    <label for="full-name">Role</label>
-                    <span class="text-red-600">*</span>
-                </div>
-                <div class="col-10">
-                    <input pInputText type="text" [value]="profile?.roleName" class="form-control col-4" id="full-name"
-                        readonly />
-                </div>
-            </div>
-            <div class="grid">
-                <div class="col-2">
-                    <label for="user-picture">Photos</label>
-                    <span class="text-red-600">*</span>
-                </div>
-                <div class="col-10">
-                    <div class="input-group mb-3">
-                        <p-fileUpload mode="basic" class="col-12 md:col-9" chooseLabel="Upload" #photo accept="image/*"
-                            (onSelect)="photosUpload($event, photo)">
-                        </p-fileUpload>
+<!-- <pre>{{userUpdateProfileReqDto.value | json}}</pre> -->
+
+<div class="container grid grid-nogutter justify-content-center align-content-center min-h-screen">
+    <div class="col-9 mb-2">
+        <app-button classBtn="p-button-secondary" label="Back" routerLink="/users/profiles"></app-button>
+    </div>
+    <div class="sub-container shadow-2 surface-card border-round-sm border-800 p-3 col-9">
+        <h2>Form Edit Profile</h2>
+        <hr />
+        <div class="col-12">
+            <form [formGroup]="userUpdateProfileReqDto" (ngSubmit)="updateProfile()">
+                    <div class="grid">
+                        <div class="col-2 mb-4">
+                            <label for="email">Email</label>
+                            <span class="text-red-600">*</span>
+                        </div>
+                        <div class="col-10">
+                            <input pInputText type="text" [value]="profile?.userEmail" readonly class="form-control w-full"
+                                id="full-name" />
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="grid">
-                <div class="col-2 col-offset-2">
-                    <app-button btnType="submit" [loading]="loading" classBtn="p-button-primary"
-                        label="Save"></app-button>
-                </div>
-            </div>
+                    <div class="grid">
+                        <div class="col-2">
+                            <label for="full-name">Full Name</label>
+                            <span class="text-red-600">*</span>
+                        </div>
+                        <div class="col-10">
+                            <input pInputText type="text" [placeholder]="profile?.fullName" class="form-control w-full" id="full-name"
+                                formControlName="fullName" />
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="col-2">
+                            <label for="full-name">User Phone</label>
+                            <span class="text-red-600">*</span>
+                        </div>
+                        <div class="col-10">
+                            <input pInputText type="text" [placeholder]="profile?.userPhone" class="form-control w-full" id="full-name"
+                                formControlName="mobileNumber" />
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="col-2">
+                            <label for="full-name">Gender</label>
+                            <span class="text-red-600">*</span>
+                        </div>
+                        <div class="col-10">
+                            <input pInputText type="text" [value]="profile?.userGender" class="form-control w-full" id="full-name"
+                                readonly />
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="col-2">
+                            <label for="full-name">Role</label>
+                            <span class="text-red-600">*</span>
+                        </div>
+                        <div class="col-10">
+                            <input pInputText type="text" [value]="profile?.roleName" class="form-control w-full" id="full-name"
+                                readonly />
+                        </div>
+                    </div>
+                    <div class="grid">
+                        <div class="col-2">
+                            <label for="user-picture">Photos</label>
+                            <span class="text-red-600">*</span>
+                        </div>
+                        <div class="col-10">
+                            <div class="input-group col-12 grid grid-nogutter justify-content-end mb-3">
+                                <p-fileUpload mode="basic" chooseLabel="Upload" #photo accept="image/*"
+                                    (onSelect)="photosUpload($event, photo)">
+                                </p-fileUpload>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="grid justify-content-end">
+                            <app-button btnType="submit" classBtn="p-button-primary" label="Save"></app-button>
+                        </div>
+                    </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>

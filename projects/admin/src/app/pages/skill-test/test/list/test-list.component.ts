@@ -6,7 +6,8 @@ import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'test-list',
-  templateUrl: './test-list.component.html'
+  templateUrl: './test-list.component.html',
+  styleUrls: ['./test-list.component.css']
 })
 export class TestListComponent implements OnInit {
   visibleAdd: boolean = false;

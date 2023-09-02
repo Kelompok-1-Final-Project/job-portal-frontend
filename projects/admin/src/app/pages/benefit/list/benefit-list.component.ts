@@ -8,7 +8,8 @@ import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'benefit-list',
-  templateUrl: './benefit-list.component.html'
+  templateUrl: './benefit-list.component.html',
+  styleUrls:['./benefit-list.component.css']
 })
 export class BenefitListComponent implements OnInit {
   visibleAdd: boolean = false;

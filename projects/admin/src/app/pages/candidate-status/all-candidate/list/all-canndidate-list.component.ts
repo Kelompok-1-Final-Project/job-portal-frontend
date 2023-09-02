@@ -14,7 +14,8 @@ interface City {
 
 @Component({
   selector: 'all-candidate-list',
-  templateUrl: './all-candidate-list.component.html'
+  templateUrl: './all-candidate-list.component.html',
+  styleUrls: ['./all-candidate-list.component.css']
 })
 export class AllCandidateListComponent implements OnInit {
 

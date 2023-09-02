@@ -1,18 +1,17 @@
-<div class="container">
-  <div class="card-container w-screen flex flex-wrap justify-content-center align-items-center"
-    style="min-height: 700px">
-    <div class="grid shadow-8 m-4 surface-card border-round-sm border-400 p-3 md:col-6 text">
+<div class="container min-h-screen grid grid-nogutter">
+  <div class="card-container w-screen flex flex-wrap justify-content-center align-items-center">
+    <div class="grid shadow-8 m-4 surface-card border-round-sm border-400 p-3 col-6 text">
       <div class="flex text-center justify-content-center col-12">
         <h2 class="text-center">Create Question</h2>
       </div>
-      <div class="flex justify-content-center col-12">
+      <div class="flex justify-content-end col-12">
         <app-button label="Add Form" btnType="button" link="/questions/create" (clickChange)="onAdd()"></app-button>
       </div>
-      <div class="flex justify-content-center">
-        <form [formGroup]="questionsInsertReqDto" class="grid align-items-center w-8 gy-md-3" (ngSubmit)="onSubmit()">
-          <div class="w-full">
-            <div class="mt-2" *ngFor="let qf of forms.controls; let i = index;" formArrayName="data">
-              <div [formGroupName]="i">
+      <div class="col-12 grid grid-nogutter align-items-center w-8 gy-md-3">
+        <form [formGroup]="questionsInsertReqDto" (ngSubmit)="onSubmit()">
+          <div class="col-12">
+            <div class=" col-12 mt-2" *ngFor="let qf of forms.controls; let i = index;" formArrayName="data">
+              <div [formGroupName]="i" class="col-12">
                 <div class="col-12 my-2">
                   <app-button label="Delete Form" classBtn="p-button-danger" btnType="button" link="/questions/create"
                     (clickChange)="remove(i)"></app-button>
@@ -49,11 +48,14 @@
                 </div>
               </div>
             </div>
-            <div class="col-12 md:col-10 mt-2 text-center md:text-left">
-              <app-button btnType="button" classBtn="p-button-secondary mb-2" label="Back"
-                routerLink="/questions"></app-button>
-              <app-button label="Submit" btnType="submit" [loading]="loading"
-                [disabled]="questionsInsertReqDto.invalid"></app-button>
+            <div class="col-12 md:col-10 mt-2 grid">
+              <div class="col-6">
+                <app-button btnType="button" classBtn="p-button-secondary mb-2" label="Back"
+                  routerLink="/questions"></app-button>
+              </div>
+              <div class="col-6">
+                <app-button label="Submit" btnType="submit" [loading]="loading" [disabled]="questionsInsertReqDto.invalid"></app-button>
+              </div>
             </div>
           </div>
         </form>

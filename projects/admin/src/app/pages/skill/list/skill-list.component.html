@@ -1,11 +1,10 @@
-<div>
-  <div class=" grid justify-content-center col-12">
+<div class="min-h-screen">
+  <div class=" grid grid-nogutter justify-content-center">
+    <div class="col-12">
     <h3 class="text-center">Skill List</h3>
   </div>
-  <div class="card mb-3">
-    <div class="grid justify-content-end mb-3">
-    </div>
-    <p-table #skill [value]="skills" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
+  <div class="col-11 shadow-2 surface-card border-round-sm border-800 p-2">
+    <p-table #skill [value]="skills" [paginator]="true" styleClass="p-datatable-striped" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
       [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['skillName']">
       <ng-template pTemplate="caption">
@@ -41,6 +40,7 @@
       </ng-template>
     </p-table>
   </div>
+</div>
 
   <!-- Modal Add-->
   <p-dialog header="Add Data Skill" [modal]="true" [(visible)]="visibleAdd" [style]="{ width: '30vw' }"

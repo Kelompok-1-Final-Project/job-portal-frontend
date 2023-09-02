@@ -10,7 +10,8 @@ import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'hired-list',
-  templateUrl: './hired-list.component.html'
+  templateUrl: './hired-list.component.html',
+  styleUrls: ['./hired-list.component.css']
 })
 export class HiredListComponent implements OnInit {
 
