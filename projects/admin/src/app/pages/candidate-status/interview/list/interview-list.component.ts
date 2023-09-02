@@ -11,7 +11,8 @@ import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'interview-list',
-  templateUrl: './interview-list.component.html'
+  templateUrl: './interview-list.component.html',
+  styleUrls: ['./interview-list.component.css']
 })
 export class InterviewListComponent implements OnInit {
 

@@ -6,7 +6,8 @@ import { firstValueFrom } from "rxjs";
 
 @Component({
   selector: 'blacklist',
-  templateUrl: './blacklist.component.html'
+  templateUrl: './blacklist.component.html',
+  styleUrls: ['./blacklist.component.css'],
 })
 export class BlacklistComponent implements OnInit {
 

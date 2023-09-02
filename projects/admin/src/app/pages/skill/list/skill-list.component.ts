@@ -8,7 +8,8 @@ import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'skill-list',
-  templateUrl: './skill-list.component.html'
+  templateUrl: './skill-list.component.html',
+  styleUrls:['./skill-list.component.css']
 })
 export class SkillListComponent implements OnInit {
 

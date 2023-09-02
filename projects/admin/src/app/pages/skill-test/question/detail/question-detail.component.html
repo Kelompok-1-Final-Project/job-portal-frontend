@@ -1,36 +1,54 @@
-<div class="container">
-  <h2>Question Detail</h2>
-  <app-button classBtn="p-button-secondary mt-1" label="Back" routerLink="/questions"></app-button>
-  <h3>Question: </h3>
+<div class="container min-h-screen">
+  <div class="sub-container grid grid-nogutter justify-content-center">
+    <div class="grid grid-nogutter col-11">
+      <div class="col-12">
+        <h2 class="text-center">Question Detail</h2>
+      </div>
+      <div class="col-12 mb-2">
+        <app-button classBtn="p-button-secondary mt-1" label="Back" routerLink="/questions"></app-button>
+      </div>
+    </div>
+    <div class="col-11 shadow-2 surface-card border-round-sm border-800 p-2">
+      <div class="grid grid-nogutter">
+        <div class="col-3">
+          <h3>Question: </h3>
+        </div>
+        <div class="col-3">
+          <app-button iconBtn="pi pi-pencil" label="Edit Question" (clickChange)="editQuestion(questions.questionId)">
+          </app-button>
+        </div>
+        <div class="col-12">
+          <form class="edit-form">
+            <textarea pInputTextarea rows="4" cols="50" id="question" name="question" [value]="questions.question"
+              disabled class="w-full"></textarea>
+          </form>
+        </div>
+      </div>
 
-  <form class="edit-form">
-    <textarea pInputTextarea rows="4" cols="50" id="question" name="question" [value]="questions.question"
-      disabled></textarea>
-  </form>
-  <app-button iconBtn="pi pi-pencil" label="Edit Question"
-    (clickChange)="editQuestion(questions.questionId)"></app-button>
 
-  <p-table [value]="questions.listQuestionOption" class="options-table">
-    <ng-template pTemplate="header">
-      <tr>
-        <th>No</th>
-        <th>Option</th>
-        <th>Answer</th>
-        <th>Action</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-option let-i="rowIndex">
-      <tr>
-        <td>{{ i + 1 }}</td>
-        <td>{{option.labels}}</td>
-        <td>{{option.isAnswer}}</td>
-        <td>
-          <app-button (clickChange)="editOption(option.questionOptionId)" iconBtn="pi pi-pencil"
-            label="Edit"></app-button>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table>
+      <p-table [value]="questions.listQuestionOption" class="options-table">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>No</th>
+            <th>Option</th>
+            <th>Answer</th>
+            <th>Action</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-option let-i="rowIndex">
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{option.labels}}</td>
+            <td>{{option.isAnswer}}</td>
+            <td>
+              <app-button (clickChange)="editOption(option.questionOptionId)" iconBtn="pi pi-pencil" label="Edit">
+              </app-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
 </div>
 
 <!-- Modal Update Question -->
@@ -68,12 +86,12 @@
         <label for="inputName">Answer</label>
       </div>
       <div class="col-12 md:col-9">
-        <p-dropdown [options]="keyAnswer" optionLabel="name" optionValue="value"
-          formControlName="isAnswer"></p-dropdown>
+        <p-dropdown [options]="keyAnswer" optionLabel="name" optionValue="value" formControlName="isAnswer">
+        </p-dropdown>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
-        <app-button btnType="submit" classBtn="p-button-primary" [disabled]="optionUpdateReqDto.invalid"
-          label="Submit"></app-button>
+        <app-button btnType="submit" classBtn="p-button-primary" [disabled]="optionUpdateReqDto.invalid" label="Submit">
+        </app-button>
       </div>
     </div>
   </form>

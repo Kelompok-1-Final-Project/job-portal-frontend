@@ -8,7 +8,8 @@ import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'industry-list',
-  templateUrl: './industry-list.component.html'
+  templateUrl: './industry-list.component.html',
+  styleUrls:['./industry-list.component.css']
 })
 export class IndustryListComponent implements OnInit {
 
