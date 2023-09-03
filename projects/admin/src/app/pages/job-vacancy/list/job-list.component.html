@@ -31,7 +31,6 @@
             <th scope="col">Position</th>
             <th scope="col">Employment</th>
             <th scope="col">Status</th>
-            <th scope="col">Action</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-columns="columns" let-c let-i="rowIndex">
@@ -49,10 +48,6 @@
             <td>{{ c.employmentName }}</td>
             <td>
               <p-tag severity="{{statusColor(c.statusName)}}" value="{{c.statusName}}"></p-tag>
-            </td>
-            <td>
-              <app-button iconBtn="pi pi-trash" tooltipBtn="Delete" tooltipPstn="top"
-                classBtn="p-button-danger p-button-sm"></app-button>
             </td>
           </tr>
         </ng-template>

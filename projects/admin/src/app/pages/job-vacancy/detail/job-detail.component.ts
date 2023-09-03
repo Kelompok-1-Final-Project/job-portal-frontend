@@ -320,6 +320,7 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         firstValueFrom(this.jobService.deleteJobBenefit(this.jobCode, this.benefitCode)).then(result => {
             this.loading = false
             this.visibleBenefit = false
+            this.getJobBenefit()
         })
     }
 
@@ -340,7 +341,7 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
         firstValueFrom(this.jobService.insertJobBenefit(data)).then(result => {
             this.loading = false
             this.visibleAddBenefit = false
-            this.router.navigate(['/job-vacancies/details/', this.id])
+            this.getJobBenefit()
         })
     }
 

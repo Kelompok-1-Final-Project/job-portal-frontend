@@ -27,6 +27,8 @@ export class JobUpdateComponent implements AfterViewChecked {
   interviewer!: UserGetResDto[]
   loading: boolean = false
   text: string | undefined
+  minDate: Date = new Date()
+  today: Date = new Date()
 
   jobUpdateReqDto = this.fb.group({
     jobId: ['', [Validators.required]],

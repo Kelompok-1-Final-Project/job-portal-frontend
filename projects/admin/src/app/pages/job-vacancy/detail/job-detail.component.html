@@ -1,4 +1,3 @@
-
 <div class="container min-h-screen">
   <div class="grid grid-nogutter justify-content-center">
     <div class="col-12">
@@ -12,7 +11,8 @@
               iconBtn="pi pi-arrow-left" label="Back"></app-button>
             <app-button classBtn="p-button-primary" iconBtn="pi pi-eye" label="Preview" styleBtn="margin-right:0.5rem"
               routerLink="/job-vacancies/preview/{{job?.id}}"></app-button>
-            <app-button classBtn="p-button-secondary" iconBtn="pi pi-pencil" label="Update"></app-button>
+            <app-button classBtn="p-button-secondary" routerLink="/job-vacancies/update/{{job?.id}}"
+              iconBtn="pi pi-pencil" label="Update"></app-button>
           </div>
         </div>
         <div class="grid grid-nogutter">
@@ -47,7 +47,7 @@
           <div class="col-12 mb-4 text-left">
             <label>Description</label>
             <div class="surface-card w-full shadow-1 border-round-sm border-800 p-2 mt-3">
-                <div [innerHTML]="sanitizedContent"></div>
+              <div [innerHTML]="sanitizedContent"></div>
             </div>
           </div>
           <div class="flex col-12">
@@ -186,130 +186,124 @@
 
 <!-- Modal Assessment-->
 <p-dialog header="Add Data Assessment" [modal]="true" [(visible)]="visibleAssessment" [style]="{ width: '30vw' }"
-    [breakpoints]="{'768px':'90vw'}" [draggable]="false">
-    <form [formGroup]="assessmentInsertReqDto" (ngSubmit)="insertAssessment()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12 md:col-3">
-                <label for="inputName">Schedule</label>
-            </div>
-            <div class="col-12 md:col-9">
-                <p-calendar appendTo="body" [showIcon]="true" formControlName="schedule"></p-calendar>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" [loading]="disAssessment" classBtn="p-button-primary"
-                    label="Submit"></app-button>
-            </div>
-        </div>
-    </form>
+  [breakpoints]="{'768px':'90vw'}" [draggable]="false">
+  <form [formGroup]="assessmentInsertReqDto" (ngSubmit)="insertAssessment()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Schedule</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="schedule"></p-calendar>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" [loading]="disAssessment" classBtn="p-button-primary" label="Submit"></app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Interview-->
 <p-dialog header="Add Data Interview" [modal]="true" [(visible)]="visibleInterview" [style]="{ width: '30vw'}"
-    [breakpoints]="{'768px':'90vw'}" [draggable]="false">
-    <form [formGroup]="interviewInsertReqDto" (ngSubmit)="insertInterview()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12 md:col-3">
-                <label for="inputName">Schedule</label>
-            </div>
-            <div class="col-12 md:col-9">
-                <p-calendar appendTo="body" styleClass="w-full" [showIcon]="true"
-                    formControlName="schedule"></p-calendar>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" [loading]="disInterview" classBtn="p-button-primary"
-                    label="Submit"></app-button>
-            </div>
-        </div>
-    </form>
+  [breakpoints]="{'768px':'90vw'}" [draggable]="false">
+  <form [formGroup]="interviewInsertReqDto" (ngSubmit)="insertInterview()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Schedule</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar appendTo="body" styleClass="w-full" [showIcon]="true" formControlName="schedule"></p-calendar>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" [loading]="disInterview" classBtn="p-button-primary" label="Submit"></app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 
 <!-- Modal MCU-->
 <p-dialog header="Add Data Medical Checkup" [modal]="true" [(visible)]="visibleMcu" [style]="{ width: '30vw' }"
-    [breakpoints]="{'768px':'90vw'}" [draggable]="false">
-    <form [formGroup]="medicalcheckupInsertReqDto" (ngSubmit)="insertMcu()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12">
-                <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Medical Checkup?</h3>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" [loading]="disMedicalCheckup" classBtn="p-button-primary mr-2"
-                    label="Yes"></app-button>
-                <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelMcu()"
-                    label="No"></app-button>
-            </div>
-        </div>
-    </form>
+  [breakpoints]="{'768px':'90vw'}" [draggable]="false">
+  <form [formGroup]="medicalcheckupInsertReqDto" (ngSubmit)="insertMcu()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12">
+        <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Medical Checkup?</h3>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" [loading]="disMedicalCheckup" classBtn="p-button-primary mr-2"
+          label="Yes"></app-button>
+        <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelMcu()" label="No"></app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Offering-->
 <p-dialog header="Add Data Offering" [modal]="true" [(visible)]="visibleOffering" [style]="{ width: '30vw' }"
-    [breakpoints]="{'768px':'90vw'}" [draggable]="false">
-    <form [formGroup]="offeringInsertReqDto" (ngSubmit)="insertOffering()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12">
-                <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Offering?</h3>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" [loading]="disOffering" classBtn="p-button-primary mr-3"
-                    label="Yes"></app-button>
-                <app-button btnType="submit" classBtn="p-button-secondary" (clickChange)="cancelOffering()"
-                    label="No"></app-button>
-            </div>
-        </div>
-    </form>
+  [breakpoints]="{'768px':'90vw'}" [draggable]="false">
+  <form [formGroup]="offeringInsertReqDto" (ngSubmit)="insertOffering()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12">
+        <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Offering?</h3>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" [loading]="disOffering" classBtn="p-button-primary mr-3" label="Yes"></app-button>
+        <app-button btnType="submit" classBtn="p-button-secondary" (clickChange)="cancelOffering()"
+          label="No"></app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Hired-->
 <p-dialog header="Add Data Hired" [modal]="true" [(visible)]="visibleHired" [style]="{ width: '30vw' }"
-    [breakpoints]="{'768px':'90vw'}" [draggable]="false">
-    <form [formGroup]="hiredInsertReqDto" (ngSubmit)="insertHired()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12">
-                <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Hired?</h3>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" [loading]="disHired" classBtn="p-button-primary mr-3"
-                    label="Yes"></app-button>
-                <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelHired()"
-                    label="No"></app-button>
-            </div>
-        </div>
-    </form>
+  [breakpoints]="{'768px':'90vw'}" [draggable]="false">
+  <form [formGroup]="hiredInsertReqDto" (ngSubmit)="insertHired()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12">
+        <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Hired?</h3>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" [loading]="disHired" classBtn="p-button-primary mr-3" label="Yes"></app-button>
+        <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelHired()"
+          label="No"></app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Rejected-->
 <p-dialog header="Add Data Rejected" [modal]="true" [(visible)]="visibleRejected" [style]="{ width: '30vw' }"
-    [breakpoints]="{'768px':'90vw'}" [draggable]="false">
-    <form [formGroup]="rejectedInsertReqDto" (ngSubmit)="insertRejected()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12">
-                <h3 for="inputName">Apakah anda ingin memasukkan candidate ke dalam rejected?</h3>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" [loading]="loading" classBtn="p-button-primary" label="Yes"></app-button>
-                <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelRejected()"
-                    label="No"></app-button>
-            </div>
-        </div>
-    </form>
+  [breakpoints]="{'768px':'90vw'}" [draggable]="false">
+  <form [formGroup]="rejectedInsertReqDto" (ngSubmit)="insertRejected()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12">
+        <h3 for="inputName">Apakah anda ingin memasukkan candidate ke dalam rejected?</h3>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" [loading]="loading" classBtn="p-button-primary" label="Yes"></app-button>
+        <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelRejected()"
+          label="No"></app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Delete Benefit-->
 <p-dialog header="Delete Benefit" [modal]="true" [(visible)]="visibleBenefit" [style]="{ width: '30vw' }"
-    [breakpoints]="{'768px':'90vw'}" [draggable]="false">
-    <form (ngSubmit)="deleteJobBenefit()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12">
-                <h3 for="inputName">Apakah anda ingin menghapus Benefit dari job</h3>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" classBtn="p-button-primary" styleBtn="margin-right:0.3rem"
-                    label="Yes"></app-button>
-                <app-button btnType="button" [loading]="loading" classBtn="p-button-secondary"
-                    (clickChange)="cancelDeleteQuestion()" label="No"></app-button>
-            </div>
-        </div>
-    </form>
+  [breakpoints]="{'768px':'90vw'}" [draggable]="false">
+  <form (ngSubmit)="deleteJobBenefit()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12">
+        <h3 for="inputName">Apakah anda ingin menghapus Benefit dari job</h3>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" classBtn="p-button-primary" styleBtn="margin-right:0.3rem"
+          label="Yes"></app-button>
+        <app-button btnType="button" [loading]="loading" classBtn="p-button-secondary"
+          (clickChange)="cancelDeleteQuestion()" label="No"></app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Add-->

@@ -33,113 +33,131 @@ const routes: Routes = [
         component: BaseComponent,
         path: 'cities',
         loadChildren: () => import('./pages/city/city.module')
-            .then(c => c.CityModule)
+            .then(c => c.CityModule),
+        canMatch: [authValidationNonLoginAdmin]
     }, {
         component: BaseComponent,
         path: 'candidates',
         loadChildren: () => import('./pages/candidate/candidate.module')
-            .then(c => c.CandidateModule)
+            .then(c => c.CandidateModule),
+        canMatch: [authValidationNonLoginAdmin]
     }, {
         component: BaseComponent,
         path: 'users',
         loadChildren: () => import('./pages/user/user.module')
-            .then(c => c.UserModule)
+            .then(c => c.UserModule),
+        canMatch: [authValidationNonLoginAdmin]
     }, {
         component: BaseComponent,
         path: 'benefits',
         loadChildren: () => import('./pages/benefit/benefit.module')
-            .then(c => c.BenefitModule)
+            .then(c => c.BenefitModule),
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: BaseComponent,
         path: 'industries',
         loadChildren: () => import('./pages/industry/industry.module')
-            .then(c => c.IndustryModule)
+            .then(c => c.IndustryModule),
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: BaseComponent,
         path: 'skills',
         loadChildren: () => import('./pages/skill/skill.module')
-            .then(c => c.SkillModule)
+            .then(c => c.SkillModule),
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: BaseComponent,
         path: 'reports',
         loadChildren: () => import('./pages/report/report.module')
-            .then(c => c.ReportModule)
+            .then(c => c.ReportModule),
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: BaseComponent,
         path: 'job-vacancies',
         loadChildren: () => import('./pages/job-vacancy/job.module')
-            .then(c => c.JobModule)
+            .then(c => c.JobModule),
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: BaseComponent,
         path: 'candidate-statuses',
         loadChildren: () => import('./pages/candidate-status/all-candidate/all-candidate.module')
-            .then(c => c.AllCandidateModule)
+            .then(c => c.AllCandidateModule),
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: BaseComponent,
         path: 'candidate-statuses/application',
         loadChildren: () => import('./pages/candidate-status/application/application.module')
-            .then(c => c.ApplicationModule)
+            .then(c => c.ApplicationModule),
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: BaseComponent,
         path: 'candidate-statuses/assessment',
         loadChildren: () => import('./pages/candidate-status/assesment/assesment.module')
-            .then(c => c.AssesmentModule)
+            .then(c => c.AssesmentModule),
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: BaseComponent,
         path: 'candidate-statuses/mcu',
         loadChildren: () => import('./pages/candidate-status/medical-checkup/mcu.module')
-            .then(c => c.McuModule)
+            .then(c => c.McuModule),
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: BaseComponent,
         path: 'candidate-statuses/interview',
         loadChildren: () => import('./pages/candidate-status/interview/interview.module')
-            .then(c => c.InterviewModule)
+            .then(c => c.InterviewModule),
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: BaseComponent,
         path: 'candidate-statuses/hired',
         loadChildren: () => import('./pages/candidate-status/hired/hired.module')
-            .then(c => c.HiredModule)
+            .then(c => c.HiredModule),
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: BaseComponent,
         path: 'candidate-statuses/offering',
         loadChildren: () => import('./pages/candidate-status/offering/offering.module')
-            .then(c => c.OfferingModule)
+            .then(c => c.OfferingModule),
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: BaseComponent,
         path: 'questions',
         loadChildren: () => import('./pages/skill-test/question/question.module')
-            .then(c => c.QuestionModule)
+            .then(c => c.QuestionModule),
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: BaseComponent,
         path: 'skill-test',
         loadChildren: () => import('./pages/skill-test/test/test.module')
-            .then(c => c.TestModule)
+            .then(c => c.TestModule),
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: BaseComponent,
         path: 'blacklist',
         loadChildren: () => import('./pages/blacklist/blacklist.module')
-            .then(c => c.BlacklistModule)
+            .then(c => c.BlacklistModule),
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: BaseComponent,
         path: 'employees',
         loadChildren: () => import('./pages/employee/employee.module')
             .then(c => c.EmployeeModule),
-            canMatch : [ authValidationNonLoginAdmin ]
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: BaseComponent,

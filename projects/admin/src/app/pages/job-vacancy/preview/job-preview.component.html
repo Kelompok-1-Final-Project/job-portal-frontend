@@ -12,35 +12,35 @@
           </div>
           <div class="company-profile grid grid-nogutter col-10 md:col-3 justify-content-center align-items-center">
             <div class="col-12">
-              <img src="{{ job.companyPhoto|urlAdmin }}" alt="Image"
+              <img src="{{ job?.companyPhoto|urlAdmin }}" alt="Image"
                 class="w-10rem border-orange-300 surface-overlay border-3 border-round">
             </div>
           </div>
           <div class="title col-10 md:col-7 grid">
-            <span class="col-12 text-3xl">{{ job.jobTitle }}</span>
-            <a routerLink="/companies/detail/{{ job.companyId }}" class="col-12 text-primary"
+            <span class="col-12 text-3xl">{{ job?.jobTitle }}</span>
+            <a routerLink="/companies/detail/{{ job?.companyId }}" class="col-12 text-primary"
               style="text-decoration: none;">
-              {{ job.companyName }}
+              {{ job?.companyName }}
             </a>
             <div class="city col-12">
               <i class="pi pi-map-marker"></i>
               <span>
-                {{ job.cityName }}
+                {{ job?.cityName }}
               </span>
             </div>
             <div class="Salary col-12">
               <i class="pi pi-dollar"></i>
-              <span> {{ job.salaryStart }} -</span>
-              <span> {{ job.salaryEnd }}</span>
+              <span> {{ job?.salaryStart }} -</span>
+              <span> {{ job?.salaryEnd }}</span>
             </div>
             <div class="Industry col-12">
               <i class="pi pi-building"></i>
-              <span> {{ job.industryName }}</span>
+              <span> {{ job?.industryName }}</span>
             </div>
             <div class="footer col-12 mt-3">
               <small>
                 <i class="pi pi-clock"></i>
-                <span>Created {{ job.createdAt | timeAgo }}</span>
+                <span>Created {{ job?.createdAt | timeAgo }}</span>
                 <span> * </span>
                 <!-- <span>Updated {{ updatedAt | timeAgo }}</span> -->
               </small>
@@ -85,13 +85,13 @@
               <div class="job-position col-3 mt-3">
                 <h4>Job Position</h4>
                 <span>
-                  {{ job.positionName }}
+                  {{ job?.positionName }}
                 </span>
               </div>
               <div class="employment-type col-3 mt-3">
                 <h4>Employment Type</h4>
                 <span>
-                  {{ job.employmentName }}
+                  {{ job?.employmentName }}
                 </span>
               </div>
             </div>

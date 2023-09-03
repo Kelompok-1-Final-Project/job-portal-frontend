@@ -6,29 +6,29 @@
     <div class="col-11 shadow-2 surface-card border-round-sm border-800 p-2">
       <p-table #report [value]="reports" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
         [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['skillName']">
+        [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['candidateName']">
         <ng-template pTemplate="caption">
           <form (ngSubmit)="filter()" [formGroup]="filterData">
             <div class="grid justify-content-end mb-3 text-white-alpha-90">
-              <a [href]="reportUrl"> 
+              <a [href]="reportUrl">
                 <app-button classBtn="p-button-success" btnType="button" iconBtn="pi pi-download" label="Download">
                 </app-button>
-            </a>
+              </a>
             </div>
             <div class="grid grid-nogutter">
-                <div class=" col-12 md:col-4">
-                    <span class="mr-3">Start Date</span>
-                    <p-calendar appendTo="body" [showIcon]="true" formControlName="startDateTemp"
-                      (onSelect)="convertStartDate($event)"></p-calendar>
-                </div>
-                <div class="col-12 md:col-4">
-                    <span class="mr-4">End Date</span>
-                    <p-calendar appendTo="body" [showIcon]="true" formControlName="endDateTemp"
-                      (onSelect)="convertEndDate($event)"></p-calendar>
-                </div>
-                <div class="col-12 md:col-4 grid grid-nogutter justify-content-end">
-                      <app-button label="Search" classBtn="p-button-primary" btnType="submit"></app-button>
-                </div>
+              <div class=" col-12 md:col-4">
+                <span class="mr-3">Start Date</span>
+                <p-calendar appendTo="body" [showIcon]="true" formControlName="startDateTemp"
+                  (onSelect)="convertStartDate($event)"></p-calendar>
+              </div>
+              <div class="col-12 md:col-4">
+                <span class="mr-4">End Date</span>
+                <p-calendar appendTo="body" [showIcon]="true" formControlName="endDateTemp"
+                  (onSelect)="convertEndDate($event)"></p-calendar>
+              </div>
+              <div class="col-12 md:col-4 grid grid-nogutter justify-content-end">
+                <app-button label="Search" classBtn="p-button-primary" btnType="submit"></app-button>
+              </div>
             </div>
           </form>
 
