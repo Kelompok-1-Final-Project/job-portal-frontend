@@ -5,8 +5,9 @@
         <h3 class="text-center">All Assesment Progress</h3>
       </div>
       <div class="col-11 shadow-2 surface-card border-round-sm border-800 p-2">
-        <p-table #assessment [value]="assesments" styleClass="p-datatable-striped" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
-          [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        <p-table #assessment [value]="assesments" styleClass="p-datatable-striped" [paginator]="true" [rows]="5"
+          [tableStyle]="{ 'min-width': '50rem' }" [showCurrentPageReport]="true"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
           [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single"
           [globalFilterFields]="['candidateName','jobName','hrName']">
           <ng-template pTemplate="caption">
@@ -55,10 +56,13 @@
   <form [formGroup]="updateAssessmentNotesReqDto" (ngSubmit)="insertNotes()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
-        <label for="inputName">Notes</label>
+        <label for="inputName">Notes<span style="color: red;">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <textarea pInputTextarea type="text" class="col-12 " id="inputName" required formControlName="notes"></textarea>
+        <small class="p-error block mt-1"
+          *ngIf="updateAssessmentNotesReqDto.get('notes')?.invalid&&updateAssessmentNotesReqDto.get('notes')?.touched">This
+          Fill is Required</small>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <app-button btnType="submit" label="Submit" [loading]="loading"

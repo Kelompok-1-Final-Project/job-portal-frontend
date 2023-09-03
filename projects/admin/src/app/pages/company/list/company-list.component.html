@@ -4,8 +4,9 @@
       <h3 class="text-center">Table Company List</h3>
     </div>
     <div class="col-11 shadow-2 surface-card border-round-sm border-800 p-2">
-      <p-table #company [value]="companies" styleClass="p-datatable-striped" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
-        [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      <p-table #company [value]="companies" styleClass="p-datatable-striped" [paginator]="true" [rows]="5"
+        [tableStyle]="{ 'min-width': '50rem' }" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single"
         [globalFilterFields]="['companyName','industryName','cityName']">
         <ng-template pTemplate="caption">
@@ -42,8 +43,6 @@
             <td>
               <app-button classBtn="p-button-secondary" styleBtn="margin-right:0.5rem;" iconBtn="pi pi-pencil"
                 routerLink="/companies/update/{{c.companyCode}}" tooltipBtn="Edit" tooltipPstn="top"></app-button>
-              <app-button classBtn="p-button-danger" iconBtn="pi pi-trash" tooltipBtn="Delete" tooltipPstn="top">
-              </app-button>
             </td>
           </tr>
         </ng-template>

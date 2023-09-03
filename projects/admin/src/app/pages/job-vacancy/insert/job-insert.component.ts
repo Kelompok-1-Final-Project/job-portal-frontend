@@ -63,7 +63,7 @@ export class JobInsertComponent implements AfterViewChecked {
     hrId: ['', [Validators.required]],
     interviewerId: ['', [Validators.required]],
     benefitCode: this.fb.array(this.code),
-    testName: ['', [Validators.required]],
+    testName: [''],
     questionId: this.fb.array(this.questionId)
   })
 

@@ -112,10 +112,6 @@ export class NavbarComponent implements OnInit {
 
     this.items = [{
       label: 'InLook - Job Portal',
-      icon: 'pi pi-fw pi-ticket',
-      routerLink: "/dashboard",
-    }, {
-      label: 'Home',
       icon: 'pi pi-spin pi-box',
       routerLink: "/dashboard",
     },

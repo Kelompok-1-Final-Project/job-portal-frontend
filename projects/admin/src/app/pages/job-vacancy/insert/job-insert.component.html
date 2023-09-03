@@ -11,13 +11,16 @@
         <div class="col-12 md:col-4">
           <input pInputText type="text" class="form-control col-12" id="companyName" aria-describedby="companyNameHelp"
             required formControlName="jobTitle">
+          <small class="p-error block mt-1"
+            *ngIf="jobInsertReqDto.get('jobTitle')?.invalid&&jobInsertReqDto.get('jobTitle')?.touched">This
+            Fill is Required</small>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Position<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown styleClass="w-full" [filter]="true" [options]="position" optionValue="positionCode" optionLabel="positionName"
-            formControlName="jobPositionCode"></p-dropdown>
+          <p-dropdown styleClass="w-full" [filter]="true" [options]="position" optionValue="positionCode"
+            optionLabel="positionName" formControlName="jobPositionCode"></p-dropdown>
         </div>
         <div class="col-6 md:col-2">
           <label for="companyName" class="form-label">Salary<span style="color: red;">*</span></label>
@@ -25,9 +28,15 @@
         <div class="col-6 md:col-4">
           <input pInputText type="number" class="form-control col-5" id="companyName" required
             formControlName="salaryStart">
+          <small class="p-error block mt-1"
+            *ngIf="jobInsertReqDto.get('salaryStart')?.invalid&&jobInsertReqDto.get('salaryStart')?.touched">This
+            Fill is Required</small>
           <span class="col-2">To :</span>
           <input pInputText type="number" class="form-control col-5" id="companyName" required
             formControlName="salaryEnd">
+          <small class="p-error block mt-1"
+            *ngIf="jobInsertReqDto.get('salaryEnd')?.invalid&&jobInsertReqDto.get('salaryEnd')?.touched">This
+            Fill is Required</small>
         </div>
         <div class="col-6 md:col-2">
           <label for="companyAddress" class="form-label">Expired Time<span style="color: red;">*</span></label>
@@ -56,7 +65,7 @@
           <label for="companyName" class="form-label">Status<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown [options]="status" optionValue="statusCode" optionLabel="statusName"
+          <p-dropdown [options]="status" styleClass="w-full" optionValue="statusCode" optionLabel="statusName"
             formControlName="jobStatusCode"></p-dropdown>
         </div>
         <div class="col-12 md:col-2">
@@ -70,7 +79,7 @@
           <label for="companyName" class="form-label">Employment Type<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown [options]="employment" optionValue="typeCode" optionLabel="typeName"
+          <p-dropdown [options]="employment" styleClass="w-full" optionValue="typeCode" optionLabel="typeName"
             formControlName="employmentCode"></p-dropdown>
         </div>
         <div class="flex col-12">
@@ -127,7 +136,7 @@
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
           <app-button routerLink="/job-vacancies" classBtn="p-button-secondary" styleBtn="margin-right:0.5rem"
             iconBtn="pi pi-angle-double-left" label="Back to Previous Menu"></app-button>
-          <app-button btnType="submit" [loading]="loading" label="Submit"></app-button>
+          <app-button btnType="submit" [loading]="loading" [disabled]="jobInsertReqDto.invalid" label="Submit"></app-button>
         </div>
       </div>
     </div>

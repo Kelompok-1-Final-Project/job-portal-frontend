@@ -1,7 +1,8 @@
 <div class="container">
   <form [formGroup]="userInsertReqDto" (ngSubmit)="insertUser()">
     <div class="row">
-      <div class="card-container grid grid-nogutter justify-content-center align-items-center" style="min-height: 700px">
+      <div class="card-container grid grid-nogutter justify-content-center align-items-center"
+        style="min-height: 700px">
         <div class="grid shadow-8 m-4 surface-card border-round-sm border-400 p-3 col-12 md:col-9 text">
           <div class="col-12 grid justify-content-center">
             <h2 class="text-center">User Information</h2>
@@ -13,6 +14,9 @@
             <div class="col-12 md:col-9">
               <input pInputText type="text" class="form-control col-12" id="companyName"
                 aria-describedby="companyNameHelp" required formControlName="userEmail">
+              <small class="p-error block mt-1"
+                *ngIf="userInsertReqDto.get('userEmail')?.invalid&&userInsertReqDto.get('userEmail')?.touched">This
+                Fill is Required</small>
             </div>
             <div class="col-12 md:col-3">
               <label for="companyName">Fullname<span style="color: red;">*</span></label>
@@ -20,6 +24,9 @@
             <div class="col-12 md:col-9">
               <input pInputText type="text" class="form-control col-12" id="companyName"
                 aria-describedby="companyNameHelp" required formControlName="fullName">
+              <small class="p-error block mt-1"
+                *ngIf="userInsertReqDto.get('fullName')?.invalid&&userInsertReqDto.get('fullName')?.touched">This
+                Fill is Required</small>
             </div>
             <div class="col-12 md:col-3">
               <label for="companyName">Role<span style="color: red">*</span></label>
@@ -54,7 +61,8 @@
           <div class="grid grid-nogutter justify-content-end mt-2 col-12">
             <app-button classBtn="p-button-secondary" styleBtn="margin-right:0.5rem;" iconBtn="pi pi-angle-double-left"
               label="Back to Previous Menu" btnType="button" routerLink="/users"></app-button>
-            <app-button [loading]="loading" btnType="submit" classBtn="w-12" label="Submit"></app-button>
+            <app-button [loading]="loading" btnType="submit" [disabled]="userInsertReqDto.invalid" classBtn="w-12"
+              label="Submit"></app-button>
           </div>
         </div>
       </div>

@@ -36,8 +36,6 @@
               <app-button classBtn="p-button-secondary" style="margin-right:0.5rem;" iconBtn="pi pi-pencil"
                 btnType="submit" tooltipBtn="Edit" link="/benefits" tooltipPstn="top"
                 (clickChange)="update(p.benefitCode)"></app-button>
-              <app-button classBtn="p-button-danger" tooltipBtn="Delete" tooltipPstn="top" iconBtn="pi pi-trash">
-              </app-button>
             </td>
           </tr>
         </ng-template>
@@ -79,7 +77,7 @@
           <input pInputText type="text" class="col-12" readonly id="inputName" required value={{code}}>
         </div>
         <div class="col-12 md:col-3">
-          <label for="inputName">Benefit Name</label>
+          <label for="inputName">Benefit Name<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-9">
           <input pInputText type="text" class="col-12 " id="inputName" required formControlName="benefitName">
