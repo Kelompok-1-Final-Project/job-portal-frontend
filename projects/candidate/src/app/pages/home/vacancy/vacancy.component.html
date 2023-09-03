@@ -82,7 +82,7 @@
           routerLink="/home/detail/{{job.id}}">
           <div class="thumbnail grid grid-nogutter justify-content-center">
             <div class="col-4 justify-content-center align-content-center">
-              <img src="{{ job.companyPhoto|urlCandidate }}" alt="Image" class="w-full p-2">
+              <img src="{{ job.companyPhoto|urlCandidate }}" alt="Image" class="w-full h-7rem p-2" style="object-fit: contain;">
             </div>
             <div class="title col-8 grid p-2">
               <span class="col-10">{{ job.jobTitle }}</span>
