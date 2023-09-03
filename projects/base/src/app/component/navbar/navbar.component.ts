@@ -111,12 +111,8 @@ export class NavbarComponent implements OnInit {
     this.logoWeb = '/assets/logo.png';
 
     this.items = [{
-      label: 'InLook - Job Portal',
-      icon: 'pi pi-fw pi-ticket',
-      routerLink: "/dashboard",
-    }, {
-      label: 'Home',
-      icon: 'pi pi-spin pi-box',
+      label: 'Dashboard - InLook',
+      icon: 'pi pi-desktop',
       routerLink: "/dashboard",
     },
     {
@@ -233,7 +229,7 @@ export class NavbarComponent implements OnInit {
     {
       label: 'Job vacancy',
       routerLink: "/job-vacancies",
-      icon: 'pi pi-fw pi-ticket',
+      icon: 'pi pi-fw pi-briefcase',
       // visible : this.isCustomer
     },
     {
@@ -246,14 +242,14 @@ export class NavbarComponent implements OnInit {
       },
       {
         label: 'Change Password',
-        icon: 'pi pi-fw pi-cog',
+        icon: 'pi pi-fw pi-spin pi-cog',
         routerLink: "/users/change-password",
       }
       ]
     },
     {
       label: 'Report',
-      icon: 'pi pi-fw pi-cog',
+      icon: 'pi pi-fw pi-file-excel',
       routerLink: '/reports'
     },
     {

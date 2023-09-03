@@ -1,41 +1,42 @@
-<div class="container mt-5 mb-5">
-    <h2>Insert Question</h2>
-    <app-button icon="pi pi-arrow-left" routerLink="/job-vacancies/details/{{jobId}}" classBtn="p-button-secondary"
+<div class="min-h-screen">
+  <div class="container grid grid-nogutter justify-content-center">
+    <div class="col-12">
+      <h2 class="text-center">Insert Question</h2>
+    </div>
+    <div class="col-6 shadow-2 surface-card border-round-sm border-800 p-5">
+      <app-button icon="pi pi-arrow-left" routerLink="/job-vacancies/details/{{jobId}}" classBtn="p-button-secondary"
         label="Back"></app-button>
-    <hr />
-    <form [formGroup]="insertQuestionReqDto" (ngSubmit)="insertQuestion()">
-        <div class="row">
-            <div class="grid">
-                <div class="col-2">
-                    <label for="general-asset">Question</label>
-                    <span class="text-red-600">*</span>
-                </div>
-                <div class="col-10">
-                    <app-button btnType="button" classBtn="p-button-primary" label="Add"
-                        (clickChange)="onAdd()"></app-button>
-                </div>
-            </div>
+      <hr />
+      <form [formGroup]="insertQuestionReqDto" (ngSubmit)="insertQuestion()">
+        <div class="grid">
+          <div class="col-2">
+            <label for="general-asset">Question</label>
+            <span class="text-red-600">*</span>
+          </div>
+          <div class="col-10 grid grid-nogutter justify-content-end">
+            <app-button btnType="button" classBtn="p-button-primary" label="Add" (clickChange)="onAdd()"></app-button>
+          </div>
         </div>
         <div>
-            <div *ngFor="let c of questionCode.controls; let i=index" formArrayName="questionCode">
-                <div class="grid">
-                    <div class="col-2 col-offset-2">
-                        <p-dropdown [options]="listQuestion" [formControlName]="i" optionValue="questionCode"
-                            optionLabel="question" placeholder="Choose Question"></p-dropdown>
-                    </div>
-                </div>
-                <div class="grid">
-                    <div class="col-2 col-offset-2">
-                        <app-button btnType="button" classBtn="p-button-danger" (clickChange)="removeAt(i)"
-                            label="Remove"></app-button>
-                    </div>
-                </div>
+          <div *ngFor="let c of questionCode.controls; let i=index" formArrayName="questionCode">
+            <div class="grid">
+              <div class="col-9">
+                <p-dropdown [options]="listQuestion" [formControlName]="i" optionValue="questionCode"
+                  optionLabel="question" placeholder="Choose Question" styleClass="w-full"></p-dropdown>
+              </div>
+              <div class="col-3 grid grid-nogutter justify-content-end">
+                <app-button btnType="button" classBtn="p-button-danger" (clickChange)="removeAt(i)" label="Remove">
+                </app-button>
+              </div>
             </div>
+          </div>
         </div>
-        <div class="grid">
-            <div class="col-2 col-offset-2">
-                <app-button btnType="submit" [loading]="loading" classBtn="p-button-primary" label="Submit"></app-button>
-            </div>
+        <div class="col-12">
+          <div class="col-12 grid grid-nogutter justify-content-end">
+            <app-button btnType="submit" [loading]="loading" classBtn="p-button-primary" label="Submit"></app-button>
+          </div>
         </div>
-    </form>
+      </form>
+    </div>
+  </div>
 </div>

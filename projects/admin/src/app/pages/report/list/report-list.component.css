@@ -1,0 +1,9 @@
+::ng-deep .p-datatable .p-datatable-header {
+  background: #1d58a0;
+  color: white;
+}
+
+::ng-deep .p-datatable .p-datatable-thead>tr>th {
+  color: white;
+  background-color: #3d74b8;
+}
