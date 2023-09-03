@@ -1,98 +1,102 @@
-<div class="home-container">
+<div class="min-h-screen">
+  <div class="home-container">
     <div class="col-12 grid grid-nogutter justify-content-center">
-        <app-button iconBtn="pi pi-angle-double-left" classBtn="p-button-raised p-button-text p-button-warning"
-            label="Back to previous menu" btnType="submit" routerLink="/job-vacancies/details/{{jobId}}"
-            class="col-10"></app-button>
+      <app-button iconBtn="pi pi-angle-double-left" classBtn="p-button-raised p-button-text p-button-warning"
+        label="Back to previous menu" btnType="submit" routerLink="/job-vacancies/details/{{jobId}}" class="col-10">
+      </app-button>
     </div>
     <div class="container grid grid-nogutter justify-content-center">
+      <div class="col-10 shadow-2 surface-card border-round-sm border-800 p-2">
         <div class="sub-container grid col-12 md:col-10 mt-3 justify-content-center">
-            <div class="banner col-12">
+          <div class="banner col-12">
+          </div>
+          <div class="company-profile grid grid-nogutter col-10 md:col-3 justify-content-center align-items-center">
+            <div class="col-12">
+              <img src="{{ job.companyPhoto|urlAdmin }}" alt="Image"
+                class="w-10rem border-orange-300 surface-overlay border-3 border-round">
             </div>
-            <div class="company-profile grid grid-nogutter col-10 md:col-3 justify-content-center align-items-center">
-                <div class="col-12">
-                    <img src="{{ job?.companyPhoto|urlAdmin }}" alt="Image"
-                        class="w-10rem border-orange-300 surface-overlay border-3 border-round">
-                </div>
+          </div>
+          <div class="title col-10 md:col-7 grid">
+            <span class="col-12 text-3xl">{{ job.jobTitle }}</span>
+            <a routerLink="/companies/detail/{{ job.companyId }}" class="col-12 text-primary"
+              style="text-decoration: none;">
+              {{ job.companyName }}
+            </a>
+            <div class="city col-12">
+              <i class="pi pi-map-marker"></i>
+              <span>
+                {{ job.cityName }}
+              </span>
             </div>
-            <div class="title col-10 md:col-7 grid">
-                <span class="col-12 text-3xl">{{ job?.jobTitle }}</span>
-                <a routerLink="/companies/detail/{{ job?.companyId }}" class="col-12 text-primary"
-                    style="text-decoration: none;">
-                    {{ job?.companyName }}
-                </a>
-                <div class="city col-12">
-                    <i class="pi pi-map-marker"></i>
-                    <span>
-                        {{ job?.cityName }}
-                    </span>
-                </div>
-                <div class="Salary col-12">
-                    <i class="pi pi-dollar"></i>
-                    <span> {{ job?.salaryStart }} -</span>
-                    <span> {{ job?.salaryEnd }}</span>
-                </div>
-                <div class="Industry col-12">
-                    <i class="pi pi-building"></i>
-                    <span> {{ job?.industryName }}</span>
-                </div>
-                <div class="footer col-12 mt-3">
-                    <small>
-                        <i class="pi pi-clock"></i>
-                        <span>Created {{ job?.createdAt | timeAgo }}</span>
-                        <span> * </span>
-                        <span>Updated {{ job?.updatedAt | timeAgo }}</span>
-                    </small>
-                </div>
-                <div class="button grid col-12 gap-3 justify-content-evenly">
-                    <p-button styleClass="p-button-raised p-button-text" class="col-5 md:col-3 text-center">
-                        <span class="col-12">
-                            <i class="pi pi-envelope"></i> Apply Now</span>
-                    </p-button>
-                    <p-button styleClass="p-button-raised p-button-text" class="col-5 md:col-3 text-center">
-                        <span class="col-12">
-                            <i class="pi pi-heart size"></i> Save Job</span>
-                    </p-button>
-                </div>
+            <div class="Salary col-12">
+              <i class="pi pi-dollar"></i>
+              <span> {{ job.salaryStart }} -</span>
+              <span> {{ job.salaryEnd }}</span>
             </div>
+            <div class="Industry col-12">
+              <i class="pi pi-building"></i>
+              <span> {{ job.industryName }}</span>
+            </div>
+            <div class="footer col-12 mt-3">
+              <small>
+                <i class="pi pi-clock"></i>
+                <span>Created {{ job.createdAt | timeAgo }}</span>
+                <span> * </span>
+                <!-- <span>Updated {{ updatedAt | timeAgo }}</span> -->
+              </small>
+            </div>
+            <div class="button grid col-12 gap-3 justify-content-evenly">
+              <p-button styleClass="p-button-raised p-button-text" class="col-5 md:col-3 text-center">
+                <span class="col-12">
+                  <i class="pi pi-envelope"></i> Apply Now</span>
+              </p-button>
+              <p-button styleClass="p-button-raised p-button-text" class="col-5 md:col-3 text-center">
+                <span class="col-12">
+                  <i class="pi pi-heart size"></i> Save Job</span>
+              </p-button>
+            </div>
+          </div>
         </div>
         <div class="description col-10 md:col-8 grid justify-content-center">
-            <div class="col-12">
-                <h3>
-                    Job Description
-                </h3>
+          <div class="col-12">
+            <h3>
+              Job Description
+            </h3>
+          </div>
+          <div class="col-12">
+            <div [innerHTML]="jobDesc">
             </div>
-            <div class="col-12">
-                <div [innerHTML]="jobDesc">
-                </div>
+          </div>
+          <div class="col-12 benefit">
+            <h3>
+              Benefit
+            </h3>
+            <span *ngIf="isBenefit()"> - </span>
+            <div *ngFor="let benefit of benefits; let i = index">
+              <input type="checkbox" class="p-disabled">
+              <label>{{ benefit.benefitName }}</label>
             </div>
-            <div class="col-12 benefit">
-                <h3>
-                    Benefit
-                </h3>
-                <span *ngIf="isBenefit()"> - </span>
-                <div *ngFor="let benefit of benefits; let i = index">
-                    <input type="checkbox" class="p-disabled">
-                    <label>{{ benefit.benefitName }}</label>
-                </div>
+          </div>
+          <div class="col-12">
+            <h3>
+              Job Summary
+            </h3>
+            <div class="grid justify-content-between">
+              <div class="job-position col-3 mt-3">
+                <h4>Job Position</h4>
+                <span>
+                  {{ job.positionName }}
+                </span>
+              </div>
+              <div class="employment-type col-3 mt-3">
+                <h4>Employment Type</h4>
+                <span>
+                  {{ job.employmentName }}
+                </span>
+              </div>
             </div>
-            <div class="col-12">
-                <h3>
-                    Job Summary
-                </h3>
-                <div class="grid justify-content-between">
-                    <div class="job-position col-3 mt-3">
-                        <h4>Job Position</h4>
-                        <span>
-                            {{ job?.positionName }}
-                        </span>
-                    </div>
-                    <div class="employment-type col-3 mt-3">
-                        <h4>Employment Type</h4>
-                        <span>
-                            {{ job?.employmentName }}
-                        </span>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>

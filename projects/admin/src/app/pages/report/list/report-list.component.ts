@@ -9,7 +9,8 @@ import { firstValueFrom } from "rxjs";
 
 @Component({
   selector: 'report-list',
-  templateUrl: './report-list.component.html'
+  templateUrl: './report-list.component.html',
+  styleUrls: ['./report-list.component.css']
 })
 export class ReportListComponent implements OnInit {
   reports!: ReportGetResDto[]
