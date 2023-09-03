@@ -68,6 +68,7 @@ export class ReportListComponent implements OnInit {
   getData(start: string, end: string) {
     firstValueFrom(this.reportService.getAll(start, end)).then(result => {
       this.reports = result
+      this.reportUrl = `http://localhost:8080/reports/download?start=${this.startDate}&end=${this.endDate}`
     })
   }
 }

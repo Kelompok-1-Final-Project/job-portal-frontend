@@ -7,7 +7,7 @@ export interface JobGetResDto {
 	endDate: string
 	companyId: string
 	companyName: string
-	companyPhoto: string
+	companyPhoto?: string
 	industryName: string
 	cityName: string
 	positionName: string

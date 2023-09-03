@@ -1,5 +1,5 @@
 <!-- home.component.html -->
-<pre>{{ companyData|json }}</pre>
+<!-- <pre>{{ companyData|json }}</pre> -->
 <div class="home-container grid grid-nogutter justify-content-center min-h-screen">
   <h2 class="col-12 md:col-10 text-center">All Company</h2>
   <div class="content col-12 md:col-10 grid justify-content-center">
@@ -7,7 +7,7 @@
       <a routerLink="/companies/detail/{{ c.companyId }}" style="text-decoration: none;" class="text-black-alpha-90">
         <div class="thumbnail grid">
           <div class="col-4 justify-content-center align-content-center">
-            <img src="{{ c.fileId|urlCandidate }}" alt="Image" class="w-full">
+            <img src="{{ c.fileId|urlCandidate }}" alt="Image" class="w-full h-7rem" style="object-fit: contain;">
           </div>
           <div class="title col-8 grid">
             <span class="col-12">{{ c.companyName }}</span>
