@@ -49,7 +49,7 @@
 
   <!-- Modal Add-->
   <p-dialog header="Add Data User" [modal]="true" [(visible)]="visibleIsActive" [style]="{ width: '30vw' }"
-    [breakpoints]="{'768px': '90vw'}" [draggable]="false">
+    [breakpoints]="{'768px': '90vw'}" [draggable]="false" (onHide)="modalHide()">
     <form [formGroup]="userIsActiveReqDto" (ngSubmit)="insertIsActive()">
       <div class="grid surface-card border-round-sm border-400">
         <div class="col-12">

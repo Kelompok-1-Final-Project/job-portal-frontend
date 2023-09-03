@@ -141,14 +141,14 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     getJobById() {
         firstValueFrom(this.jobService.getById(this.id)).then(result => {
             this.job = result
-            this.getCandidateStatus()
             this.showOriginalContent()
+            this.getCandidateStatus()
         })
     }
 
     getCandidateStatus() {
         if(this.job){
-            firstValueFrom(this.statusProgressService.getCandidateByJob(this.job?.id)).then(result => {
+            firstValueFrom(this.statusProgressService.getCandidateByJob(this.job?.jobCode)).then(result => {
                 this.candidates = result
             })
         }
@@ -351,6 +351,7 @@ export class JobDetailComponent implements OnInit, AfterViewChecked {
     showOriginalContent() {
         if(this.job){
             this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.job?.description)
+            this.getCandidateStatus()
         }
     }
 }

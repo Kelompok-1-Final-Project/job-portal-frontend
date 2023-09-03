@@ -8,7 +8,7 @@ import { firstValueFrom } from "rxjs";
 @Component({
   selector: 'user-list',
   templateUrl: './user-list.component.html',
-  styleUrls:['./user-list.component.css']
+  styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
 
@@ -49,6 +49,7 @@ export class UserListComponent implements OnInit {
     })
   }
 
+
   setActive(id: string, value: boolean) {
     this.visibleIsActive = true
     this.userIsActiveReqDto.get("userId")?.setValue(id)
@@ -58,6 +59,10 @@ export class UserListComponent implements OnInit {
   switchIsActive(event: MouseEvent, user: any) {
     event.stopPropagation()
     this.setActive(user.userId, !user.isActive)
+  }
+
+  modalHide(){
+    this.getAllUser()
   }
 
 }

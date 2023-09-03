@@ -24,15 +24,7 @@
           </form>
         </div>
       </div>
-
-  <form class="edit-form">
-    <textarea pInputTextarea rows="4" cols="50" id="question" name="question" [value]="questions?.question"
-      disabled></textarea>
-  </form>
-  <app-button iconBtn="pi pi-pencil" label="Edit Question"
-    (clickChange)="editQuestion()"></app-button>
-
-  <p-table [value]="listOption" class="options-table">
+      <p-table [value]="listOption" class="options-table">
         <ng-template pTemplate="header">
           <tr>
             <th>No</th>
@@ -58,15 +50,19 @@
 </div>
 
 <!-- Modal Update Question -->
-<p-dialog header="Update Question" [modal]="true" [(visible)]="visibleUpdateQuestion" [style]="{ width: '30vw' }">
+<p-dialog header="Update Question" [modal]="true" [(visible)]="visibleUpdateQuestion" [style]="{ width: '30vw' }"
+  [breakpoints]="{'768px':'90vw'}" [draggable]="false">
   <form [formGroup]="questionUpdateReqDto" (ngSubmit)="updateQuestion()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
-        <label for="inputName">Question</label>
+        <label for="inputName">Question<span style="color: red;">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <textarea pInputTextarea type="text" class="col-12 " id="inputName" required
           formControlName="question"></textarea>
+        <small class="p-error block mt-1"
+          *ngIf="questionUpdateReqDto.get('question')?.invalid&&questionUpdateReqDto.get('question')?.touched">This
+          Fill is Required</small>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <app-button btnType="submit" classBtn="p-button-primary" [disabled]="questionUpdateReqDto.invalid"
@@ -77,20 +73,25 @@
 </p-dialog>
 
 <!-- Modal Update Option-->
-<p-dialog header="Update Option" [modal]="true" [(visible)]="visibleOption" [style]="{ width: '30vw' }">
+<p-dialog header="Update Option" [modal]="true" [(visible)]="visibleOption" [style]="{ width: '30vw' }"
+  [breakpoints]="{'768px':'90vw'}" [draggable]="false">
   <form [formGroup]="optionUpdateReqDto" (ngSubmit)="updateOption()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
-        <label for="inputName">Label</label>
+        <label for="inputName">Label<span style="color: red;">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <input pInputText type="text" class="col-12 " id="inputName" required formControlName="labels">
+        <small class="p-error block mt-1"
+          *ngIf="optionUpdateReqDto.get('labels')?.invalid&&optionUpdateReqDto.get('labels')?.touched">This
+          Fill is Required</small>
       </div>
       <div class="col-12 md:col-3">
-        <label for="inputName">Answer</label>
+        <label for="inputName">Answer<span style="color:red">*</span></label>
       </div>
       <div class="col-12 md:col-9">
-        <p-dropdown [options]="keyAnswer" optionLabel="name" optionValue="value" formControlName="isAnswer">
+        <p-dropdown [options]="keyAnswer" styleClass="w-full" optionLabel="name" optionValue="value"
+          formControlName="isAnswer">
         </p-dropdown>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">

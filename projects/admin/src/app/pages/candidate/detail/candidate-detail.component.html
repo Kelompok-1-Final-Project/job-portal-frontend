@@ -5,8 +5,6 @@
   <div class="col-11 grid grid-nogutter">
     <app-button classBtn="p-button-secondary" label="Back" iconBtn="pi pi-arrow-left"
       styleBtn="margin-bottom:0.5rem; margin-right:0.5rem" routerLink="/candidates"></app-button>
-    <app-button classBtn="p-button-primary" label="Update" iconBtn="pi pi-pencil" styleBtn="margin-bottom:0.5rem">
-    </app-button>
   </div>
   <div class="card col-11">
     <p-card>
@@ -72,19 +70,17 @@
             <label for="phoneNumber">Photo</label>
           </div>
           <div class="col-4">
-            <!-- <a href="path_to_mcu_file" download>
-                            <app-button iconBtn="pi pi-download" label="{{candidateProfile.photoId}}.pdf"></app-button>
-                        </a> -->
             <div class="col-4">
               <img src="{{candidateProfile?.photoId | urlAdmin}}" class="w-5rem md:w-full">
             </div>
           </div>
-          <div class="col-2 md-6">
+          <div class="col-2">
             <label for="phoneNumber">CV</label>
           </div>
           <div class="col-4">
             <a href="{{candidateProfile?.cvId | urlAdmin}}" download>
-              <app-button iconBtn="pi pi-download" label="{{candidateProfile?.cvId}}.pdf"></app-button>
+              <app-button classBtn="md:w-full" iconBtn="pi pi-download"
+                label="{{candidateProfile?.cvId}}.pdf"></app-button>
             </a>
           </div>
         </div>

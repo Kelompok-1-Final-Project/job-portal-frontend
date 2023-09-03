@@ -47,11 +47,11 @@
 
 <!-- Modal Add-->
 <p-dialog header="Upload Medical Check Up File" [modal]="true" [(visible)]="visibleMcu" [style]="{ width: '40vw' }"
-  [breakpoints]="{'768px': '90vw'}">
+  [breakpoints]="{'768px': '90vw'}" [draggable]="false">
   <form [formGroup]="medicalUpdateReqDto" (ngSubmit)="updateMcu()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-4">
-        <label for="inputName">Medical Check Up File</label>
+        <label for="inputName">Medical Check Up File<span style="color: red;">*</span></label>
       </div>
       <div class="col-12 md:col-8">
         <p-fileUpload mode="basic" chooseLabel="Upload" #cv accept="image/*" (onSelect)="fileUpload($event, cv)">

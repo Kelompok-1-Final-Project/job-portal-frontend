@@ -18,7 +18,7 @@ import { firstValueFrom } from "rxjs";
 })
 export class JobUpdateComponent implements AfterViewChecked {
 
-  job!: JobAdminGetResDto
+  job?: JobAdminGetResDto
   jobId!: string
   positions!: JobPositionGetResDto[]
   status!: JobStatusGetResDto[]
@@ -26,6 +26,7 @@ export class JobUpdateComponent implements AfterViewChecked {
   hr!: UserGetResDto[]
   interviewer!: UserGetResDto[]
   loading: boolean = false
+  text: string | undefined
 
   jobUpdateReqDto = this.fb.group({
     jobId: ['', [Validators.required]],

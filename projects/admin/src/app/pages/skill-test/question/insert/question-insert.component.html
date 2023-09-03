@@ -20,8 +20,11 @@
                   <label for="question">Question <span class="text-red-500">*</span></label>
                 </div>
                 <div class="col-12 md:col-10">
-                  <textarea rows="5" cols="40" type="text" pInputTextarea id="question" required
+                  <textarea rows="5" cols="40" class="w-full" type="text" pInputTextarea id="question" required
                     formControlName="question"></textarea>
+                  <small class="p-error block mt-1"
+                    *ngIf="questionsInsertReqDto.get('question')?.invalid&&questionsInsertReqDto.get('question')?.touched">This
+                    Fill is Required</small>
                 </div>
                 <div class="col-12">
                   <label for="option">Option</label>
@@ -54,7 +57,8 @@
                   routerLink="/questions"></app-button>
               </div>
               <div class="col-6">
-                <app-button label="Submit" btnType="submit" [loading]="loading" [disabled]="questionsInsertReqDto.invalid"></app-button>
+                <app-button label="Submit" btnType="submit" [loading]="loading"
+                  [disabled]="questionsInsertReqDto.invalid"></app-button>
               </div>
             </div>
           </div>

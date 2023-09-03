@@ -15,7 +15,7 @@ import { firstValueFrom } from "rxjs";
 export class JobPreviewComponent implements OnInit{   
 
     jobId!: string
-    job!: JobPreviewGetResDto
+    job?: JobPreviewGetResDto
     jobDesc!: SafeHtml
     benefits!: JobBenefitGetResDto[]
 
@@ -45,7 +45,9 @@ export class JobPreviewComponent implements OnInit{
     }
 
     showDescription(){
-        this.jobDesc = this.sanitize.bypassSecurityTrustHtml(this.job.description)
+        if(this.job!=null){
+            this.jobDesc = this.sanitize.bypassSecurityTrustHtml(this.job.description)
+        }
     }
 
     getJobBenefit(){

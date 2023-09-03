@@ -10,24 +10,27 @@
           <label for="companyName" class="form-label">Vacancy Code</label>
         </div>
         <div class="col-12 md:col-4">
-          <input pInputText type="text" class="form-control col-12 p-disabled" value={{job.jobCode}} required>
+          <input pInputText type="text" class="form-control col-12" readonly value={{job?.jobCode}} required>
         </div>
         <div class="col-12 md:col-2">
-          <label for="companyName" class="form-label">Vacancy Title</label>
+          <label for="companyName" class="form-label">Vacancy Title<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
           <input pInputText type="text" class="form-control col-12" id="companyName" aria-describedby="companyNameHelp"
             required formControlName="jobTitle">
+          <small class="p-error block mt-1"
+            *ngIf="jobUpdateReqDto.get('jobTitle')?.invalid&&jobUpdateReqDto.get('jobTitle')?.touched">This
+            Fill is Required</small>
         </div>
         <div class="col-12 md:col-2">
-          <label for="companyName" class="form-label">Position</label>
+          <label for="companyName" class="form-label">Position<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown [options]="positions" optionLabel="positionName" optionValue="positionCode"
-            formControlName="jobPositionCode"></p-dropdown>
+          <p-dropdown [options]="positions" optionLabel="positionName" [filter]="true" styleClass="w-full"
+            optionValue="positionCode" formControlName="jobPositionCode"></p-dropdown>
         </div>
         <div class="col-6 md:col-2">
-          <label for="companyName" class="form-label">Salary</label>
+          <label for="companyName" class="form-label">Salary<span style="color: red;">*</span></label>
         </div>
         <div class="col-6 md:col-4">
           <input pInputText type="text" class="form-control col-5" id="companyName" aria-describedby="companyNameHelp"
@@ -37,56 +40,57 @@
             required formControlName="salaryEnd">
         </div>
         <div class="col-12 md:col-2">
-          <label for="companyAddress" class="form-label">Published Time</label>
+          <label for="companyAddress" class="form-label">Published Time<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-calendar [showIcon]="true" formControlName="endDate"></p-calendar>
+          <p-calendar [showIcon]="true" formControlName="endDate" styleClass="w-full"></p-calendar>
         </div>
         <div class="col-12 md:col-2">
-          <label for="companyName" class="form-label">Company</label>
+          <label for="companyName" class="form-label">Company<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <input pInputText type="text" class="form-control col-12 p-disabled" value={{job.companyName}}>
+          <input pInputText type="text" class="form-control col-12" readonly value={{job?.companyName}}>
         </div>
         <div class="col-12 md:col-2">
-          <label for="companyName" class="form-label">Status</label>
+          <label for="companyName" class="form-label">Status<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown [options]="status" optionLabel="statusName" optionValue="statusCode"
+          <p-dropdown [options]="status" optionLabel="statusName" styleClass="w-full" optionValue="statusCode"
             formControlName="jobStatusCode"></p-dropdown>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Hr Person in Contact<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown [options]="hr" optionLabel="fullName" optionValue="userId" formControlName="hrId"></p-dropdown>
+          <p-dropdown [options]="hr" optionLabel="fullName" [filter]="true" styleClass="w-full" optionValue="userId"
+            formControlName="hrId"></p-dropdown>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Interviewer PIC<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown [options]="interviewer" optionLabel="fullName" optionValue="userId"
-            formControlName="interviewerId"></p-dropdown>
+          <p-dropdown [options]="interviewer" optionLabel="fullName" [filter]="true" optionValue="userId"
+            styleClass="w-full" formControlName="interviewerId"></p-dropdown>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Employment Type<span style="color: red;">*</span></label>
         </div>
         <div class="col-12 md:col-4">
-          <p-dropdown [options]="employment" optionLabel="typeName" optionValue="typeCode"
+          <p-dropdown [options]="employment" styleClass="w-full" optionLabel="typeName" optionValue="typeCode"
             formControlName="employmentTypeCode"></p-dropdown>
         </div>
         <div class="flex col-12">
           <h2 class="text-center">Summary and Responsibility</h2>
         </div>
         <div class="col-12 md:col-4">
-          <!-- <p-editor></p-editor> -->
-          <textarea pInputText cols="30" rows="10" formControlName="description"></textarea>
+          <p-editor #editor formControlName="description" [(ngModel)]="text" [style]="{ height: '320px' }"></p-editor>
         </div>
 
         <div class="flex flex-wrap justify-content-end mt-2 col-12">
-          <app-button btnType="button" link="/job-vacancies" classBtn="p-button-secondary mr-3"
+          <app-button btnType="button" routerLink="/job-vacancies/details/{{jobId}}" classBtn="p-button-secondary mr-3"
             label="Back to Previous Menu" iconBtn="pi pi-angle-double-left"></app-button>
-          <app-button btnType="submit" [loading]="loading" class="p-button-primary" label="Submit"></app-button>
+          <app-button btnType="submit" [loading]="loading" [disabled]="jobUpdateReqDto.invalid" class="p-button-primary"
+            label="Submit"></app-button>
         </div>
       </div>
     </div>

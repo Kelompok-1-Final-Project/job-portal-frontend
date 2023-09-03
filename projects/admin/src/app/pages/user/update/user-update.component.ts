@@ -30,10 +30,10 @@ export class UserUpdateComponent implements OnInit, AfterViewChecked {
     userId: ['', [Validators.required]],
     email: ['', [Validators.required]],
     fullName: ['', [Validators.required]],
-    mobileNumber: ['', [Validators.required]],
-    genderId: ['', [Validators.required]],
-    file: ['', [Validators.required]],
-    ext: ['', [Validators.required]],
+    mobileNumber: [''],
+    genderId: [''],
+    file: [''],
+    ext: [''],
     roleId: ['', [Validators.required]]
   })
 

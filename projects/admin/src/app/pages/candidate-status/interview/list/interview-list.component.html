@@ -53,10 +53,13 @@
   <form [formGroup]="interviewUpdateReqDto" (ngSubmit)="updateNotes()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
-        <label for="inputName">Notes</label>
+        <label for="inputName">Notes<span style="color: red;">*</span></label>
       </div>
       <div class="col-12 md:col-9">
         <textarea pInputTextarea type="text" class="col-12 " id="inputName" required formControlName="notes"></textarea>
+        <small class="p-error block mt-1"
+            *ngIf="interviewUpdateReqDto.get('notes')?.invalid&&interviewUpdateReqDto.get('notes')?.touched">This
+            Fill is Required</small>
       </div>
       <div class="flex flex-wrap justify-content-end mt-2 col-12">
         <app-button btnType="submit" label="Submit" [disabled]="interviewUpdateReqDto.invalid" [loading]="loading">

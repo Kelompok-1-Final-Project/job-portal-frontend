@@ -5,7 +5,7 @@ import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { NotFoundComponent } from "@component/not-found/not-found.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { authValidation } from "projects/base/src/app/validation/auth.validation";
+import { authValidation, authValidationNonLogin, authValidationNonLoginAdmin } from "projects/base/src/app/validation/auth.validation";
 import { BaseModule } from "@component/base/base.module";
 import { ButtonComponent } from "@component/button/button.component";
 import { UrlPipeAdmin } from "@pipes/url.pipe";
@@ -27,7 +27,8 @@ const routes: Routes = [
         component: BaseComponent,
         path: 'companies',
         loadChildren: () => import('./pages/company/company.module')
-            .then(c => c.CompanyModule)
+            .then(c => c.CompanyModule),
+        canMatch: [authValidationNonLoginAdmin]
     }, {
         component: BaseComponent,
         path: 'cities',
@@ -137,18 +138,19 @@ const routes: Routes = [
         component: BaseComponent,
         path: 'employees',
         loadChildren: () => import('./pages/employee/employee.module')
-            .then(c => c.EmployeeModule)
+            .then(c => c.EmployeeModule),
+            canMatch : [ authValidationNonLoginAdmin ]
     },
     {
         component: BaseComponent,
         path: 'positions',
         loadChildren: () => import('./pages/position/position.module')
-            .then(c => c.PositionModule)
+            .then(c => c.PositionModule),
+        canMatch: [authValidationNonLoginAdmin]
     },
     {
         component: LoginComponent,
-        path: 'login',
-        // canMatch : [ authValidation ]
+        path: 'login'
     },
     {
         path: '',
