@@ -9,8 +9,7 @@ import { firstValueFrom } from "rxjs";
 @Component({
   selector: 'job-list',
   templateUrl: './job-list.component.html',
-  styleUrls: ['./job-list.component.css'],
-  encapsulation: ViewEncapsulation.None 
+  styleUrls: ['./job-list.component.css']
 })
 export class JobListComponent implements OnInit {
 

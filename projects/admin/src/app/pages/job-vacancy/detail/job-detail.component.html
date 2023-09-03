@@ -1,322 +1,318 @@
-<div class="container" style="margin-bottom: 5rem;">
-    <form>
-        <div class="card-container flex flex-wrap justify-content-start align-items-center" style="min-height: 700px">
-            <div class="flex col-12">
-                <h1 class="text-center font-bold">Vacancy Information</h1>
-            </div>
-            <div class="col-12">
-                <div class="grid justify-content-start">
-                    <app-button classBtn="p-button-secondary" routerLink="/job-vacancies" styleBtn="margin-right:0.5rem"
-                        iconBtn="pi pi-arrow-left" label="Back"></app-button>
-                    <app-button classBtn="p-button-primary" iconBtn="pi pi-eye" label="Preview"
-                        styleBtn="margin-right:0.5rem" routerLink="/job-vacancies/preview/{{job?.id}}"></app-button>
-                    <app-button classBtn="p-button-secondary" iconBtn="pi pi-pencil" label="Update"></app-button>
-                </div>
-            </div>
-            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
-                <label class="text-sm font-medium">Vacancy Title</label>
-                <p class="text-lg">{{ job?.jobTitle }}</p>
-            </div>
-            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
-                <label class="text-sm font-medium">Position</label>
-                <p class="text-lg">{{ job?.positionName }}</p>
-            </div>
-            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
-                <label class="text-sm font-medium">Salary</label>
-                <p class="text-lg">Rp {{ job?.salaryStart }} - Rp {{ job?.salaryEnd }}</p>
-            </div>
-            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
-                <label class="text-sm font-medium">Expired Time</label>
-                <p class="text-lg">{{ job?.endDate }}</p>
-            </div>
-            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
-                <label class="text-sm font-medium">Company</label>
-                <p class="text-lg">{{ job?.companyName }}</p>
-            </div>
-            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
-                <label class="text-sm font-medium">Employment Type</label>
-                <p class="text-lg">{{ job?.employmentName }}</p>
-            </div>
-            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
-                <label class="text-sm font-medium">Status</label>
-                <p class="text-lg">{{ job?.statusName }}</p>
-            </div>
-            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
-                <label class="text-sm font-medium">Description</label>
+<div class="container min-h-screen">
+  <div class="grid grid-nogutter justify-content-center">
+    <div class="col-12">
+      <h1 class="text-center font-bold">Vacancy Information</h1>
+    </div>
+    <form class="col-12 grid grid-nogutter justify-content-center">
+      <div class="col-11 shadow-2 surface-card border-round-sm border-800 p-5">
+        <div class="col-12">
+          <div class="grid justify-content-start">
+            <app-button classBtn="p-button-secondary" routerLink="/job-vacancies" styleBtn="margin-right:0.5rem"
+              iconBtn="pi pi-arrow-left" label="Back"></app-button>
+            <app-button classBtn="p-button-primary" iconBtn="pi pi-eye" label="Preview" styleBtn="margin-right:0.5rem"
+              routerLink="/job-vacancies/preview/{{job?.id}}"></app-button>
+            <app-button classBtn="p-button-secondary" iconBtn="pi pi-pencil" label="Update"></app-button>
+          </div>
+        </div>
+        <div class="grid grid-nogutter">
+          <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+            <label class="text-sm font-medium">Vacancy Title</label>
+            <p class="text-lg">{{ job?.jobTitle }}</p>
+          </div>
+          <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+            <label class="text-sm font-medium">Position</label>
+            <p class="text-lg">{{ job?.positionName }}</p>
+          </div>
+          <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+            <label class="text-sm font-medium">Salary</label>
+            <p class="text-lg">Rp {{ job?.salaryStart }} - Rp {{ job?.salaryEnd }}</p>
+          </div>
+          <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+            <label class="text-sm font-medium">Expired Time</label>
+            <p class="text-lg">{{ job?.endDate }}</p>
+          </div>
+          <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+            <label class="text-sm font-medium">Company</label>
+            <p class="text-lg">{{ job?.companyName }}</p>
+          </div>
+          <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+            <label class="text-sm font-medium">Employment Type</label>
+            <p class="text-lg">{{ job?.employmentName }}</p>
+          </div>
+          <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+            <label class="text-sm font-medium">Status</label>
+            <p class="text-lg">{{ job?.statusName }}</p>
+          </div>
+          <div class="col-12 mb-4 text-left">
+            <label>Description</label>
+            <div class="surface-card w-full shadow-1 border-round-sm border-800 p-2 mt-3">
                 <div [innerHTML]="sanitizedContent"></div>
             </div>
-            <div class="flex col-12">
-                <h2 class="text-center text-3xl font-bold mb-6">Vacancy PIC</h2>
-            </div>
-            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
-                <label class="text-sm font-medium">HR</label>
-                <p class="text-lg">{{job?.hrName}}</p>
-            </div>
-            <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
-                <label class="text-sm font-medium">Interviewer</label>
-                <p class="text-lg">{{job?.interviewerName}}</p>
-            </div>
+          </div>
+          <div class="flex col-12">
+            <h2 class="text-center text-3xl font-bold mb-6">Vacancy PIC</h2>
+          </div>
+          <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+            <label class="text-sm font-medium">HR</label>
+            <p class="text-lg">{{job?.hrName}}</p>
+          </div>
+          <div class="col-12 md:col-6 lg:col-3 mb-4 text-left">
+            <label class="text-sm font-medium">Interviewer</label>
+            <p class="text-lg">{{job?.interviewerName}}</p>
+          </div>
         </div>
 
         <p-tabView>
-            <p-tabPanel header="Job Benefit">
-                <div class="container">
-                    <app-button label="Add Benefit" routerLink="/job-vacancies/details/{{job?.id}}"
-                        (clickChange)="addJobBenefit()"></app-button>
-                    <h3>List Benefit:</h3>
-                    <div class="list-benefit">
+          <p-tabPanel header="Job Benefit">
+            <div class="container">
+              <app-button label="Add Benefit" routerLink="/job-vacancies/details/{{job?.id}}"
+                (clickChange)="addJobBenefit()"></app-button>
+              <h3>List Benefit:</h3>
+              <div class="list-benefit">
+                <ul>
+                  <li *ngFor="let b of benefits">
+                    <div class="grid">
+                      <div class="col-3">
+                        <span>{{b.benefitName}} </span>
+                      </div>
+                      <div class="col-9">
+                        <app-button classBtn="p-button-danger" styleBtn="margin-bottom:0.3rem"
+                          (clickChange)="deleteBenefit(job?.jobCode, b.benefitCode)" iconBtn="pi pi-trash"
+                          tooltipBtn="Delete" tooltipPstn="top" routerLink="/job-vacancies/details/{{id}}"></app-button>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </p-tabPanel>
+          <p-tabPanel header="Candidate Status">
+            <div class=" grid justify-content-center col-12">
+              <h3 class="text-center">All Candidate Progress</h3>
+            </div>
+            <div class="card">
+              <p-table [value]="candidates" [paginator]="true" styleClass="p-datatable-striped" [rows]="10">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>No</th>
+                    <th>Candidate Name</th>
+                    <th>Job Title</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-row let-i="rowIndex">
+                  <tr>
+                    <td>{{ i+1 }}</td>
+                    <td>{{row.candidateName}}</td>
+                    <td>{{row.jobName}}</td>
+                    <td>{{row.statusName}}</td>
+                    <td>
+                      <p-dropdown [options]="status" styleClass="w-full" appendTo="body" optionValue="progressCode"
+                        optionLabel="progressName" [ngModel]="row.statusCode" [ngModelOptions]="{standalone: true}"
+                        (onChange)="changeStatus($event.value, row.candidateId, row.candidateProgressId)"></p-dropdown>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </p-tabPanel>
+          <p-tabPanel *ngIf="isQuestion()" header="Question Test">
+            <div class="container">
+              <h3>Skill Test</h3>
+
+              <div class="question-details">
+                <div class="test">
+                  <h4 class="detail-heading">Test:</h4>
+                  <p>{{ test.testName }}</p>
+                </div>
+
+                <div class="question">
+                  <h4 class="detail-heading">Questions:</h4>
+                  <app-button label="Add Question" styleBtn="margin-bottom:0.5rem"
+                    routerLink="/job-vacancies/{{id}}/question/{{test.testCode}}"></app-button>
+                  <div *ngFor="let q of test.questionGetResDtos; let i = index">
+                    <p-accordion [multiple]="true" [activeIndex]="[0]">
+                      <p-accordionTab header="Question {{i+1}}">
+                        <p>{{i+1}}. {{q.question}}</p>
                         <ul>
-                            <li *ngFor="let b of benefits">
-                                <div class="grid">
-                                    <div class="col-1">
-                                        <span>{{b.benefitName}} </span>
-                                    </div>
-                                    <div class="col-11">
-                                        <app-button classBtn="p-button-danger" styleBtn="margin-bottom:0.3rem"
-                                            (clickChange)="deleteBenefit(job?.jobCode, b.benefitCode)"
-                                            iconBtn="pi pi-trash" tooltipBtn="Delete" tooltipPstn="top"
-                                            routerLink="/job-vacancies/details/{{id}}"></app-button>
-                                    </div>
-                                </div>
-                            </li>
+                          <li *ngFor="let o of q.optionGetResDtos">
+                            <span>{{o.label}} </span>
+                            <span class="option-answer">({{o.isAnswer}})</span>
+                          </li>
                         </ul>
-                    </div>
-                </div>
-            </p-tabPanel>
-            <p-tabPanel header="Candidate Status">
-                <div class=" grid justify-content-center col-12">
-                    <h3 class="text-center">All Candidate Progress</h3>
-                </div>
-                <div class="card">
-                    <p-table [value]="candidates" [paginator]="true" [rows]="10">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>No</th>
-                                <th>Candidate Name</th>
-                                <th>Job Title</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-row let-i="rowIndex">
-                            <tr>
-                                <td>{{ i+1 }}</td>
-                                <td>{{row.candidateName}}</td>
-                                <td>{{row.jobName}}</td>
-                                <td>{{row.statusName}}</td>
-                                <td>
-                                    <p-dropdown [options]="status" styleClass="w-full" appendTo="body"
-                                        optionValue="progressCode" optionLabel="progressName" [ngModel]="row.statusCode"
-                                        [ngModelOptions]="{standalone: true}"
-                                        (onChange)="changeStatus($event.value, row.candidateId, row.candidateProgressId)"></p-dropdown>
-                                </td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </div>
-            </p-tabPanel>
-            <p-tabPanel *ngIf="isQuestion()" header="Question Test">
-                <div class="container">
-                    <h3>Skill Test</h3>
+                        <app-button classBtn="p-button-danger" iconBtn="pi pi-trash" tooltipBtn="Delete Question"
+                          tooltipPstn="top" (clickChange)="questionModal(test.testCode, q.questionCode)"
+                          routerLink="/job-vacancies/details/{{job?.id}}"></app-button>
+                      </p-accordionTab>
+                    </p-accordion>
+                  </div>
 
-                    <div class="question-details">
-                        <div class="test">
-                            <h4 class="detail-heading">Test:</h4>
-                            <p>{{ test.testName }}</p>
-                        </div>
-
-                        <div class="question">
-                            <h4 class="detail-heading">Questions:</h4>
-                            <app-button label="Add Question" styleBtn="margin-bottom:0.5rem"
-                                routerLink="/job-vacancies/{{id}}/question/{{test.testCode}}"></app-button>
-                            <div *ngFor="let q of test.questionGetResDtos; let i = index">
-                                <p-accordion [multiple]="true" [activeIndex]="[0]">
-                                    <p-accordionTab header="Question {{i+1}}">
-                                        <p>{{i+1}}. {{q.question}}</p>
-                                        <ul>
-                                            <li *ngFor="let o of q.optionGetResDtos">
-                                                <span>{{o.label}} </span>
-                                                <span class="option-answer">({{o.isAnswer}})</span>
-                                            </li>
-                                        </ul>
-                                        <app-button classBtn="p-button-danger" iconBtn="pi pi-trash"
-                                            tooltipBtn="Delete Question" tooltipPstn="top"
-                                            (clickChange)="questionModal(test.testCode, q.questionCode)"
-                                            routerLink="/job-vacancies/details/{{job?.id}}"></app-button>
-                                    </p-accordionTab>
-                                </p-accordion>
-                            </div>
-
-                        </div>
-                    </div>
                 </div>
-            </p-tabPanel>
-            <p-tabPanel header="Result Test">
-                <div class=" grid justify-content-center col-12">
-                    <h3 class="text-center">All Candidates Result Test</h3>
-                </div>
-                <div class="card">
-                    <p-table [value]="results" [paginator]="true" [rows]="10">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>No</th>
-                                <th>Candidate Name</th>
-                                <th>Grade</th>
-                                <th>Notes</th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-row let-i="rowIndex">
-                            <tr>
-                                <td>{{ i+1 }}</td>
-                                <td>{{row.candidateName}}</td>
-                                <td>{{row.grade}}</td>
-                                <td>{{row.notes}}</td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
-                </div>
-            </p-tabPanel>
+              </div>
+            </div>
+          </p-tabPanel>
+          <p-tabPanel header="Result Test">
+            <div class=" grid justify-content-center col-12">
+              <h3 class="text-center">All Candidates Result Test</h3>
+            </div>
+            <div class="card">
+              <p-table [value]="results" [paginator]="true" [rows]="10">
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>No</th>
+                    <th>Candidate Name</th>
+                    <th>Grade</th>
+                    <th>Notes</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-row let-i="rowIndex">
+                  <tr>
+                    <td>{{ i+1 }}</td>
+                    <td>{{row.candidateName}}</td>
+                    <td>{{row.grade}}</td>
+                    <td>{{row.notes}}</td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </p-tabPanel>
         </p-tabView>
+      </div>
     </form>
+  </div>
 </div>
 
 <!-- Modal Assessment-->
 <p-dialog header="Add Data Assessment" [modal]="true" [(visible)]="visibleAssessment" [style]="{ width: '30vw' }">
-    <form [formGroup]="assessmentInsertReqDto" (ngSubmit)="insertAssessment()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12 md:col-3">
-                <label for="inputName">Schedule</label>
-            </div>
-            <div class="col-12 md:col-9">
-                <p-calendar appendTo="body" [showIcon]="true" formControlName="schedule"></p-calendar>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" [loading]="disAssessment" classBtn="p-button-primary"
-                    label="Submit"></app-button>
-            </div>
-        </div>
-    </form>
+  <form [formGroup]="assessmentInsertReqDto" (ngSubmit)="insertAssessment()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Schedule</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar appendTo="body" [showIcon]="true" formControlName="schedule"></p-calendar>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" [loading]="disAssessment" classBtn="p-button-primary" label="Submit"></app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Interview-->
 <p-dialog header="Add Data Interview" [modal]="true" [(visible)]="visibleInterview" [style]="{ width: '30vw' }">
-    <form [formGroup]="interviewInsertReqDto" (ngSubmit)="insertInterview()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12 md:col-3">
-                <label for="inputName">Schedule</label>
-            </div>
-            <div class="col-12 md:col-9">
-                <p-calendar appendTo="body" styleClass="w-full" [showIcon]="true"
-                    formControlName="schedule"></p-calendar>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" [loading]="disInterview" classBtn="p-button-primary"
-                    label="Submit"></app-button>
-            </div>
-        </div>
-    </form>
+  <form [formGroup]="interviewInsertReqDto" (ngSubmit)="insertInterview()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Schedule</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-calendar appendTo="body" styleClass="w-full" [showIcon]="true" formControlName="schedule"></p-calendar>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" [loading]="disInterview" classBtn="p-button-primary" label="Submit"></app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 
 <!-- Modal MCU-->
 <p-dialog header="Add Data Medical Checkup" [modal]="true" [(visible)]="visibleMcu" [style]="{ width: '30vw' }">
-    <form [formGroup]="medicalcheckupInsertReqDto" (ngSubmit)="insertMcu()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12">
-                <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Medical Checkup?</h3>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" [loading]="disMedicalCheckup" classBtn="p-button-primary mr-2"
-                    label="Yes"></app-button>
-                <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelMcu()"
-                    label="No"></app-button>
-            </div>
-        </div>
-    </form>
+  <form [formGroup]="medicalcheckupInsertReqDto" (ngSubmit)="insertMcu()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12">
+        <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Medical Checkup?</h3>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" [loading]="disMedicalCheckup" classBtn="p-button-primary mr-2" label="Yes">
+        </app-button>
+        <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelMcu()" label="No"></app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Offering-->
 <p-dialog header="Add Data Offering" [modal]="true" [(visible)]="visibleOffering" [style]="{ width: '30vw' }">
-    <form [formGroup]="offeringInsertReqDto" (ngSubmit)="insertOffering()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12">
-                <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Offering?</h3>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" [loading]="disOffering" classBtn="p-button-primary mr-3"
-                    label="Yes"></app-button>
-                <app-button btnType="submit" classBtn="p-button-secondary" (clickChange)="cancelOffering()"
-                    label="No"></app-button>
-            </div>
-        </div>
-    </form>
+  <form [formGroup]="offeringInsertReqDto" (ngSubmit)="insertOffering()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12">
+        <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Offering?</h3>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" [loading]="disOffering" classBtn="p-button-primary mr-3" label="Yes"></app-button>
+        <app-button btnType="submit" classBtn="p-button-secondary" (clickChange)="cancelOffering()" label="No">
+        </app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Hired-->
 <p-dialog header="Add Data Hired" [modal]="true" [(visible)]="visibleHired" [style]="{ width: '30vw' }">
-    <form [formGroup]="hiredInsertReqDto" (ngSubmit)="insertHired()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12">
-                <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Hired?</h3>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" [loading]="disHired" classBtn="p-button-primary mr-3"
-                    label="Yes"></app-button>
-                <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelHired()"
-                    label="No"></app-button>
-            </div>
-        </div>
-    </form>
+  <form [formGroup]="hiredInsertReqDto" (ngSubmit)="insertHired()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12">
+        <h3 for="inputName">Apakah anda ingin melanjutkan candidate ke tahap Hired?</h3>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" [loading]="disHired" classBtn="p-button-primary mr-3" label="Yes"></app-button>
+        <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelHired()" label="No">
+        </app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Rejected-->
 <p-dialog header="Add Data Rejected" [modal]="true" [(visible)]="visibleRejected" [style]="{ width: '30vw' }">
-    <form [formGroup]="rejectedInsertReqDto" (ngSubmit)="insertRejected()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12">
-                <h3 for="inputName">Apakah anda ingin memasukkan candidate ke dalam rejected?</h3>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" [loading]="loading" classBtn="p-button-primary" label="Yes"></app-button>
-                <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelRejected()"
-                    label="No"></app-button>
-            </div>
-        </div>
-    </form>
+  <form [formGroup]="rejectedInsertReqDto" (ngSubmit)="insertRejected()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12">
+        <h3 for="inputName">Apakah anda ingin memasukkan candidate ke dalam rejected?</h3>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" [loading]="loading" classBtn="p-button-primary" label="Yes"></app-button>
+        <app-button btnType="button" classBtn="p-button-secondary" (clickChange)="cancelRejected()" label="No">
+        </app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Delete Benefit-->
 <p-dialog header="Delete Benefit" [modal]="true" [(visible)]="visibleBenefit" [style]="{ width: '30vw' }">
-    <form (ngSubmit)="deleteJobBenefit()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12">
-                <h3 for="inputName">Apakah anda ingin menghapus Benefit dari job</h3>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" classBtn="p-button-primary" styleBtn="margin-right:0.3rem"
-                    label="Yes"></app-button>
-                <app-button btnType="button" [loading]="loading" classBtn="p-button-secondary" (clickChange)="cancelDeleteQuestion()"
-                    label="No"></app-button>
-            </div>
-        </div>
-    </form>
+  <form (ngSubmit)="deleteJobBenefit()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12">
+        <h3 for="inputName">Apakah anda ingin menghapus Benefit dari job</h3>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" classBtn="p-button-primary" styleBtn="margin-right:0.3rem" label="Yes">
+        </app-button>
+        <app-button btnType="button" [loading]="loading" classBtn="p-button-secondary"
+          (clickChange)="cancelDeleteQuestion()" label="No"></app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
 
 <!-- Modal Add-->
 <p-dialog header="Add benefit" [modal]="true" [(visible)]="visibleAddBenefit"
-    [breakpoints]="{'768px': '90vw','900px': '70vw'}" [style]="{width: '30vw' }" [draggable]="false">
-    <form [formGroup]="jobBenefitInsertReqDto" (ngSubmit)="insertJobBenefit()">
-        <div class="grid surface-card border-round-sm border-400">
-            <div class="col-12 md:col-3">
-                <label for="inputName">Choose Benefit</label>
-            </div>
-            <div class="col-12 md:col-9">
-                <p-dropdown styleClass="w-full" [options]="listBenefits" [filter]="true" optionValue="id"
-                    optionLabel="benefitName" formControlName="benefitId" placeholder="Choose"
-                    appendTo="body"></p-dropdown>
-            </div>
-            <div class="flex flex-wrap justify-content-end mt-2 col-12">
-                <app-button btnType="submit" label="Submit" [loading]="loading"></app-button>
-            </div>
-        </div>
-    </form>
+  [breakpoints]="{'768px': '90vw','900px': '70vw'}" [style]="{width: '30vw' }" [draggable]="false">
+  <form [formGroup]="jobBenefitInsertReqDto" (ngSubmit)="insertJobBenefit()">
+    <div class="grid surface-card border-round-sm border-400">
+      <div class="col-12 md:col-3">
+        <label for="inputName">Choose Benefit</label>
+      </div>
+      <div class="col-12 md:col-9">
+        <p-dropdown styleClass="w-full" [options]="listBenefits" [filter]="true" optionValue="id"
+          optionLabel="benefitName" formControlName="benefitId" placeholder="Choose" appendTo="body"></p-dropdown>
+      </div>
+      <div class="flex flex-wrap justify-content-end mt-2 col-12">
+        <app-button btnType="submit" label="Submit" [loading]="loading"></app-button>
+      </div>
+    </div>
+  </form>
 </p-dialog>
