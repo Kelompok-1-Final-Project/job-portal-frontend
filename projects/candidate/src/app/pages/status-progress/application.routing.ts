@@ -23,6 +23,7 @@ import { ChipModule } from "primeng/chip";
 import { UrlPipeAdmin, UrlPipeCandidate } from "@pipes/url.pipe";
 import { PaginatorModule } from "primeng/paginator";
 import { ScrollTopModule } from "primeng/scrolltop";
+import { TimeAgoPipe } from "@pipes/time-ago.pipe";
 
 
 const routes : Routes = [
@@ -60,6 +61,7 @@ const routes : Routes = [
         UrlPipeCandidate,
         PaginatorModule,
         ScrollTopModule,
+        TimeAgoPipe,
         FileUploadModule
     ],
     exports : [

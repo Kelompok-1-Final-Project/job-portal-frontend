@@ -137,7 +137,7 @@ export class ApplicationComponent implements OnInit {
     const data = this.userReqDto;
     firstValueFrom(this.statusService.getInterview(data)).then(result => {
       this.interview = result
-      this.lengthMcu=result.length;
+      this.lengthInterview=result.length;
     })
   }
 
