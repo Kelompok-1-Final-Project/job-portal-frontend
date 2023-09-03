@@ -1,4 +1,4 @@
- <pre>{{ applications|json }}</pre>
+ <!-- <pre>{{ applications|json }}</pre> -->
  <!-- <pre>{{ this.userEmail|json }}</pre>  -->
 
  <div class="app-container grid grid-nogutter justify-content-center mt-5 min-h-screen">
@@ -30,7 +30,7 @@
                    <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
                  </div>
                  <div class="m-2">
-                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
+                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt|timeAgo }}</span>
                  </div>
                  <div class="m-2 grid">
                    <p-chip class="col-12 md:col-5 bg-success" label="Application"></p-chip>
@@ -70,7 +70,7 @@
                    <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
                  </div>
                  <div class="m-2">
-                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
+                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt | timeAgo }}</span>
                  </div>
                  <div class="m-2 grid">
                    <p-chip class="col-12 md:col-5 bg-success" label="Assesment"></p-chip>
@@ -111,7 +111,7 @@
                    <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
                  </div>
                  <div class="m-2">
-                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
+                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt | timeAgo }}</span>
                  </div>
                  <div class="m-2 grid">
                    <p-chip class="col-12 md:col-5 bg-success" label="Interview"></p-chip>
@@ -152,7 +152,7 @@
                    <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
                  </div>
                  <div class="m-2">
-                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
+                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt | timeAgo }}</span>
                  </div>
                  <div class="m-2 grid">
                    <p-chip class="col-12 md:col-5 bg-success" label="Medical Check-up"></p-chip>
@@ -193,7 +193,7 @@
                    <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
                  </div>
                  <div class="m-2">
-                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
+                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt | timeAgo }}</span>
                  </div>
                  <div class="m-2 grid">
                    <p-chip class="col-12 md:col-5 bg-success" label="Offering"></p-chip>
@@ -234,7 +234,7 @@
                    <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
                  </div>
                  <div class="m-2">
-                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
+                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt | timeAgo }}</span>
                  </div>
                  <div class="m-2 grid">
                    <p-chip class="col-12 md:col-5 bg-success" label="Hired"></p-chip>
@@ -275,7 +275,7 @@
                    <span><i class="pi pi-building"></i> {{ a.companyName }}</span>
                  </div>
                  <div class="m-2">
-                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt }}</span>
+                   <span><i class="pi pi-calendar"></i> Submitted on {{ a.createdAt | timeAgo }}</span>
                  </div>
                  <div class="m-2 grid">
                    <p-chip class="col-12 md:col-5 bg-success" label="Rejected"></p-chip>
