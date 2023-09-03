@@ -208,7 +208,6 @@
 
 <!-- Modal Experience-->
 <p-dialog header="Add Candidate Experience" [modal]="true" [(visible)]="visibleExperience" [style]="{ width: '30vw' }">
-  <pre>{{experienceInsertReqDto.value | json}}</pre>
   <form [formGroup]="experienceInsertReqDto" (ngSubmit)="insertExperience()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
@@ -244,7 +243,6 @@
 
 <!-- Modal Family-->
 <p-dialog header="Add Candidate Family" [modal]="true" [(visible)]="visibleFamily" [style]="{ width: '30vw' }">
-  <pre>{{experienceInsertReqDto.value | json}}</pre>
   <form [formGroup]="experienceInsertReqDto" (ngSubmit)="insertFamily()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
