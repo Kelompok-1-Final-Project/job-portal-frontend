@@ -21,6 +21,8 @@ export class CandidateInsertComponent implements OnInit, AfterViewChecked {
   gender!: GenderGetResDto[]
   personType!: PersonTypeGetResDto[]
   loading: boolean = false
+  today: Date = new Date()
+  selectedDate: Date = new Date()
 
   candidateInsertReqDto = this.fb.group({
     photoExt: [''],

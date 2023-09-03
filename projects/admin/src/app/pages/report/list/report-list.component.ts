@@ -17,6 +17,7 @@ export class ReportListComponent implements OnInit {
   reportUrl = ""
   startDate! : string
   endDate!: string
+  search: string = ''
 
   filterData = this.fb.group({
     startDateTemp: ['', [Validators.required]],

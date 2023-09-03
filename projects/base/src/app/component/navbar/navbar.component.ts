@@ -19,6 +19,7 @@ import { AuthService } from "../../service/auth.service";
 import { BASE_URL, BASE_URL_CAN } from "@constant/api.constant";
 import { OverlayPanel } from "primeng/overlaypanel";
 import { ProfileService } from "@serviceCandidate/profile.service";
+import { RoleName } from "@constant/role.enum";
 
 @Component({
   selector: 'app-navbar',
@@ -37,6 +38,9 @@ export class NavbarComponent implements OnInit {
   adminProfiles: MenuItem[] | undefined;
   isLogin!: boolean;
   op!: OverlayPanel;
+  isSuperAdmin!: boolean 
+  isInterviewer!: boolean 
+  isHr!: boolean
 
   constructor(
     private authService: AuthService,
@@ -104,10 +108,18 @@ export class NavbarComponent implements OnInit {
     if (profile?.roleCode != undefined) {
       this.isAdmin = true;
       this.isCandidate = false;
+      if(profile.roleCode == RoleName.ADMIN){
+        this.isSuperAdmin = true
+      } else if(profile.roleCode == RoleName.HR){
+        this.isHr = true
+      } else if(profile.roleCode == RoleName.INTERVIEWER){
+        this.isInterviewer = true
+      }
     } else {
       this.isCandidate = true;
       this.isAdmin = false;
     }
+
     this.logoWeb = '/assets/logo.png';
 
     this.items = [{
@@ -118,6 +130,7 @@ export class NavbarComponent implements OnInit {
     {
       label: 'Master Data',
       icon: "pi pi-fw pi-server",
+      visible: !this.isInterviewer,
       items: [{
         label: 'User',
         routerLink: "/users",

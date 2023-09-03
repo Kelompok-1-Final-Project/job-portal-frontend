@@ -49,6 +49,8 @@ export class JobInsertComponent implements AfterViewChecked {
   questionId: string[] = []
   listBenefit: any[] = []
   cleanText!: string
+  minDate: Date = new Date()
+  today : Date = new Date()
 
   jobInsertReqDto = this.fb.group({
     jobTitle: ['', [Validators.required]],

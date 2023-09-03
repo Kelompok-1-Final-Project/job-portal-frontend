@@ -45,7 +45,7 @@
           <label for="companyAddress" class="form-label">Expired Time<span style="color: red;">*</span></label>
         </div>
         <div class="col-6 md:col-4">
-          <p-calendar [showIcon]="true" styleClass="w-full" formControlName="endDate"></p-calendar>
+          <p-calendar [showIcon]="true" [(ngModel)]="today" [minDate]="minDate" styleClass="w-full" formControlName="endDate"></p-calendar>
         </div>
         <div class="col-12 md:col-2">
           <label for="companyName" class="form-label">Company<span style="color: red;">*</span></label>

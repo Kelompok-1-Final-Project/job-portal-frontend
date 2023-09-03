@@ -1,15 +1,16 @@
 <div class="min-h-screen">
   <div class=" grid grid-nogutter justify-content-center">
     <div class="col-12">
-    <h3 class="text-center">Industry List</h3>
-  </div>
-  <div class="col-11 shadow-2 surface-card border-round-sm border-800 p-2">
-    <p-table #industry [value]="industries" styleClass="p-datatable-striped" [paginator]="true" [rows]="5" [tableStyle]="{ 'min-width': '50rem' }"
-    [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['industryName']">
-    <ng-template pTemplate="caption">
-      <div class="flex">
-        <app-button link="/industries" (clickChange)="add()" label="Add Industry"></app-button>
+      <h3 class="text-center">Industry List</h3>
+    </div>
+    <div class="col-11 shadow-2 surface-card border-round-sm border-800 p-2">
+      <p-table #industry [value]="industries" styleClass="p-datatable-striped" [paginator]="true" [rows]="5"
+        [tableStyle]="{ 'min-width': '50rem' }" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[5, 10, 25, 50]" selectionMode="single" [globalFilterFields]="['industryName']">
+        <ng-template pTemplate="caption">
+          <div class="flex">
+            <app-button link="/industries" (clickChange)="add()" label="Add Industry"></app-button>
             <span class="p-input-icon-left ml-auto">
               <i class="pi pi-search"></i>
               <input #searchInput pInputText type="text" [(ngModel)]="search"
@@ -17,29 +18,27 @@
             </span>
           </div>
         </ng-template>
-      <ng-template pTemplate="header">
-        <tr>
-          <th scope="col">No</th>
-          <th scope="col">Code </th>
-          <th scope="col">Name</th>
-          <th scope="col">Action</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-p let-i="rowIndex">
-        <tr>
-          <td scope="row">{{ i+1 }}</td>
-          <td>{{ p.industryCode }}</td>
-          <td>{{ p.industryName }}</td>
-          <td>
-            <app-button classBtn="p-button-secondary" (clickChange)="update(p.industryCode)" iconBtn="pi pi-pencil"
-              tooltipBtn="Edit" styleBtn="margin-right:0.5rem;" tooltipPstn="top" link="/industries"></app-button>
-            <app-button classBtn="p-button-danger" iconBtn="pi pi-trash" tooltipBtn="Delete"
-              tooltipPstn="top"></app-button>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
+        <ng-template pTemplate="header">
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Code </th>
+            <th scope="col">Name</th>
+            <th scope="col">Action</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-p let-i="rowIndex">
+          <tr>
+            <td scope="row">{{ i+1 }}</td>
+            <td>{{ p.industryCode }}</td>
+            <td>{{ p.industryName }}</td>
+            <td>
+              <app-button classBtn="p-button-secondary" (clickChange)="update(p.industryCode)" iconBtn="pi pi-pencil"
+                tooltipBtn="Edit" styleBtn="margin-right:0.5rem;" tooltipPstn="top" link="/industries"></app-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
   </div>
 
 
