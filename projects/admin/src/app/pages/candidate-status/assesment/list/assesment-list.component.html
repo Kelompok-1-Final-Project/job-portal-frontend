@@ -39,7 +39,7 @@
               <td>{{row.schedule}}</td>
               <td>{{row.notes}}</td>
               <td>
-                <app-button iconBtn="pi pi-pencil" tooltipBtn="Insert Notes" tooltipPstn="top"
+                <app-button iconBtn="pi pi-pencil" [disabled]="isInterview" tooltipBtn="Insert Notes" tooltipPstn="top"
                   (clickChange)="addNotes(row.assessmentId)" link="/candidate-statuses/assessment"></app-button>
               </td>
             </tr>

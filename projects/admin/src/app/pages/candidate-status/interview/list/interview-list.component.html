@@ -37,7 +37,7 @@
             <td>{{ row.schedule }}</td>
             <td>{{ row.notes }}</td>
             <td>
-              <app-button iconBtn="pi pi-pencil" tooltipBtn="Insert Notes" tooltipPstn="top"
+              <app-button [disabled]="isHr" iconBtn="pi pi-pencil" tooltipBtn="Insert Notes" tooltipPstn="top"
                 (clickChange)="insertNotes(row.interviewId)" link="/candidate-statuses/interview"></app-button>
             </td>
           </tr>

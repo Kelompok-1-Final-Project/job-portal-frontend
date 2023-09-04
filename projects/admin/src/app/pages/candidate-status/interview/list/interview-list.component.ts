@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { RoleName } from '@constant/role.enum';
 import { InterviewGetResDto } from '@dto/interview/interview.get.res.dto';
 import { AuthService } from '@serviceAdmin/auth.service';
 import { StatusProgressService } from '@serviceAdmin/statusprogress.service';
@@ -17,9 +18,10 @@ import { firstValueFrom } from 'rxjs';
 export class InterviewListComponent implements OnInit {
 
   visibleUpdateNotes: boolean = false;
-  userId!:string
+  userId!: string
   search: string = ''
   loading: boolean = false
+  isHr!: boolean
 
   interviewUpdateReqDto = this.fb.group({
     interviewId: ['', [Validators.required]],
@@ -52,10 +54,13 @@ export class InterviewListComponent implements OnInit {
     this.interviewUpdateReqDto.get('interviewId')?.setValue(id)
   }
 
-  getProfile(){
+  getProfile() {
     const profile = this.authService.getProfile()
-    if(profile){
+    if (profile) {
       this.userId = profile.userId
+      if (profile.roleCode == RoleName.HR) {
+        this.isHr = true
+      }
     }
   }
 
