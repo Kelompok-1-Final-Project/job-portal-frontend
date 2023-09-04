@@ -1,11 +1,10 @@
-<!-- <pre>{{ job|json }}</pre> -->
-<!-- <pre>{{ company|json }}</pre> -->
+
 <div class="home-container">
   <div class="col-12 grid grid-nogutter justify-content-center">
     <app-button iconBtn="pi pi-angle-double-left" classBtn="p-button-raised p-button-text p-button-warning"
       label="Back to previous menu" btnType="submit" [routerLink]="linkTo" class="col-10"></app-button>
   </div>
-  <div class="container grid grid-nogutter justify-content-center">
+  <div class="container grid grid-nogutter justify-content-center ">
     <div class="sub-container grid col-12 md:col-10 mt-3 justify-content-center">
       <div class="banner col-12">
       </div>
@@ -160,7 +159,6 @@
 
 <p-dialog header="Assign Job" [modal]="true" [(visible)]="visibleAssignJob" [breakpoints]="{'768px': '90vw'}"
   [style]="{width: '35vw' }" [draggable]="false">
-  <pre>{{ assignJobReqDto|json }}</pre>
   <div class="grid surface-card border-round-sm border-400">
     <div class="flex flex-wrap justify-content-end mt-2 col-12">
       <app-button classBtn="p-button-primary mr-2" btnType="submit" (clickChange)="submitAssignJob()" [loading]="loading" label="Submit">

@@ -704,6 +704,7 @@ export class ProfileDetailComponent implements OnInit, AfterViewChecked {
     const data = this.cvUpdateReqDto.getRawValue();
     data.candidateId = this.userId;
     this.profileService.updateCv(data).subscribe(result => {
+      console.log(data.candidateId);
       this.visibleUpdateCv = false;
       this.getCandidateData();
     })

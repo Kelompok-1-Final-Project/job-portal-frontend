@@ -1,4 +1,4 @@
-<!-- <pre>{{ userData|json }}</pre> -->
+
 
 <div class="profile-container grid justify-content-center m-3">
   <p-accordion class="col-11 md:col-8 custom-accordion">
@@ -226,7 +226,6 @@
 <!-- Modal Edit User-->
 <p-dialog header="Edit Profile" [modal]="true" [(visible)]="visibleEditUser" [breakpoints]="{'768px': '90vw'}"
   [style]="{width: '45vw' }" [draggable]="false">
-  <pre>{{ candidateUpdateReqDto.value|json }}</pre>
   <form [formGroup]="candidateUpdateReqDto" (ngSubmit)="submitUpdateCandidate()">
     <div class="container">
       <div class="card-container grid justify-content-center align-items-center">
@@ -336,7 +335,6 @@
 <!-- Modal Update Education-->
 <p-dialog header="Edit Education" [modal]="true" [(visible)]="visibleUpdateEducation" [breakpoints]="{'768px': '90vw'}"
   [style]="{width: '30vw' }" [draggable]="false">
-  <pre>{{ educationUpdateReqDto.value|json }}</pre>
   <form [formGroup]="educationUpdateReqDto" (ngSubmit)="submitUpdateEducation()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
@@ -475,7 +473,6 @@
 <!-- Modal Add Skill-->
 <p-dialog header="Add Skill" [modal]="true" [(visible)]="visibleAddSkill" [breakpoints]="{'768px': '90vw'}"
   [style]="{width: '40vw' }" [draggable]="false">
-  <pre>{{ skillCandidateReqDto.value|json}}</pre>
   <form [formGroup]="skillCandidateReqDto" (ngSubmit)="submitAddSkillCandidate()">
 
     <div class="grid surface-card border-round-sm border-400">
@@ -506,7 +503,6 @@
 <!-- Modal Update Skill-->
 <p-dialog header="Edit Skill" [modal]="true" [(visible)]="visibleUpdateSkill" [breakpoints]="{'768px': '90vw'}"
   [style]="{width: '50vw' }" [draggable]="false">
-  <pre>{{ skills|json }}</pre>
   <div class="grid surface-card border-round-sm border-400" *ngFor="let s of skills">
     <div class="col-12 md:col-9">
       <div class="mb-2">
@@ -538,7 +534,6 @@
 <!-- Modal Add Organization -->
 <p-dialog header="Add Work Organization" [modal]="true" [(visible)]="visibleAddOrganization"
   [breakpoints]="{'768px': '90vw'}" [style]="{width: '30vw' }" [draggable]="false">
-  <pre>{{ organizationInsertReqDto.value|json}}</pre>
   <form [formGroup]="organizationInsertReqDto" (ngSubmit)="insertOrganization()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
@@ -641,7 +636,6 @@
 <!-- Modal Add Family -->
 <p-dialog header="Add Family" [modal]="true" [(visible)]="visibleAddFamily" [breakpoints]="{'768px': '90vw'}"
   [style]="{width: '30vw' }" [draggable]="false">
-  <pre>{{ familyInsertReqDto.value|json}}</pre>
   <form [formGroup]="familyInsertReqDto" (ngSubmit)="insertFamily()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
@@ -683,7 +677,6 @@
 <!-- Modal Update Family-->
 <p-dialog header="Edit Family" [modal]="true" [(visible)]="visibleUpdateFamily" [breakpoints]="{'768px': '90vw'}"
   [style]="{width: '30vw' }" [draggable]="false">
-  <pre>{{ familyUpdateReqDto.value|json}}</pre>
   <form [formGroup]="familyUpdateReqDto" (ngSubmit)="submitUpdateFamily()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
@@ -739,7 +732,6 @@
 <!-- Modal Update Summary-->
 <p-dialog header="Edit Summary" [modal]="true" [(visible)]="visibleUpdateSummary" [breakpoints]="{'768px': '90vw'}"
   [style]="{width: '40vw' }" [draggable]="false">
-  <pre>{{ summaryUpdateReqDto.value|json }}</pre>
   <form [formGroup]="summaryUpdateReqDto" (ngSubmit)="submitUpdateSummary()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12 md:col-3">
@@ -759,7 +751,6 @@
 <!-- Modal Update CV-->
 <p-dialog header="Update Resume" [modal]="true" [(visible)]="visibleUpdateCv" [breakpoints]="{'768px': '90vw'}"
   [style]="{width: '40vw' }" [draggable]="false">
-  <pre>{{ cvUpdateReqDto.value|json }}</pre>
   <form [formGroup]="cvUpdateReqDto" (ngSubmit)="submitUpdateCv()">
     <div class="grid surface-card border-round-sm border-400">
       <div class="col-12">

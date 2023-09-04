@@ -68,10 +68,12 @@ export class VacancyDetailComponent implements OnInit,AfterViewChecked {
         this.codeJob = this.param;
         this.linkTo = '/status-progress'
         this.getJobByCode();
+        this.getJobBenefit();
       }else if(this.param.length==36){
         this.idJob = this.param;
         this.linkTo = '/home/job'
         this.getJobById();
+        this.getJobBenefit();
       }
     })
   }
@@ -88,7 +90,6 @@ export class VacancyDetailComponent implements OnInit,AfterViewChecked {
     }
     this.userEmail = this.authService.getUserEmail();
     this.init();
-    this.getJobBenefit();
   }
 
   getJobById() {
