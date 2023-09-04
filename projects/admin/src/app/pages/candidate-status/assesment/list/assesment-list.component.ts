@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { RoleName } from '@constant/role.enum';
 import { AssessmentGetResDto } from '@dto/assessment/assessment.get.res.dto';
 import { AuthService } from '@serviceAdmin/auth.service';
 import { StatusProgressService } from '@serviceAdmin/statusprogress.service';
@@ -22,6 +23,7 @@ export class AssesmentListComponent implements OnInit {
   userId!: string
   search: string = ''
   loading: boolean = false
+  isInterview!: boolean
 
   updateAssessmentNotesReqDto = this.fb.group({
     assessmentId: ['', [Validators.required]],
@@ -38,6 +40,7 @@ export class AssesmentListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getRole()
     this.getProfile()
     this.getAssessment()
   }
@@ -71,4 +74,10 @@ export class AssesmentListComponent implements OnInit {
     }
   }
 
+  getRole(){
+    const profile = this.authService.getProfile()
+    if(profile && profile.roleCode==RoleName.INTERVIEWER){
+      this.isInterview = true
+    }
+  }
 }
